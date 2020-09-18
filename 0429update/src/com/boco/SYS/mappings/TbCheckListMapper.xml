@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbCheckList -->
+<mapper namespace="com.boco.SYS.mapper.TbCheckListMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbCheckList">
+       	<id column="trans_date" property="transDate"/>
+       	<id column="systemid" property="systemid"/>
+       	<id column="paper_code" property="paperCode"/>
+     	<result column="contract_code" property="contractCode"/>
+     	<result column="grant_code" property="grantCode"/>
+     	<result column="grant_balance" property="grantBalance"/>
+     	<result column="amt" property="amt"/>
+     	<result column="balance" property="balance"/>
+     	<result column="ccy" property="ccy"/>
+     	<result column="ori_limit" property="oriLimit"/>
+     	<result column="loan_date" property="loanDate"/>
+     	<result column="overdue_days" property="overdueDays"/>
+     	<result column="limit_date" property="limitDate"/>
+     	<result column="trans_organ" property="transOrgan"/>
+     	<result column="product_code" property="productCode"/>
+     	<result column="cust_code" property="custCode"/>
+     	<result column="cust_name" property="custName"/>
+     	<result column="cert_type" property="certType"/>
+     	<result column="cert_num" property="certNum"/>
+     	<result column="cust_industry" property="custIndustry"/>
+     	<result column="loan_usage" property="loanUsage"/>
+     	<result column="loan_industry" property="loanIndustry"/>
+     	<result column="interest_type" property="interestType"/>
+     	<result column="floating_interest" property="floatingInterest"/>
+     	<result column="base_interest" property="baseInterest"/>
+     	<result column="execute_interest" property="executeInterest"/>
+     	<result column="manager_code" property="managerCode"/>
+     	<result column="manager_name" property="managerName"/>
+     	<result column="paper_status" property="paperStatus"/>
+     	<result column="check_status" property="checkStatus"/>
+     	<result column="remark" property="remark"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        trans_date ,systemid ,paper_code ,contract_code ,grant_code ,grant_balance ,amt ,balance ,ccy ,ori_limit ,loan_date ,overdue_days ,limit_date ,trans_organ ,product_code ,cust_code ,cust_name ,cert_type ,cert_num ,cust_industry ,loan_usage ,loan_industry ,interest_type ,floating_interest ,base_interest ,execute_interest ,manager_code ,manager_name ,paper_status ,check_status ,remark 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCheckList">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_check_list 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="transDate != null">
+	        	trans_date ,
+	       	</if>
+	       	<if test="systemid != null">
+	        	systemid ,
+	       	</if>
+	       	<if test="paperCode != null">
+	        	paper_code ,
+	       	</if>
+	       	<if test="contractCode != null">
+	        	contract_code ,
+	       	</if>
+	       	<if test="grantCode != null">
+	        	grant_code ,
+	       	</if>
+	       	<if test="grantBalance != null">
+	        	grant_balance ,
+	       	</if>
+	       	<if test="amt != null">
+	        	amt ,
+	       	</if>
+	       	<if test="balance != null">
+	        	balance ,
+	       	</if>
+	       	<if test="ccy != null">
+	        	ccy ,
+	       	</if>
+	       	<if test="oriLimit != null">
+	        	ori_limit ,
+	       	</if>
+	       	<if test="loanDate != null">
+	        	loan_date ,
+	       	</if>
+	       	<if test="overdueDays != null">
+	        	overdue_days ,
+	       	</if>
+	       	<if test="limitDate != null">
+	        	limit_date ,
+	       	</if>
+	       	<if test="transOrgan != null">
+	        	trans_organ ,
+	       	</if>
+	       	<if test="productCode != null">
+	        	product_code ,
+	       	</if>
+	       	<if test="custCode != null">
+	        	cust_code ,
+	       	</if>
+	       	<if test="custName != null">
+	        	cust_name ,
+	       	</if>
+	       	<if test="certType != null">
+	        	cert_type ,
+	       	</if>
+	       	<if test="certNum != null">
+	        	cert_num ,
+	       	</if>
+	       	<if test="custIndustry != null">
+	        	cust_industry ,
+	       	</if>
+	       	<if test="loanUsage != null">
+	        	loan_usage ,
+	       	</if>
+	       	<if test="loanIndustry != null">
+	        	loan_industry ,
+	       	</if>
+	       	<if test="interestType != null">
+	        	interest_type ,
+	       	</if>
+	       	<if test="floatingInterest != null">
+	        	floating_interest ,
+	       	</if>
+	       	<if test="baseInterest != null">
+	        	base_interest ,
+	       	</if>
+	       	<if test="executeInterest != null">
+	        	execute_interest ,
+	       	</if>
+	       	<if test="managerCode != null">
+	        	manager_code ,
+	       	</if>
+	       	<if test="managerName != null">
+	        	manager_name ,
+	       	</if>
+	       	<if test="paperStatus != null">
+	        	paper_status ,
+	       	</if>
+	       	<if test="checkStatus != null">
+	        	check_status ,
+	       	</if>
+	       	<if test="remark != null">
+	        	remark 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="transDate != null">
+	        	#{transDate} ,
+	       	</if>
+	       	<if test="systemid != null">
+	        	#{systemid} ,
+	       	</if>
+	       	<if test="paperCode != null">
+	        	#{paperCode} ,
+	       	</if>
+	       	<if test="contractCode != null">
+	        	#{contractCode} ,
+	       	</if>
+	       	<if test="grantCode != null">
+	        	#{grantCode} ,
+	       	</if>
+	       	<if test="grantBalance != null">
+	        	#{grantBalance} ,
+	       	</if>
+	       	<if test="amt != null">
+	        	#{amt} ,
+	       	</if>
+	       	<if test="balance != null">
+	        	#{balance} ,
+	       	</if>
+	       	<if test="ccy != null">
+	        	#{ccy} ,
+	       	</if>
+	       	<if test="oriLimit != null">
+	        	#{oriLimit} ,
+	       	</if>
+	       	<if test="loanDate != null">
+	        	#{loanDate} ,
+	       	</if>
+	       	<if test="overdueDays != null">
+	        	#{overdueDays} ,
+	       	</if>
+	       	<if test="limitDate != null">
+	        	#{limitDate} ,
+	       	</if>
+	       	<if test="transOrgan != null">
+	        	#{transOrgan} ,
+	       	</if>
+	       	<if test="productCode != null">
+	        	#{productCode} ,
+	       	</if>
+	       	<if test="custCode != null">
+	        	#{custCode} ,
+	       	</if>
+	       	<if test="custName != null">
+	        	#{custName} ,
+	       	</if>
+	       	<if test="certType != null">
+	        	#{certType} ,
+	       	</if>
+	       	<if test="certNum != null">
+	        	#{certNum} ,
+	       	</if>
+	       	<if test="custIndustry != null">
+	        	#{custIndustry} ,
+	       	</if>
+	       	<if test="loanUsage != null">
+	        	#{loanUsage} ,
+	       	</if>
+	       	<if test="loanIndustry != null">
+	        	#{loanIndustry} ,
+	       	</if>
+	       	<if test="interestType != null">
+	        	#{interestType} ,
+	       	</if>
+	       	<if test="floatingInterest != null">
+	        	#{floatingInterest} ,
+	       	</if>
+	       	<if test="baseInterest != null">
+	        	#{baseInterest} ,
+	       	</if>
+	       	<if test="executeInterest != null">
+	        	#{executeInterest} ,
+	       	</if>
+	       	<if test="managerCode != null">
+	        	#{managerCode} ,
+	       	</if>
+	       	<if test="managerName != null">
+	        	#{managerName} ,
+	       	</if>
+	       	<if test="paperStatus != null">
+	        	#{paperStatus} ,
+	       	</if>
+	       	<if test="checkStatus != null">
+	        	#{checkStatus} ,
+	       	</if>
+	       	<if test="remark != null">
+	        	#{remark} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_check_list 
+        (trans_date ,systemid ,paper_code ,contract_code ,grant_code ,grant_balance ,amt ,balance ,ccy ,ori_limit ,loan_date ,overdue_days ,limit_date ,trans_organ ,product_code ,cust_code ,cust_name ,cert_type ,cert_num ,cust_industry ,loan_usage ,loan_industry ,interest_type ,floating_interest ,base_interest ,execute_interest ,manager_code ,manager_name ,paper_status ,check_status ,remark )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.transDate,jdbcType=VARCHAR},#{item.systemid,jdbcType=VARCHAR},#{item.paperCode,jdbcType=VARCHAR},#{item.contractCode,jdbcType=VARCHAR},#{item.grantCode,jdbcType=VARCHAR},#{item.grantBalance,jdbcType=VARCHAR},#{item.amt,jdbcType=VARCHAR},#{item.balance,jdbcType=VARCHAR},#{item.ccy,jdbcType=VARCHAR},#{item.oriLimit,jdbcType=VARCHAR},#{item.loanDate,jdbcType=VARCHAR},#{item.overdueDays,jdbcType=VARCHAR},#{item.limitDate,jdbcType=VARCHAR},#{item.transOrgan,jdbcType=VARCHAR},#{item.productCode,jdbcType=VARCHAR},#{item.custCode,jdbcType=VARCHAR},#{item.custName,jdbcType=VARCHAR},#{item.certType,jdbcType=VARCHAR},#{item.certNum,jdbcType=VARCHAR},#{item.custIndustry,jdbcType=VARCHAR},#{item.loanUsage,jdbcType=VARCHAR},#{item.loanIndustry,jdbcType=VARCHAR},#{item.interestType,jdbcType=VARCHAR},#{item.floatingInterest,jdbcType=VARCHAR},#{item.baseInterest,jdbcType=VARCHAR},#{item.executeInterest,jdbcType=VARCHAR},#{item.managerCode,jdbcType=VARCHAR},#{item.managerName,jdbcType=VARCHAR},#{item.paperStatus,jdbcType=VARCHAR},#{item.checkStatus,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_check_list 
+        <where>
+        	trans_date = #{transDate} and
+        	systemid = #{systemid} and
+        	paper_code = #{paperCode} 
+		</where>
+    </delete>
+    
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_check_list
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbCheckList">
+        UPDATE tb_check_list 
+        <set>
+       	<if test="contractCode != null">
+       		contract_code = #{contractCode},
+       	</if>
+       	<if test="grantCode != null">
+       		grant_code = #{grantCode},
+       	</if>
+       	<if test="grantBalance != null">
+       		grant_balance = #{grantBalance},
+       	</if>
+       	<if test="amt != null">
+       		amt = #{amt},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="ccy != null">
+       		ccy = #{ccy},
+       	</if>
+       	<if test="oriLimit != null">
+       		ori_limit = #{oriLimit},
+       	</if>
+       	<if test="loanDate != null">
+       		loan_date = #{loanDate},
+       	</if>
+       	<if test="overdueDays != null">
+       		overdue_days = #{overdueDays},
+       	</if>
+       	<if test="limitDate != null">
+       		limit_date = #{limitDate},
+       	</if>
+       	<if test="transOrgan != null">
+       		trans_organ = #{transOrgan},
+       	</if>
+       	<if test="productCode != null">
+       		product_code = #{productCode},
+       	</if>
+       	<if test="custCode != null">
+       		cust_code = #{custCode},
+       	</if>
+       	<if test="custName != null">
+       		cust_name = #{custName},
+       	</if>
+       	<if test="certType != null">
+       		cert_type = #{certType},
+       	</if>
+       	<if test="certNum != null">
+       		cert_num = #{certNum},
+       	</if>
+       	<if test="custIndustry != null">
+       		cust_industry = #{custIndustry},
+       	</if>
+       	<if test="loanUsage != null">
+       		loan_usage = #{loanUsage},
+       	</if>
+       	<if test="loanIndustry != null">
+       		loan_industry = #{loanIndustry},
+       	</if>
+       	<if test="interestType != null">
+       		interest_type = #{interestType},
+       	</if>
+       	<if test="floatingInterest != null">
+       		floating_interest = #{floatingInterest},
+       	</if>
+       	<if test="baseInterest != null">
+       		base_interest = #{baseInterest},
+       	</if>
+       	<if test="executeInterest != null">
+       		execute_interest = #{executeInterest},
+       	</if>
+       	<if test="managerCode != null">
+       		manager_code = #{managerCode},
+       	</if>
+       	<if test="managerName != null">
+       		manager_name = #{managerName},
+       	</if>
+       	<if test="paperStatus != null">
+       		paper_status = #{paperStatus},
+       	</if>
+       	<if test="checkStatus != null">
+       		check_status = #{checkStatus},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+        </set>
+        <where>
+        	trans_date = #{transDate} and
+        	systemid = #{systemid} and
+        	paper_code = #{paperCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_check_list 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_check_list 
+        <set>
+       	<if test="transDate != null">
+       		trans_date = #{transDate},
+       	</if>
+       	<if test="systemid != null">
+       		systemid = #{systemid},
+       	</if>
+       	<if test="paperCode != null">
+       		paper_code = #{paperCode},
+       	</if>
+       	<if test="contractCode != null">
+       		contract_code = #{contractCode},
+       	</if>
+       	<if test="grantCode != null">
+       		grant_code = #{grantCode},
+       	</if>
+       	<if test="grantBalance != null">
+       		grant_balance = #{grantBalance},
+       	</if>
+       	<if test="amt != null">
+       		amt = #{amt},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="ccy != null">
+       		ccy = #{ccy},
+       	</if>
+       	<if test="oriLimit != null">
+       		ori_limit = #{oriLimit},
+       	</if>
+       	<if test="loanDate != null">
+       		loan_date = #{loanDate},
+       	</if>
+       	<if test="overdueDays != null">
+       		overdue_days = #{overdueDays},
+       	</if>
+       	<if test="limitDate != null">
+       		limit_date = #{limitDate},
+       	</if>
+       	<if test="transOrgan != null">
+       		trans_organ = #{transOrgan},
+       	</if>
+       	<if test="productCode != null">
+       		product_code = #{productCode},
+       	</if>
+       	<if test="custCode != null">
+       		cust_code = #{custCode},
+       	</if>
+       	<if test="custName != null">
+       		cust_name = #{custName},
+       	</if>
+       	<if test="certType != null">
+       		cert_type = #{certType},
+       	</if>
+       	<if test="certNum != null">
+       		cert_num = #{certNum},
+       	</if>
+       	<if test="custIndustry != null">
+       		cust_industry = #{custIndustry},
+       	</if>
+       	<if test="loanUsage != null">
+       		loan_usage = #{loanUsage},
+       	</if>
+       	<if test="loanIndustry != null">
+       		loan_industry = #{loanIndustry},
+       	</if>
+       	<if test="interestType != null">
+       		interest_type = #{interestType},
+       	</if>
+       	<if test="floatingInterest != null">
+       		floating_interest = #{floatingInterest},
+       	</if>
+       	<if test="baseInterest != null">
+       		base_interest = #{baseInterest},
+       	</if>
+       	<if test="executeInterest != null">
+       		execute_interest = #{executeInterest},
+       	</if>
+       	<if test="managerCode != null">
+       		manager_code = #{managerCode},
+       	</if>
+       	<if test="managerName != null">
+       		manager_name = #{managerName},
+       	</if>
+       	<if test="paperStatus != null">
+       		paper_status = #{paperStatus},
+       	</if>
+       	<if test="checkStatus != null">
+       		check_status = #{checkStatus},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="transDate != null and transDate != ''">
+	 		and trans_date = #{transDate}
+	 	</if>
+	 	<if test="systemid != null and systemid != ''">
+	 		and systemid = #{systemid}
+	 	</if>
+	 	<if test="paperCode != null and paperCode != ''">
+	 		and paper_code = #{paperCode}
+	 	</if>
+	 	<if test="contractCode != null and contractCode != ''">
+	 		and contract_code = #{contractCode}
+	 	</if>
+	 	<if test="grantCode != null and grantCode != ''">
+	 		and grant_code = #{grantCode}
+	 	</if>
+	 	<if test="grantBalance != null and grantBalance != ''">
+	 		and grant_balance = #{grantBalance}
+	 	</if>
+	 	<if test="amt != null and amt != ''">
+	 		and amt = #{amt}
+	 	</if>
+	 	<if test="balance != null and balance != ''">
+	 		and balance = #{balance}
+	 	</if>
+	 	<if test="ccy != null and ccy != ''">
+	 		and ccy = #{ccy}
+	 	</if>
+	 	<if test="oriLimit != null and oriLimit != ''">
+	 		and ori_limit = #{oriLimit}
+	 	</if>
+	 	<if test="loanDate != null and loanDate != ''">
+	 		and loan_date = #{loanDate}
+	 	</if>
+	 	<if test="overdueDays != null and overdueDays != ''">
+	 		and overdue_days = #{overdueDays}
+	 	</if>
+	 	<if test="limitDate != null and limitDate != ''">
+	 		and limit_date = #{limitDate}
+	 	</if>
+	 	<if test="transOrgan != null and transOrgan != ''">
+	 		and trans_organ = #{transOrgan}
+	 	</if>
+	 	<if test="productCode != null and productCode != ''">
+	 		and product_code = #{productCode}
+	 	</if>
+	 	<if test="custCode != null and custCode != ''">
+	 		and cust_code = #{custCode}
+	 	</if>
+	 	<if test="custName != null and custName != ''">
+	 		and cust_name = #{custName}
+	 	</if>
+	 	<if test="certType != null and certType != ''">
+	 		and cert_type = #{certType}
+	 	</if>
+	 	<if test="certNum != null and certNum != ''">
+	 		and cert_num = #{certNum}
+	 	</if>
+	 	<if test="custIndustry != null and custIndustry != ''">
+	 		and cust_industry = #{custIndustry}
+	 	</if>
+	 	<if test="loanUsage != null and loanUsage != ''">
+	 		and loan_usage = #{loanUsage}
+	 	</if>
+	 	<if test="loanIndustry != null and loanIndustry != ''">
+	 		and loan_industry = #{loanIndustry}
+	 	</if>
+	 	<if test="interestType != null and interestType != ''">
+	 		and interest_type = #{interestType}
+	 	</if>
+	 	<if test="floatingInterest != null and floatingInterest != ''">
+	 		and floating_interest = #{floatingInterest}
+	 	</if>
+	 	<if test="baseInterest != null and baseInterest != ''">
+	 		and base_interest = #{baseInterest}
+	 	</if>
+	 	<if test="executeInterest != null and executeInterest != ''">
+	 		and execute_interest = #{executeInterest}
+	 	</if>
+	 	<if test="managerCode != null and managerCode != ''">
+	 		and manager_code = #{managerCode}
+	 	</if>
+	 	<if test="managerName != null and managerName != ''">
+	 		and manager_name = #{managerName}
+	 	</if>
+	 	<if test="paperStatus != null and paperStatus != ''">
+	 		and paper_status = #{paperStatus}
+	 	</if>
+	 	<if test="checkStatus != null and checkStatus != ''">
+	 		and check_status = #{checkStatus}
+	 	</if>
+	 	<if test="remark != null and remark != ''">
+	 		and remark = #{remark}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="transDate != null and transDate != ''">
+ 			and trans_date like '%' || #{transDate} || '%'
+ 		</if>
+ 		<if test="systemid != null and systemid != ''">
+ 			and systemid like '%' || #{systemid} || '%'
+ 		</if>
+ 		<if test="paperCode != null and paperCode != ''">
+ 			and paper_code like '%' || #{paperCode} || '%'
+ 		</if>
+ 		<if test="contractCode != null and contractCode != ''">
+ 			and contract_code like '%' || #{contractCode} || '%'
+ 		</if>
+ 		<if test="grantCode != null and grantCode != ''">
+ 			and grant_code like '%' || #{grantCode} || '%'
+ 		</if>
+ 		<if test="grantBalance != null and grantBalance != ''">
+ 			and grant_balance like '%' || #{grantBalance} || '%'
+ 		</if>
+ 		<if test="amt != null and amt != ''">
+ 			and amt like '%' || #{amt} || '%'
+ 		</if>
+ 		<if test="balance != null and balance != ''">
+ 			and balance like '%' || #{balance} || '%'
+ 		</if>
+ 		<if test="ccy != null and ccy != ''">
+ 			and ccy like '%' || #{ccy} || '%'
+ 		</if>
+ 		<if test="oriLimit != null and oriLimit != ''">
+ 			and ori_limit like '%' || #{oriLimit} || '%'
+ 		</if>
+ 		<if test="loanDate != null and loanDate != ''">
+ 			and loan_date like '%' || #{loanDate} || '%'
+ 		</if>
+ 		<if test="overdueDays != null and overdueDays != ''">
+ 			and overdue_days like '%' || #{overdueDays} || '%'
+ 		</if>
+ 		<if test="limitDate != null and limitDate != ''">
+ 			and limit_date like '%' || #{limitDate} || '%'
+ 		</if>
+ 		<if test="transOrgan != null and transOrgan != ''">
+ 			and trans_organ like '%' || #{transOrgan} || '%'
+ 		</if>
+ 		<if test="productCode != null and productCode != ''">
+ 			and product_code like '%' || #{productCode} || '%'
+ 		</if>
+ 		<if test="custCode != null and custCode != ''">
+ 			and cust_code like '%' || #{custCode} || '%'
+ 		</if>
+ 		<if test="custName != null and custName != ''">
+ 			and cust_name like '%' || #{custName} || '%'
+ 		</if>
+ 		<if test="certType != null and certType != ''">
+ 			and cert_type like '%' || #{certType} || '%'
+ 		</if>
+ 		<if test="certNum != null and certNum != ''">
+ 			and cert_num like '%' || #{certNum} || '%'
+ 		</if>
+ 		<if test="custIndustry != null and custIndustry != ''">
+ 			and cust_industry like '%' || #{custIndustry} || '%'
+ 		</if>
+ 		<if test="loanUsage != null and loanUsage != ''">
+ 			and loan_usage like '%' || #{loanUsage} || '%'
+ 		</if>
+ 		<if test="loanIndustry != null and loanIndustry != ''">
+ 			and loan_industry like '%' || #{loanIndustry} || '%'
+ 		</if>
+ 		<if test="interestType != null and interestType != ''">
+ 			and interest_type like '%' || #{interestType} || '%'
+ 		</if>
+ 		<if test="floatingInterest != null and floatingInterest != ''">
+ 			and floating_interest like '%' || #{floatingInterest} || '%'
+ 		</if>
+ 		<if test="baseInterest != null and baseInterest != ''">
+ 			and base_interest like '%' || #{baseInterest} || '%'
+ 		</if>
+ 		<if test="executeInterest != null and executeInterest != ''">
+ 			and execute_interest like '%' || #{executeInterest} || '%'
+ 		</if>
+ 		<if test="managerCode != null and managerCode != ''">
+ 			and manager_code like '%' || #{managerCode} || '%'
+ 		</if>
+ 		<if test="managerName != null and managerName != ''">
+ 			and manager_name like '%' || #{managerName} || '%'
+ 		</if>
+ 		<if test="paperStatus != null and paperStatus != ''">
+ 			and paper_status like '%' || #{paperStatus} || '%'
+ 		</if>
+ 		<if test="checkStatus != null and checkStatus != ''">
+ 			and check_status like '%' || #{checkStatus} || '%'
+ 		</if>
+ 		<if test="remark != null and remark != ''">
+ 			and remark like '%' || #{remark} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_check_list 
+        <where> 
+        	trans_date = #{transDate} and
+        	systemid = #{systemid} and
+        	paper_code = #{paperCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCheckList" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_check_list
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCheckList" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_check_list 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCheckList" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_check_list 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_check_list 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbCheckList" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_check_list 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCheckList" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_check_list 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_check_list 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

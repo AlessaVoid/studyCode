@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 时间计划维护表 -->
+<mapper namespace="com.boco.SYS.mapper.TbTradeParamMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbTradeParam">
+        <id column="param_id" property="paramId"/>
+        <result column="param_period" property="paramPeriod"/>
+        <result column="param_mode" property="paramMode"/>
+        <result column="param_punish_mode" property="paramPunishMode"/>
+        <result column="param_req_start" property="paramReqStart"/>
+        <result column="param_req_end" property="paramReqEnd"/>
+        <result column="param_plan_start" property="paramPlanStart"/>
+        <result column="param_plan_end" property="paramPlanEnd"/>
+        <result column="param_punish_start" property="paramPunishStart"/>
+        <result column="param_punsih_end" property="paramPunsihEnd"/>
+        <result column="param_createtime" property="paramCreatetime"/>
+        <result column="param_updatetime" property="paramUpdatetime"/>
+        <result column="param_createuserid" property="paramCreateuserid"/>
+        <result column="param_updateuserid" property="paramUpdateuserid"/>
+        <result column="param_mech_increment" property="paramMechIncrement"/>
+        <result column="param_line_increment" property="paramLineIncrement"/>
+        <result column="param_over_mount" property="paramOverMount"/>
+        <result column="param_is_line" property="paramIsLine"/>
+        <result column="param_temp_mount" property="paramTempMount"/>
+        <result column="param_single_mount" property="paramSingleMount"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+                param_id ,param_period ,param_mode ,param_punish_mode ,param_req_start ,param_req_end ,param_plan_start ,param_plan_end ,param_punish_start ,param_punsih_end ,param_createtime ,param_updatetime ,param_createuserid ,param_updateuserid ,param_mech_increment ,param_line_increment ,param_over_mount ,param_is_line ,param_temp_mount ,param_single_mount
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbTradeParam">
+        <!--
+                -->
+        INSERT INTO tb_trade_param
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="paramId != null">
+                param_id ,
+            </if>
+            <if test="paramPeriod != null">
+                param_period ,
+            </if>
+            <if test="paramMode != null">
+                param_mode ,
+            </if>
+            <if test="paramPunishMode != null">
+                param_punish_mode ,
+            </if>
+            <if test="paramReqStart != null">
+                param_req_start ,
+            </if>
+            <if test="paramReqEnd != null">
+                param_req_end ,
+            </if>
+            <if test="paramPlanStart != null">
+                param_plan_start ,
+            </if>
+            <if test="paramPlanEnd != null">
+                param_plan_end ,
+            </if>
+            <if test="paramPunishStart != null">
+                param_punish_start ,
+            </if>
+            <if test="paramPunsihEnd != null">
+                param_punsih_end ,
+            </if>
+            <if test="paramCreatetime != null">
+                param_createtime ,
+            </if>
+            <if test="paramUpdatetime != null">
+                param_updatetime ,
+            </if>
+            <if test="paramCreateuserid != null">
+                param_createuserid ,
+            </if>
+            <if test="paramUpdateuserid != null">
+                param_updateuserid ,
+            </if>
+            <if test="paramMechIncrement != null">
+                param_mech_increment ,
+            </if>
+            <if test="paramLineIncrement != null">
+                param_line_increment ,
+            </if>
+            <if test="paramOverMount != null">
+                param_over_mount ,
+            </if>
+            <if test="paramIsLine != null">
+                param_is_line ,
+            </if>
+            <if test="paramTempMount != null">
+                param_temp_mount ,
+            </if>
+            <if test="paramSingleMount != null">
+                param_single_mount
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="paramId != null">
+                #{paramId} ,
+            </if>
+            <if test="paramPeriod != null">
+                #{paramPeriod} ,
+            </if>
+            <if test="paramMode != null">
+                #{paramMode} ,
+            </if>
+            <if test="paramPunishMode != null">
+                #{paramPunishMode} ,
+            </if>
+            <if test="paramReqStart != null">
+                #{paramReqStart} ,
+            </if>
+            <if test="paramReqEnd != null">
+                #{paramReqEnd} ,
+            </if>
+            <if test="paramPlanStart != null">
+                #{paramPlanStart} ,
+            </if>
+            <if test="paramPlanEnd != null">
+                #{paramPlanEnd} ,
+            </if>
+            <if test="paramPunishStart != null">
+                #{paramPunishStart} ,
+            </if>
+            <if test="paramPunsihEnd != null">
+                #{paramPunsihEnd} ,
+            </if>
+            <if test="paramCreatetime != null">
+                #{paramCreatetime} ,
+            </if>
+            <if test="paramUpdatetime != null">
+                #{paramUpdatetime} ,
+            </if>
+            <if test="paramCreateuserid != null">
+                #{paramCreateuserid} ,
+            </if>
+            <if test="paramUpdateuserid != null">
+                #{paramUpdateuserid} ,
+            </if>
+            <if test="paramMechIncrement != null">
+                #{paramMechIncrement} ,
+            </if>
+            <if test="paramLineIncrement != null">
+                #{paramLineIncrement} ,
+            </if>
+            <if test="paramOverMount != null">
+                #{paramOverMount} ,
+            </if>
+            <if test="paramIsLine != null">
+                #{paramIsLine} ,
+            </if>
+            <if test="paramTempMount != null">
+                #{paramTempMount} ,
+            </if>
+            <if test="paramSingleMount != null">
+                #{paramSingleMount}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_trade_param
+        (param_id ,param_period ,param_mode ,param_punish_mode ,param_req_start ,param_req_end ,param_plan_start
+        ,param_plan_end ,param_punish_start ,param_punsih_end ,param_createtime ,param_updatetime ,param_createuserid
+        ,param_updateuserid ,param_mech_increment ,param_line_increment ,param_over_mount ,param_is_line
+        ,param_temp_mount ,param_single_mount )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.paramId,jdbcType=VARCHAR},#{item.paramPeriod,jdbcType=VARCHAR},#{item.paramMode,jdbcType=VARCHAR},#{item.paramPunishMode,jdbcType=VARCHAR},#{item.paramReqStart,jdbcType=VARCHAR},#{item.paramReqEnd,jdbcType=VARCHAR},#{item.paramPlanStart,jdbcType=VARCHAR},#{item.paramPlanEnd,jdbcType=VARCHAR},#{item.paramPunishStart,jdbcType=VARCHAR},#{item.paramPunsihEnd,jdbcType=VARCHAR},#{item.paramCreatetime,jdbcType=VARCHAR},#{item.paramUpdatetime,jdbcType=VARCHAR},#{item.paramCreateuserid,jdbcType=VARCHAR},#{item.paramUpdateuserid,jdbcType=VARCHAR},#{item.paramMechIncrement,jdbcType=VARCHAR},#{item.paramLineIncrement,jdbcType=VARCHAR},#{item.paramOverMount,jdbcType=VARCHAR},#{item.paramIsLine,jdbcType=VARCHAR},#{item.paramTempMount,jdbcType=VARCHAR},#{item.paramSingleMount,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_trade_param
+        <where>
+            param_id = #{paramId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_trade_param
+        <where>
+            param_id = #{paramId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_trade_param
+        WHERE param_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_trade_param
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbTradeParam">
+        UPDATE tb_trade_param
+        <set>
+            <if test="paramPeriod != null">
+                param_period = #{paramPeriod},
+            </if>
+            <if test="paramMode != null">
+                param_mode = #{paramMode},
+            </if>
+            <if test="paramPunishMode != null">
+                param_punish_mode = #{paramPunishMode},
+            </if>
+            <if test="paramReqStart != null">
+                param_req_start = #{paramReqStart},
+            </if>
+            <if test="paramReqEnd != null">
+                param_req_end = #{paramReqEnd},
+            </if>
+            <if test="paramPlanStart != null">
+                param_plan_start = #{paramPlanStart},
+            </if>
+            <if test="paramPlanEnd != null">
+                param_plan_end = #{paramPlanEnd},
+            </if>
+            <if test="paramPunishStart != null">
+                param_punish_start = #{paramPunishStart},
+            </if>
+            <if test="paramPunsihEnd != null">
+                param_punsih_end = #{paramPunsihEnd},
+            </if>
+            <if test="paramCreatetime != null">
+                param_createtime = #{paramCreatetime},
+            </if>
+            <if test="paramUpdatetime != null">
+                param_updatetime = #{paramUpdatetime},
+            </if>
+            <if test="paramCreateuserid != null">
+                param_createuserid = #{paramCreateuserid},
+            </if>
+            <if test="paramUpdateuserid != null">
+                param_updateuserid = #{paramUpdateuserid},
+            </if>
+            <if test="paramMechIncrement != null">
+                param_mech_increment = #{paramMechIncrement},
+            </if>
+            <if test="paramLineIncrement != null">
+                param_line_increment = #{paramLineIncrement},
+            </if>
+            <if test="paramOverMount != null">
+                param_over_mount = #{paramOverMount},
+            </if>
+            <if test="paramIsLine != null">
+                param_is_line = #{paramIsLine},
+            </if>
+            <if test="paramTempMount != null">
+                param_temp_mount = #{paramTempMount},
+            </if>
+            <if test="paramSingleMount != null">
+                param_single_mount = #{paramSingleMount},
+            </if>
+        </set>
+        <where>
+            param_id = #{paramId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_trade_param
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_trade_param
+        <set>
+            <if test="paramId != null">
+                param_id = #{paramId},
+            </if>
+            <if test="paramPeriod != null">
+                param_period = #{paramPeriod},
+            </if>
+            <if test="paramMode != null">
+                param_mode = #{paramMode},
+            </if>
+            <if test="paramPunishMode != null">
+                param_punish_mode = #{paramPunishMode},
+            </if>
+            <if test="paramReqStart != null">
+                param_req_start = #{paramReqStart},
+            </if>
+            <if test="paramReqEnd != null">
+                param_req_end = #{paramReqEnd},
+            </if>
+            <if test="paramPlanStart != null">
+                param_plan_start = #{paramPlanStart},
+            </if>
+            <if test="paramPlanEnd != null">
+                param_plan_end = #{paramPlanEnd},
+            </if>
+            <if test="paramPunishStart != null">
+                param_punish_start = #{paramPunishStart},
+            </if>
+            <if test="paramPunsihEnd != null">
+                param_punsih_end = #{paramPunsihEnd},
+            </if>
+            <if test="paramCreatetime != null">
+                param_createtime = #{paramCreatetime},
+            </if>
+            <if test="paramUpdatetime != null">
+                param_updatetime = #{paramUpdatetime},
+            </if>
+            <if test="paramCreateuserid != null">
+                param_createuserid = #{paramCreateuserid},
+            </if>
+            <if test="paramUpdateuserid != null">
+                param_updateuserid = #{paramUpdateuserid},
+            </if>
+            <if test="paramMechIncrement != null">
+                param_mech_increment = #{paramMechIncrement},
+            </if>
+            <if test="paramLineIncrement != null">
+                param_line_increment = #{paramLineIncrement},
+            </if>
+            <if test="paramOverMount != null">
+                param_over_mount = #{paramOverMount},
+            </if>
+            <if test="paramIsLine != null">
+                param_is_line = #{paramIsLine},
+            </if>
+            <if test="paramTempMount != null">
+                param_temp_mount = #{paramTempMount},
+            </if>
+            <if test="paramSingleMount != null">
+                param_single_mount = #{paramSingleMount},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="paramId != null and paramId != ''">
+            and param_id = #{paramId}
+        </if>
+        <if test="paramPeriod != null and paramPeriod != ''">
+            and param_period = #{paramPeriod}
+        </if>
+        <if test="paramMode != null and paramMode != ''">
+            and param_mode = #{paramMode}
+        </if>
+        <if test="paramPunishMode != null and paramPunishMode != ''">
+            and param_punish_mode = #{paramPunishMode}
+        </if>
+        <if test="paramReqStart != null and paramReqStart != ''">
+            and param_req_start = #{paramReqStart}
+        </if>
+        <if test="paramReqEnd != null and paramReqEnd != ''">
+            and param_req_end = #{paramReqEnd}
+        </if>
+        <if test="paramPlanStart != null and paramPlanStart != ''">
+            and param_plan_start = #{paramPlanStart}
+        </if>
+        <if test="paramPlanEnd != null and paramPlanEnd != ''">
+            and param_plan_end = #{paramPlanEnd}
+        </if>
+        <if test="paramPunishStart != null and paramPunishStart != ''">
+            and param_punish_start = #{paramPunishStart}
+        </if>
+        <if test="paramPunsihEnd != null and paramPunsihEnd != ''">
+            and param_punsih_end = #{paramPunsihEnd}
+        </if>
+        <if test="paramCreatetime != null and paramCreatetime != ''">
+            and param_createtime = #{paramCreatetime}
+        </if>
+        <if test="paramUpdatetime != null and paramUpdatetime != ''">
+            and param_updatetime = #{paramUpdatetime}
+        </if>
+        <if test="paramCreateuserid != null and paramCreateuserid != ''">
+            and param_createuserid = #{paramCreateuserid}
+        </if>
+        <if test="paramUpdateuserid != null and paramUpdateuserid != ''">
+            and param_updateuserid = #{paramUpdateuserid}
+        </if>
+        <if test="paramMechIncrement != null and paramMechIncrement != ''">
+            and param_mech_increment = #{paramMechIncrement}
+        </if>
+        <if test="paramLineIncrement != null and paramLineIncrement != ''">
+            and param_line_increment = #{paramLineIncrement}
+        </if>
+        <if test="paramOverMount != null and paramOverMount != ''">
+            and param_over_mount = #{paramOverMount}
+        </if>
+        <if test="paramIsLine != null and paramIsLine != ''">
+            and param_is_line = #{paramIsLine}
+        </if>
+        <if test="paramTempMount != null and paramTempMount != ''">
+            and param_temp_mount = #{paramTempMount}
+        </if>
+        <if test="paramSingleMount != null and paramSingleMount != ''">
+            and param_single_mount = #{paramSingleMount}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="paramId != null and paramId != ''">
+            and param_id like '%' || #{paramId} || '%'
+        </if>
+        <if test="paramPeriod != null and paramPeriod != ''">
+            and param_period like '%' || #{paramPeriod} || '%'
+        </if>
+        <if test="paramMode != null and paramMode != ''">
+            and param_mode like '%' || #{paramMode} || '%'
+        </if>
+        <if test="paramPunishMode != null and paramPunishMode != ''">
+            and param_punish_mode like '%' || #{paramPunishMode} || '%'
+        </if>
+        <if test="paramReqStart != null and paramReqStart != ''">
+            and param_req_start like '%' || #{paramReqStart} || '%'
+        </if>
+        <if test="paramReqEnd != null and paramReqEnd != ''">
+            and param_req_end like '%' || #{paramReqEnd} || '%'
+        </if>
+        <if test="paramPlanStart != null and paramPlanStart != ''">
+            and param_plan_start like '%' || #{paramPlanStart} || '%'
+        </if>
+        <if test="paramPlanEnd != null and paramPlanEnd != ''">
+            and param_plan_end like '%' || #{paramPlanEnd} || '%'
+        </if>
+        <if test="paramPunishStart != null and paramPunishStart != ''">
+            and param_punish_start like '%' || #{paramPunishStart} || '%'
+        </if>
+        <if test="paramPunsihEnd != null and paramPunsihEnd != ''">
+            and param_punsih_end like '%' || #{paramPunsihEnd} || '%'
+        </if>
+        <if test="paramCreatetime != null and paramCreatetime != ''">
+            and param_createtime like '%' || #{paramCreatetime} || '%'
+        </if>
+        <if test="paramUpdatetime != null and paramUpdatetime != ''">
+            and param_updatetime like '%' || #{paramUpdatetime} || '%'
+        </if>
+        <if test="paramCreateuserid != null and paramCreateuserid != ''">
+            and param_createuserid like '%' || #{paramCreateuserid} || '%'
+        </if>
+        <if test="paramUpdateuserid != null and paramUpdateuserid != ''">
+            and param_updateuserid like '%' || #{paramUpdateuserid} || '%'
+        </if>
+        <if test="paramMechIncrement != null and paramMechIncrement != ''">
+            and param_mech_increment like '%' || #{paramMechIncrement} || '%'
+        </if>
+        <if test="paramLineIncrement != null and paramLineIncrement != ''">
+            and param_line_increment like '%' || #{paramLineIncrement} || '%'
+        </if>
+        <if test="paramOverMount != null and paramOverMount != ''">
+            and param_over_mount like '%' || #{paramOverMount} || '%'
+        </if>
+        <if test="paramIsLine != null and paramIsLine != ''">
+            and param_is_line like '%' || #{paramIsLine} || '%'
+        </if>
+        <if test="paramTempMount != null and paramTempMount != ''">
+            and param_temp_mount like '%' || #{paramTempMount} || '%'
+        </if>
+        <if test="paramSingleMount != null and paramSingleMount != ''">
+            and param_single_mount like '%' || #{paramSingleMount} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_trade_param
+        <where>
+            param_id = #{paramId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbTradeParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_trade_param
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbTradeParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_trade_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        order by param_period
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbTradeParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_trade_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_trade_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbTradeParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_trade_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbTradeParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_trade_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_trade_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入参数id -->
+    <select id="selectParamId" parameterType="com.boco.SYS.entity.TbTradeParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PARAM_ID FROM TB_TRADE_PARAM
+	   WHERE  cast(PARAM_ID as char ) LIKE '%${paramId}%'
+    </select>
+    <!-- 联想输入所属周期 -->
+    <select id="selectParamPeriod" parameterType="com.boco.SYS.entity.TbTradeParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PARAM_PERIOD FROM TB_TRADE_PARAM
+	   WHERE PARAM_PERIOD LIKE '%${paramPeriod}%'
+    </select>
+
+    <!-- 联想输入时间计划模式 -->
+    <select id="selectParamMode" parameterType="com.boco.SYS.entity.TbTradeParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PARAM_MODE FROM TB_TRADE_PARAM
+	   WHERE PARAM_MODE LIKE '%${paramMode}%'
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.TbAuditRecordHistMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO">
+        <id column="id" property="id"/>
+        <result column="business_id" property="businessId"/>
+        <result column="process_key" property="processKey"/>
+        <result column="process_instance_id" property="processInstanceId"/>
+        <result column="task_id" property="taskId"/>
+        <result column="assignee" property="assignee"/>
+        <result column="start_at" property="startAt"/>
+        <result column="end_at" property="endAt"/>
+        <result column="assignee_name" property="assigneeName"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <!--插入记录历史-->
+    <insert id="insertRecordHist" parameterType="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO">
+        insert into tb_audit_hist(business_id, process_key, task_id, process_instance_id, assignee, start_at, end_at,
+                                  assignee_name, status, current_assignee, current_assignee_name)
+        values (#{businessId}, #{processKey}, #{taskId}, #{processInstanceId}, #{assignee}, #{startAt}, #{endAt},
+                #{assigneeName}, #{status}, #{currentAssignee}, #{currentAssigneeName})
+    </insert>
+
+    <!--适应各种数据类型-->
+    <select id="getReqRecordHistByAssignee" resultMap="base_result_map"
+            parameterType="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO" flushCache="true">
+        select A.*
+        from tb_audit_hist A
+        inner join tb_req_list B on
+        A.business_id=concat(B.req_id)
+        and A.process_key = #{processKey}
+        and A.assignee = #{assignee}
+        <if test="month!=null">
+            and B.req_month=#{month}
+        </if>
+        <if test="status>0">
+            and A.status = #{status}
+        </if>
+    </select>
+
+    <!--适应各种数据类型-->
+    <select id="getPlanRecordHistByAssignee" resultMap="base_result_map"
+            parameterType="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO" flushCache="true">
+        select *
+        from tb_audit_hist A
+        where A.process_key = #{processKey}
+        and A.assignee = #{assignee}
+        <if test="status>0">
+            and A.status = #{status}
+        </if>
+        inner join tb_req_list B on
+        A.business_id=concat(B.plan_id)
+        <if test="month！=null">
+            and B.plan_month=#{month}
+        </if>
+
+    </select>
+
+    <!--更新历史记录状态-->
+    <update id="updateRecordHistAuditState" parameterType="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO">
+        update tb_audit_hist
+        set status=#{status},
+            end_at=#{endAt}
+        where business_id = #{businessId}
+          and process_key = #{processKey}
+          and process_instance_id = #{processInstanceId}
+    </update>
+
+    <update id="updateRecordHistPosition" parameterType="com.boco.TONY.common.POJO.DO.TbAuditRecordHistDO">
+        update tb_audit_hist
+        set process_instance_id = #{processInstanceId}
+        where business_id = #{businessId}
+    </update>
+    <!--    <select id="getAuditRecordHistRecord" parameterType="java"-->
+    <!--            resultType="com.boco.PUB.POJO.DTO.TbReqAuditRecordHistDTO">-->
+    <!--        select A.*,C.req_month,C.req_date_start,C.req_date_end,C.reqExpireAmount, C.reqTotalAmount-->
+    <!--        from tb_audit_hist A-->
+    <!--        inner join-->
+    <!--        (select B.req_id,-->
+    <!--        B.req_month,-->
+    <!--        B.req_date_start,-->
+    <!--        B.req_date_end,-->
+    <!--        (reqd_smallamount_loan_req +-->
+    <!--        reqd_other_loan_req +-->
+    <!--        reqd_perbusine_loan_req +-->
+    <!--        reqd_smallbusine_req +-->
+    <!--        reqd_smallbusinefactor_req +-->
+    <!--        reqd_housemort_loan_req +-->
+    <!--        reqd_otherconsum_loan_req +-->
+    <!--        reqd_supplyline_req +-->
+    <!--        reqd_domestictradefinance_req +-->
+    <!--        reqd_intertradefinance_req +-->
+    <!--        reqd_othercorporate_loan_req +-->
+    <!--        reqd_sancompany_loan_req +-->
+    <!--        reqd_merger_loan_req +-->
+    <!--        reqd_alladvance_loan_req +-->
+    <!--        reqd_unitoverdraft_req +-->
+    <!--        reqd_repost_req +-->
+    <!--        reqd_straight_req +-->
+    <!--        reqd_buyfftrmb_req +-->
+    <!--        reqd_foreigncurrency_loan_req +-->
+    <!--        reqd_intercorporate_loan_req +-->
+    <!--        reqd_other_req +-->
+    <!--        reqd_specialfinace_req +-->
+    <!--        reqd_personoverdraft_req +-->
+    <!--        reqd_corporateaccoverdraft_loan_req +-->
+    <!--        reqd_disassembly_req) reqTotalAmount,-->
+    <!--        (reqd_smallamount_loan_exp +-->
+    <!--        reqd_other_loan_exp +-->
+    <!--        reqd_perbusine_loan_exp +-->
+    <!--        reqd_smallbusine_exp +-->
+    <!--        reqd_smallbusinefactor_exp +-->
+    <!--        reqd_housemort_loan_exp +-->
+    <!--        reqd_otherconsum_loan_exp +-->
+    <!--        reqd_supplyline_exp +-->
+    <!--        reqd_domestictradefinance_exp +-->
+    <!--        reqd_intertradefinance_exp +-->
+    <!--        reqd_othercorporate_loan_exp +-->
+    <!--        reqd_sancompany_loan_exp +-->
+    <!--        reqd_merger_loan_exp +-->
+    <!--        reqd_alladvance_loan_exp +-->
+    <!--        reqd_unitoverdraft_exp +-->
+    <!--        reqd_repost_exp +-->
+    <!--        reqd_straight_exp +-->
+    <!--        reqd_buyfftrmb_exp +-->
+    <!--        reqd_intercorporate_loan_exp +-->
+    <!--        reqd_specialfinace_exp +-->
+    <!--        reqd_personoverdraft_exp +-->
+    <!--        reqd_foreigncurrency_loan_exp +-->
+    <!--        reqd_buyfftforeigncur_exp +-->
+    <!--        reqd_other_exp +-->
+    <!--        reqd__corporateaccoverdraft_loan_exp +-->
+    <!--        reqd_disassembly_exp) reqExpireAmount-->
+    <!--        from tb_req_list B-->
+    <!--        inner join tb_req_detail C on B.req_id = C.reqd_ref_id-->
+    <!--        <if test="reqMonth!=null">-->
+    <!--            where B.req_month = #{reqMonth}-->
+    <!--        </if>-->
+    <!--        ) C ON A.business_id = concat(C.req_id) and A.status-->
+    <!--        &lt; 16-->
+    <!--        where A.assignee = #{assignee}-->
+    <!--    </select>-->
+    <!--    <select id="selectSubmitMonth" parameterType="java.lang.String" resultMap="base_result_map">-->
+    <!--        select A.*-->
+    <!--        from tb_audit_hist A-->
+    <!--                 inner join-->
+    <!--             tb_req_list B ON A.businessId = B.req_id-->
+    <!--                 inner join tb_req_detail C on B.req_id=C.req_id-->
+    <!--    </select>-->
+    <!--    <select id="selectSubmitMonth" parameterType="java.lang.String" resultMap="base_result_map">-->
+    <!--        select *-->
+    <!--        from tb_audit_hist A-->
+    <!--                 inner join-->
+    <!--             where-->
+    <!--    </select>-->
+</mapper>

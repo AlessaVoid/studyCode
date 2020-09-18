@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 插入一条操作角色 -->
+<mapper namespace="com.boco.SYS.mapper.WebOperRoleMapper">
+    <insert id="insertOperRole" parameterType="com.boco.TONY.biz.weboper.POJO.DTO.WebOperRoleDTO">
+        insert into tb_role_oper(oper_code, role_id, create_time, update_time, modify_oper, state)
+        values (#{operCode}, #{roleId}, #{createTime}, #{updateTime}, #{modifyOper}, #{state})
+    </insert>
+    <!--    注意这里可能会覆盖上次修改人[modify_oper]的id,如果需要查询修改历史,需要重新设计-->
+    <update id="updateOperRole" parameterType="com.boco.TONY.biz.weboper.POJO.DTO.WebOperRoleDTO">
+        update tb_role_oper
+        set update_time=#{updateTime},
+            modify_oper=#{modifyOper},
+            state=#{state}
+        where role_id = #{roleId}
+          and oper_code = #{operCode}
+    </update>
+    <!-- 根据条件查询记录 -->
+    <select id="selectOwnRoleByOperCode" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select role_id
+        from tb_role_oper
+        where oper_code = #{_param}
+          and state = 1
+    </select>
+    <!-- 根据条件查询记录 -->
+    <select id="selectRoleByOperCodeAndRoleId" parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperRoleDO"
+            resultType="com.boco.TONY.biz.weboper.POJO.DO.RoleUpdateInfo" flushCache="true">
+        select role_id as roleId, state
+        from tb_role_oper
+        where oper_code = #{operCode}
+          and role_id = #{roleId}
+    </select>
+    <select id="selectRoleCodeListByRoleId" resultType="java.lang.String" flushCache="true">
+        select oper_code
+        from tb_role_oper
+        where role_id = #{role_id}
+          and state = 1
+    </select>
+
+
+    <!--根据机构号，角色码查询柜员信息 -->
+    <select id="getOperByRolecode" resultType="com.boco.SYS.entity.FdOper" flushCache="true">
+        select oper.*
+        from fd_oper oper,tb_role_oper ro,web_oper_info wo
+        where oper.opercode=ro.oper_code
+        and oper.organcode=#{organcode}
+        and ro.role_id=#{rolecode}
+        and oper.opercode &lt;&gt; #{opercode}
+        and state=1
+        and wo.oper_code=ro.oper_code
+    </select>
+
+    <delete id="deleteWebOperPoleByOpercode" parameterType="java.lang.String">
+    delete from tb_role_oper
+    where oper_code=#{operocde}
+    </delete>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.LoanCombTakenBaseMapper">
+    <resultMap id="base_taken_product_map" type="com.boco.TONY.biz.loancomb.POJO.DO.combtaken.CombTakenBaseDO">
+        <result column="comb_parent" property="parentComb"/>
+        <result column="taken_type" property="takenType" javaType="java.lang.Integer"/>
+    </resultMap>
+    <!--插入一条条线信息-->
+    <insert id="insertCombTakenBaseInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combtaken.CombTakenBaseDO">
+        insert into tb_comb_taken(comb_parent, taken_type)
+        values (#{parentComb}, #{takenType})
+    </insert>
+    <!--获取所有的产品信息,用于展示列表条数-->
+    <select id="getCombTakenBaseInfo" parameterType="java.lang.String"
+            resultMap="base_taken_product_map" flushCache="true">
+        select *
+        from tb_comb_taken
+        where comb_parent = #{parentComb}
+    </select>
+    <select id="updateCombTakenBaseInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combtaken.CombTakenBaseDO" flushCache="true">
+        update tb_comb_taken
+        set taken_type=#{takenType}
+        where comb_parent = #{parentComb}
+    </select>
+</mapper>

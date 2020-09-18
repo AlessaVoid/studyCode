@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 机构评分批次表 -->
+<mapper namespace="com.boco.SYS.mapper.TbOrganRateScoreMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbOrganRateScore">
+       	<id column="id" property="id"/>
+     	<result column="rate_month" property="rateMonth"/>
+     	<result column="rate_organ" property="rateOrgan"/>
+     	<result column="rate_type" property="rateType"/>
+     	<result column="rate_status" property="rateStatus"/>
+     	<result column="report_status" property="reportStatus"/>
+     	<result column="create_time" property="createTime"/>
+     	<result column="update_time" property="updateTime"/>
+     	<result column="update_oper" property="updateOper"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,rate_month ,rate_organ ,rate_type ,rate_status ,report_status ,create_time ,update_time ,update_oper 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbOrganRateScore">
+<!-- 
+	    -->       
+  INSERT INTO tb_organ_rate_score 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	rate_month ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	rate_organ ,
+	       	</if>
+	       	<if test="rateType != null">
+	        	rate_type ,
+	       	</if>
+	       	<if test="rateStatus != null">
+	        	rate_status ,
+	       	</if>
+	       	<if test="reportStatus != null">
+	        	report_status ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	create_time ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	update_time ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	update_oper 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	#{rateMonth} ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	#{rateOrgan} ,
+	       	</if>
+	       	<if test="rateType != null">
+	        	#{rateType} ,
+	       	</if>
+	       	<if test="rateStatus != null">
+	        	#{rateStatus} ,
+	       	</if>
+	       	<if test="reportStatus != null">
+	        	#{reportStatus} ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	#{createTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	#{updateOper} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_organ_rate_score 
+        (id ,rate_month ,rate_organ ,rate_type ,rate_status ,report_status ,create_time ,update_time ,update_oper )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.rateMonth,jdbcType=VARCHAR},#{item.rateOrgan,jdbcType=VARCHAR},#{item.rateType,jdbcType=VARCHAR},#{item.rateStatus,jdbcType=VARCHAR},#{item.reportStatus,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_organ_rate_score 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbOrganRateScore">
+        UPDATE tb_organ_rate_score 
+        <set>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateType != null">
+       		rate_type = #{rateType},
+       	</if>
+       	<if test="rateStatus != null">
+       		rate_status = #{rateStatus},
+       	</if>
+       	<if test="reportStatus != null">
+       		report_status = #{reportStatus},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_organ_rate_score 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_organ_rate_score 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateType != null">
+       		rate_type = #{rateType},
+       	</if>
+       	<if test="rateStatus != null">
+       		rate_status = #{rateStatus},
+       	</if>
+       	<if test="reportStatus != null">
+       		report_status = #{reportStatus},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="rateMonth != null and rateMonth != ''">
+	 		and rate_month = #{rateMonth}
+	 	</if>
+	 	<if test="rateOrgan != null and rateOrgan != ''">
+	 		and rate_organ = #{rateOrgan}
+	 	</if>
+	 	<if test="rateType != null and rateType != ''">
+	 		and rate_type = #{rateType}
+	 	</if>
+	 	<if test="rateStatus != null">
+	 		and rate_status = #{rateStatus}
+	 	</if>
+	 	<if test="reportStatus != null">
+	 		and report_status = #{reportStatus}
+	 	</if>
+	 	<if test="createTime != null and createTime != ''">
+	 		and create_time = #{createTime}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and update_time = #{updateTime}
+	 	</if>
+	 	<if test="updateOper != null and updateOper != ''">
+	 		and update_oper = #{updateOper}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="rateMonth != null and rateMonth != ''">
+ 			and rate_month like '%' || #{rateMonth} || '%'
+ 		</if>
+ 		<if test="rateOrgan != null and rateOrgan != ''">
+ 			and rate_organ like '%' || #{rateOrgan} || '%'
+ 		</if>
+ 		<if test="rateType != null and rateType != ''">
+ 			and rate_type like '%' || #{rateType} || '%'
+ 		</if>
+ 		<if test="rateStatus != null and rateStatus != ''">
+ 			and rate_status like '%' || #{rateStatus} || '%'
+ 		</if>
+ 		<if test="reportStatus != null and reportStatus != ''">
+ 			and report_status like '%' || #{reportStatus} || '%'
+ 		</if>
+ 		<if test="createTime != null and createTime != ''">
+ 			and create_time like '%' || #{createTime} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and update_time like '%' || #{updateTime} || '%'
+ 		</if>
+ 		<if test="updateOper != null and updateOper != ''">
+ 			and update_oper like '%' || #{updateOper} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_organ_rate_score 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbOrganRateScore" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScore" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScore" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScore" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScore" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+
+	<!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!--查询已提交的信贷计划-->
+	<select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+		select
+		distinct
+		rate.id               as id,
+		rate.rate_month       as ratemonth,
+		rate.rate_organ       as rateorgan,
+		rate.rate_type        as ratetype,
+		rate.rate_status      as ratestatus,
+		rate.report_status    as reportstatus,
+		rate.create_time      as createtime,
+		rate.update_time      as updatetime,
+		rate.update_oper      as updateoper,
+		hi_proc.proc_inst_id_ as procinstid
+		from tb_organ_rate_score rate,act_hi_procinst hi_proc
+		where
+		cast(rate.id as varchar)=hi_proc.business_key_
+		and hi_proc.start_user_id_ = #{opercode}
+		<if test="rateMonth != null and rateMonth != ''">
+			and rate.rate_month= #{rateMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and rate.rate_status= #{auditStatus}
+		</if>
+		<if test="rateType != null">
+			and rate.rate_type = #{rateType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by rate.rate_month desc
+		</if>
+
+	</select>
+
+
+	<!--查询待审批的评分-->
+	<select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+		select
+		distinct
+		rate.id               as id,
+		rate.rate_month       as ratemonth,
+		rate.rate_organ       as rateorgan,
+		rate.rate_type        as ratetype,
+		rate.rate_status      as ratestatus,
+		rate.report_status    as reportstatus,
+		rate.create_time      as createtime,
+		rate.update_time      as updatetime,
+		rate.update_oper      as updateoper,
+		hi_proc.proc_inst_id_ as procinstid,
+		task.id_ as taskid
+		from tb_organ_rate_score rate,act_hi_procinst hi_proc,act_ru_task task
+		where
+		cast(rate.id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.assignee_=#{assignee}
+		<if test="proIds!=null and proIds.size() > 0" >
+			and hi_proc.proc_inst_id_ in
+			<foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="rateMonth != null and rateMonth != ''">
+			and rate.rate_month= #{rateMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and rate.rate_status= #{auditStatus}
+		</if>
+		<if test="rateType != null">
+			and rate.rate_type = #{rateType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by rate.rate_month desc
+		</if>
+
+	</select>
+
+	<!--查询已审批的评分-->
+	<select id="getApprovedRecord" resultType="java.util.Map" flushCache="true">
+		select
+		distinct
+		rate.id               as id,
+		rate.rate_month       as ratemonth,
+		rate.rate_organ       as rateorgan,
+		rate.rate_type        as ratetype,
+		rate.rate_status      as ratestatus,
+		rate.report_status    as reportstatus,
+		rate.create_time      as createtime,
+		rate.update_time      as updatetime,
+		rate.update_oper      as updateoper,
+		hi_proc.proc_inst_id_ as procinstid
+		from tb_organ_rate_score rate,act_hi_procinst hi_proc,act_hi_taskinst task
+		where
+		cast(rate.id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.delete_reason_='completed'
+		and task.assignee_=#{opercode}
+		<if test="rateMonth != null and rateMonth != ''">
+			and rate.rate_month= #{rateMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and rate.rate_status= #{auditStatus}
+		</if>
+		<if test="rateType != null">
+			and rate.rate_type = #{rateType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by rate.rate_month desc
+		</if>
+
+
+	</select>
+	<select id="selectLoanKindOfTwo" resultType="java.util.Map" flushCache="true">
+		select 	t.comb_code as combcode,
+			  	t.comb_name as combname
+		from tb_comb t,
+			 tb_comb_detail td
+		where t.comb_code = td.prod_code
+		  and td.comb_code in (select t.comb_code
+							   from tb_comb t,
+									tb_comb_detail td
+							   where t.comb_code = td.prod_code
+								 and td.comb_code in( 'lxdk1','qtstdk1'))
+
+		union
+		select t.comb_code as combcode,
+				t.comb_name as combname
+		from tb_comb t,
+			 tb_comb_detail td
+		where t.comb_code = td.prod_code
+		  and td.comb_code in( 'lxdk1','qtstdk1')
+
+		union
+		select t.comb_code as combcode,
+				t.comb_name as combname
+		from tb_comb t
+		where t.comb_code in( 'lxdk1','qtstdk1');
+	</select>
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

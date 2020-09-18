@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbPunishResult -->
+<mapper namespace="com.boco.SYS.mapper.TbPunishResultMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPunishResult">
+        <id column="punish_id" property="punishId"/>
+        <result column="organ_code" property="organCode"/>
+        <result column="organ_name" property="organName"/>
+        <result column="plan_mount" property="planMount"/>
+        <result column="end_time" property="endTime"/>
+        <result column="month_vacancy_amt" property="monthVacancyAmt"/>
+        <result column="month_vacancy_rate" property="monthVacancyRate"/>
+        <result column="month_five_vacancy" property="monthFiveVacancy"/>
+        <result column="month_shiti_plan_mount" property="monthShitiPlanMount"/>
+        <result column="month_shiti_over_amt" property="monthShitiOverAmt"/>
+        <result column="month_shiti_over_rate" property="monthShitiOverRate"/>
+        <result column="month_five_shiti_over" property="monthFiveShitiOver"/>
+        <result column="month_piapju_plan_mount" property="monthPiapjuPlanMount"/>
+        <result column="month_piaoju_over_amt" property="monthPiaojuOverAmt"/>
+        <result column="month_piaoju_over_rate" property="monthPiaojuOverRate"/>
+        <result column="month_five_piaoju_over" property="monthFivePiaojuOver"/>
+        <result column="month_total_punish" property="monthTotalPunish"/>
+        <result column="create_userid" property="createUserid"/>
+        <result column="update_userid" property="updateUserid"/>
+        <result column="state" property="state"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="punish_month" property="punishMonth"/>
+        <result column="punish_list_id" property="punishListId"/>
+        <result column="note" property="note"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+
+                                punish_id ,organ_code ,organ_name ,plan_mount ,end_time ,month_vacancy_amt ,month_vacancy_rate ,month_five_vacancy ,month_shiti_plan_mount ,month_shiti_over_amt ,month_shiti_over_rate ,month_five_shiti_over ,month_piapju_plan_mount ,month_piaoju_over_amt ,month_piaoju_over_rate ,month_five_piaoju_over ,month_total_punish ,create_userid ,update_userid ,state ,create_time ,update_time ,punish_month ,punish_list_id ,note
+
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPunishResult">
+        <!--
+                -->
+        INSERT INTO tb_punish_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="punishId != null">
+                punish_id ,
+            </if>
+            <if test="organCode != null">
+                organ_code ,
+            </if>
+            <if test="organName != null">
+                organ_name ,
+            </if>
+            <if test="planMount != null">
+                plan_mount ,
+            </if>
+            <if test="endTime != null">
+                end_time ,
+            </if>
+            <if test="monthVacancyAmt != null">
+                month_vacancy_amt ,
+            </if>
+            <if test="monthVacancyRate != null">
+                month_vacancy_rate ,
+            </if>
+            <if test="monthFiveVacancy != null">
+                month_five_vacancy ,
+            </if>
+            <if test="monthShitiPlanMount != null">
+                month_shiti_plan_mount ,
+            </if>
+            <if test="monthShitiOverAmt != null">
+                month_shiti_over_amt ,
+            </if>
+            <if test="monthShitiOverRate != null">
+                month_shiti_over_rate ,
+            </if>
+            <if test="monthFiveShitiOver != null">
+                month_five_shiti_over ,
+            </if>
+            <if test="monthPiapjuPlanMount != null">
+                month_piapju_plan_mount ,
+            </if>
+            <if test="monthPiaojuOverAmt != null">
+                month_piaoju_over_amt ,
+            </if>
+            <if test="monthPiaojuOverRate != null">
+                month_piaoju_over_rate ,
+            </if>
+            <if test="monthFivePiaojuOver != null">
+                month_five_piaoju_over ,
+            </if>
+            <if test="monthTotalPunish != null">
+                month_total_punish ,
+            </if>
+            <if test="createUserid != null">
+                create_userid ,
+            </if>
+            <if test="updateUserid != null">
+                update_userid ,
+            </if>
+            <if test="state != null">
+                state ,
+            </if>
+            <if test="createTime != null">
+                create_time ,
+            </if>
+            <if test="updateTime != null">
+                update_time ,
+            </if>
+            <if test="punishMonth != null">
+                punish_month ,
+            </if>
+            <if test="punishListId != null">
+                punish_list_id ,
+            </if>
+            <if test="note != null">
+                note
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="punishId != null">
+                #{punishId} ,
+            </if>
+            <if test="organCode != null">
+                #{organCode} ,
+            </if>
+            <if test="organName != null">
+                #{organName} ,
+            </if>
+            <if test="planMount != null">
+                #{planMount} ,
+            </if>
+            <if test="endTime != null">
+                #{endTime} ,
+            </if>
+            <if test="monthVacancyAmt != null">
+                #{monthVacancyAmt} ,
+            </if>
+            <if test="monthVacancyRate != null">
+                #{monthVacancyRate} ,
+            </if>
+            <if test="monthFiveVacancy != null">
+                #{monthFiveVacancy} ,
+            </if>
+            <if test="monthShitiPlanMount != null">
+                #{monthShitiPlanMount} ,
+            </if>
+            <if test="monthShitiOverAmt != null">
+                #{monthShitiOverAmt} ,
+            </if>
+            <if test="monthShitiOverRate != null">
+                #{monthShitiOverRate} ,
+            </if>
+            <if test="monthFiveShitiOver != null">
+                #{monthFiveShitiOver} ,
+            </if>
+            <if test="monthPiapjuPlanMount != null">
+                #{monthPiapjuPlanMount} ,
+            </if>
+            <if test="monthPiaojuOverAmt != null">
+                #{monthPiaojuOverAmt} ,
+            </if>
+            <if test="monthPiaojuOverRate != null">
+                #{monthPiaojuOverRate} ,
+            </if>
+            <if test="monthFivePiaojuOver != null">
+                #{monthFivePiaojuOver} ,
+            </if>
+            <if test="monthTotalPunish != null">
+                #{monthTotalPunish} ,
+            </if>
+            <if test="createUserid != null">
+                #{createUserid} ,
+            </if>
+            <if test="updateUserid != null">
+                #{updateUserid} ,
+            </if>
+            <if test="state != null">
+                #{state} ,
+            </if>
+            <if test="createTime != null">
+                #{createTime} ,
+            </if>
+            <if test="updateTime != null">
+                #{updateTime} ,
+            </if>
+            <if test="punishMonth != null">
+                #{punishMonth} ,
+            </if>
+            <if test="punishListId != null">
+                #{punishListId} ,
+            </if>
+            <if test="note != null">
+                #{note}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_punish_result
+        (organ_code ,organ_name ,plan_mount ,end_time ,month_vacancy_amt ,month_vacancy_rate ,month_five_vacancy,
+        month_shiti_plan_mount ,month_shiti_over_amt ,month_shiti_over_rate ,month_five_shiti_over
+        ,month_piapju_plan_mount ,month_piaoju_over_amt ,month_piaoju_over_rate ,month_five_piaoju_over
+        ,month_total_punish ,create_userid ,update_userid ,state ,create_time ,update_time ,punish_month ,punish_list_id
+        ,note )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.organCode,jdbcType=VARCHAR},#{item.organName,jdbcType=VARCHAR},#{item.planMount,jdbcType=NUMERIC},#{item.endTime,jdbcType=VARCHAR},#{item.monthVacancyAmt,jdbcType=VARCHAR},#{item.monthVacancyRate,jdbcType=VARCHAR},#{item.monthFiveVacancy,jdbcType=VARCHAR},#{item.monthShitiPlanMount,jdbcType=VARCHAR},#{item.monthShitiOverAmt,jdbcType=VARCHAR},#{item.monthShitiOverRate,jdbcType=VARCHAR},#{item.monthFiveShitiOver,jdbcType=VARCHAR},#{item.monthPiapjuPlanMount,jdbcType=VARCHAR},#{item.monthPiaojuOverAmt,jdbcType=VARCHAR},#{item.monthPiaojuOverRate,jdbcType=VARCHAR},#{item.monthFivePiaojuOver,jdbcType=VARCHAR},#{item.monthTotalPunish,jdbcType=VARCHAR},#{item.createUserid,jdbcType=VARCHAR},#{item.updateUserid,jdbcType=VARCHAR},#{item.state,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.punishMonth,jdbcType=VARCHAR},#{item.punishListId,jdbcType=VARCHAR},#{item.note,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_punish_result
+        <where>
+            punish_id = #{punishId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_punish_result
+        <where>
+            punish_id = #{punishId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_punish_result
+        WHERE punish_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_punish_result
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPunishResult">
+        UPDATE tb_punish_result
+        <set>
+            <if test="organCode != null">
+                organ_code = #{organCode},
+            </if>
+            <if test="organName != null">
+                organ_name = #{organName},
+            </if>
+            <if test="planMount != null">
+                plan_mount = #{planMount},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="monthVacancyAmt != null">
+                month_vacancy_amt = #{monthVacancyAmt},
+            </if>
+            <if test="monthVacancyRate != null">
+                month_vacancy_rate = #{monthVacancyRate},
+            </if>
+            <if test="monthFiveVacancy != null">
+                month_five_vacancy = #{monthFiveVacancy},
+            </if>
+            <if test="monthShitiPlanMount != null">
+                month_shiti_plan_mount = #{monthShitiPlanMount},
+            </if>
+            <if test="monthShitiOverAmt != null">
+                month_shiti_over_amt = #{monthShitiOverAmt},
+            </if>
+            <if test="monthShitiOverRate != null">
+                month_shiti_over_rate = #{monthShitiOverRate},
+            </if>
+            <if test="monthFiveShitiOver != null">
+                month_five_shiti_over = #{monthFiveShitiOver},
+            </if>
+            <if test="monthPiapjuPlanMount != null">
+                month_piapju_plan_mount = #{monthPiapjuPlanMount},
+            </if>
+            <if test="monthPiaojuOverAmt != null">
+                month_piaoju_over_amt = #{monthPiaojuOverAmt},
+            </if>
+            <if test="monthPiaojuOverRate != null">
+                month_piaoju_over_rate = #{monthPiaojuOverRate},
+            </if>
+            <if test="monthFivePiaojuOver != null">
+                month_five_piaoju_over = #{monthFivePiaojuOver},
+            </if>
+            <if test="monthTotalPunish != null">
+                month_total_punish = #{monthTotalPunish},
+            </if>
+            <if test="createUserid != null">
+                create_userid = #{createUserid},
+            </if>
+            <if test="updateUserid != null">
+                update_userid = #{updateUserid},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="punishMonth != null">
+                punish_month = #{punishMonth},
+            </if>
+            <if test="punishListId != null">
+                punish_list_id = #{punishListId},
+            </if>
+            <if test="note != null">
+                note = #{note},
+            </if>
+        </set>
+        <where>
+            punish_id = #{punishId}
+        </where>
+    </update>
+
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByListId" parameterType="com.boco.SYS.entity.TbPunishResult">
+        UPDATE tb_punish_result
+        <set>
+            <if test="organCode != null">
+                organ_code = #{organCode},
+            </if>
+            <if test="organName != null">
+                organ_name = #{organName},
+            </if>
+            <if test="planMount != null">
+                plan_mount = #{planMount},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="monthVacancyAmt != null">
+                month_vacancy_amt = #{monthVacancyAmt},
+            </if>
+            <if test="monthVacancyRate != null">
+                month_vacancy_rate = #{monthVacancyRate},
+            </if>
+            <if test="monthFiveVacancy != null">
+                month_five_vacancy = #{monthFiveVacancy},
+            </if>
+            <if test="monthShitiPlanMount != null">
+                month_shiti_plan_mount = #{monthShitiPlanMount},
+            </if>
+            <if test="monthShitiOverAmt != null">
+                month_shiti_over_amt = #{monthShitiOverAmt},
+            </if>
+            <if test="monthShitiOverRate != null">
+                month_shiti_over_rate = #{monthShitiOverRate},
+            </if>
+            <if test="monthFiveShitiOver != null">
+                month_five_shiti_over = #{monthFiveShitiOver},
+            </if>
+            <if test="monthPiapjuPlanMount != null">
+                month_piapju_plan_mount = #{monthPiapjuPlanMount},
+            </if>
+            <if test="monthPiaojuOverAmt != null">
+                month_piaoju_over_amt = #{monthPiaojuOverAmt},
+            </if>
+            <if test="monthPiaojuOverRate != null">
+                month_piaoju_over_rate = #{monthPiaojuOverRate},
+            </if>
+            <if test="monthFivePiaojuOver != null">
+                month_five_piaoju_over = #{monthFivePiaojuOver},
+            </if>
+            <if test="monthTotalPunish != null">
+                month_total_punish = #{monthTotalPunish},
+            </if>
+            <if test="createUserid != null">
+                create_userid = #{createUserid},
+            </if>
+            <if test="updateUserid != null">
+                update_userid = #{updateUserid},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="punishMonth != null">
+                punish_month = #{punishMonth},
+            </if>
+            <if test="punishListId != null">
+                punish_list_id = #{punishListId},
+            </if>
+            <if test="note != null">
+                note = #{note},
+            </if>
+        </set>
+        <where>
+            punish_list_id = #{punishListId}
+        </where>
+    </update>
+
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_punish_result
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_punish_result
+        <set>
+            <if test="punishId != null">
+                punish_id = #{punishId},
+            </if>
+            <if test="organCode != null">
+                organ_code = #{organCode},
+            </if>
+            <if test="organName != null">
+                organ_name = #{organName},
+            </if>
+            <if test="planMount != null">
+                plan_mount = #{planMount},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="monthVacancyAmt != null">
+                month_vacancy_amt = #{monthVacancyAmt},
+            </if>
+            <if test="monthVacancyRate != null">
+                month_vacancy_rate = #{monthVacancyRate},
+            </if>
+            <if test="monthFiveVacancy != null">
+                month_five_vacancy = #{monthFiveVacancy},
+            </if>
+            <if test="monthShitiPlanMount != null">
+                month_shiti_plan_mount = #{monthShitiPlanMount},
+            </if>
+            <if test="monthShitiOverAmt != null">
+                month_shiti_over_amt = #{monthShitiOverAmt},
+            </if>
+            <if test="monthShitiOverRate != null">
+                month_shiti_over_rate = #{monthShitiOverRate},
+            </if>
+            <if test="monthFiveShitiOver != null">
+                month_five_shiti_over = #{monthFiveShitiOver},
+            </if>
+            <if test="monthPiapjuPlanMount != null">
+                month_piapju_plan_mount = #{monthPiapjuPlanMount},
+            </if>
+            <if test="monthPiaojuOverAmt != null">
+                month_piaoju_over_amt = #{monthPiaojuOverAmt},
+            </if>
+            <if test="monthPiaojuOverRate != null">
+                month_piaoju_over_rate = #{monthPiaojuOverRate},
+            </if>
+            <if test="monthFivePiaojuOver != null">
+                month_five_piaoju_over = #{monthFivePiaojuOver},
+            </if>
+            <if test="monthTotalPunish != null">
+                month_total_punish = #{monthTotalPunish},
+            </if>
+            <if test="createUserid != null">
+                create_userid = #{createUserid},
+            </if>
+            <if test="updateUserid != null">
+                update_userid = #{updateUserid},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="punishMonth != null">
+                punish_month = #{punishMonth},
+            </if>
+            <if test="punishListId != null">
+                punish_list_id = #{punishListId},
+            </if>
+            <if test="note != null">
+                note = #{note},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        state &gt; 1
+        <if test="punishId != null and punishId != ''">
+            and punish_id = #{punishId}
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and organ_code = #{organCode}
+        </if>
+        <if test="organName != null and organName != ''">
+            and organ_name = #{organName}
+        </if>
+        <if test="planMount != null and planMount != ''">
+            and plan_mount = #{planMount}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and end_time = #{endTime}
+        </if>
+        <if test="monthVacancyAmt != null and monthVacancyAmt != ''">
+            and month_vacancy_amt = #{monthVacancyAmt}
+        </if>
+        <if test="monthVacancyRate != null and monthVacancyRate != ''">
+            and month_vacancy_rate = #{monthVacancyRate}
+        </if>
+        <if test="monthFiveVacancy != null and monthFiveVacancy != ''">
+            and month_five_vacancy = #{monthFiveVacancy}
+        </if>
+        <if test="monthShitiPlanMount != null and monthShitiPlanMount != ''">
+            and month_shiti_plan_mount = #{monthShitiPlanMount}
+        </if>
+        <if test="monthShitiOverAmt != null and monthShitiOverAmt != ''">
+            and month_shiti_over_amt = #{monthShitiOverAmt}
+        </if>
+        <if test="monthShitiOverRate != null and monthShitiOverRate != ''">
+            and month_shiti_over_rate = #{monthShitiOverRate}
+        </if>
+        <if test="monthFiveShitiOver != null and monthFiveShitiOver != ''">
+            and month_five_shiti_over = #{monthFiveShitiOver}
+        </if>
+        <if test="monthPiapjuPlanMount != null and monthPiapjuPlanMount != ''">
+            and month_piapju_plan_mount = #{monthPiapjuPlanMount}
+        </if>
+        <if test="monthPiaojuOverAmt != null and monthPiaojuOverAmt != ''">
+            and month_piaoju_over_amt = #{monthPiaojuOverAmt}
+        </if>
+        <if test="monthPiaojuOverRate != null and monthPiaojuOverRate != ''">
+            and month_piaoju_over_rate = #{monthPiaojuOverRate}
+        </if>
+        <if test="monthFivePiaojuOver != null and monthFivePiaojuOver != ''">
+            and month_five_piaoju_over = #{monthFivePiaojuOver}
+        </if>
+        <if test="monthTotalPunish != null and monthTotalPunish != ''">
+            and month_total_punish = #{monthTotalPunish}
+        </if>
+        <if test="createUserid != null and createUserid != ''">
+            and create_userid = #{createUserid}
+        </if>
+        <if test="updateUserid != null and updateUserid != ''">
+            and update_userid = #{updateUserid}
+        </if>
+
+        <if test="createTime != null and createTime != ''">
+            and create_time = #{createTime}
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            and update_time = #{updateTime}
+        </if>
+        <if test="punishMonth != null and punishMonth != ''">
+            and punish_month = #{punishMonth}
+        </if>
+        <if test="punishListId != null and punishListId != ''">
+            and punish_list_id = #{punishListId}
+        </if>
+        <if test="note != null and note != ''">
+            and note = #{note}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="punishId != null and punishId != ''">
+            and punish_id like '%' || #{punishId} || '%'
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and organ_code like '%' || #{organCode} || '%'
+        </if>
+        <if test="organName != null and organName != ''">
+            and organ_name like '%' || #{organName} || '%'
+        </if>
+        <if test="planMount != null and planMount != ''">
+            and plan_mount like '%' || #{planMount} || '%'
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and end_time like '%' || #{endTime} || '%'
+        </if>
+        <if test="monthVacancyAmt != null and monthVacancyAmt != ''">
+            and month_vacancy_amt like '%' || #{monthVacancyAmt} || '%'
+        </if>
+        <if test="monthVacancyRate != null and monthVacancyRate != ''">
+            and month_vacancy_rate like '%' || #{monthVacancyRate} || '%'
+        </if>
+        <if test="monthFiveVacancy != null and monthFiveVacancy != ''">
+            and month_five_vacancy like '%' || #{monthFiveVacancy} || '%'
+        </if>
+        <if test="monthShitiPlanMount != null and monthShitiPlanMount != ''">
+            and month_shiti_plan_mount like '%' || #{monthShitiPlanMount} || '%'
+        </if>
+        <if test="monthShitiOverAmt != null and monthShitiOverAmt != ''">
+            and month_shiti_over_amt like '%' || #{monthShitiOverAmt} || '%'
+        </if>
+        <if test="monthShitiOverRate != null and monthShitiOverRate != ''">
+            and month_shiti_over_rate like '%' || #{monthShitiOverRate} || '%'
+        </if>
+        <if test="monthFiveShitiOver != null and monthFiveShitiOver != ''">
+            and month_five_shiti_over like '%' || #{monthFiveShitiOver} || '%'
+        </if>
+        <if test="monthPiapjuPlanMount != null and monthPiapjuPlanMount != ''">
+            and month_piapju_plan_mount like '%' || #{monthPiapjuPlanMount} || '%'
+        </if>
+        <if test="monthPiaojuOverAmt != null and monthPiaojuOverAmt != ''">
+            and month_piaoju_over_amt like '%' || #{monthPiaojuOverAmt} || '%'
+        </if>
+        <if test="monthPiaojuOverRate != null and monthPiaojuOverRate != ''">
+            and month_piaoju_over_rate like '%' || #{monthPiaojuOverRate} || '%'
+        </if>
+        <if test="monthFivePiaojuOver != null and monthFivePiaojuOver != ''">
+            and month_five_piaoju_over like '%' || #{monthFivePiaojuOver} || '%'
+        </if>
+        <if test="monthTotalPunish != null and monthTotalPunish != ''">
+            and month_total_punish like '%' || #{monthTotalPunish} || '%'
+        </if>
+        <if test="createUserid != null and createUserid != ''">
+            and create_userid like '%' || #{createUserid} || '%'
+        </if>
+        <if test="updateUserid != null and updateUserid != ''">
+            and update_userid like '%' || #{updateUserid} || '%'
+        </if>
+        <if test="state != null and state != ''">
+            and state like '%' || #{state} || '%'
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and create_time like '%' || #{createTime} || '%'
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            and update_time like '%' || #{updateTime} || '%'
+        </if>
+        <if test="punishMonth != null and punishMonth != ''">
+            and punish_month like '%' || #{punishMonth} || '%'
+        </if>
+        <if test="punishListId != null and punishListId != ''">
+            and punish_list_id like '%' || #{punishListId} || '%'
+        </if>
+        <if test="note != null and note != ''">
+            and note like '%' || #{note} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByAttr" parameterType="com.boco.SYS.entity.TbPunishResult">
+        DELETE FROM tb_punish_result
+        <where>
+            punish_list_id = #{punishListId}
+        </where>
+    </delete>
+
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        <where>
+            punish_id = #{punishId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPunishResult" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPunishResult" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishResult" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPunishResult" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_punish_result
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishResult" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_punish_result
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_punish_result
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByListId" parameterType="com.boco.SYS.entity.TbPunishResult" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_result
+        where punish_list_id = #{punishListId}
+    </select>
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

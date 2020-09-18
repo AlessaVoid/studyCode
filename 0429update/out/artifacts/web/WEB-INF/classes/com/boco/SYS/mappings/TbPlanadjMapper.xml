@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 信贷计划调整批次表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPlanadjMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbPlanadj">
+		<id column="planadj_id" property="planadjId"/>
+		<result column="planadj_month" property="planadjMonth"/>
+		<result column="planadj_net_increment" property="planadjNetIncrement"/>
+		<result column="planadj_adj_amount" property="planadjAdjAmount"/>
+		<result column="planadj_unit" property="planadjUnit"/>
+		<result column="planadj_status" property="planadjStatus"/>
+		<result column="planadj_create_time" property="planadjCreateTime"/>
+		<result column="planadj_update_time" property="planadjUpdateTime"/>
+		<result column="planadj_create_opercode" property="planadjCreateOpercode"/>
+		<result column="planadj_organ" property="planadjOrgan"/>
+		<result column="planadj_real_increment" property="planadjRealIncrement"/>
+		<result column="planadj_type" property="planadjType"/>
+		<result column="planadj_unified_type" property="planadjUnifiedType"/>
+		<result column="comb_level" property="combLevel"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        planadj_id ,planadj_month ,planadj_net_increment ,planadj_adj_amount ,planadj_unit ,planadj_status ,planadj_create_time ,planadj_update_time ,planadj_create_opercode ,planadj_organ ,planadj_real_increment ,planadj_type ,planadj_unified_type ,comb_level
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPlanadj">
+		<!--
+                -->
+		INSERT INTO tb_planadj
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="planadjId != null">
+				planadj_id ,
+			</if>
+			<if test="planadjMonth != null">
+				planadj_month ,
+			</if>
+			<if test="planadjNetIncrement != null">
+				planadj_net_increment ,
+			</if>
+			<if test="planadjAdjAmount != null">
+				planadj_adj_amount ,
+			</if>
+			<if test="planadjUnit != null">
+				planadj_unit ,
+			</if>
+			<if test="planadjStatus != null">
+				planadj_status ,
+			</if>
+			<if test="planadjCreateTime != null">
+				planadj_create_time ,
+			</if>
+			<if test="planadjUpdateTime != null">
+				planadj_update_time ,
+			</if>
+			<if test="planadjCreateOpercode != null">
+				planadj_create_opercode ,
+			</if>
+			<if test="planadjOrgan != null">
+				planadj_organ ,
+			</if>
+			<if test="planadjRealIncrement != null">
+				planadj_real_increment ,
+			</if>
+			<if test="planadjType != null">
+				planadj_type ,
+			</if>
+			<if test="planadjUnifiedType != null">
+				planadj_unified_type ,
+			</if>
+			<if test="combLevel != null">
+				comb_level
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="planadjId != null">
+				#{planadjId} ,
+			</if>
+			<if test="planadjMonth != null">
+				#{planadjMonth} ,
+			</if>
+			<if test="planadjNetIncrement != null">
+				#{planadjNetIncrement} ,
+			</if>
+			<if test="planadjAdjAmount != null">
+				#{planadjAdjAmount} ,
+			</if>
+			<if test="planadjUnit != null">
+				#{planadjUnit} ,
+			</if>
+			<if test="planadjStatus != null">
+				#{planadjStatus} ,
+			</if>
+			<if test="planadjCreateTime != null">
+				#{planadjCreateTime} ,
+			</if>
+			<if test="planadjUpdateTime != null">
+				#{planadjUpdateTime} ,
+			</if>
+			<if test="planadjCreateOpercode != null">
+				#{planadjCreateOpercode} ,
+			</if>
+			<if test="planadjOrgan != null">
+				#{planadjOrgan} ,
+			</if>
+			<if test="planadjRealIncrement != null">
+				#{planadjRealIncrement} ,
+			</if>
+			<if test="planadjType != null">
+				#{planadjType} ,
+			</if>
+			<if test="planadjUnifiedType != null">
+				#{planadjUnifiedType} ,
+			</if>
+			<if test="combLevel != null">
+				#{combLevel}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_planadj
+		(planadj_id ,planadj_month ,planadj_net_increment ,planadj_adj_amount ,planadj_unit ,planadj_status ,planadj_create_time ,planadj_update_time ,planadj_create_opercode ,planadj_organ ,planadj_real_increment ,planadj_type ,planadj_unified_type ,comb_level )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.planadjId,jdbcType=VARCHAR},#{item.planadjMonth,jdbcType=VARCHAR},#{item.planadjNetIncrement,jdbcType=VARCHAR},#{item.planadjAdjAmount,jdbcType=VARCHAR},#{item.planadjUnit,jdbcType=VARCHAR},#{item.planadjStatus,jdbcType=VARCHAR},#{item.planadjCreateTime,jdbcType=VARCHAR},#{item.planadjUpdateTime,jdbcType=VARCHAR},#{item.planadjCreateOpercode,jdbcType=VARCHAR},#{item.planadjOrgan,jdbcType=VARCHAR},#{item.planadjRealIncrement,jdbcType=VARCHAR},#{item.planadjType,jdbcType=VARCHAR},#{item.planadjUnifiedType,jdbcType=VARCHAR},#{item.combLevel,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_planadj
+		<where>
+			planadj_id = #{planadjId}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_planadj
+		<where>
+			planadj_id = #{planadjId}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_planadj
+		WHERE planadj_id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_planadj
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbPlanadj">
+		UPDATE tb_planadj
+		<set>
+			<if test="planadjMonth != null">
+				planadj_month = #{planadjMonth},
+			</if>
+			<if test="planadjNetIncrement != null">
+				planadj_net_increment = #{planadjNetIncrement},
+			</if>
+			<if test="planadjAdjAmount != null">
+				planadj_adj_amount = #{planadjAdjAmount},
+			</if>
+			<if test="planadjUnit != null">
+				planadj_unit = #{planadjUnit},
+			</if>
+			<if test="planadjStatus != null">
+				planadj_status = #{planadjStatus},
+			</if>
+			<if test="planadjCreateTime != null">
+				planadj_create_time = #{planadjCreateTime},
+			</if>
+			<if test="planadjUpdateTime != null">
+				planadj_update_time = #{planadjUpdateTime},
+			</if>
+			<if test="planadjCreateOpercode != null">
+				planadj_create_opercode = #{planadjCreateOpercode},
+			</if>
+			<if test="planadjOrgan != null">
+				planadj_organ = #{planadjOrgan},
+			</if>
+			<if test="planadjRealIncrement != null">
+				planadj_real_increment = #{planadjRealIncrement},
+			</if>
+			<if test="planadjType != null">
+				planadj_type = #{planadjType},
+			</if>
+			<if test="planadjUnifiedType != null">
+				planadj_unified_type = #{planadjUnifiedType},
+			</if>
+			<if test="combLevel != null">
+				comb_level = #{combLevel},
+			</if>
+		</set>
+		<where>
+			planadj_id = #{planadjId}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_planadj
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_planadj
+		<set>
+			<if test="planadjId != null">
+				planadj_id = #{planadjId},
+			</if>
+			<if test="planadjMonth != null">
+				planadj_month = #{planadjMonth},
+			</if>
+			<if test="planadjNetIncrement != null">
+				planadj_net_increment = #{planadjNetIncrement},
+			</if>
+			<if test="planadjAdjAmount != null">
+				planadj_adj_amount = #{planadjAdjAmount},
+			</if>
+			<if test="planadjUnit != null">
+				planadj_unit = #{planadjUnit},
+			</if>
+			<if test="planadjStatus != null">
+				planadj_status = #{planadjStatus},
+			</if>
+			<if test="planadjCreateTime != null">
+				planadj_create_time = #{planadjCreateTime},
+			</if>
+			<if test="planadjUpdateTime != null">
+				planadj_update_time = #{planadjUpdateTime},
+			</if>
+			<if test="planadjCreateOpercode != null">
+				planadj_create_opercode = #{planadjCreateOpercode},
+			</if>
+			<if test="planadjOrgan != null">
+				planadj_organ = #{planadjOrgan},
+			</if>
+			<if test="planadjRealIncrement != null">
+				planadj_real_increment = #{planadjRealIncrement},
+			</if>
+			<if test="planadjType != null">
+				planadj_type = #{planadjType},
+			</if>
+			<if test="planadjUnifiedType != null">
+				planadj_unified_type = #{planadjUnifiedType},
+			</if>
+			<if test="combLevel != null">
+				comb_level = #{combLevel},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="planadjId != null and planadjId != ''">
+			and planadj_id = #{planadjId}
+		</if>
+		<if test="planadjMonth != null and planadjMonth != ''">
+			and planadj_month = #{planadjMonth}
+		</if>
+		<if test="planadjNetIncrement != null and planadjNetIncrement != ''">
+			and planadj_net_increment = #{planadjNetIncrement}
+		</if>
+		<if test="planadjAdjAmount != null and planadjAdjAmount != ''">
+			and planadj_adj_amount = #{planadjAdjAmount}
+		</if>
+		<if test="planadjUnit != null and planadjUnit != ''">
+			and planadj_unit = #{planadjUnit}
+		</if>
+		<if test="planadjStatus != null and planadjStatus != ''">
+			and planadj_status = #{planadjStatus}
+		</if>
+		<if test="planadjCreateTime != null and planadjCreateTime != ''">
+			and planadj_create_time = #{planadjCreateTime}
+		</if>
+		<if test="planadjUpdateTime != null and planadjUpdateTime != ''">
+			and planadj_update_time = #{planadjUpdateTime}
+		</if>
+		<if test="planadjCreateOpercode != null and planadjCreateOpercode != ''">
+			and planadj_create_opercode = #{planadjCreateOpercode}
+		</if>
+		<if test="planadjOrgan != null and planadjOrgan != ''">
+			and planadj_organ = #{planadjOrgan}
+		</if>
+		<if test="planadjRealIncrement != null and planadjRealIncrement != ''">
+			and planadj_real_increment = #{planadjRealIncrement}
+		</if>
+		<if test="planadjType != null and planadjType != ''">
+			and planadj_type = #{planadjType}
+		</if>
+		<if test="planadjUnifiedType != null and planadjUnifiedType != ''">
+			and planadj_unified_type = #{planadjUnifiedType}
+		</if>
+		<if test="combLevel != null and combLevel != ''">
+			and comb_level = #{combLevel}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="planadjId != null and planadjId != ''">
+			and planadj_id like '%' || #{planadjId} || '%'
+		</if>
+		<if test="planadjMonth != null and planadjMonth != ''">
+			and planadj_month like '%' || #{planadjMonth} || '%'
+		</if>
+		<if test="planadjNetIncrement != null and planadjNetIncrement != ''">
+			and planadj_net_increment like '%' || #{planadjNetIncrement} || '%'
+		</if>
+		<if test="planadjAdjAmount != null and planadjAdjAmount != ''">
+			and planadj_adj_amount like '%' || #{planadjAdjAmount} || '%'
+		</if>
+		<if test="planadjUnit != null and planadjUnit != ''">
+			and planadj_unit like '%' || #{planadjUnit} || '%'
+		</if>
+		<if test="planadjStatus != null ">
+			and planadj_status like '%' || #{planadjStatus} || '%'
+		</if>
+		<if test="planadjCreateTime != null and planadjCreateTime != ''">
+			and planadj_create_time like '%' || #{planadjCreateTime} || '%'
+		</if>
+		<if test="planadjUpdateTime != null and planadjUpdateTime != ''">
+			and planadj_update_time like '%' || #{planadjUpdateTime} || '%'
+		</if>
+		<if test="planadjCreateOpercode != null and planadjCreateOpercode != ''">
+			and planadj_create_opercode like '%' || #{planadjCreateOpercode} || '%'
+		</if>
+		<if test="planadjOrgan != null and planadjOrgan != ''">
+			and planadj_organ like '%' || #{planadjOrgan} || '%'
+		</if>
+		<if test="planadjRealIncrement != null and planadjRealIncrement != ''">
+			and planadj_real_increment like '%' || #{planadjRealIncrement} || '%'
+		</if>
+		<if test="planadjType != null ">
+			and planadj_type like '%' || #{planadjType} || '%'
+		</if>
+		<if test="planadjUnifiedType != null">
+			and planadj_unified_type like '%' || #{planadjUnifiedType} || '%'
+		</if>
+		<if test="combLevel != null and combLevel != ''">
+			and comb_level like '%' || #{combLevel} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_planadj
+		<where>
+			planadj_id = #{planadjId}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPlanadj" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPlanadj" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanadj" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbPlanadj" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanadj" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+
+	<!--根据条件查询信贷计划调整批次-->
+	<select id="selectPlanadj" resultType="java.util.Map" flushCache="true">
+		select
+			planadj.planadj_id as planadjid,
+			planadj.planadj_month as planadjmonth,
+			planadj.planadj_net_increment as planadjnetincrement,
+			planadj.planadj_adj_amount as planadjadjamount,
+			planadj.planadj_unit as planadjunit,
+			planadj.planadj_status as planadjstatus,
+			planadj.planadj_create_time as planadjcreatetime,
+			planadj.planadj_update_time as planadjupdatetime,
+			planadj.planadj_create_opercode as planadjcreateopercode,
+			planadj.planadj_organ as planadjorgan,
+			planadj.planadj_real_increment as planadjrealincrement
+
+			from tb_planadj planadj
+			where 1=1
+
+			<if test="planadjMonth != null and planadjMonth != ''">
+				and planadj.planadj_month = #{planadjMonth}
+			</if>
+			<if test="planadjStatus != null">
+				and planadj.planadj_status = #{planadjStatus}
+			</if>
+			<if test="planadjType != null">
+				and planadj.planadj_type = #{planadjType}
+			</if>
+			<if test="planadjOrgan != null and planadjOrgan != ''">
+				and planadj.planadj_organ = #{planadjOrgan}
+			</if>
+
+			<if test="sort != null and sort !=''">
+				order by ${sort}
+			</if>
+			<if test="sort == null or sort ==''">
+				order by planadj.planadj_month desc,planadj.planadj_create_time desc
+			</if>
+
+
+	</select>
+
+	<!--查询已提交的信贷计划调整-->
+	<select id="getAuditRecordHist" resultType="java.util.Map" flushCache="true">
+
+		select
+		distinct planadj.planadj_id as planadjid,
+		planadj.planadj_month as planadjmonth,
+		planadj.planadj_net_increment as planadjnetincrement,
+		planadj.planadj_adj_amount as planadjadjamount,
+		planadj.planadj_unit as planadjunit,
+		planadj.planadj_status as planadjstatus,
+		planadj.planadj_create_time as planadjcreatetime,
+		planadj.planadj_update_time as planadjupdatetime,
+		planadj.planadj_create_opercode as planadjcreateopercode,
+		planadj.planadj_organ as planadjorgan,
+		planadj.planadj_real_increment as planadjrealincrement,
+		hi_proc.proc_inst_id_ as procinstid
+
+		from tb_planadj planadj,act_hi_procinst hi_proc
+		where
+		cast(planadj.planadj_id as varchar)=hi_proc.business_key_
+		and hi_proc.start_user_id_ = #{opercode}
+
+		<if test="reqMonth != null and reqMonth != ''">
+			and planadj.planadj_month= #{reqMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and planadj.planadj_status= #{auditStatus}
+		</if>
+		<if test="planadjType != null">
+			and planadj.planadj_type = #{planadjType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by planadj.planadj_month desc,planadj.planadj_create_time desc
+		</if>
+
+
+	</select>
+
+	<!--查询待审批的信贷计划调整-->
+	<select id="getPendingAppReq" resultType="java.util.Map" flushCache="true">
+		select
+		distinct planadj.planadj_id as planadjid,
+		planadj.planadj_month as planadjmonth,
+		planadj.planadj_net_increment as planadjnetincrement,
+		planadj.planadj_adj_amount as planadjadjamount,
+		planadj.planadj_unit as planadjunit,
+		planadj.planadj_status as planadjstatus,
+		planadj.planadj_create_time as planadjcreatetime,
+		planadj.planadj_update_time as planadjupdatetime,
+		planadj.planadj_create_opercode as planadjcreateopercode,
+		planadj.planadj_organ as planadjorgan,
+		planadj.planadj_real_increment as planadjrealincrement,
+		hi_proc.proc_inst_id_ as procinstid,
+		task.id_ as taskid
+		from tb_planadj planadj,act_hi_procinst hi_proc,act_ru_task task
+		where
+		cast(planadj.planadj_id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.assignee_=#{assignee}
+		<if test="proIds!=null and proIds.size() > 0" >
+			and hi_proc.proc_inst_id_ in
+			<foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="reqMonth != null and reqMonth != ''">
+			and planadj.planadj_month= #{reqMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and planadj.planadj_status= #{auditStatus}
+		</if>
+		<if test="planadjType != null">
+			and planadj.planadj_type = #{planadjType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by planadj.planadj_month desc,planadj.planadj_create_time desc
+		</if>
+
+	</select>
+	<!--查询已审批的信贷计划调整-->
+    <select id="getApprovedRecord" resultType="java.util.Map" flushCache="true">
+		select
+		distinct planadj.planadj_id as planadjid,
+		planadj.planadj_month as planadjmonth,
+		planadj.planadj_net_increment as planadjnetincrement,
+		planadj.planadj_adj_amount as planadjadjamount,
+		planadj.planadj_unit as planadjunit,
+		planadj.planadj_status as planadjstatus,
+		planadj.planadj_create_time as planadjcreatetime,
+		planadj.planadj_update_time as planadjupdatetime,
+		planadj.planadj_create_opercode as planadjcreateopercode,
+		planadj.planadj_organ as planadjorgan,
+		planadj.planadj_real_increment as planadjrealincrement,
+		hi_proc.proc_inst_id_ as procinstid
+		from tb_planadj planadj,act_hi_procinst hi_proc,act_hi_taskinst task
+		where
+		cast(planadj.planadj_id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.delete_reason_='completed'
+		and task.assignee_=#{opercode}
+		<if test="reqMonth != null and reqMonth != ''">
+			and planadj.planadj_month= #{reqMonth}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and planadj.planadj_status= #{auditStatus}
+		</if>
+		<if test="planadjType != null">
+			and planadj.planadj_type = #{planadjType}
+		</if>
+
+		<if test="sort != null and sort !=''">
+			order by ${sort}
+		</if>
+		<if test="sort == null or sort ==''">
+			order by planadj.planadj_month desc,planadj.planadj_create_time desc
+		</if>
+
+	</select>
+
+
+	<select id="getCombList" parameterType="java.lang.Integer" resultType="java.util.HashMap" flushCache="true">
+		select comb_code as combcode,comb_name as combname from tb_comb where comb_level=#{level} order by comb_order,comb_code
+
+	</select>
+
+	<select id="getCreditPlanDetail" parameterType="java.lang.String" resultType="java.util.HashMap" flushCache="true">
+		select
+		pd.pd_organ as organcode,
+		pd.pd_amount as amount,
+		pd_unit as unit,
+		pd.pd_loan_type as loantype
+		from tb_plan_detail pd,tb_plan p
+		where p.plan_id=pd.pd_ref_id
+		and p.plan_status=16
+		<if test="month != null and month != ''">
+			and p.plan_month = #{month}
+		</if>
+		<if test="planType != null and planType != ''">
+			and p.plan_type = #{planType}
+		</if>
+		<if test="organ != null and organ != ''">
+			and p.plan_organ = #{organ}
+		</if>
+	</select>
+
+	<select id="getReqDetail" parameterType="java.lang.String" resultType="java.util.HashMap" flushCache="true">
+		select
+			req.req_month as month,
+			reqd.reqd_organ as organcode,
+			reqd.reqd_comb_code as loantype,
+			reqd.reqd_reqnum as amount,
+			plan.plan_unit as unit
+		from tb_req_list req
+		join tb_req_detail reqd
+		on req.req_id = reqd.reqd_ref_id
+			<if test="reqType != null and reqType != ''">
+				and req.req_type = #{reqType}
+			</if>
+			<if test="month != null and month != ''">
+				and req.req_month = #{month}
+			</if>
+			<if test="organ != null and organ != ''">
+				and req.req_organ = #{organ}
+			</if>
+			<if test="state != null and state != ''">
+				and reqd.reqd_state = #{state}
+			</if>
+		left join tb_plan plan
+		on 1=1
+		<if test="month != null and month != ''">
+			and plan.plan_month = #{month}
+		</if>
+		<if test="planType != null and planType != ''">
+			and plan.plan_type = #{planType}
+		</if>
+		<if test="organ != null and organ != ''">
+			and plan.plan_organ = #{organ}
+		</if>
+	</select>
+
+	<select id="getLineReqDetail" parameterType="java.lang.String" resultType="java.util.HashMap" flushCache="true">
+		select
+		req.req_month as month,
+		reqd.reqd_organ as organcode,
+		reqd.reqd_comb_code as loantype,
+		reqd.reqd_reqnum as amount,
+		plan.plan_unit as unit
+		from tb_req_list req
+		join tb_req_detail reqd
+		on req.req_id = reqd.reqd_ref_id
+		<if test="reqType != null and reqType != ''">
+			and req.req_type = #{reqType}
+		</if>
+		<if test="month != null and month != ''">
+			and req.req_month = #{month}
+		</if>
+		<if test="organ != null and organ != ''">
+			and req.req_organ = #{organ}
+		</if>
+		<if test="state != null and state != ''">
+			and reqd.reqd_state = #{state}
+		</if>
+		left join tb_plan plan
+		on 1=1
+		<if test="month != null and month != ''">
+			and plan.plan_month = #{month}
+		</if>
+		<if test="planType != null and planType != ''">
+			and plan.plan_type = #{planType}
+		</if>
+		<if test="organ != null and organ != ''">
+			and plan.plan_organ = #{organ}
+		</if>
+	</select>
+
+
+
+	<!--根据refId删除planadjDetail-->
+	<delete id="deleteTbPlanadjDetailBYRefId" parameterType="java.lang.String">
+        delete
+        from tb_planadj_detail
+        where planadjd_ref_id =  #{_param}
+    </delete>
+
+	<update id="updatePlanadj" parameterType="com.boco.SYS.entity.TbPlanadj">
+		UPDATE tb_planadj
+		<set>
+			<if test="planadjMonth != null">
+				planadj_month = #{planadjMonth},
+			</if>
+			<if test="planadjNetIncrement != null">
+				planadj_net_increment = #{planadjNetIncrement},
+			</if>
+			<if test="planadjAdjAmount != null">
+				planadj_adj_amount = #{planadjAdjAmount},
+			</if>
+			<if test="planadjUnit != null">
+				planadj_unit = #{planadjUnit},
+			</if>
+			<if test="planadjStatus != null">
+				planadj_status = #{planadjStatus},
+			</if>
+			<if test="planadjCreateTime != null">
+				planadj_create_time = #{planadjCreateTime},
+			</if>
+			<if test="planadjUpdateTime != null">
+				planadj_update_time = #{planadjUpdateTime},
+			</if>
+			<if test="planadjCreateOpercode != null">
+				planadj_create_opercode = #{planadjCreateOpercode},
+			</if>
+			<if test="planadjOrgan != null">
+				planadj_organ = #{planadjOrgan},
+			</if>
+			<if test="planadjRealIncrement != null">
+				planadj_real_increment = #{planadjRealIncrement},
+			</if>
+			<if test="planadjType != null">
+				planadj_type = #{planadjType},
+			</if>
+		</set>
+		<where>
+			<if test="planadjId != null and planadjId != ''">
+				and planadj_id = #{planadjId}
+			</if>
+			<if test="planadjMonth != null and planadjMonth != ''">
+				and planadj_month = #{planadjMonth}
+			</if>
+			<if test="planadjStatus != null and planadjStatus != ''">
+				and planadj_status = #{planadjStatus}
+			</if>
+			<if test="planadjOrgan != null and planadjOrgan != ''">
+				and planadj_organ = #{planadjOrgan}
+			</if>
+			<if test="planadjType != null and planadjType != ''">
+				and planadj_type = #{planadjType}
+			</if>
+		</where>
+	</update>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

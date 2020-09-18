@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.LoanCombMapper">
+    <!--result map-->
+    <resultMap id="comb_map_result" type="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombDO">
+        <id column="comb_id" property="combId" javaType="java.lang.String"/>
+        <result column="comb_code" property="combCode"/>
+        <result column="comb_name" property="combName"/>
+        <result column="comb_level" property="combLevel"/>
+        <result column="comb_status" property="combStatus"/>
+        <result column="comb_create_oper" property="combCreator"/>
+        <result column="comb_create_time" property="combCreateTime" javaType="java.time.LocalDateTime"/>
+        <result column="comb_update_oper" property="combUpdater"/>
+        <result column="comb_update_time" property="combUpdateTime" javaType="java.time.LocalDateTime"/>
+    </resultMap>
+
+    <!--创建贷种组合-->
+    <insert id="insertLoanCombInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombDO">
+        insert into tb_comb(comb_id, comb_code, comb_name, comb_level, comb_create_oper, comb_create_time,
+                            comb_update_oper, comb_update_time)
+        values (#{combId}, #{combCode}, #{combName}, #{combLevel}, #{combCreator}, #{combCreateTime}, #{combUpdater},
+                #{combUpdateTime})
+    </insert>
+
+    <!--更新贷种组合-->
+    <update id="updateLoanCombInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombDO">
+        update tb_comb
+        set comb_name=#{combName},
+            comb_update_oper=#{combUpdater},
+            comb_update_time=#{combUpdateTime}
+        where comb_code = #{combCode}
+          and comb_level = #{combLevel}
+    </update>
+
+    <!--更新组合状态-->
+    <update id="updateLoanCombStatus" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombStatusDO">
+        update tb_comb
+        set comb_status=#{combStatus}
+        where comb_code = #{combCode}
+    </update>
+
+    <!--更新占用状态-->
+    <update id="updateCombInterTakenType" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombTakenTypeDO">
+        update tb_comb
+        set comb_inter_taken_type=#{combTakenType}
+        where comb_code = #{combCode}
+    </update>
+
+    <update id="updateCombInnerTakenType" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombTakenTypeDO">
+        update tb_comb
+        set comb_inner_taken_type=#{combTakenType}
+        where comb_code = #{combCode}
+    </update>
+    <!--删除贷种组合 更新显示状态为-1表示已删除-->
+    <delete id="deleteLoanCombByCombCode" parameterType="java.lang.String">
+        delete from tb_comb
+        where comb_code = #{_param}
+    </delete>
+<!--             update tb_comb-->
+<!--             set comb_status= -1-->
+<!--             where comb_code = #{_param}-->
+
+    <!--查询所有贷种组合-->
+    <select id="getAllLoanCombInfo" resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb
+        ORDER BY ORDER BY comb_order
+    </select>
+    <!--查询所有贷种组合-->
+    <select id="getAllLoanCombInfoList" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombDO" resultMap="comb_map_result"
+            flushCache="true">
+        select *
+        from tb_comb
+        <where>
+            comb_status != - 1
+            <if test="combCode != null and combCode != ''">
+                and comb_code like '%' || #{combCode} || '%'
+            </if>
+            <if test="combName != null and combName != ''">
+                and comb_name like '%' || #{combName} || '%'
+            </if>
+            <if test="combLevel != 0">
+                and comb_level=#{combLevel}
+            </if>
+
+        </where>
+        ORDER BY comb_order,comb_create_time DESC
+    </select>
+
+
+    <!--查询贷种组合的combcode-->
+    <select id="getCombCodeList" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombDO" resultMap="comb_map_result"
+            flushCache="true">
+        select comb_code
+        from tb_comb
+        <where>
+            comb_status != - 1
+            <if test="combCode != null and combCode != ''">
+                and comb_code=#{combCode}
+            </if>
+            <if test="combName != null and combName != ''">
+                and comb_name like '%' || #{combName} || '%'
+            </if>
+            <if test="combLevel != 0">
+                and comb_level=#{combLevel}
+            </if>
+
+        </where>
+        ORDER BY comb_order, comb_create_time DESC
+    </select>
+
+    <!--通过级别查询贷种组合信息-->
+    <select id="getOrganLoanProductInfoByLevel" parameterType="java.lang.Integer" resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb
+        where comb_level = #{_param}
+          and comb_status = 0
+        ORDER BY comb_order, comb_create_time DESC
+    </select>
+
+    <!--通过级别查询贷种组合信息-->
+    <select id="getCombByLevel" parameterType="java.lang.Integer" resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb
+        where comb_level = #{_param}
+          and comb_status &gt; -1
+        ORDER BY comb_order
+    </select>
+
+    <!--获取条线贷种组合-->
+    <select id="getLineLoanProductInfoByLevelAndOrganCode" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineCombDO"
+            resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb
+        where comb_level = #{combLevel}
+          and comb_status != - 1
+          and comb_code not in (
+            select comb_code
+            from tb_prod_line_details
+            where status = 1
+              and line_id in (
+                select line_id from tb_prod_line where organ_code = #{organCode} and line_status = 0))
+        ORDER BY comb_order,comb_name DESC;
+    </select>
+
+    <!--通过组合编码查询贷种信息-->
+    <select id="getLoanCombInfoByCombCode" parameterType="java.lang.String" resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb
+        where comb_code = #{_param}
+    </select>
+<!--查询产品名称-->
+    <select id="getProdInfoByProdCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select prod_name
+        from tb_prod_all
+        where prod_code = #{_param}
+        group by prod_name
+    </select>
+
+    <!--通过组合编码查询贷种name-->
+    <select id="getLoanCombNameByCombCode" parameterType="java.lang.String" resultMap="comb_map_result" flushCache="true">
+        select comb_name
+        from tb_comb
+        where comb_code = #{_param}
+    </select>
+
+    <!--选择贷种名称-->
+    <select id="selectCombName" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select comb_name
+        from tb_comb
+        where comb_name like '%${value}%'
+    </select>
+    <select id="selectExactlyCombName" parameterType="java.lang.String" resultMap="comb_map_result" flushCache="true">
+        select comb_name
+        from tb_comb
+        where comb_name = #{param}
+    </select>
+    <!--选择贷种编码-->
+    <select id="selectCombCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select comb_code
+        from tb_comb
+        where comb_code like '%${value}%'
+    </select>
+    <select id="countCombListSize" resultType="java.lang.Integer" flushCache="true">
+        select count(*)
+        from tb_comb
+        where comb_status != - 1
+    </select>
+
+    <select id="selectComb" resultType="java.util.Map" flushCache="true">
+        select
+            comb_id     as combId,
+            comb_code   as combCode,
+            comb_name   as combName,
+            comb_level  as combLevel
+        from tb_comb
+        <where>
+            <if test="combLevel != null and combLevel != ''">
+                and comb_level = #{combLevel}
+            </if>
+        </where>
+        order by comb_order,comb_code
+    </select>
+
+    <select id="selectCombOfBind" resultType="java.util.Map" flushCache="true">
+        select
+        comb.comb_id     as combId,
+        comb.comb_code   as combCode,
+        comb.comb_name   as combName,
+        comb.comb_level  as combLevel,
+        combd.comb_code  as upcombCode
+        from tb_comb comb,tb_comb_detail combd
+        where comb.comb_code = combd.prod_code
+        and combd.status='1'
+        and comb.comb_status='1'
+        <if test="combLevel != null and combLevel != ''">
+            and comb.comb_level = #{combLevel}
+        </if>
+        order by comb.comb_order,comb.comb_code
+    </select>
+
+    <!--根据柜员绑定的条线查询贷种-->
+    <select id="selectCombByOpercode" resultType="java.util.Map" flushCache="true">
+        select comb_id    as combId,
+               comb_code  as combCode,
+               comb_name  as combName,
+               comb_level as combLevel
+        from tb_comb
+        where comb_code in (select comb_code
+                            from tb_prod_line_details
+                            where line_id in (
+                                select line_id
+                                from tb_oper_line
+                                <where>
+                                    <if test="opercode != null and opercode != ''">
+                                        and oper_code = #{opercode}
+                                    </if>
+                                </where>
+                                  and status = '1'
+                            )
+                              and status = '1')
+        order by comb_code
+
+    </select>
+
+    <!--根据贷种号查询贷种-->
+    <select id="selectCombBycombcode" resultType="java.util.Map" flushCache="true">
+    select comb_code as combcode,comb_name as combname
+    from tb_comb
+        <where>
+            <if test="combcode != null and combcode != ''">
+                and comb_code = #{combcode}
+            </if>
+        </where>
+
+    </select>
+
+
+
+</mapper>

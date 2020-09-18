@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- WebImpTemplate -->
+<mapper namespace="com.boco.SYS.mapper.WebImpTemplateMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebImpTemplate">
+       	<id column="TEMPLATE_CODE" property="templateCode"/>
+     	<result column="TEMPLATE_NAME" property="templateName"/>
+     	<result column="TEMPLATE_URL" property="templateUrl"/>
+     	<result column="REMARK" property="remark"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        TEMPLATE_CODE ,TEMPLATE_NAME ,TEMPLATE_URL ,REMARK 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebImpTemplate">
+        INSERT INTO WEB_IMP_TEMPLATE 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="templateCode != null">
+	        	TEMPLATE_CODE ,
+	       	</if>
+	       	<if test="templateName != null">
+	        	TEMPLATE_NAME ,
+	       	</if>
+	       	<if test="templateUrl != null">
+	        	TEMPLATE_URL ,
+	       	</if>
+	       	<if test="remark != null">
+	        	REMARK ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="templateCode != null">
+	        	#{templateCode} ,
+	       	</if>
+	       	<if test="templateName != null">
+	        	#{templateName} ,
+	       	</if>
+	       	<if test="templateUrl != null">
+	        	#{templateUrl} ,
+	       	</if>
+	       	<if test="remark != null">
+	        	#{remark} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_IMP_TEMPLATE 
+        (TEMPLATE_CODE ,TEMPLATE_NAME ,TEMPLATE_URL ,REMARK ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.templateCode} ,#{item.templateName} ,#{item.templateUrl} ,#{item.remark} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_IMP_TEMPLATE 
+        <where>
+        	TEMPLATE_CODE = #{templateCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_IMP_TEMPLATE 
+        <where>
+        	TEMPLATE_CODE = #{templateCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_IMP_TEMPLATE 
+        WHERE TEMPLATE_CODE IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_IMP_TEMPLATE
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebImpTemplate">
+        UPDATE WEB_IMP_TEMPLATE 
+        <set>
+       	<if test="templateName != null">
+       		TEMPLATE_NAME = #{templateName},
+       	</if>
+       	<if test="templateUrl != null">
+       		TEMPLATE_URL = #{templateUrl},
+       	</if>
+       	<if test="remark != null">
+       		REMARK = #{remark},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	TEMPLATE_CODE = #{templateCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_IMP_TEMPLATE 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_IMP_TEMPLATE 
+        <set>
+       	<if test="templateCode != null">
+       		TEMPLATE_CODE = #{templateCode},
+       	</if>
+       	<if test="templateName != null">
+       		TEMPLATE_NAME = #{templateName},
+       	</if>
+       	<if test="templateUrl != null">
+       		TEMPLATE_URL = #{templateUrl},
+       	</if>
+       	<if test="remark != null">
+       		REMARK = #{remark},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="templateCode != null and templateCode != ''">
+	 		and TEMPLATE_CODE = #{templateCode}
+	 	</if>
+	 	<if test="templateName != null and templateName != ''">
+	 		and TEMPLATE_NAME = #{templateName}
+	 	</if>
+	 	<if test="templateUrl != null and templateUrl != ''">
+	 		and TEMPLATE_URL = #{templateUrl}
+	 	</if>
+	 	<if test="remark != null and remark != ''">
+	 		and REMARK = #{remark}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="templateCode != null and templateCode != ''">
+ 			and TEMPLATE_CODE like '%' || #{templateCode} || '%'
+ 		</if>
+ 		<if test="templateName != null and templateName != ''">
+ 			and TEMPLATE_NAME like '%' || #{templateName} || '%'
+ 		</if>
+ 		<if test="templateUrl != null and templateUrl != ''">
+ 			and TEMPLATE_URL like '%' || #{templateUrl} || '%'
+ 		</if>
+ 		<if test="remark != null and remark != ''">
+ 			and REMARK like '%' || #{remark} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_IMP_TEMPLATE 
+        <where> 
+        	TEMPLATE_CODE = #{templateCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebImpTemplate" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_IMP_TEMPLATE
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebImpTemplate" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_IMP_TEMPLATE 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebImpTemplate" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_IMP_TEMPLATE 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_IMP_TEMPLATE 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebImpTemplate" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_IMP_TEMPLATE 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebImpTemplate" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_IMP_TEMPLATE 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_IMP_TEMPLATE 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title></title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!--基本选项卡start-->
+<script type="text/javascript" src="../../libs/js/nav/basicTabModern.js"></script>
+<!--基本选项卡end-->
+
+<!--弹出式提示框start-->
+<script type="text/javascript" src="../../libs/js/popup/messager.js"></script>
+<!--弹出式提示框end-->
+<script>
+	$(function(){
+		setTimeout(function(){
+			$.messager.show('提示信息','提示内容','stay','','box_msg_custom');
+		},2000)
+		
+		//修正由于使用了tab导致高度计算不准确
+		if(broswerFlag=="IE6"){
+			setTimeout(function(){
+				top.iframeHeight('frmrightChild');
+			},500)
+		}
+	})
+</script>
+</head>
+<body >
+	<table width="100%">
+		<tr>
+			<td width="45%" class="ver01">
+				<div class="basicTabModern_top">
+				<div class="basicTabModern_top_left">
+				<div class="basicTabModern_top_right">
+					<div class="open_info_left">
+						您已完成的任务数为<span style="color:#d2ff00;">856</span>项,击败<span style="color:#d2ff00;">40%</span>的同事。
+					</div>
+					<div class="open_info_right">
+						<a onclick='top.Dialog.open({URL:"demo/window-content1.html",Title:"排名情况 ",Width:400,Height:300});'>查看排名 >></a>
+					</div>
+					<div class="clear"></div>
+				</div>		
+				</div>	
+				</div>
+				<div class="box2" panelTitle="&nbsp;最新动态" showStatus="false" iconSrc="images/alert.png">
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+							<ul class="list">
+								<li class="list_time">2013-03-06</li>
+								<li class="list_title">天安门近期举行重大活动，人员流动较大</li>
+								<li class="list_more"><a href="javascript:;">详细 >></a></li>
+								<div class="clear"></div>
+							</ul>
+				</div>
+			</td>
+			<td width="55%" class="ver01">
+				<div class="basicTabModern" selectedIdx="2">
+				    <div name="昨天">
+				       <div class="box1" panelHeight="242">
+									内容1
+						</div>
+				    </div>
+				
+				    <div name="今天">
+				       <div class="box1" panelHeight="242">
+									内容2
+						</div>
+				    </div>
+					
+					<div name="近7天">
+				       <div class="box1" panelHeight="242">
+							<img src="images/chart.jpg"/>
+						</div>
+				    </div>
+					
+					<div name="近30天">
+						<div class="box1" panelHeight="242">
+								内容4
+						</div>
+				    </div>
+					
+					<div name="今年">
+				       <div class="box1" panelHeight="242">
+									内容5
+						</div>
+				    </div>
+					
+					<div name="去年">
+				       <div class="box1" panelHeight="242">
+									内容6
+						</div>
+				    </div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="basicTabModern" selectedIdx="2">
+				    <div name="昨天" style="height:150px;">
+							内容1
+				    </div>
+				
+				    <div name="今天" style="height:150px;">
+							内容2
+				    </div>
+					
+					<div name="近7天" style="height:150px;padding:10px 10px 0 10px;">
+							<table class="tableStyle">
+								<tr>
+									<th>总查询数</th>
+									<th>已完成数量</th>
+									<th>未完成数量</th>
+									<th>红色警示</th>
+									<th>黄色警示</th>
+									<th>排   除</th>
+									<th>存   疑</th>
+									<th>留   置</th>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+							</table>
+				    </div>
+					
+					<div name="近30天" style="height:150px;">
+							内容4
+				    </div>
+					
+					<div name="今年" style="height:150px;">
+							内容5
+				    </div>
+					
+					<div name="去年" style="height:150px;">
+							内容6
+				    </div>
+					
+					<div name="自定义" style="height:150px;">
+							内容7
+				    </div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+

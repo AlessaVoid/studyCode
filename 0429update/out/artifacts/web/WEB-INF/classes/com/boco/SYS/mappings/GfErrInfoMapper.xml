@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- GfErrInfo -->
+<mapper namespace="com.boco.SYS.mapper.GfErrInfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.GfErrInfo">
+       	<id column="GF_SYS_CODE" property="gfSysCode"/>
+       	<id column="GF_RET_CODE" property="gfRetCode"/>
+       	<id column="OTHER_SYS_CODE" property="otherSysCode"/>
+       	<id column="OTHER_RET_CODE" property="otherRetCode"/>
+     	<result column="GF_RET_INFO" property="gfRetInfo"/>
+     	<result column="OTHER_RET_INFO" property="otherRetInfo"/>
+     	<result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+     	<result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+     	<result column="LATEST_OPER_CODE" property="latestOperCode"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        GF_SYS_CODE ,GF_RET_CODE ,GF_RET_INFO ,OTHER_SYS_CODE ,OTHER_RET_CODE ,OTHER_RET_INFO ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.GfErrInfo">
+        INSERT INTO GF_ERR_INFO 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="gfSysCode != null">
+	        	GF_SYS_CODE ,
+	       	</if>
+	       	<if test="gfRetCode != null">
+	        	GF_RET_CODE ,
+	       	</if>
+	       	<if test="gfRetInfo != null">
+	        	GF_RET_INFO ,
+	       	</if>
+	       	<if test="otherSysCode != null">
+	        	OTHER_SYS_CODE ,
+	       	</if>
+	       	<if test="otherRetCode != null">
+	        	OTHER_RET_CODE ,
+	       	</if>
+	       	<if test="otherRetInfo != null">
+	        	OTHER_RET_INFO ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	LATEST_MODIFY_DATE ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	LATEST_MODIFY_TIME ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	LATEST_OPER_CODE ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="gfSysCode != null">
+	        	#{gfSysCode} ,
+	       	</if>
+	       	<if test="gfRetCode != null">
+	        	#{gfRetCode} ,
+	       	</if>
+	       	<if test="gfRetInfo != null">
+	        	#{gfRetInfo} ,
+	       	</if>
+	       	<if test="otherSysCode != null">
+	        	#{otherSysCode} ,
+	       	</if>
+	       	<if test="otherRetCode != null">
+	        	#{otherRetCode} ,
+	       	</if>
+	       	<if test="otherRetInfo != null">
+	        	#{otherRetInfo} ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	#{latestModifyDate} ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	#{latestModifyTime} ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	#{latestOperCode} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO GF_ERR_INFO 
+        (GF_SYS_CODE ,GF_RET_CODE ,GF_RET_INFO ,OTHER_SYS_CODE ,OTHER_RET_CODE ,OTHER_RET_INFO ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.gfSysCode} ,#{item.gfRetCode} ,#{item.gfRetInfo} ,#{item.otherSysCode} ,#{item.otherRetCode} ,#{item.otherRetInfo} ,#{item.latestModifyDate} ,#{item.latestModifyTime} ,#{item.latestOperCode} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM GF_ERR_INFO 
+        <where>
+        	GF_SYS_CODE = #{gfSysCode} and
+        	GF_RET_CODE = #{gfRetCode} and
+        	OTHER_SYS_CODE = #{otherSysCode} and
+        	OTHER_RET_CODE = #{otherRetCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM GF_ERR_INFO 
+        <where>
+        	GF_SYS_CODE = #{gfSysCode} and
+        	GF_RET_CODE = #{gfRetCode} and
+        	OTHER_SYS_CODE = #{otherSysCode} and
+        	OTHER_RET_CODE = #{otherRetCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM GF_ERR_INFO 
+        WHERE GF_SYS_CODEGF_RET_CODEOTHER_SYS_CODEOTHER_RET_CODE IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM GF_ERR_INFO
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.GfErrInfo">
+        UPDATE GF_ERR_INFO 
+        <set>
+       	<if test="gfRetInfo != null">
+       		GF_RET_INFO = #{gfRetInfo},
+       	</if>
+       	<if test="otherRetInfo != null">
+       		OTHER_RET_INFO = #{otherRetInfo},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	GF_SYS_CODE = #{gfSysCode} and
+        	GF_RET_CODE = #{gfRetCode} and
+        	OTHER_SYS_CODE = #{otherSysCode} and
+        	OTHER_RET_CODE = #{otherRetCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE GF_ERR_INFO 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE GF_ERR_INFO 
+        <set>
+       	<if test="gfSysCode != null">
+       		GF_SYS_CODE = #{gfSysCode},
+       	</if>
+       	<if test="gfRetCode != null">
+       		GF_RET_CODE = #{gfRetCode},
+       	</if>
+       	<if test="gfRetInfo != null">
+       		GF_RET_INFO = #{gfRetInfo},
+       	</if>
+       	<if test="otherSysCode != null">
+       		OTHER_SYS_CODE = #{otherSysCode},
+       	</if>
+       	<if test="otherRetCode != null">
+       		OTHER_RET_CODE = #{otherRetCode},
+       	</if>
+       	<if test="otherRetInfo != null">
+       		OTHER_RET_INFO = #{otherRetInfo},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="gfSysCode != null and gfSysCode != ''">
+	 		and GF_SYS_CODE = #{gfSysCode}
+	 	</if>
+	 	<if test="gfRetCode != null and gfRetCode != ''">
+	 		and GF_RET_CODE = #{gfRetCode}
+	 	</if>
+	 	<if test="gfRetInfo != null and gfRetInfo != ''">
+	 		and GF_RET_INFO = #{gfRetInfo}
+	 	</if>
+	 	<if test="otherSysCode != null and otherSysCode != ''">
+	 		and OTHER_SYS_CODE = #{otherSysCode}
+	 	</if>
+	 	<if test="otherRetCode != null and otherRetCode != ''">
+	 		and OTHER_RET_CODE = #{otherRetCode}
+	 	</if>
+	 	<if test="otherRetInfo != null and otherRetInfo != ''">
+	 		and OTHER_RET_INFO = #{otherRetInfo}
+	 	</if>
+	 	<if test="latestModifyDate != null and latestModifyDate != ''">
+	 		and LATEST_MODIFY_DATE = #{latestModifyDate}
+	 	</if>
+	 	<if test="latestModifyTime != null and latestModifyTime != ''">
+	 		and LATEST_MODIFY_TIME = #{latestModifyTime}
+	 	</if>
+	 	<if test="latestOperCode != null and latestOperCode != ''">
+	 		and LATEST_OPER_CODE = #{latestOperCode}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="gfSysCode != null and gfSysCode != ''">
+ 			and GF_SYS_CODE like '%' || #{gfSysCode} || '%'
+ 		</if>
+ 		<if test="gfRetCode != null and gfRetCode != ''">
+ 			and GF_RET_CODE like '%' || #{gfRetCode} || '%'
+ 		</if>
+ 		<if test="gfRetInfo != null and gfRetInfo != ''">
+ 			and GF_RET_INFO like '%' || #{gfRetInfo} || '%'
+ 		</if>
+ 		<if test="otherSysCode != null and otherSysCode != ''">
+ 			and OTHER_SYS_CODE like '%' || #{otherSysCode} || '%'
+ 		</if>
+ 		<if test="otherRetCode != null and otherRetCode != ''">
+ 			and OTHER_RET_CODE like '%' || #{otherRetCode} || '%'
+ 		</if>
+ 		<if test="otherRetInfo != null and otherRetInfo != ''">
+ 			and OTHER_RET_INFO like '%' || #{otherRetInfo} || '%'
+ 		</if>
+ 		<if test="latestModifyDate != null and latestModifyDate != ''">
+ 			and LATEST_MODIFY_DATE like '%' || #{latestModifyDate} || '%'
+ 		</if>
+ 		<if test="latestModifyTime != null and latestModifyTime != ''">
+ 			and LATEST_MODIFY_TIME like '%' || #{latestModifyTime} || '%'
+ 		</if>
+ 		<if test="latestOperCode != null and latestOperCode != ''">
+ 			and LATEST_OPER_CODE like '%' || #{latestOperCode} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM GF_ERR_INFO 
+        <where> 
+        	GF_SYS_CODE = #{gfSysCode} and
+        	GF_RET_CODE = #{gfRetCode} and
+        	OTHER_SYS_CODE = #{otherSysCode} and
+        	OTHER_RET_CODE = #{otherRetCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.GfErrInfo" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM GF_ERR_INFO
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.GfErrInfo" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM GF_ERR_INFO 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.GfErrInfo" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM GF_ERR_INFO 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM GF_ERR_INFO 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.GfErrInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_ERR_INFO 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.GfErrInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_ERR_INFO 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_ERR_INFO 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

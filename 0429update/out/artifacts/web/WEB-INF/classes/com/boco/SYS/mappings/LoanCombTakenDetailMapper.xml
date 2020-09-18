@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.LoanCombTakenDetailMapper">
+    <!--result map-->
+    <resultMap id="comb_map_result" type="com.boco.TONY.biz.loancomb.POJO.DO.combtaken.CombTakenDetailDO">
+        <id column="id" property="id"/>
+        <result column="comb_id" property="combId" javaType="java.lang.String"/>
+        <result column="comb_taken_id" property="combTakenId" javaType="java.lang.String"/>
+        <result column="parent_id" property="combParentId"/>
+    </resultMap>
+
+    <!--创建贷种组合-->
+    <insert id="insertCombTakenDetailInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combtaken.CombTakenDetailDO">
+        insert into tb_comb_taken_detail(comb_id, comb_taken_id, parent_id)
+        values (#{combId}, #{combTakenId}, #{combParentId})
+    </insert>
+
+    <select id="selectCombTakenInfoByParentId" parameterType="java.lang.String" resultMap="comb_map_result" flushCache="true">
+        select *
+        from tb_comb_taken_detail
+        where parent_id = #{_param}
+    </select>
+    <delete id="deleteTakenCombInfo" parameterType="java.lang.String">
+        delete  from tb_comb_taken_detail where parent_id=#{_param}
+    </delete>
+    <!--获取000000的taken_type-->
+    <select id="selectInterTakentype" resultType="integer" flushCache="true">
+         select taken_type
+        from tb_comb_taken
+        where comb_parent = '000000'
+    </select>
+    <select id="getTakenTypeByCombParent" resultType="integer" flushCache="true">
+         select taken_type
+        from tb_comb_taken
+        where comb_parent = #{_param}
+    </select>
+</mapper>

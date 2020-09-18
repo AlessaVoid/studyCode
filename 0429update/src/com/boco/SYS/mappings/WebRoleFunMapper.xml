@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 角色功能对照表 -->
+<mapper namespace="com.boco.SYS.mapper.WebRoleFunMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebRoleFun">
+        <id column="ROLE_CODE" property="roleCode"/>
+        <id column="FUN_CODE" property="funCode"/>
+        <result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+        <result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+        <result column="LATEST_OPER_CODE" property="latestOperCode"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        ROLE_CODE ,FUN_CODE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebRoleFun">
+        INSERT INTO WEB_ROLE_FUN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleCode != null">
+                ROLE_CODE ,
+            </if>
+            <if test="funCode != null">
+                FUN_CODE ,
+            </if>
+            <if test="latestModifyDate != null">
+                LATEST_MODIFY_DATE ,
+            </if>
+            <if test="latestModifyTime != null">
+                LATEST_MODIFY_TIME ,
+            </if>
+            <if test="latestOperCode != null">
+                LATEST_OPER_CODE ,
+            </if>
+            LAST_MOD_STAMP
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleCode != null">
+                #{roleCode} ,
+            </if>
+            <if test="funCode != null">
+                #{funCode} ,
+            </if>
+            <if test="latestModifyDate != null">
+                #{latestModifyDate} ,
+            </if>
+            <if test="latestModifyTime != null">
+                #{latestModifyTime} ,
+            </if>
+            <if test="latestOperCode != null">
+                #{latestOperCode} ,
+            </if>
+            to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_ROLE_FUN
+        (ROLE_CODE ,FUN_CODE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,LAST_MOD_STAMP)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.roleCode} ,
+            #{item.funCode} ,
+            #{item.latestModifyDate} ,
+            #{item.latestModifyTime},
+            #{item.latestOperCode} ,
+            #{item.latestModifyTime})
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM WEB_ROLE_FUN
+        <where>
+            ROLE_CODE = #{roleCode} and
+            FUN_CODE = #{funCode}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM WEB_ROLE_FUN
+        <where>
+            ROLE_CODE = #{roleCode} and
+            FUN_CODE = #{funCode}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_ROLE_FUN
+        WHERE ROLE_CODEFUN_CODE IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_ROLE_FUN
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebRoleFun">
+        UPDATE WEB_ROLE_FUN
+        <set>
+            <if test="latestModifyDate != null">
+                LATEST_MODIFY_DATE = #{latestModifyDate},
+            </if>
+            <if test="latestModifyTime != null">
+                LATEST_MODIFY_TIME = #{latestModifyTime},
+            </if>
+            <if test="latestOperCode != null">
+                LATEST_OPER_CODE = #{latestOperCode},
+            </if>
+            LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ROLE_CODE = #{roleCode} and
+            FUN_CODE = #{funCode}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE WEB_ROLE_FUN
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_ROLE_FUN
+        <set>
+            <if test="roleCode != null">
+                ROLE_CODE = #{roleCode},
+            </if>
+            <if test="funCode != null">
+                FUN_CODE = #{funCode},
+            </if>
+            <if test="latestModifyDate != null">
+                LATEST_MODIFY_DATE = #{latestModifyDate},
+            </if>
+            <if test="latestModifyTime != null">
+                LATEST_MODIFY_TIME = #{latestModifyTime},
+            </if>
+            <if test="latestOperCode != null">
+                LATEST_OPER_CODE = #{latestOperCode},
+            </if>
+            LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="roleCode != null and roleCode != ''">
+            and ROLE_CODE = #{roleCode}
+        </if>
+        <if test="funCode != null and funCode != ''">
+            and FUN_CODE = #{funCode}
+        </if>
+        <if test="latestModifyDate != null and latestModifyDate != ''">
+            and LATEST_MODIFY_DATE = #{latestModifyDate}
+        </if>
+        <if test="latestModifyTime != null and latestModifyTime != ''">
+            and LATEST_MODIFY_TIME = #{latestModifyTime}
+        </if>
+        <if test="latestOperCode != null and latestOperCode != ''">
+            and LATEST_OPER_CODE = #{latestOperCode}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="roleCode != null and roleCode != ''">
+            and ROLE_CODE like '%' || #{roleCode} || '%'
+        </if>
+        <if test="funCode != null and funCode != ''">
+            and FUN_CODE like '%' || #{funCode} || '%'
+        </if>
+        <if test="latestModifyDate != null and latestModifyDate != ''">
+            and LATEST_MODIFY_DATE like '%' || #{latestModifyDate} || '%'
+        </if>
+        <if test="latestModifyTime != null and latestModifyTime != ''">
+            and LATEST_MODIFY_TIME like '%' || #{latestModifyTime} || '%'
+        </if>
+        <if test="latestOperCode != null and latestOperCode != ''">
+            and LATEST_OPER_CODE like '%' || #{latestOperCode} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN
+        <where>
+            ROLE_CODE = #{roleCode} and
+            FUN_CODE = #{funCode}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebRoleFun" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebRoleFun" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebRoleFun" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebRoleFun" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from WEB_ROLE_FUN
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebRoleFun" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from WEB_ROLE_FUN
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from WEB_ROLE_FUN
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+    <!-- 查询某个角色的功能权限数量 -->
+    <select id="selectOperFuns" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        select
+        <include refid="base_column_list"/>
+        from WEB_ROLE_FUN
+        <![CDATA[
+    	where role_code in (SELECT REGEXP_SUBSTR(
+    	(select substr(OPERDEGREE,0,3) || ',' || substr(OPERDEGREE,4,3) from fd_oper o 
+    	where o.opercode = #{opercode}), '[^,]+', 1, LEVEL, 'i') FROM DUAL  
+		CONNECT BY LEVEL <= 2)
+		]]>
+    </select>
+
+    <!-- 查询某个角色的功能权限数量 -->
+    <select id="selectOperRoleFun" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        select
+        <include refid="base_column_list"/>
+        from WEB_ROLE_FUN
+        <!-- <![CDATA[
+        where role_code in (SELECT REGEXP_SUBSTR(
+        (${operdegrees}), '[^,]+', 1, LEVEL, 'i') FROM DUAL
+        CONNECT BY LEVEL <= 2)
+        ]]> -->
+        <![CDATA[
+    	where role_code in (${operdegrees})
+		]]>
+    </select>
+    <!-- 根据角色代码删除功能集,权限配置时先删除角色原来的权限 -->
+    <delete id="deleteFunsByRole" parameterType="java.lang.String">
+        DELETE
+        FROM WEB_ROLE_FUN
+        where role_code = #{roleCode}
+    </delete>
+
+    <!-- 动态根据柜员的角色获取该柜员拥有的功能 -->
+    <select id="selectByRoleList" parameterType="java.util.List" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_ROLE_FUN T
+        <where>
+            <foreach collection="list" item="item" index="index" separator="OR">
+                T.ROLE_CODE = #{item}
+            </foreach>
+        </where>
+    </select>
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

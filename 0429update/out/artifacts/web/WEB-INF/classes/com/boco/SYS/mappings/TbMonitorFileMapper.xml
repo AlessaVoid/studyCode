@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 文件监控 -->
+<mapper namespace="com.boco.SYS.mapper.TbMonitorFileMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbMonitorFile">
+       	<id column="file_date" property="fileDate"/>
+       	<id column="file_systemid" property="fileSystemid"/>
+       	<id column="file_type" property="fileType"/>
+     	<result column="file_path" property="filePath"/>
+     	<result column="file_recv_time" property="fileRecvTime"/>
+     	<result column="file_recv_status" property="fileRecvStatus"/>
+     	<result column="file_process_start" property="fileProcessStart"/>
+     	<result column="file_process_finish" property="fileProcessFinish"/>
+     	<result column="file_process_status" property="fileProcessStatus"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        file_date ,file_systemid ,file_type ,file_path ,file_recv_time ,file_recv_status ,file_process_start ,file_process_finish ,file_process_status 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbMonitorFile">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_monitor_file 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="fileDate != null">
+	        	file_date ,
+	       	</if>
+	       	<if test="fileSystemid != null">
+	        	file_systemid ,
+	       	</if>
+	       	<if test="fileType != null">
+	        	file_type ,
+	       	</if>
+	       	<if test="filePath != null">
+	        	file_path ,
+	       	</if>
+	       	<if test="fileRecvTime != null">
+	        	file_recv_time ,
+	       	</if>
+	       	<if test="fileRecvStatus != null">
+	        	file_recv_status ,
+	       	</if>
+	       	<if test="fileProcessStart != null">
+	        	file_process_start ,
+	       	</if>
+	       	<if test="fileProcessFinish != null">
+	        	file_process_finish ,
+	       	</if>
+	       	<if test="fileProcessStatus != null">
+	        	file_process_status 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="fileDate != null">
+	        	#{fileDate} ,
+	       	</if>
+	       	<if test="fileSystemid != null">
+	        	#{fileSystemid} ,
+	       	</if>
+	       	<if test="fileType != null">
+	        	#{fileType} ,
+	       	</if>
+	       	<if test="filePath != null">
+	        	#{filePath} ,
+	       	</if>
+	       	<if test="fileRecvTime != null">
+	        	#{fileRecvTime} ,
+	       	</if>
+	       	<if test="fileRecvStatus != null">
+	        	#{fileRecvStatus} ,
+	       	</if>
+	       	<if test="fileProcessStart != null">
+	        	#{fileProcessStart} ,
+	       	</if>
+	       	<if test="fileProcessFinish != null">
+	        	#{fileProcessFinish} ,
+	       	</if>
+	       	<if test="fileProcessStatus != null">
+	        	#{fileProcessStatus} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_monitor_file 
+        (file_date ,file_systemid ,file_type ,file_path ,file_recv_time ,file_recv_status ,file_process_start ,file_process_finish ,file_process_status )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.fileDate,jdbcType=VARCHAR},#{item.fileSystemid,jdbcType=VARCHAR},#{item.fileType,jdbcType=VARCHAR},#{item.filePath,jdbcType=VARCHAR},#{item.fileRecvTime,jdbcType=VARCHAR},#{item.fileRecvStatus,jdbcType=VARCHAR},#{item.fileProcessStart,jdbcType=VARCHAR},#{item.fileProcessFinish,jdbcType=VARCHAR},#{item.fileProcessStatus,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_monitor_file 
+        <where>
+        	file_date = #{fileDate} and
+        	file_systemid = #{fileSystemid} and
+        	file_type = #{fileType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM tb_monitor_file 
+        <where>
+        	file_date = #{fileDate} and
+        	file_systemid = #{fileSystemid} and
+        	file_type = #{fileType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_monitor_file 
+        WHERE file_datefile_systemidfile_type IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_monitor_file
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbMonitorFile">
+        UPDATE tb_monitor_file 
+        <set>
+       	<if test="filePath != null">
+       		file_path = #{filePath},
+       	</if>
+       	<if test="fileRecvTime != null">
+       		file_recv_time = #{fileRecvTime},
+       	</if>
+       	<if test="fileRecvStatus != null">
+       		file_recv_status = #{fileRecvStatus},
+       	</if>
+       	<if test="fileProcessStart != null">
+       		file_process_start = #{fileProcessStart},
+       	</if>
+       	<if test="fileProcessFinish != null">
+       		file_process_finish = #{fileProcessFinish},
+       	</if>
+       	<if test="fileProcessStatus != null">
+       		file_process_status = #{fileProcessStatus},
+       	</if>
+        </set>
+        <where>
+        	file_date = #{fileDate} and
+        	file_systemid = #{fileSystemid} and
+        	file_type = #{fileType} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_monitor_file 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_monitor_file 
+        <set>
+       	<if test="fileDate != null">
+       		file_date = #{fileDate},
+       	</if>
+       	<if test="fileSystemid != null">
+       		file_systemid = #{fileSystemid},
+       	</if>
+       	<if test="fileType != null">
+       		file_type = #{fileType},
+       	</if>
+       	<if test="filePath != null">
+       		file_path = #{filePath},
+       	</if>
+       	<if test="fileRecvTime != null">
+       		file_recv_time = #{fileRecvTime},
+       	</if>
+       	<if test="fileRecvStatus != null">
+       		file_recv_status = #{fileRecvStatus},
+       	</if>
+       	<if test="fileProcessStart != null">
+       		file_process_start = #{fileProcessStart},
+       	</if>
+       	<if test="fileProcessFinish != null">
+       		file_process_finish = #{fileProcessFinish},
+       	</if>
+       	<if test="fileProcessStatus != null">
+       		file_process_status = #{fileProcessStatus},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="fileDate != null and fileDate != ''">
+	 		and file_date = #{fileDate}
+	 	</if>
+	 	<if test="fileSystemid != null and fileSystemid != ''">
+	 		and file_systemid = #{fileSystemid}
+	 	</if>
+	 	<if test="fileType != null and fileType != ''">
+	 		and file_type = #{fileType}
+	 	</if>
+	 	<if test="filePath != null and filePath != ''">
+	 		and file_path = #{filePath}
+	 	</if>
+	 	<if test="fileRecvTime != null and fileRecvTime != ''">
+	 		and file_recv_time = #{fileRecvTime}
+	 	</if>
+	 	<if test="fileRecvStatus != null">
+	 		and file_recv_status = #{fileRecvStatus}
+	 	</if>
+	 	<if test="fileProcessStart != null and fileProcessStart != ''">
+	 		and file_process_start = #{fileProcessStart}
+	 	</if>
+	 	<if test="fileProcessFinish != null and fileProcessFinish != ''">
+	 		and file_process_finish = #{fileProcessFinish}
+	 	</if>
+	 	<if test="fileProcessStatus != null">
+	 		and file_process_status = #{fileProcessStatus}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="fileDate != null and fileDate != ''">
+ 			and file_date like '%' || #{fileDate} || '%'
+ 		</if>
+ 		<if test="fileSystemid != null and fileSystemid != ''">
+ 			and file_systemid like '%' || #{fileSystemid} || '%'
+ 		</if>
+ 		<if test="fileType != null and fileType != ''">
+ 			and file_type like '%' || #{fileType} || '%'
+ 		</if>
+ 		<if test="filePath != null and filePath != ''">
+ 			and file_path like '%' || #{filePath} || '%'
+ 		</if>
+ 		<if test="fileRecvTime != null and fileRecvTime != ''">
+ 			and file_recv_time like '%' || #{fileRecvTime} || '%'
+ 		</if>
+ 		<if test="fileRecvStatus != null and fileRecvStatus != ''">
+ 			and file_recv_status like '%' || #{fileRecvStatus} || '%'
+ 		</if>
+ 		<if test="fileProcessStart != null and fileProcessStart != ''">
+ 			and file_process_start like '%' || #{fileProcessStart} || '%'
+ 		</if>
+ 		<if test="fileProcessFinish != null and fileProcessFinish != ''">
+ 			and file_process_finish like '%' || #{fileProcessFinish} || '%'
+ 		</if>
+ 		<if test="fileProcessStatus != null and fileProcessStatus != ''">
+ 			and file_process_status like '%' || #{fileProcessStatus} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_monitor_file 
+        <where> 
+        	file_date = #{fileDate} and
+        	file_systemid = #{fileSystemid} and
+        	file_type = #{fileType} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbMonitorFile" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_monitor_file
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbMonitorFile" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_monitor_file 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbMonitorFile" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_monitor_file 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_monitor_file 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbMonitorFile" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor_file 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbMonitorFile" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor_file 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor_file 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 根据条件查询记录 -->
+	<select id="selectTbMonitorFile" parameterType="com.boco.SYS.entity.TbMonitorFile" resultMap="base_result_map" flushCache="true">
+		SELECT
+		file_date ,
+		gf.dict_value_in as file_systemid ,
+		file_type ,file_path ,file_recv_time ,file_recv_status,
+		file_process_start ,file_process_finish ,file_process_status
+		FROM tb_monitor_file
+		left join gf_dict gf
+		on	gf.dict_no = 'SYSTEM_CTRL_STATUS_TYPE'
+		and file_systemid = gf.dict_key_in
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

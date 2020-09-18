@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 评分管理参数表 -->
+<mapper namespace="com.boco.SYS.mapper.TbEvaluateParamMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbEvaluateParam">
+        <id column="tp_id" property="tpId"/>
+        <result column="tp_name" property="tpName"/>
+        <result column="tp_comb" property="tpComb"/>
+        <result column="tp_full_score" property="tpFullScore"/>
+        <result column="tp_min" property="tpMin"/>
+        <result column="tp_max" property="tpMax"/>
+        <result column="tp_deduction" property="tpDeduction"/>
+        <result column="tp_create_time" property="tpCreateTime"/>
+        <result column="tp_create_oper" property="tpCreateOper"/>
+        <result column="tp_state" property="tpState"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+
+                                tp_id ,tp_name ,tp_comb ,tp_full_score ,tp_min ,tp_max ,tp_deduction ,tp_create_time ,tp_create_oper ,tp_state
+
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbEvaluateParam">
+        <!--
+                -->
+        INSERT INTO tb_evaluate_param
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tpId != null">
+                tp_id ,
+            </if>
+            <if test="tpName != null">
+                tp_name ,
+            </if>
+            <if test="tpComb != null">
+                tp_comb ,
+            </if>
+            <if test="tpFullScore != null">
+                tp_full_score ,
+            </if>
+            <if test="tpMin != null">
+                tp_min ,
+            </if>
+            <if test="tpMax != null">
+                tp_max ,
+            </if>
+            <if test="tpDeduction != null">
+                tp_deduction ,
+            </if>
+            <if test="tpCreateTime != null">
+                tp_create_time ,
+            </if>
+            <if test="tpCreateOper != null">
+                tp_create_oper ,
+            </if>
+            <if test="tpState != null">
+                tp_state
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tpId != null">
+                #{tpId} ,
+            </if>
+            <if test="tpName != null">
+                #{tpName} ,
+            </if>
+            <if test="tpComb != null">
+                #{tpComb} ,
+            </if>
+            <if test="tpFullScore != null">
+                #{tpFullScore} ,
+            </if>
+            <if test="tpMin != null">
+                #{tpMin} ,
+            </if>
+            <if test="tpMax != null">
+                #{tpMax} ,
+            </if>
+            <if test="tpDeduction != null">
+                #{tpDeduction} ,
+            </if>
+            <if test="tpCreateTime != null">
+                #{tpCreateTime} ,
+            </if>
+            <if test="tpCreateOper != null">
+                #{tpCreateOper} ,
+            </if>
+            <if test="tpState != null">
+                #{tpState}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_evaluate_param
+        (tp_name ,tp_comb ,tp_full_score ,tp_min ,tp_max ,tp_deduction ,tp_create_time ,tp_create_oper ,tp_state
+        )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.tpName,jdbcType=VARCHAR},#{item.tpComb,jdbcType=VARCHAR},#{item.tpFullScore,jdbcType=VARCHAR},#{item.tpMin,jdbcType=VARCHAR},#{item.tpMax,jdbcType=VARCHAR},#{item.tpDeduction,jdbcType=VARCHAR},#{item.tpCreateTime,jdbcType=VARCHAR},#{item.tpCreateOper,jdbcType=VARCHAR},#{item.tpState,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_evaluate_param
+        <where>
+            tp_id = #{tpId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_evaluate_param
+        <where>
+            tp_id = #{tpId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_evaluate_param
+        WHERE tp_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_evaluate_param
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbEvaluateParam">
+        UPDATE tb_evaluate_param
+        <set>
+            <if test="tpName != null">
+                tp_name = #{tpName},
+            </if>
+            <if test="tpComb != null">
+                tp_comb = #{tpComb},
+            </if>
+            <if test="tpFullScore != null">
+                tp_full_score = #{tpFullScore},
+            </if>
+            <if test="tpMin != null">
+                tp_min = #{tpMin},
+            </if>
+            <if test="tpMax != null">
+                tp_max = #{tpMax},
+            </if>
+            <if test="tpDeduction != null">
+                tp_deduction = #{tpDeduction},
+            </if>
+            <if test="tpCreateTime != null">
+                tp_create_time = #{tpCreateTime},
+            </if>
+            <if test="tpCreateOper != null">
+                tp_create_oper = #{tpCreateOper},
+            </if>
+            <if test="tpState != null">
+                tp_state = #{tpState},
+            </if>
+        </set>
+        <where>
+            tp_id = #{tpId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_evaluate_param
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_evaluate_param
+        <set>
+            <if test="tpId != null">
+                tp_id = #{tpId},
+            </if>
+            <if test="tpName != null">
+                tp_name = #{tpName},
+            </if>
+            <if test="tpComb != null">
+                tp_comb = #{tpComb},
+            </if>
+            <if test="tpFullScore != null">
+                tp_full_score = #{tpFullScore},
+            </if>
+            <if test="tpMin != null">
+                tp_min = #{tpMin},
+            </if>
+            <if test="tpMax != null">
+                tp_max = #{tpMax},
+            </if>
+            <if test="tpDeduction != null">
+                tp_deduction = #{tpDeduction},
+            </if>
+            <if test="tpCreateTime != null">
+                tp_create_time = #{tpCreateTime},
+            </if>
+            <if test="tpCreateOper != null">
+                tp_create_oper = #{tpCreateOper},
+            </if>
+            <if test="tpState != null">
+                tp_state = #{tpState},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="tpId != null and tpId != ''">
+            and tp_id = #{tpId}
+        </if>
+        <if test="tpName != null and tpName != ''">
+            and tp_name = #{tpName}
+        </if>
+        <if test="tpComb != null and tpComb != ''">
+            and tp_comb = #{tpComb}
+        </if>
+        <if test="tpFullScore != null and tpFullScore != ''">
+            and tp_full_score = #{tpFullScore}
+        </if>
+        <if test="tpMin != null and tpMin != ''">
+            and tp_min = #{tpMin}
+        </if>
+        <if test="tpMax != null and tpMax != ''">
+            and tp_max = #{tpMax}
+        </if>
+        <if test="tpDeduction != null and tpDeduction != ''">
+            and tp_deduction = #{tpDeduction}
+        </if>
+        <if test="tpCreateTime != null and tpCreateTime != ''">
+            and tp_create_time = #{tpCreateTime}
+        </if>
+        <if test="tpCreateOper != null and tpCreateOper != ''">
+            and tp_create_oper = #{tpCreateOper}
+        </if>
+        <if test="tpState != null and tpState != ''">
+            and tp_state = #{tpState}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="tpId != null and tpId != ''">
+            and tp_id like '%' || #{tpId} || '%'
+        </if>
+        <if test="tpName != null and tpName != ''">
+            and tp_name like '%' || #{tpName} || '%'
+        </if>
+        <if test="tpComb != null and tpComb != ''">
+            and tp_comb like '%' || #{tpComb} || '%'
+        </if>
+        <if test="tpFullScore != null and tpFullScore != ''">
+            and tp_full_score like '%' || #{tpFullScore} || '%'
+        </if>
+        <if test="tpMin != null and tpMin != ''">
+            and tp_min like '%' || #{tpMin} || '%'
+        </if>
+        <if test="tpMax != null and tpMax != ''">
+            and tp_max like '%' || #{tpMax} || '%'
+        </if>
+        <if test="tpDeduction != null and tpDeduction != ''">
+            and tp_deduction like '%' || #{tpDeduction} || '%'
+        </if>
+        <if test="tpCreateTime != null and tpCreateTime != ''">
+            and tp_create_time like '%' || #{tpCreateTime} || '%'
+        </if>
+        <if test="tpCreateOper != null and tpCreateOper != ''">
+            and tp_create_oper like '%' || #{tpCreateOper} || '%'
+        </if>
+        <if test="tpState != null and tpState != ''">
+            and tp_state like '%' || #{tpState} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_evaluate_param
+        <where>
+            tp_id = #{tpId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_evaluate_param
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_evaluate_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_evaluate_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_evaluate_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_evaluate_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_evaluate_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_evaluate_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入参数代码 -->
+    <select id="selectTpId" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT tp_id FROM tb_evaluate_param
+	   WHERE cast (tp_idas char) LIKE '%${tpId}%'
+    </select>
+    <!-- 联想输入贷种组合id -->
+    <select id="selectTpComb" parameterType="com.boco.SYS.entity.TbEvaluateParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT tp_comb FROM tb_evaluate_param
+	   WHERE tp_comb LIKE '%${tpComb}%'
+    </select>
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

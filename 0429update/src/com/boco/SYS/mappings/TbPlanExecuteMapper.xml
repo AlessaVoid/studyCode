@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 计划执行情况表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPlanExecuteMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPlanExecute">
+       	<id column="pe_month" property="peMonth"/>
+		<id column="pe_organ" property="peOrgan"/>
+		<id column="pe_prod_code" property="peProdCode"/>
+		<result column="pe_id" property="peId"/>
+		<result column="pe_last_balance" property="peLastBalance"/>
+     	<result column="pe_quota" property="peQuota"/>
+     	<result column="pe_expire" property="peExpire"/>
+     	<result column="pe_occurrence" property="peOccurrence"/>
+     	<result column="pe_quota_avail" property="peQuotaAvail"/>
+     	<result column="pe_inprogress" property="peInprogress"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        pe_id ,pe_month ,pe_organ ,pe_prod_code ,pe_last_balance ,pe_quota ,pe_expire ,pe_occurrence ,pe_quota_avail ,pe_inprogress 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPlanExecute">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_plan_execute 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="peId != null">
+	        	pe_id ,
+	       	</if>
+	       	<if test="peMonth != null">
+	        	pe_month ,
+	       	</if>
+	       	<if test="peOrgan != null">
+	        	pe_organ ,
+	       	</if>
+	       	<if test="peProdCode != null">
+	        	pe_prod_code ,
+	       	</if>
+	       	<if test="peLastBalance != null">
+	        	pe_last_balance ,
+	       	</if>
+	       	<if test="peQuota != null">
+	        	pe_quota ,
+	       	</if>
+	       	<if test="peExpire != null">
+	        	pe_expire ,
+	       	</if>
+	       	<if test="peOccurrence != null">
+	        	pe_occurrence ,
+	       	</if>
+	       	<if test="peQuotaAvail != null">
+	        	pe_quota_avail ,
+	       	</if>
+	       	<if test="peInprogress != null">
+	        	pe_inprogress 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="peId != null">
+	        	#{peId} ,
+	       	</if>
+	       	<if test="peMonth != null">
+	        	#{peMonth} ,
+	       	</if>
+	       	<if test="peOrgan != null">
+	        	#{peOrgan} ,
+	       	</if>
+	       	<if test="peProdCode != null">
+	        	#{peProdCode} ,
+	       	</if>
+	       	<if test="peLastBalance != null">
+	        	#{peLastBalance} ,
+	       	</if>
+	       	<if test="peQuota != null">
+	        	#{peQuota} ,
+	       	</if>
+	       	<if test="peExpire != null">
+	        	#{peExpire} ,
+	       	</if>
+	       	<if test="peOccurrence != null">
+	        	#{peOccurrence} ,
+	       	</if>
+	       	<if test="peQuotaAvail != null">
+	        	#{peQuotaAvail} ,
+	       	</if>
+	       	<if test="peInprogress != null">
+	        	#{peInprogress} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_plan_execute 
+        (pe_id ,pe_month ,pe_organ ,pe_prod_code ,pe_last_balance ,pe_quota ,pe_expire ,pe_occurrence ,pe_quota_avail ,pe_inprogress )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.peId,jdbcType=VARCHAR},#{item.peMonth,jdbcType=VARCHAR},#{item.peOrgan,jdbcType=VARCHAR},#{item.peProdCode,jdbcType=VARCHAR},#{item.peLastBalance,jdbcType=VARCHAR},#{item.peQuota,jdbcType=VARCHAR},#{item.peExpire,jdbcType=VARCHAR},#{item.peOccurrence,jdbcType=VARCHAR},#{item.peQuotaAvail,jdbcType=VARCHAR},#{item.peInprogress,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_plan_execute 
+        <where>
+        	pe_month = #{peMonth} and
+        	pe_organ = #{peOrgan} and
+        	pe_prod_code = #{peProdCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM tb_plan_execute 
+        <where>
+        	pe_month = #{peMonth} and
+        	pe_organ = #{peOrgan} and
+        	pe_prod_code = #{peProdCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_plan_execute 
+        WHERE pe_monthpe_organpe_prod_code IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_plan_execute
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPlanExecute">
+        UPDATE tb_plan_execute 
+        <set>
+       	<if test="peId != null">
+       		pe_id = #{peId},
+       	</if>
+       	<if test="peLastBalance != null">
+       		pe_last_balance = #{peLastBalance},
+       	</if>
+       	<if test="peQuota != null">
+       		pe_quota = #{peQuota},
+       	</if>
+       	<if test="peExpire != null">
+       		pe_expire = #{peExpire},
+       	</if>
+       	<if test="peOccurrence != null">
+       		pe_occurrence = #{peOccurrence},
+       	</if>
+       	<if test="peQuotaAvail != null">
+       		pe_quota_avail = #{peQuotaAvail},
+       	</if>
+       	<if test="peInprogress != null">
+       		pe_inprogress = #{peInprogress},
+       	</if>
+        </set>
+        <where>
+        	pe_month = #{peMonth} and
+        	pe_organ = #{peOrgan} and
+        	pe_prod_code = #{peProdCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_plan_execute 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_plan_execute 
+        <set>
+       	<if test="peId != null">
+       		pe_id = #{peId},
+       	</if>
+       	<if test="peMonth != null">
+       		pe_month = #{peMonth},
+       	</if>
+       	<if test="peOrgan != null">
+       		pe_organ = #{peOrgan},
+       	</if>
+       	<if test="peProdCode != null">
+       		pe_prod_code = #{peProdCode},
+       	</if>
+       	<if test="peLastBalance != null">
+       		pe_last_balance = #{peLastBalance},
+       	</if>
+       	<if test="peQuota != null">
+       		pe_quota = #{peQuota},
+       	</if>
+       	<if test="peExpire != null">
+       		pe_expire = #{peExpire},
+       	</if>
+       	<if test="peOccurrence != null">
+       		pe_occurrence = #{peOccurrence},
+       	</if>
+       	<if test="peQuotaAvail != null">
+       		pe_quota_avail = #{peQuotaAvail},
+       	</if>
+       	<if test="peInprogress != null">
+       		pe_inprogress = #{peInprogress},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="peId != null and peId != ''">
+	 		and pe_id = #{peId}
+	 	</if>
+	 	<if test="peMonth != null and peMonth != ''">
+	 		and pe_month = #{peMonth}
+	 	</if>
+	 	<if test="peOrgan != null and peOrgan != ''">
+	 		and pe_organ = #{peOrgan}
+	 	</if>
+	 	<if test="peProdCode != null and peProdCode != ''">
+	 		and pe_prod_code = #{peProdCode}
+	 	</if>
+	 	<if test="peLastBalance != null and peLastBalance != ''">
+	 		and pe_last_balance = #{peLastBalance}
+	 	</if>
+	 	<if test="peQuota != null and peQuota != ''">
+	 		and pe_quota = #{peQuota}
+	 	</if>
+	 	<if test="peExpire != null and peExpire != ''">
+	 		and pe_expire = #{peExpire}
+	 	</if>
+	 	<if test="peOccurrence != null and peOccurrence != ''">
+	 		and pe_occurrence = #{peOccurrence}
+	 	</if>
+	 	<if test="peQuotaAvail != null and peQuotaAvail != ''">
+	 		and pe_quota_avail = #{peQuotaAvail}
+	 	</if>
+	 	<if test="peInprogress != null and peInprogress != ''">
+	 		and pe_inprogress = #{peInprogress}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="peId != null and peId != ''">
+ 			and pe_id like '%' || #{peId} || '%'
+ 		</if>
+ 		<if test="peMonth != null and peMonth != ''">
+ 			and pe_month like '%' || #{peMonth} || '%'
+ 		</if>
+ 		<if test="peOrgan != null and peOrgan != ''">
+ 			and pe_organ like '%' || #{peOrgan} || '%'
+ 		</if>
+ 		<if test="peProdCode != null and peProdCode != ''">
+ 			and pe_prod_code like '%' || #{peProdCode} || '%'
+ 		</if>
+ 		<if test="peLastBalance != null and peLastBalance != ''">
+ 			and pe_last_balance like '%' || #{peLastBalance} || '%'
+ 		</if>
+ 		<if test="peQuota != null and peQuota != ''">
+ 			and pe_quota like '%' || #{peQuota} || '%'
+ 		</if>
+ 		<if test="peExpire != null and peExpire != ''">
+ 			and pe_expire like '%' || #{peExpire} || '%'
+ 		</if>
+ 		<if test="peOccurrence != null and peOccurrence != ''">
+ 			and pe_occurrence like '%' || #{peOccurrence} || '%'
+ 		</if>
+ 		<if test="peQuotaAvail != null and peQuotaAvail != ''">
+ 			and pe_quota_avail like '%' || #{peQuotaAvail} || '%'
+ 		</if>
+ 		<if test="peInprogress != null and peInprogress != ''">
+ 			and pe_inprogress like '%' || #{peInprogress} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_plan_execute 
+        <where> 
+        	pe_month = #{peMonth} and
+        	pe_organ = #{peOrgan} and
+        	pe_prod_code = #{peProdCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPlanExecute" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_plan_execute
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPlanExecute" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_plan_execute 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanExecute" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_plan_execute 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_plan_execute 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPlanExecute" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_execute 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanExecute" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_execute 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_execute 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

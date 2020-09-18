@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 超限额申请信息表 -->
+<mapper namespace="com.boco.SYS.mapper.TbQuotaApplyMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbQuotaApply">
+        <id column="qa_id" property="qaId"/>
+        <result column="qa_month" property="qaMonth"/>
+        <result column="qa_organ" property="qaOrgan"/>
+        <result column="qa_comb" property="qaComb"/>
+        <result column="qa_amt" property="qaAmt"/>
+        <result column="qa_type" property="qaType"/>
+        <result column="qa_exp_date" property="qaExpDate"/>
+        <result column="qa_reason" property="qaReason"/>
+        <result column="qa_file_id" property="qaFileId"/>
+        <result column="qa_plan_amt" property="qaPlanAmt"/>
+        <result column="qa_over_amt" property="qaOverAmt"/>
+        <result column="qa_three_info" property="qaThreeInfo"/>
+        <result column="qa_two_info" property="qaTwoInfo"/>
+        <result column="qa_one_info" property="qaOneInfo"/>
+        <result column="qa_year_rate" property="qaYearRate"/>
+        <result column="qa_state" property="qaState"/>
+        <result column="qa_create_oper" property="qaCreateOper"/>
+        <result column="qa_create_time" property="qaCreateTime"/>
+        <result column="qa_start_date" property="qaStartDate"/>
+        <result column="unit" property="unit"/>
+        <result column="organ_code" property="organCode"/>
+        <result column="organ_name" property="organName"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        qa_id ,qa_month ,qa_organ ,qa_comb ,qa_amt ,qa_type ,qa_exp_date ,qa_reason ,qa_file_id ,qa_plan_amt ,qa_over_amt ,qa_three_info ,qa_two_info ,qa_one_info ,qa_year_rate ,qa_state ,qa_create_oper ,qa_create_time ,qa_start_date ,unit ,organ_code ,organ_name
+	    ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbQuotaApply">
+        <!--
+                -->
+        INSERT INTO tb_quota_apply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="qaId != null">
+                qa_id ,
+            </if>
+            <if test="qaMonth != null">
+                qa_month ,
+            </if>
+            <if test="qaOrgan != null">
+                qa_organ ,
+            </if>
+            <if test="qaComb != null">
+                qa_comb ,
+            </if>
+            <if test="qaAmt != null">
+                qa_amt ,
+            </if>
+            <if test="qaType != null">
+                qa_type ,
+            </if>
+            <if test="qaExpDate != null">
+                qa_exp_date ,
+            </if>
+            <if test="qaReason != null">
+                qa_reason ,
+            </if>
+            <if test="qaFileId != null">
+                qa_file_id ,
+            </if>
+            <if test="qaPlanAmt != null">
+                qa_plan_amt ,
+            </if>
+            <if test="qaOverAmt != null">
+                qa_over_amt ,
+            </if>
+            <if test="qaThreeInfo != null">
+                qa_three_info ,
+            </if>
+            <if test="qaTwoInfo != null">
+                qa_two_info ,
+            </if>
+            <if test="qaOneInfo != null">
+                qa_one_info ,
+            </if>
+            <if test="qaYearRate != null">
+                qa_year_rate ,
+            </if>
+            <if test="qaState != null">
+                qa_state ,
+            </if>
+            <if test="qaCreateOper != null">
+                qa_create_oper ,
+            </if>
+            <if test="qaCreateTime != null">
+                qa_create_time ,
+            </if>
+            <if test="qaStartDate != null">
+                qa_start_date ,
+            </if>
+            <if test="unit != null">
+                unit ,
+            </if>
+            <if test="organCode != null">
+                organ_code ,
+            </if>
+            <if test="organName != null">
+                organ_name
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="qaId != null">
+                #{qaId} ,
+            </if>
+            <if test="qaMonth != null">
+                #{qaMonth} ,
+            </if>
+            <if test="qaOrgan != null">
+                #{qaOrgan} ,
+            </if>
+            <if test="qaComb != null">
+                #{qaComb} ,
+            </if>
+            <if test="qaAmt != null">
+                #{qaAmt} ,
+            </if>
+            <if test="qaType != null">
+                #{qaType} ,
+            </if>
+            <if test="qaExpDate != null">
+                #{qaExpDate} ,
+            </if>
+            <if test="qaReason != null">
+                #{qaReason} ,
+            </if>
+            <if test="qaFileId != null">
+                #{qaFileId} ,
+            </if>
+            <if test="qaPlanAmt != null">
+                #{qaPlanAmt} ,
+            </if>
+            <if test="qaOverAmt != null">
+                #{qaOverAmt} ,
+            </if>
+            <if test="qaThreeInfo != null">
+                #{qaThreeInfo} ,
+            </if>
+            <if test="qaTwoInfo != null">
+                #{qaTwoInfo} ,
+            </if>
+            <if test="qaOneInfo != null">
+                #{qaOneInfo} ,
+            </if>
+            <if test="qaYearRate != null">
+                #{qaYearRate} ,
+            </if>
+            <if test="qaState != null">
+                #{qaState} ,
+            </if>
+            <if test="qaCreateOper != null">
+                #{qaCreateOper} ,
+            </if>
+            <if test="qaCreateTime != null">
+                #{qaCreateTime} ,
+            </if>
+            <if test="qaStartDate != null">
+                #{qaStartDate} ,
+            </if>
+            <if test="unit != null">
+                #{unit} ,
+            </if>
+            <if test="organCode != null">
+                #{organCode} ,
+            </if>
+            <if test="organName != null">
+                #{organName}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_quota_apply
+        (qa_id ,qa_month ,qa_organ ,qa_comb ,qa_amt ,qa_type ,qa_exp_date ,qa_reason ,qa_file_id ,qa_plan_amt ,qa_over_amt ,qa_three_info ,qa_two_info ,qa_one_info ,qa_year_rate ,qa_state ,qa_create_oper ,qa_create_time ,qa_start_date ,unit ,organ_code ,organ_name )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.qaId,jdbcType=VARCHAR},#{item.qaMonth,jdbcType=VARCHAR},#{item.qaOrgan,jdbcType=VARCHAR},#{item.qaComb,jdbcType=VARCHAR},#{item.qaAmt,jdbcType=VARCHAR},#{item.qaType,jdbcType=VARCHAR},#{item.qaExpDate,jdbcType=VARCHAR},#{item.qaReason,jdbcType=VARCHAR},#{item.qaFileId,jdbcType=VARCHAR},#{item.qaPlanAmt,jdbcType=VARCHAR},#{item.qaOverAmt,jdbcType=VARCHAR},#{item.qaThreeInfo,jdbcType=VARCHAR},#{item.qaTwoInfo,jdbcType=VARCHAR},#{item.qaOneInfo,jdbcType=VARCHAR},#{item.qaYearRate,jdbcType=VARCHAR},#{item.qaState,jdbcType=VARCHAR},#{item.qaCreateOper,jdbcType=VARCHAR},#{item.qaCreateTime,jdbcType=VARCHAR},#{item.qaStartDate,jdbcType=VARCHAR},#{item.unit,jdbcType=VARCHAR},#{item.organCode,jdbcType=VARCHAR},#{item.organName,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_quota_apply
+        <where>
+            qa_id = #{qaId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_quota_apply
+        <where>
+            qa_id = #{qaId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_quota_apply
+        WHERE qa_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_quota_apply
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbQuotaApply">
+        UPDATE tb_quota_apply
+        <set>
+            <if test="qaMonth != null">
+                qa_month = #{qaMonth},
+            </if>
+            <if test="qaOrgan != null">
+                qa_organ = #{qaOrgan},
+            </if>
+            <if test="qaComb != null">
+                qa_comb = #{qaComb},
+            </if>
+            <if test="qaAmt != null">
+                qa_amt = #{qaAmt},
+            </if>
+            <if test="qaType != null">
+                qa_type = #{qaType},
+            </if>
+            <if test="qaExpDate != null">
+                qa_exp_date = #{qaExpDate},
+            </if>
+            <if test="qaReason != null">
+                qa_reason = #{qaReason},
+            </if>
+            <if test="qaFileId != null">
+                qa_file_id = #{qaFileId},
+            </if>
+            <if test="qaPlanAmt != null">
+                qa_plan_amt = #{qaPlanAmt},
+            </if>
+            <if test="qaOverAmt != null">
+                qa_over_amt = #{qaOverAmt},
+            </if>
+            <if test="qaThreeInfo != null">
+                qa_three_info = #{qaThreeInfo},
+            </if>
+            <if test="qaTwoInfo != null">
+                qa_two_info = #{qaTwoInfo},
+            </if>
+            <if test="qaOneInfo != null">
+                qa_one_info = #{qaOneInfo},
+            </if>
+            <if test="qaYearRate != null">
+                qa_year_rate = #{qaYearRate},
+            </if>
+            <if test="qaState != null">
+                qa_state = #{qaState},
+            </if>
+            <if test="qaCreateOper != null">
+                qa_create_oper = #{qaCreateOper},
+            </if>
+            <if test="qaCreateTime != null">
+                qa_create_time = #{qaCreateTime},
+            </if>
+            <if test="qaStartDate != null">
+                qa_start_date = #{qaStartDate},
+            </if>
+            <if test="unit != null">
+                unit = #{unit},
+            </if>
+            <if test="organCode != null">
+                organ_code = #{organCode},
+            </if>
+            <if test="organName != null">
+                organ_name = #{organName},
+            </if>
+        </set>
+        <where>
+            qa_id = #{qaId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_quota_apply
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_quota_apply
+        <set>
+            <if test="qaId != null">
+                qa_id = #{qaId},
+            </if>
+            <if test="qaMonth != null">
+                qa_month = #{qaMonth},
+            </if>
+            <if test="qaOrgan != null">
+                qa_organ = #{qaOrgan},
+            </if>
+            <if test="qaComb != null">
+                qa_comb = #{qaComb},
+            </if>
+            <if test="qaAmt != null">
+                qa_amt = #{qaAmt},
+            </if>
+            <if test="qaType != null">
+                qa_type = #{qaType},
+            </if>
+            <if test="qaExpDate != null">
+                qa_exp_date = #{qaExpDate},
+            </if>
+            <if test="qaReason != null">
+                qa_reason = #{qaReason},
+            </if>
+            <if test="qaFileId != null">
+                qa_file_id = #{qaFileId},
+            </if>
+            <if test="qaPlanAmt != null">
+                qa_plan_amt = #{qaPlanAmt},
+            </if>
+            <if test="qaOverAmt != null">
+                qa_over_amt = #{qaOverAmt},
+            </if>
+            <if test="qaThreeInfo != null">
+                qa_three_info = #{qaThreeInfo},
+            </if>
+            <if test="qaTwoInfo != null">
+                qa_two_info = #{qaTwoInfo},
+            </if>
+            <if test="qaOneInfo != null">
+                qa_one_info = #{qaOneInfo},
+            </if>
+            <if test="qaYearRate != null">
+                qa_year_rate = #{qaYearRate},
+            </if>
+            <if test="qaState != null">
+                qa_state = #{qaState},
+            </if>
+            <if test="qaCreateOper != null">
+                qa_create_oper = #{qaCreateOper},
+            </if>
+            <if test="qaCreateTime != null">
+                qa_create_time = #{qaCreateTime},
+            </if>
+            <if test="qaStartDate != null">
+                qa_start_date = #{qaStartDate},
+            </if>
+            <if test="unit != null">
+                unit = #{unit},
+            </if>
+            <if test="organCode != null">
+                organ_code = #{organCode},
+            </if>
+            <if test="organName != null">
+                organ_name = #{organName},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="qaId != null and qaId != ''">
+            and qa_id = #{qaId}
+        </if>
+        <if test="qaMonth != null and qaMonth != ''">
+            and qa_month = #{qaMonth}
+        </if>
+        <if test="qaOrgan != null and qaOrgan != ''">
+            and qa_organ = #{qaOrgan}
+        </if>
+        <if test="qaComb != null and qaComb != ''">
+            and qa_comb = #{qaComb}
+        </if>
+        <if test="qaAmt != null and qaAmt != ''">
+            and qa_amt = #{qaAmt}
+        </if>
+        <if test="qaType != null and qaType != ''">
+            and qa_type = #{qaType}
+        </if>
+        <if test="qaExpDate != null and qaExpDate != ''">
+            and qa_exp_date = #{qaExpDate}
+        </if>
+        <if test="qaReason != null and qaReason != ''">
+            and qa_reason = #{qaReason}
+        </if>
+        <if test="qaFileId != null and qaFileId != ''">
+            and qa_file_id = #{qaFileId}
+        </if>
+        <if test="qaPlanAmt != null and qaPlanAmt != ''">
+            and qa_plan_amt = #{qaPlanAmt}
+        </if>
+        <if test="qaOverAmt != null and qaOverAmt != ''">
+            and qa_over_amt = #{qaOverAmt}
+        </if>
+        <if test="qaThreeInfo != null and qaThreeInfo != ''">
+            and qa_three_info = #{qaThreeInfo}
+        </if>
+        <if test="qaTwoInfo != null and qaTwoInfo != ''">
+            and qa_two_info = #{qaTwoInfo}
+        </if>
+        <if test="qaOneInfo != null and qaOneInfo != ''">
+            and qa_one_info = #{qaOneInfo}
+        </if>
+        <if test="qaYearRate != null and qaYearRate != ''">
+            and qa_year_rate = #{qaYearRate}
+        </if>
+        <if test="qaState != null and qaState != ''">
+            and qa_state = #{qaState}
+        </if>
+        <if test="qaCreateOper != null and qaCreateOper != ''">
+            and qa_create_oper = #{qaCreateOper}
+        </if>
+        <if test="qaCreateTime != null and qaCreateTime != ''">
+            and qa_create_time = #{qaCreateTime}
+        </if>
+        <if test="qaStartDate != null and qaStartDate != ''">
+            and qa_start_date = #{qaStartDate}
+        </if>
+        <if test="unit != null and unit != ''">
+            and unit = #{unit}
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and organ_code = #{organCode}
+        </if>
+        <if test="organName != null and organName != ''">
+            and organ_name = #{organName}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="qaId != null and qaId != ''">
+            and qa_id like '%' || #{qaId} || '%'
+        </if>
+        <if test="qaMonth != null and qaMonth != ''">
+            and qa_month like '%' || #{qaMonth} || '%'
+        </if>
+        <if test="qaOrgan != null and qaOrgan != ''">
+            and qa_organ like '%' || #{qaOrgan} || '%'
+        </if>
+        <if test="qaComb != null and qaComb != ''">
+            and qa_comb like '%' || #{qaComb} || '%'
+        </if>
+        <if test="qaAmt != null and qaAmt != ''">
+            and qa_amt like '%' || #{qaAmt} || '%'
+        </if>
+        <if test="qaType != null and qaType != ''">
+            and qa_type like '%' || #{qaType} || '%'
+        </if>
+        <if test="qaExpDate != null and qaExpDate != ''">
+            and qa_exp_date like '%' || #{qaExpDate} || '%'
+        </if>
+        <if test="qaReason != null and qaReason != ''">
+            and qa_reason like '%' || #{qaReason} || '%'
+        </if>
+        <if test="qaFileId != null and qaFileId != ''">
+            and qa_file_id like '%' || #{qaFileId} || '%'
+        </if>
+        <if test="qaPlanAmt != null and qaPlanAmt != ''">
+            and qa_plan_amt like '%' || #{qaPlanAmt} || '%'
+        </if>
+        <if test="qaOverAmt != null and qaOverAmt != ''">
+            and qa_over_amt like '%' || #{qaOverAmt} || '%'
+        </if>
+        <if test="qaThreeInfo != null and qaThreeInfo != ''">
+            and qa_three_info like '%' || #{qaThreeInfo} || '%'
+        </if>
+        <if test="qaTwoInfo != null and qaTwoInfo != ''">
+            and qa_two_info like '%' || #{qaTwoInfo} || '%'
+        </if>
+        <if test="qaOneInfo != null and qaOneInfo != ''">
+            and qa_one_info like '%' || #{qaOneInfo} || '%'
+        </if>
+        <if test="qaYearRate != null and qaYearRate != ''">
+            and qa_year_rate like '%' || #{qaYearRate} || '%'
+        </if>
+        <if test="qaState != null and qaState != ''">
+            and qa_state like '%' || #{qaState} || '%'
+        </if>
+        <if test="qaCreateOper != null and qaCreateOper != ''">
+            and qa_create_oper like '%' || #{qaCreateOper} || '%'
+        </if>
+        <if test="qaCreateTime != null and qaCreateTime != ''">
+            and qa_create_time like '%' || #{qaCreateTime} || '%'
+        </if>
+        <if test="qaStartDate != null and qaStartDate != ''">
+            and qa_start_date like '%' || #{qaStartDate} || '%'
+        </if>
+        <if test="unit != null and unit != ''">
+            and unit like '%' || #{unit} || '%'
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and organ_code like '%' || #{organCode} || '%'
+        </if>
+        <if test="organName != null and organName != ''">
+            and organ_name like '%' || #{organName} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/>
+        FROM tb_quota_apply
+        <where>
+            qa_id = #{qaId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbQuotaApply" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_quota_apply
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbQuotaApply" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_quota_apply
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbQuotaApply" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_quota_apply
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_quota_apply
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbQuotaApply" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_quota_apply
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbQuotaApply" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_quota_apply
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_quota_apply
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+    <!-- 联想输入申请id -->
+    <select id="selectQaId" parameterType="com.boco.SYS.entity.TbQuotaApply" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT qa_id FROM tb_quota_apply
+	   WHERE  cast(qa_id as char) LIKE '%${qaId}%'
+    </select>
+    <!-- 联想输入所属月份 -->
+    <select id="selectQaMonth" parameterType="com.boco.SYS.entity.TbQuotaApply" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT qa_month FROM tb_quota_apply
+	   WHERE qa_month LIKE '%${qaMonth}%'
+    </select>
+
+
+    <!--查询已提交的信贷需求 -->
+    <select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct tqa.qa_id as qaId,
+        tqa.qa_month as qaMonth,
+        tqa.qa_organ as qaOrgan,
+        tqa.qa_comb as qaComb,
+        tqa.qa_amt as qaAmt,
+        tqa.qa_exp_date as qaExpDate,
+        tqa.qa_start_date as qaStartDate,
+        tqa.qa_type as qaType,
+        tqa.qa_reason as qaReason,
+        tqa.qa_file_id qaFileId,
+        tqa.qa_plan_amt as qaPlanAmt,
+        tqa.qa_over_amt as qaOverAmt,
+        tqa.qa_three_info as qaThreeInfo,
+        tqa.qa_two_info as qaTwoInfo,
+        tqa.qa_one_info as qaOneInfo,
+        tqa.qa_year_rate as qaYearRate,
+        tqa.qa_state as qaState,
+        tqa.unit as unit,
+        tqa.organ_code as organcode,
+        tqa.organ_name as organname,
+        tqa.qa_create_oper as qaCreateOper,
+        tqa.qa_create_time as qaCreateTime,
+        hi_proc.proc_inst_id_ as procInstID
+
+        from tb_quota_apply tqa ,act_hi_procinst hi_proc
+        where
+        cast(tqa.qa_id as varchar)=hi_proc.business_key_
+        and hi_proc.start_user_id_ = #{opercode}
+        and hi_proc.proc_def_id_ like 'Temp_One%'
+        <if test="qaMonth != null and qaMonth != ''">
+            and tqa.qa_month= #{qaMonth}
+        </if>
+        and tqa.qa_state &gt; 4
+    </select>
+
+
+    <!--查询待审批的信贷需求 -->
+    <select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct tqa.qa_id as qaId,
+        tqa.qa_month as qaMonth,
+        tqa.qa_organ as qaOrgan,
+        tqa.qa_comb as qaComb,
+        tqa.qa_amt as qaAmt,
+        tqa.qa_exp_date as qaExpDate,
+        tqa.qa_start_date as qaStartDate,
+        tqa.qa_type as qaType,
+        tqa.qa_reason as qaReason,
+        tqa.qa_file_id qaFileId,
+        tqa.qa_plan_amt as qaPlanAmt,
+        tqa.qa_over_amt as qaOverAmt,
+        tqa.qa_three_info as qaThreeInfo,
+        tqa.qa_two_info as qaTwoInfo,
+        tqa.qa_one_info as qaOneInfo,
+        tqa.qa_year_rate as qaYearRate,
+        tqa.qa_state as qaState,
+        tqa.unit as unit,
+        tqa.organ_code as organcode,
+        tqa.organ_name as organname,
+        tqa.qa_create_oper as qaCreateOper,
+        tqa.qa_create_time as qaCreateTime,
+        hi_proc.proc_inst_id_ as procInstID,
+        task.id_ as taskid
+
+        from tb_quota_apply tqa,act_hi_procinst hi_proc ,act_ru_task task
+        where
+        cast(tqa.qa_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_def_id_ like 'Temp_One%'
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.assignee_=#{assignee}
+        <if test="proIds!=null and proIds.size() > 0">
+            and hi_proc.proc_inst_id_ in
+            <foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="qaMonth != null and qaMonth != ''">
+            and tqa.qa_month= #{qaMonth}
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and tqa.qa_state= #{auditStatus}
+        </if>
+        order by  tqa.qa_month DESC
+    </select>
+
+
+    <!-- 查询已审批信贷需求-->
+    <select id="getApprovedRecord" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct tqa.qa_id as qaId,
+        tqa.qa_month as qaMonth,
+        tqa.qa_organ as qaOrgan,
+        tqa.qa_comb as qaComb,
+        tqa.qa_amt as qaAmt,
+        tqa.qa_exp_date as qaExpDate,
+        tqa.qa_start_date as qaStartDate,
+        tqa.qa_type as qaType,
+        tqa.qa_reason as qaReason,
+        tqa.qa_file_id qaFileId,
+        tqa.qa_plan_amt as qaPlanAmt,
+        tqa.qa_over_amt as qaOverAmt,
+        tqa.qa_three_info as qaThreeInfo,
+        tqa.qa_two_info as qaTwoInfo,
+        tqa.qa_one_info as qaOneInfo,
+        tqa.qa_year_rate as qaYearRate,
+        tqa.qa_state as qaState,
+        tqa.unit as unit,
+        tqa.organ_code as organcode,
+        tqa.organ_name as organname,
+        tqa.qa_create_oper as qaCreateOper,
+        tqa.qa_create_time as qaCreateTime,
+        hi_proc.proc_inst_id_ as procInstID,
+        tqa.qa_state as state
+
+        from tb_quota_apply tqa,act_hi_procinst hi_proc , act_hi_taskinst task
+        where
+        cast(tqa.qa_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.delete_reason_='completed'
+        and task.assignee_=#{opercode}
+        and hi_proc.proc_def_id_ like 'Temp_One%'
+        <if test="qaMonth != null and qaMonth != ''">
+            and tqa.qa_month= #{qaMonth}
+        </if>
+        and tqa.qa_state &gt; 4
+    </select>
+
+    <select id="getStartWorkFlowPeople" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select start_user_id_ from act_hi_procinst where proc_inst_id_= #{processInstanceId}
+    </select>
+
+    <update id="updateQuotaApplyByQaIdAndOrganCode" parameterType="com.boco.SYS.entity.TbQuotaApply">
+        update tb_quota_apply
+        set qa_state=${qaState}
+        where qa_id = #{qaId}
+          and qa_organ = #{qaOrgan}
+    </update>
+
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

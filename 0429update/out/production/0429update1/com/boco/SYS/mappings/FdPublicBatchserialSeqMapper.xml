@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 菜单表 -->
+<mapper namespace="com.boco.SYS.mapper.FdPublicBatchserialSeqMapper">
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+   <!-- 查询下一个序列值-->
+    <select id="findNext" resultType="java.lang.Integer" flushCache="true">
+       select nextval('fd_publicbatchserial_seq')
+    </select>
+</mapper>

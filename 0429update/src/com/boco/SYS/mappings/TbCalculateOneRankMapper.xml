@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbCalculateOneRank -->
+<mapper namespace="com.boco.SYS.mapper.TbCalculateOneRankMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbCalculateOneRank">
+		<id column="id" property="id"/>
+		<result column="type" property="type"/>
+		<result column="rank1" property="rank1"/>
+		<result column="rank2" property="rank2"/>
+		<result column="rank3" property="rank3"/>
+		<result column="rank4" property="rank4"/>
+		<result column="rank5" property="rank5"/>
+		<result column="rank6" property="rank6"/>
+		<result column="rank7" property="rank7"/>
+		<result column="rank8" property="rank8"/>
+		<result column="rank9" property="rank9"/>
+		<result column="rank10" property="rank10"/>
+		<result column="rank11" property="rank11"/>
+		<result column="rank12" property="rank12"/>
+		<result column="rank13" property="rank13"/>
+		<result column="rank14" property="rank14"/>
+		<result column="rank15" property="rank15"/>
+		<result column="rank16" property="rank16"/>
+		<result column="rank17" property="rank17"/>
+		<result column="rank18" property="rank18"/>
+		<result column="rank19" property="rank19"/>
+		<result column="rank20" property="rank20"/>
+		<result column="rank21" property="rank21"/>
+		<result column="rank22" property="rank22"/>
+		<result column="rank23" property="rank23"/>
+		<result column="rank24" property="rank24"/>
+		<result column="rank25" property="rank25"/>
+		<result column="rank26" property="rank26"/>
+		<result column="rank27" property="rank27"/>
+		<result column="rank28" property="rank28"/>
+		<result column="rank29" property="rank29"/>
+		<result column="rank30" property="rank30"/>
+		<result column="rank31" property="rank31"/>
+		<result column="rank32" property="rank32"/>
+		<result column="rank33" property="rank33"/>
+		<result column="rank34" property="rank34"/>
+		<result column="rank35" property="rank35"/>
+		<result column="rank36" property="rank36"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="create_oper" property="createOper"/>
+		<result column="update_oper" property="updateOper"/>
+		<result column="name" property="name"/>
+		<result column="status" property="status"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,type ,rank1 ,rank2 ,rank3 ,rank4 ,rank5 ,rank6 ,rank7 ,rank8 ,rank9 ,rank10 ,rank11 ,rank12 ,rank13 ,rank14 ,rank15 ,rank16 ,rank17 ,rank18 ,rank19 ,rank20 ,rank21 ,rank22 ,rank23 ,rank24 ,rank25 ,rank26 ,rank27 ,rank28 ,rank29 ,rank30 ,rank31 ,rank32 ,rank33 ,rank34 ,rank35 ,rank36 ,create_time ,update_time ,create_oper ,update_oper ,name ,status
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCalculateOneRank">
+		<!--
+                -->
+		INSERT INTO tb_calculate_one_rank
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="type != null">
+				type ,
+			</if>
+			<if test="rank1 != null">
+				rank1 ,
+			</if>
+			<if test="rank2 != null">
+				rank2 ,
+			</if>
+			<if test="rank3 != null">
+				rank3 ,
+			</if>
+			<if test="rank4 != null">
+				rank4 ,
+			</if>
+			<if test="rank5 != null">
+				rank5 ,
+			</if>
+			<if test="rank6 != null">
+				rank6 ,
+			</if>
+			<if test="rank7 != null">
+				rank7 ,
+			</if>
+			<if test="rank8 != null">
+				rank8 ,
+			</if>
+			<if test="rank9 != null">
+				rank9 ,
+			</if>
+			<if test="rank10 != null">
+				rank10 ,
+			</if>
+			<if test="rank11 != null">
+				rank11 ,
+			</if>
+			<if test="rank12 != null">
+				rank12 ,
+			</if>
+			<if test="rank13 != null">
+				rank13 ,
+			</if>
+			<if test="rank14 != null">
+				rank14 ,
+			</if>
+			<if test="rank15 != null">
+				rank15 ,
+			</if>
+			<if test="rank16 != null">
+				rank16 ,
+			</if>
+			<if test="rank17 != null">
+				rank17 ,
+			</if>
+			<if test="rank18 != null">
+				rank18 ,
+			</if>
+			<if test="rank19 != null">
+				rank19 ,
+			</if>
+			<if test="rank20 != null">
+				rank20 ,
+			</if>
+			<if test="rank21 != null">
+				rank21 ,
+			</if>
+			<if test="rank22 != null">
+				rank22 ,
+			</if>
+			<if test="rank23 != null">
+				rank23 ,
+			</if>
+			<if test="rank24 != null">
+				rank24 ,
+			</if>
+			<if test="rank25 != null">
+				rank25 ,
+			</if>
+			<if test="rank26 != null">
+				rank26 ,
+			</if>
+			<if test="rank27 != null">
+				rank27 ,
+			</if>
+			<if test="rank28 != null">
+				rank28 ,
+			</if>
+			<if test="rank29 != null">
+				rank29 ,
+			</if>
+			<if test="rank30 != null">
+				rank30 ,
+			</if>
+			<if test="rank31 != null">
+				rank31 ,
+			</if>
+			<if test="rank32 != null">
+				rank32 ,
+			</if>
+			<if test="rank33 != null">
+				rank33 ,
+			</if>
+			<if test="rank34 != null">
+				rank34 ,
+			</if>
+			<if test="rank35 != null">
+				rank35 ,
+			</if>
+			<if test="rank36 != null">
+				rank36 ,
+			</if>
+			<if test="createTime != null">
+				create_time ,
+			</if>
+			<if test="updateTime != null">
+				update_time ,
+			</if>
+			<if test="createOper != null">
+				create_oper ,
+			</if>
+			<if test="updateOper != null">
+				update_oper ,
+			</if>
+			<if test="name != null">
+				name ,
+			</if>
+			<if test="status != null">
+				status
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="type != null">
+				#{type} ,
+			</if>
+			<if test="rank1 != null">
+				#{rank1} ,
+			</if>
+			<if test="rank2 != null">
+				#{rank2} ,
+			</if>
+			<if test="rank3 != null">
+				#{rank3} ,
+			</if>
+			<if test="rank4 != null">
+				#{rank4} ,
+			</if>
+			<if test="rank5 != null">
+				#{rank5} ,
+			</if>
+			<if test="rank6 != null">
+				#{rank6} ,
+			</if>
+			<if test="rank7 != null">
+				#{rank7} ,
+			</if>
+			<if test="rank8 != null">
+				#{rank8} ,
+			</if>
+			<if test="rank9 != null">
+				#{rank9} ,
+			</if>
+			<if test="rank10 != null">
+				#{rank10} ,
+			</if>
+			<if test="rank11 != null">
+				#{rank11} ,
+			</if>
+			<if test="rank12 != null">
+				#{rank12} ,
+			</if>
+			<if test="rank13 != null">
+				#{rank13} ,
+			</if>
+			<if test="rank14 != null">
+				#{rank14} ,
+			</if>
+			<if test="rank15 != null">
+				#{rank15} ,
+			</if>
+			<if test="rank16 != null">
+				#{rank16} ,
+			</if>
+			<if test="rank17 != null">
+				#{rank17} ,
+			</if>
+			<if test="rank18 != null">
+				#{rank18} ,
+			</if>
+			<if test="rank19 != null">
+				#{rank19} ,
+			</if>
+			<if test="rank20 != null">
+				#{rank20} ,
+			</if>
+			<if test="rank21 != null">
+				#{rank21} ,
+			</if>
+			<if test="rank22 != null">
+				#{rank22} ,
+			</if>
+			<if test="rank23 != null">
+				#{rank23} ,
+			</if>
+			<if test="rank24 != null">
+				#{rank24} ,
+			</if>
+			<if test="rank25 != null">
+				#{rank25} ,
+			</if>
+			<if test="rank26 != null">
+				#{rank26} ,
+			</if>
+			<if test="rank27 != null">
+				#{rank27} ,
+			</if>
+			<if test="rank28 != null">
+				#{rank28} ,
+			</if>
+			<if test="rank29 != null">
+				#{rank29} ,
+			</if>
+			<if test="rank30 != null">
+				#{rank30} ,
+			</if>
+			<if test="rank31 != null">
+				#{rank31} ,
+			</if>
+			<if test="rank32 != null">
+				#{rank32} ,
+			</if>
+			<if test="rank33 != null">
+				#{rank33} ,
+			</if>
+			<if test="rank34 != null">
+				#{rank34} ,
+			</if>
+			<if test="rank35 != null">
+				#{rank35} ,
+			</if>
+			<if test="rank36 != null">
+				#{rank36} ,
+			</if>
+			<if test="createTime != null">
+				#{createTime} ,
+			</if>
+			<if test="updateTime != null">
+				#{updateTime} ,
+			</if>
+			<if test="createOper != null">
+				#{createOper} ,
+			</if>
+			<if test="updateOper != null">
+				#{updateOper} ,
+			</if>
+			<if test="name != null">
+				#{name} ,
+			</if>
+			<if test="status != null">
+				#{status}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_calculate_one_rank
+		(id ,type ,rank1 ,rank2 ,rank3 ,rank4 ,rank5 ,rank6 ,rank7 ,rank8 ,rank9 ,rank10 ,rank11 ,rank12 ,rank13 ,rank14 ,rank15 ,rank16 ,rank17 ,rank18 ,rank19 ,rank20 ,rank21 ,rank22 ,rank23 ,rank24 ,rank25 ,rank26 ,rank27 ,rank28 ,rank29 ,rank30 ,rank31 ,rank32 ,rank33 ,rank34 ,rank35 ,rank36 ,create_time ,update_time ,create_oper ,update_oper ,name ,status )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.id,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR},#{item.rank1,jdbcType=VARCHAR},#{item.rank2,jdbcType=VARCHAR},#{item.rank3,jdbcType=VARCHAR},#{item.rank4,jdbcType=VARCHAR},#{item.rank5,jdbcType=VARCHAR},#{item.rank6,jdbcType=VARCHAR},#{item.rank7,jdbcType=VARCHAR},#{item.rank8,jdbcType=VARCHAR},#{item.rank9,jdbcType=VARCHAR},#{item.rank10,jdbcType=VARCHAR},#{item.rank11,jdbcType=VARCHAR},#{item.rank12,jdbcType=VARCHAR},#{item.rank13,jdbcType=VARCHAR},#{item.rank14,jdbcType=VARCHAR},#{item.rank15,jdbcType=VARCHAR},#{item.rank16,jdbcType=VARCHAR},#{item.rank17,jdbcType=VARCHAR},#{item.rank18,jdbcType=VARCHAR},#{item.rank19,jdbcType=VARCHAR},#{item.rank20,jdbcType=VARCHAR},#{item.rank21,jdbcType=VARCHAR},#{item.rank22,jdbcType=VARCHAR},#{item.rank23,jdbcType=VARCHAR},#{item.rank24,jdbcType=VARCHAR},#{item.rank25,jdbcType=VARCHAR},#{item.rank26,jdbcType=VARCHAR},#{item.rank27,jdbcType=VARCHAR},#{item.rank28,jdbcType=VARCHAR},#{item.rank29,jdbcType=VARCHAR},#{item.rank30,jdbcType=VARCHAR},#{item.rank31,jdbcType=VARCHAR},#{item.rank32,jdbcType=VARCHAR},#{item.rank33,jdbcType=VARCHAR},#{item.rank34,jdbcType=VARCHAR},#{item.rank35,jdbcType=VARCHAR},#{item.rank36,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.createOper,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.status,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_calculate_one_rank
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_calculate_one_rank
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_calculate_one_rank
+		WHERE id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_calculate_one_rank
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbCalculateOneRank">
+		UPDATE tb_calculate_one_rank
+		<set>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="rank1 != null">
+				rank1 = #{rank1},
+			</if>
+			<if test="rank2 != null">
+				rank2 = #{rank2},
+			</if>
+			<if test="rank3 != null">
+				rank3 = #{rank3},
+			</if>
+			<if test="rank4 != null">
+				rank4 = #{rank4},
+			</if>
+			<if test="rank5 != null">
+				rank5 = #{rank5},
+			</if>
+			<if test="rank6 != null">
+				rank6 = #{rank6},
+			</if>
+			<if test="rank7 != null">
+				rank7 = #{rank7},
+			</if>
+			<if test="rank8 != null">
+				rank8 = #{rank8},
+			</if>
+			<if test="rank9 != null">
+				rank9 = #{rank9},
+			</if>
+			<if test="rank10 != null">
+				rank10 = #{rank10},
+			</if>
+			<if test="rank11 != null">
+				rank11 = #{rank11},
+			</if>
+			<if test="rank12 != null">
+				rank12 = #{rank12},
+			</if>
+			<if test="rank13 != null">
+				rank13 = #{rank13},
+			</if>
+			<if test="rank14 != null">
+				rank14 = #{rank14},
+			</if>
+			<if test="rank15 != null">
+				rank15 = #{rank15},
+			</if>
+			<if test="rank16 != null">
+				rank16 = #{rank16},
+			</if>
+			<if test="rank17 != null">
+				rank17 = #{rank17},
+			</if>
+			<if test="rank18 != null">
+				rank18 = #{rank18},
+			</if>
+			<if test="rank19 != null">
+				rank19 = #{rank19},
+			</if>
+			<if test="rank20 != null">
+				rank20 = #{rank20},
+			</if>
+			<if test="rank21 != null">
+				rank21 = #{rank21},
+			</if>
+			<if test="rank22 != null">
+				rank22 = #{rank22},
+			</if>
+			<if test="rank23 != null">
+				rank23 = #{rank23},
+			</if>
+			<if test="rank24 != null">
+				rank24 = #{rank24},
+			</if>
+			<if test="rank25 != null">
+				rank25 = #{rank25},
+			</if>
+			<if test="rank26 != null">
+				rank26 = #{rank26},
+			</if>
+			<if test="rank27 != null">
+				rank27 = #{rank27},
+			</if>
+			<if test="rank28 != null">
+				rank28 = #{rank28},
+			</if>
+			<if test="rank29 != null">
+				rank29 = #{rank29},
+			</if>
+			<if test="rank30 != null">
+				rank30 = #{rank30},
+			</if>
+			<if test="rank31 != null">
+				rank31 = #{rank31},
+			</if>
+			<if test="rank32 != null">
+				rank32 = #{rank32},
+			</if>
+			<if test="rank33 != null">
+				rank33 = #{rank33},
+			</if>
+			<if test="rank34 != null">
+				rank34 = #{rank34},
+			</if>
+			<if test="rank35 != null">
+				rank35 = #{rank35},
+			</if>
+			<if test="rank36 != null">
+				rank36 = #{rank36},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="createOper != null">
+				create_oper = #{createOper},
+			</if>
+			<if test="updateOper != null">
+				update_oper = #{updateOper},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_calculate_one_rank
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_calculate_one_rank
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="rank1 != null">
+				rank1 = #{rank1},
+			</if>
+			<if test="rank2 != null">
+				rank2 = #{rank2},
+			</if>
+			<if test="rank3 != null">
+				rank3 = #{rank3},
+			</if>
+			<if test="rank4 != null">
+				rank4 = #{rank4},
+			</if>
+			<if test="rank5 != null">
+				rank5 = #{rank5},
+			</if>
+			<if test="rank6 != null">
+				rank6 = #{rank6},
+			</if>
+			<if test="rank7 != null">
+				rank7 = #{rank7},
+			</if>
+			<if test="rank8 != null">
+				rank8 = #{rank8},
+			</if>
+			<if test="rank9 != null">
+				rank9 = #{rank9},
+			</if>
+			<if test="rank10 != null">
+				rank10 = #{rank10},
+			</if>
+			<if test="rank11 != null">
+				rank11 = #{rank11},
+			</if>
+			<if test="rank12 != null">
+				rank12 = #{rank12},
+			</if>
+			<if test="rank13 != null">
+				rank13 = #{rank13},
+			</if>
+			<if test="rank14 != null">
+				rank14 = #{rank14},
+			</if>
+			<if test="rank15 != null">
+				rank15 = #{rank15},
+			</if>
+			<if test="rank16 != null">
+				rank16 = #{rank16},
+			</if>
+			<if test="rank17 != null">
+				rank17 = #{rank17},
+			</if>
+			<if test="rank18 != null">
+				rank18 = #{rank18},
+			</if>
+			<if test="rank19 != null">
+				rank19 = #{rank19},
+			</if>
+			<if test="rank20 != null">
+				rank20 = #{rank20},
+			</if>
+			<if test="rank21 != null">
+				rank21 = #{rank21},
+			</if>
+			<if test="rank22 != null">
+				rank22 = #{rank22},
+			</if>
+			<if test="rank23 != null">
+				rank23 = #{rank23},
+			</if>
+			<if test="rank24 != null">
+				rank24 = #{rank24},
+			</if>
+			<if test="rank25 != null">
+				rank25 = #{rank25},
+			</if>
+			<if test="rank26 != null">
+				rank26 = #{rank26},
+			</if>
+			<if test="rank27 != null">
+				rank27 = #{rank27},
+			</if>
+			<if test="rank28 != null">
+				rank28 = #{rank28},
+			</if>
+			<if test="rank29 != null">
+				rank29 = #{rank29},
+			</if>
+			<if test="rank30 != null">
+				rank30 = #{rank30},
+			</if>
+			<if test="rank31 != null">
+				rank31 = #{rank31},
+			</if>
+			<if test="rank32 != null">
+				rank32 = #{rank32},
+			</if>
+			<if test="rank33 != null">
+				rank33 = #{rank33},
+			</if>
+			<if test="rank34 != null">
+				rank34 = #{rank34},
+			</if>
+			<if test="rank35 != null">
+				rank35 = #{rank35},
+			</if>
+			<if test="rank36 != null">
+				rank36 = #{rank36},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="createOper != null">
+				create_oper = #{createOper},
+			</if>
+			<if test="updateOper != null">
+				update_oper = #{updateOper},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="type != null and type != ''">
+			and type = #{type}
+		</if>
+		<if test="rank1 != null and rank1 != ''">
+			and rank1 = #{rank1}
+		</if>
+		<if test="rank2 != null and rank2 != ''">
+			and rank2 = #{rank2}
+		</if>
+		<if test="rank3 != null and rank3 != ''">
+			and rank3 = #{rank3}
+		</if>
+		<if test="rank4 != null and rank4 != ''">
+			and rank4 = #{rank4}
+		</if>
+		<if test="rank5 != null and rank5 != ''">
+			and rank5 = #{rank5}
+		</if>
+		<if test="rank6 != null and rank6 != ''">
+			and rank6 = #{rank6}
+		</if>
+		<if test="rank7 != null and rank7 != ''">
+			and rank7 = #{rank7}
+		</if>
+		<if test="rank8 != null and rank8 != ''">
+			and rank8 = #{rank8}
+		</if>
+		<if test="rank9 != null and rank9 != ''">
+			and rank9 = #{rank9}
+		</if>
+		<if test="rank10 != null and rank10 != ''">
+			and rank10 = #{rank10}
+		</if>
+		<if test="rank11 != null and rank11 != ''">
+			and rank11 = #{rank11}
+		</if>
+		<if test="rank12 != null and rank12 != ''">
+			and rank12 = #{rank12}
+		</if>
+		<if test="rank13 != null and rank13 != ''">
+			and rank13 = #{rank13}
+		</if>
+		<if test="rank14 != null and rank14 != ''">
+			and rank14 = #{rank14}
+		</if>
+		<if test="rank15 != null and rank15 != ''">
+			and rank15 = #{rank15}
+		</if>
+		<if test="rank16 != null and rank16 != ''">
+			and rank16 = #{rank16}
+		</if>
+		<if test="rank17 != null and rank17 != ''">
+			and rank17 = #{rank17}
+		</if>
+		<if test="rank18 != null and rank18 != ''">
+			and rank18 = #{rank18}
+		</if>
+		<if test="rank19 != null and rank19 != ''">
+			and rank19 = #{rank19}
+		</if>
+		<if test="rank20 != null and rank20 != ''">
+			and rank20 = #{rank20}
+		</if>
+		<if test="rank21 != null and rank21 != ''">
+			and rank21 = #{rank21}
+		</if>
+		<if test="rank22 != null and rank22 != ''">
+			and rank22 = #{rank22}
+		</if>
+		<if test="rank23 != null and rank23 != ''">
+			and rank23 = #{rank23}
+		</if>
+		<if test="rank24 != null and rank24 != ''">
+			and rank24 = #{rank24}
+		</if>
+		<if test="rank25 != null and rank25 != ''">
+			and rank25 = #{rank25}
+		</if>
+		<if test="rank26 != null and rank26 != ''">
+			and rank26 = #{rank26}
+		</if>
+		<if test="rank27 != null and rank27 != ''">
+			and rank27 = #{rank27}
+		</if>
+		<if test="rank28 != null and rank28 != ''">
+			and rank28 = #{rank28}
+		</if>
+		<if test="rank29 != null and rank29 != ''">
+			and rank29 = #{rank29}
+		</if>
+		<if test="rank30 != null and rank30 != ''">
+			and rank30 = #{rank30}
+		</if>
+		<if test="rank31 != null and rank31 != ''">
+			and rank31 = #{rank31}
+		</if>
+		<if test="rank32 != null and rank32 != ''">
+			and rank32 = #{rank32}
+		</if>
+		<if test="rank33 != null and rank33 != ''">
+			and rank33 = #{rank33}
+		</if>
+		<if test="rank34 != null and rank34 != ''">
+			and rank34 = #{rank34}
+		</if>
+		<if test="rank35 != null and rank35 != ''">
+			and rank35 = #{rank35}
+		</if>
+		<if test="rank36 != null and rank36 != ''">
+			and rank36 = #{rank36}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time = #{createTime}
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time = #{updateTime}
+		</if>
+		<if test="createOper != null and createOper != ''">
+			and create_oper = #{createOper}
+		</if>
+		<if test="updateOper != null and updateOper != ''">
+			and update_oper = #{updateOper}
+		</if>
+		<if test="name != null and name != ''">
+			and name = #{name}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="id != null and id != ''">
+			and id like '%' || #{id} || '%'
+		</if>
+		<if test="type != null and type != ''">
+			and type like '%' || #{type} || '%'
+		</if>
+		<if test="rank1 != null and rank1 != ''">
+			and rank1 like '%' || #{rank1} || '%'
+		</if>
+		<if test="rank2 != null and rank2 != ''">
+			and rank2 like '%' || #{rank2} || '%'
+		</if>
+		<if test="rank3 != null and rank3 != ''">
+			and rank3 like '%' || #{rank3} || '%'
+		</if>
+		<if test="rank4 != null and rank4 != ''">
+			and rank4 like '%' || #{rank4} || '%'
+		</if>
+		<if test="rank5 != null and rank5 != ''">
+			and rank5 like '%' || #{rank5} || '%'
+		</if>
+		<if test="rank6 != null and rank6 != ''">
+			and rank6 like '%' || #{rank6} || '%'
+		</if>
+		<if test="rank7 != null and rank7 != ''">
+			and rank7 like '%' || #{rank7} || '%'
+		</if>
+		<if test="rank8 != null and rank8 != ''">
+			and rank8 like '%' || #{rank8} || '%'
+		</if>
+		<if test="rank9 != null and rank9 != ''">
+			and rank9 like '%' || #{rank9} || '%'
+		</if>
+		<if test="rank10 != null and rank10 != ''">
+			and rank10 like '%' || #{rank10} || '%'
+		</if>
+		<if test="rank11 != null and rank11 != ''">
+			and rank11 like '%' || #{rank11} || '%'
+		</if>
+		<if test="rank12 != null and rank12 != ''">
+			and rank12 like '%' || #{rank12} || '%'
+		</if>
+		<if test="rank13 != null and rank13 != ''">
+			and rank13 like '%' || #{rank13} || '%'
+		</if>
+		<if test="rank14 != null and rank14 != ''">
+			and rank14 like '%' || #{rank14} || '%'
+		</if>
+		<if test="rank15 != null and rank15 != ''">
+			and rank15 like '%' || #{rank15} || '%'
+		</if>
+		<if test="rank16 != null and rank16 != ''">
+			and rank16 like '%' || #{rank16} || '%'
+		</if>
+		<if test="rank17 != null and rank17 != ''">
+			and rank17 like '%' || #{rank17} || '%'
+		</if>
+		<if test="rank18 != null and rank18 != ''">
+			and rank18 like '%' || #{rank18} || '%'
+		</if>
+		<if test="rank19 != null and rank19 != ''">
+			and rank19 like '%' || #{rank19} || '%'
+		</if>
+		<if test="rank20 != null and rank20 != ''">
+			and rank20 like '%' || #{rank20} || '%'
+		</if>
+		<if test="rank21 != null and rank21 != ''">
+			and rank21 like '%' || #{rank21} || '%'
+		</if>
+		<if test="rank22 != null and rank22 != ''">
+			and rank22 like '%' || #{rank22} || '%'
+		</if>
+		<if test="rank23 != null and rank23 != ''">
+			and rank23 like '%' || #{rank23} || '%'
+		</if>
+		<if test="rank24 != null and rank24 != ''">
+			and rank24 like '%' || #{rank24} || '%'
+		</if>
+		<if test="rank25 != null and rank25 != ''">
+			and rank25 like '%' || #{rank25} || '%'
+		</if>
+		<if test="rank26 != null and rank26 != ''">
+			and rank26 like '%' || #{rank26} || '%'
+		</if>
+		<if test="rank27 != null and rank27 != ''">
+			and rank27 like '%' || #{rank27} || '%'
+		</if>
+		<if test="rank28 != null and rank28 != ''">
+			and rank28 like '%' || #{rank28} || '%'
+		</if>
+		<if test="rank29 != null and rank29 != ''">
+			and rank29 like '%' || #{rank29} || '%'
+		</if>
+		<if test="rank30 != null and rank30 != ''">
+			and rank30 like '%' || #{rank30} || '%'
+		</if>
+		<if test="rank31 != null and rank31 != ''">
+			and rank31 like '%' || #{rank31} || '%'
+		</if>
+		<if test="rank32 != null and rank32 != ''">
+			and rank32 like '%' || #{rank32} || '%'
+		</if>
+		<if test="rank33 != null and rank33 != ''">
+			and rank33 like '%' || #{rank33} || '%'
+		</if>
+		<if test="rank34 != null and rank34 != ''">
+			and rank34 like '%' || #{rank34} || '%'
+		</if>
+		<if test="rank35 != null and rank35 != ''">
+			and rank35 like '%' || #{rank35} || '%'
+		</if>
+		<if test="rank36 != null and rank36 != ''">
+			and rank36 like '%' || #{rank36} || '%'
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time like '%' || #{createTime} || '%'
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time like '%' || #{updateTime} || '%'
+		</if>
+		<if test="createOper != null and createOper != ''">
+			and create_oper like '%' || #{createOper} || '%'
+		</if>
+		<if test="updateOper != null and updateOper != ''">
+			and update_oper like '%' || #{updateOper} || '%'
+		</if>
+		<if test="name != null and name != ''">
+			and name like '%' || #{name} || '%'
+		</if>
+		<if test="status != null and status != ''">
+			and status like '%' || #{status} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_calculate_one_rank
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCalculateOneRank" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_calculate_one_rank
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneRank" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_calculate_one_rank
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneRank" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_calculate_one_rank
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_calculate_one_rank
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneRank" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_calculate_one_rank
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneRank" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_calculate_one_rank
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_calculate_one_rank
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

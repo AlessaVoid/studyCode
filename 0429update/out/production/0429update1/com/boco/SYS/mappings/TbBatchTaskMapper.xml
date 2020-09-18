@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 日终任务表 -->
+<mapper namespace="com.boco.SYS.mapper.TbBatchTaskMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbBatchTask">
+       	<id column="task_code" property="taskCode"/>
+     	<result column="task_name" property="taskName"/>
+     	<result column="dis_order" property="disOrder"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        task_code ,task_name ,dis_order 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbBatchTask">
+<!-- 
+	    -->       
+  INSERT INTO tb_batch_task 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="taskCode != null">
+	        	task_code ,
+	       	</if>
+	       	<if test="taskName != null">
+	        	task_name ,
+	       	</if>
+	       	<if test="disOrder != null">
+	        	dis_order 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="taskCode != null">
+	        	#{taskCode} ,
+	       	</if>
+	       	<if test="taskName != null">
+	        	#{taskName} ,
+	       	</if>
+	       	<if test="disOrder != null">
+	        	#{disOrder} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_batch_task 
+        (task_code ,task_name ,dis_order )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.taskCode,jdbcType=VARCHAR},#{item.taskName,jdbcType=VARCHAR},#{item.disOrder,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_batch_task 
+        <where>
+        	task_code = #{taskCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_batch_task 
+        <where>
+        	task_code = #{taskCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_batch_task 
+        WHERE task_code IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_batch_task
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbBatchTask">
+        UPDATE tb_batch_task 
+        <set>
+       	<if test="taskName != null">
+       		task_name = #{taskName},
+       	</if>
+       	<if test="disOrder != null">
+       		dis_order = #{disOrder},
+       	</if>
+        </set>
+        <where>
+        	task_code = #{taskCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_batch_task 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_batch_task 
+        <set>
+       	<if test="taskCode != null">
+       		task_code = #{taskCode},
+       	</if>
+       	<if test="taskName != null">
+       		task_name = #{taskName},
+       	</if>
+       	<if test="disOrder != null">
+       		dis_order = #{disOrder},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="taskCode != null and taskCode != ''">
+	 		and task_code = #{taskCode}
+	 	</if>
+	 	<if test="taskName != null and taskName != ''">
+	 		and task_name = #{taskName}
+	 	</if>
+	 	<if test="disOrder != null and disOrder != ''">
+	 		and dis_order = #{disOrder}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="taskCode != null and taskCode != ''">
+ 			and task_code like '%' || #{taskCode} || '%'
+ 		</if>
+ 		<if test="taskName != null and taskName != ''">
+ 			and task_name like '%' || #{taskName} || '%'
+ 		</if>
+ 		<if test="disOrder != null and disOrder != ''">
+ 			and dis_order like '%' || #{disOrder} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_batch_task 
+        <where> 
+        	task_code = #{taskCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbBatchTask" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_batch_task
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbBatchTask" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_batch_task 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbBatchTask" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_batch_task 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_batch_task 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbBatchTask" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_batch_task 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbBatchTask" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_batch_task 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_batch_task 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<select id="selectTaskList" parameterType="String" resultType="java.util.Map" flushCache="true">
+		select t.task_name    as taskname,
+			   t.task_code    as taskcode,
+			   t.dis_order    as disorder,
+			   ts.batch_day   as batchday,
+			   ts.task_status as taskstatus,
+			   to_char(to_timestamp(ts.start_time, 'yyyymmddhh24miss'), 'yyyy-mm-dd hh24:mi:ss')  as starttime,
+       		   to_char(to_timestamp(ts.end_time, 'yyyymmddhh24miss'), 'yyyy-mm-dd hh24:mi:ss')    as endtime
+		from tb_batch_task t
+			left join tb_batch_task_status ts on (t.task_code = ts.task_code) and ts.batch_day = #{date}
+		order by t.dis_order
+	</select>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

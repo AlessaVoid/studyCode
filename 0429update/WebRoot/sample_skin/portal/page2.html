@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title></title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!--基本选项卡start-->
+<script type="text/javascript" src="../../libs/js/nav/basicTabModern.js"></script>
+<!--基本选项卡end-->
+</head>
+<script>
+	$(function(){
+			//修正由于使用了tab导致高度计算不准确
+			if(broswerFlag=="IE6"){
+				setTimeout(function(){
+					top.iframeHeight('frmrightChild');
+				},500)
+			}
+		})
+</script>
+<body >
+	<div style="padding:10px 20px 0 20px;">
+	<table width="100%">
+		<tr>
+			<td style="width:800px;" class="ver01">
+				<div class="box2_custom" boxType="box2" panelTitle="基本信息" tatusType="none" statusText="数据来源：公司信息" panelHeight="160">
+								<table>
+									<tr>
+										<td style="padding:0 10px 0 0;">
+											<img src="images/pic.jpg" style="width:112px;"/>
+										</td>
+										<td style="padding:10px 0 0 0;">
+											<table class="tableStyle">
+												<tr>
+													<th width="150">基本信息</th>
+													<td width="500">吕某某 男  中国 23  汉族</td>
+												</tr>
+												<tr>
+													<th>证件信息</th>
+													<td>居民身份证,131002199008232812 </td>
+												</tr>
+												<tr>
+													<th>户籍地址</th>
+													<td>河北省廊坊市广阳区万庄镇石槽村061号</td>
+												</tr>
+												<tr>
+													<th>现住地址</th>
+													<td>从2007年07月到2008年01月居住在北京市海淀区中坞</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+				</div>
+			</td>
+			<td style="width:200px;" class="ver01">
+				<div  class="box2_custom" boxType="box2" panelTitle="信息分级" showStatus="false" panelHeight="160">
+								<ul class="starlist">
+									<li class="star1">信息类别1</li>
+									<li class="star1">信息类别2</li>
+									<li class="star2">信息类别3</li>
+									<li class="star2">信息类别4</li>
+									<li class="star3">信息类别5</li>
+								</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="basicTabModern" tabSubTitle="已查询10次" statusText="更多..." tabUrl="#">
+					<div name="历史记录">
+						<table class="tableStyle">
+								<tr>
+									<th>总查询数</th>
+									<th>已完成数量</th>
+									<th>未完成数量</th>
+									<th>红色警示</th>
+									<th>黄色警示</th>
+									<th>排   除</th>
+									<th>存   疑</th>
+									<th>留   置</th>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+									<td>100</td>
+								</tr>
+							</table>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="basicTabModern" tabTitle="信息录入">
+				    <div name="基本信息">
+				        <div style="height:240px;padding:0 0 0 60px;">
+							<table style="height:150px;">
+								<tr>
+									<td class="ali03" width="80">姓  名：</td>
+									<td width="150"><input type="text" class="textinput" style="width:128px;"/></td>
+									<td class="ali03" width="80">性  别：</td>
+									<td width="150">
+										<select>
+											<option>请选择</option>
+										</select>
+									</td>
+									<td class="ali03" width="80">籍  贯：</td>
+									<td width="150">
+										<select>
+											<option>请选择</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="ali03">证件类型：</td>
+									<td>
+										<select>
+											<option>请选择</option>
+										</select>
+									</td>
+									<td class="ali03">证件号码：</td>
+									<td colspan="3">
+										<input type="text" class="textinput" style="width:365px;"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="ali03">户籍地址：</td>
+									<td colspan="5">
+										<table>
+											<tr>
+												<td style="padding-left:0;">
+													<select selWidth="190">
+														<option>请选择</option>
+													</select>
+												</td>
+												<td>
+													<select selWidth="190">
+														<option>请选择</option>
+													</select>
+												</td>
+												<td>
+													<select selWidth="188">
+														<option>请选择</option>
+													</select>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td class="ali03">
+										详细地址：
+									</td>
+									<td colspan="5">
+										<textarea style="width:600px;"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6" class="ali02">
+										<input type="button" value="提 交"/>&nbsp;&nbsp;&nbsp;
+										<input type="button" value="重 置"/>
+									</td>
+								</tr>
+							</table>
+						</div>
+				    </div>
+					
+					<div name="体貌特征">
+				
+				       <div style="height:240px;">
+							内容2
+						</div>
+				
+				    </div>
+					<div name="交通工具">
+				
+				       <div style="height:240px;">
+							内容3
+						</div>
+				
+				    </div>
+				</div>
+			</td>
+		</tr>
+	</table>
+ 	</div>
+
+</body>
+</html>
+

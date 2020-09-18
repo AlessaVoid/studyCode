@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--信贷计划文件上传配置-->
+    <context:property-placeholder location="classpath:resource/uploadConfig.properties" ignore-unresolvable="true" file-encoding="UTF-8"/>
+    <!-- 启用spring mvc 注解 -->
+    <context:annotation-config/>
+    <!-- 指定Sping组件扫描的基本包路径 -->
+    <context:component-scan base-package="com.boco.*.controller"
+                            scope-resolver="com.boco.SYS.base.ScopeResolver"></context:component-scan>
+    <context:component-scan base-package="com.boco.TONY.biz.*.controller"
+                            scope-resolver="com.boco.SYS.base.ScopeResolver"></context:component-scan>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".jsp"></property>
+        <property name="contentType" value="text/html;charset=UTF-8"></property> <!-- 设置编码格式 -->
+    </bean>
+    <!-- 控制器异常处理 -->
+    <bean id="exceptionHandlerExceptionResolver"
+          class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+    </bean>
+    <bean class="com.boco.TONY.auth.handler.DefaultExceptionHandler"/>
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--https://blog.csdn.net/su_chunlong/article/details/72286720-->
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false"/>
+        <property name="favorParameter" value="false"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="mediaTypes">
+            <value>
+                atom=application/atom+xml
+                html=text/html
+                json=application/json
+                *=*/*
+            </value>
+        </property>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="10485760000"/>
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
+</beans>

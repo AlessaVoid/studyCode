@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- esb注册控制 -->
+<mapper namespace="com.boco.SYS.mapper.TbEurekaStatusMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbEurekaStatus">
+		<id column="server_name" property="serverName"/>
+		<result column="server_status" property="serverStatus"/>
+		<result column="server_reg_status" property="serverRegStatus"/>
+		<result column="server_reg_ip" property="serverRegIp"/>
+		<result column="update_time" property="updateTime"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        server_name ,server_status ,server_reg_status ,server_reg_ip ,update_time
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbEurekaStatus">
+		<!--
+                -->
+		INSERT INTO tb_eureka_status
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="serverName != null">
+				server_name ,
+			</if>
+			<if test="serverStatus != null">
+				server_status ,
+			</if>
+			<if test="serverRegStatus != null">
+				server_reg_status ,
+			</if>
+			<if test="serverRegIp != null">
+				server_reg_ip ,
+			</if>
+			<if test="updateTime != null">
+				update_time
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="serverName != null">
+				#{serverName} ,
+			</if>
+			<if test="serverStatus != null">
+				#{serverStatus} ,
+			</if>
+			<if test="serverRegStatus != null">
+				#{serverRegStatus} ,
+			</if>
+			<if test="serverRegIp != null">
+				#{serverRegIp} ,
+			</if>
+			<if test="updateTime != null">
+				#{updateTime}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_eureka_status
+		(server_name ,server_status ,server_reg_status ,server_reg_ip ,update_time )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.serverName,jdbcType=VARCHAR},#{item.serverStatus,jdbcType=VARCHAR},#{item.serverRegStatus,jdbcType=VARCHAR},#{item.serverRegIp,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_eureka_status
+		<where>
+			server_name = #{serverName}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_eureka_status
+		<where>
+			server_name = #{serverName}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_eureka_status
+		WHERE server_name IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_eureka_status
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbEurekaStatus">
+		UPDATE tb_eureka_status
+		<set>
+			<if test="serverStatus != null">
+				server_status = #{serverStatus},
+			</if>
+			<if test="serverRegStatus != null">
+				server_reg_status = #{serverRegStatus},
+			</if>
+			<if test="serverRegIp != null">
+				server_reg_ip = #{serverRegIp},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+		</set>
+		<where>
+			server_name = #{serverName}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_eureka_status
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_eureka_status
+		<set>
+			<if test="serverName != null">
+				server_name = #{serverName},
+			</if>
+			<if test="serverStatus != null">
+				server_status = #{serverStatus},
+			</if>
+			<if test="serverRegStatus != null">
+				server_reg_status = #{serverRegStatus},
+			</if>
+			<if test="serverRegIp != null">
+				server_reg_ip = #{serverRegIp},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="serverName != null and serverName != ''">
+			and server_name = #{serverName}
+		</if>
+		<if test="serverStatus != null and serverStatus != ''">
+			and server_status = #{serverStatus}
+		</if>
+		<if test="serverRegStatus != null and serverRegStatus != ''">
+			and server_reg_status = #{serverRegStatus}
+		</if>
+		<if test="serverRegIp != null and serverRegIp != ''">
+			and server_reg_ip = #{serverRegIp}
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time = #{updateTime}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="serverName != null and serverName != ''">
+			and server_name like '%' || #{serverName} || '%'
+		</if>
+		<if test="serverStatus != null and serverStatus != ''">
+			and server_status like '%' || #{serverStatus} || '%'
+		</if>
+		<if test="serverRegStatus != null and serverRegStatus != ''">
+			and server_reg_status like '%' || #{serverRegStatus} || '%'
+		</if>
+		<if test="serverRegIp != null and serverRegIp != ''">
+			and server_reg_ip like '%' || #{serverRegIp} || '%'
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time like '%' || #{updateTime} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_eureka_status
+		<where>
+			server_name = #{serverName}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbEurekaStatus" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_eureka_status
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbEurekaStatus" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_eureka_status
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbEurekaStatus" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_eureka_status
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_eureka_status
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbEurekaStatus" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_eureka_status
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbEurekaStatus" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_eureka_status
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_eureka_status
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

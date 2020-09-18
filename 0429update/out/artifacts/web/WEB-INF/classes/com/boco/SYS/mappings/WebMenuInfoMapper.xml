@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 菜单表 -->
+<mapper namespace="com.boco.SYS.mapper.WebMenuInfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebMenuInfo">
+       	<id column="ID" property="id"/>
+     	<result column="MENU_NO" property="menuNo"/>
+     	<result column="UP_MENU_NO" property="upMenuNo"/>
+     	<result column="ORDER_NO" property="orderNo"/>
+     	<result column="IS_PARENT" property="isParent"/>
+     	<result column="MENU_URL" property="menuUrl"/>
+     	<result column="MENU_NAME" property="menuName"/>
+     	<result column="MENU_ICON" property="menuIcon"/>
+     	<result column="MENU_STATUS" property="menuStatus"/>
+     	<result column="MENU_TYPE" property="menuType"/>
+     	<result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+     	<result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+     	<result column="LATEST_OPER_CODE" property="latestOperCode"/>
+    </resultMap>
+      <resultMap id="base_result_map_info" type="com.boco.SYS.entity.WebMenuInfo">
+       	<id column="ID" property="id"/>
+     	<result column="MENU_NO" property="menuNo"/>
+     	<result column="UP_MENU_NO" property="upMenuNo"/>
+     	<result column="ORDER_NO" property="orderNo"/>
+     	<result column="IS_PARENT" property="isParent"/>
+     	<result column="MENU_URL" property="menuUrl"/>
+     	<result column="MENU_NAME" property="menuName"/>
+     	<result column="MENU_ICON" property="menuIcon"/>
+     	<result column="MENU_STATUS" property="menuStatus"/>
+     	<result column="MENU_TYPE" property="menuType"/>
+     	<result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+     	<result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+     	<result column="LATEST_OPER_CODE" property="latestOperCode"/>
+     	<result column="UP_MENU_NAME" property="upMenuName"/>
+    </resultMap>
+    <!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        ID ,MENU_NO ,UP_MENU_NO ,ORDER_NO ,IS_PARENT ,MENU_URL ,MENU_NAME ,replace(MENU_ICON,'/libs/icons/','') as MENU_ICON,MENU_STATUS ,MENU_TYPE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE
+	    ]]>
+	</sql>
+	 <!-- 列集合 -->
+	<sql id="base_column_list_info">
+	    <![CDATA[
+        t.ID ,t.MENU_NO ,t.UP_MENU_NO ,t.ORDER_NO ,t.IS_PARENT ,t.MENU_URL ,t.MENU_NAME ,replace(t.MENU_ICON,'/libs/icons/','') as t.MENU_ICON,
+		t.MENU_STATUS ,t.MENU_TYPE ,t.LATEST_MODIFY_DATE ,t.LATEST_MODIFY_TIME ,t.LATEST_OPER_CODE
+	    ]]>
+	</sql>
+	<!-- 根据主键查询一条记录 -->
+    <select id="selectByPKInfo" parameterType="com.boco.SYS.entity.WebMenuInfo" resultMap="base_result_map_info" flushCache="true">
+select up_Menu_Name, <include refid="base_column_list"/> from web_menu_info t,
+(select s.menu_name as up_Menu_Name from web_menu_info s where s.menu_no = #{upMenuNo}) 
+        <where> 
+        	ID = #{id} 
+        </where>
+    </select>
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebMenuInfo">
+        INSERT INTO WEB_MENU_INFO 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	ID ,
+	       	</if>
+	       	<if test="menuNo != null">
+	        	MENU_NO ,
+	       	</if>
+	       	<if test="upMenuNo != null">
+	        	UP_MENU_NO ,
+	       	</if>
+	       	<if test="orderNo != null">
+	        	ORDER_NO ,
+	       	</if>
+	       	<if test="isParent != null">
+	        	IS_PARENT ,
+	       	</if>
+	       	<if test="menuUrl != null">
+	        	MENU_URL ,
+	       	</if>
+	       	<if test="menuName != null">
+	        	MENU_NAME ,
+	       	</if>
+	       	<if test="menuIcon != null">
+	        	MENU_ICON ,
+	       	</if>
+	       	<if test="menuStatus != null">
+	        	MENU_STATUS ,
+	       	</if>
+	       	<if test="menuType != null">
+	        	MENU_TYPE ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	LATEST_MODIFY_DATE ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	LATEST_MODIFY_TIME ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	LATEST_OPER_CODE ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="menuNo != null">
+	        	#{menuNo} ,
+	       	</if>
+	       	<if test="upMenuNo != null">
+	        	#{upMenuNo} ,
+	       	</if>
+	       	<if test="orderNo != null">
+	        	cast (#{orderNo} as numeric ),
+	       	</if>
+	       	<if test="isParent != null">
+	        	#{isParent} ,
+	       	</if>
+	       	<if test="menuUrl != null">
+	        	#{menuUrl} ,
+	       	</if>
+	       	<if test="menuName != null">
+	        	#{menuName} ,
+	       	</if>
+	       	<if test="menuIcon != null">
+	        	#{menuIcon} ,
+	       	</if>
+	       	<if test="menuStatus != null">
+	        	#{menuStatus} ,
+	       	</if>
+	       	<if test="menuType != null">
+	        	#{menuType} ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	#{latestModifyDate} ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	#{latestModifyTime} ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	#{latestOperCode} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_MENU_INFO 
+       	(ID ,MENU_NO ,UP_MENU_NO ,ORDER_NO ,IS_PARENT ,MENU_URL ,MENU_NAME ,MENU_ICON ,MENU_STATUS ,MENU_TYPE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id} ,#{item.menuNo} ,#{item.upMenuNo} ,#{item.orderNo} ,#{item.isParent} ,#{item.menuUrl} ,#{item.menuName} ,#{item.menuIcon} ,#{item.menuStatus} ,#{item.menuType} ,#{item.latestModifyDate} ,#{item.latestModifyTime} ,#{item.latestOperCode} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_MENU_INFO 
+        <where>
+        	ID = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_MENU_INFO 
+        <where>
+        	ID = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_MENU_INFO 
+        WHERE ID IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_MENU_INFO
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebMenuInfo">
+        UPDATE WEB_MENU_INFO 
+        <set>
+       	<if test="menuNo != null">
+       		MENU_NO = #{menuNo},
+       	</if>
+       	<if test="upMenuNo != null">
+       		UP_MENU_NO = #{upMenuNo},
+       	</if>
+       	<if test="orderNo != null">
+       		ORDER_NO = cast (#{orderNo} as numeric ),
+       	</if>
+       	<if test="isParent != null">
+       		IS_PARENT = #{isParent},
+       	</if>
+       	<if test="menuUrl != null">
+       		MENU_URL = #{menuUrl},
+       	</if>
+       	<if test="menuName != null">
+       		MENU_NAME = #{menuName},
+       	</if>
+       	<if test="menuIcon != null">
+       		MENU_ICON = #{menuIcon},
+       	</if>
+       	<if test="menuStatus != null">
+       		MENU_STATUS = #{menuStatus},
+       	</if>
+       	<if test="menuType != null">
+       		MENU_TYPE = #{menuType},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	ID = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_MENU_INFO 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_MENU_INFO 
+        <set>
+       	<if test="id != null">
+       		ID = #{id},
+       	</if>
+       	<if test="menuNo != null">
+       		MENU_NO = #{menuNo},
+       	</if>
+       	<if test="upMenuNo != null">
+       		UP_MENU_NO = #{upMenuNo},
+       	</if>
+       	<if test="orderNo != null">
+       		ORDER_NO = cast (#{orderNo} as numeric ),
+       	</if>
+       	<if test="isParent != null">
+       		IS_PARENT = #{isParent},
+       	</if>
+       	<if test="menuUrl != null">
+       		MENU_URL = #{menuUrl},
+       	</if>
+       	<if test="menuName != null">
+       		MENU_NAME = #{menuName},
+       	</if>
+       	<if test="menuIcon != null">
+       		MENU_ICON = #{menuIcon},
+       	</if>
+       	<if test="menuStatus != null">
+       		MENU_STATUS = #{menuStatus},
+       	</if>
+       	<if test="menuType != null">
+       		MENU_TYPE = #{menuType},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and ID = #{id}
+	 	</if>
+	 	<if test="menuNo != null and menuNo != ''">
+	 		and MENU_NO = #{menuNo}
+	 	</if>
+	 	<if test="upMenuNo != null and upMenuNo != ''">
+	 		and UP_MENU_NO = #{upMenuNo}
+	 	</if>
+	 	<if test="orderNo != null and orderNo != ''">
+	 		and ORDER_NO = cast (#{orderNo} as numeric )
+	 	</if>
+	 	<if test="isParent != null and isParent != ''">
+	 		and IS_PARENT = #{isParent}
+	 	</if>
+	 	<if test="menuUrl != null and menuUrl != ''">
+	 		and MENU_URL = #{menuUrl}
+	 	</if>
+	 	<if test="menuName != null and menuName != ''">
+	 		and MENU_NAME = #{menuName}
+	 	</if>
+	 	<if test="menuIcon != null and menuIcon != ''">
+	 		and MENU_ICON = #{menuIcon}
+	 	</if>
+	 	<if test="menuStatus != null and menuStatus != ''">
+	 		and MENU_STATUS = #{menuStatus}
+	 	</if>
+	 	<if test="menuType != null and menuType != ''">
+	 		and MENU_TYPE = #{menuType}
+	 	</if>
+	 	<if test="latestModifyDate != null and latestModifyDate != ''">
+	 		and LATEST_MODIFY_DATE = #{latestModifyDate}
+	 	</if>
+	 	<if test="latestModifyTime != null and latestModifyTime != ''">
+	 		and LATEST_MODIFY_TIME = #{latestModifyTime}
+	 	</if>
+	 	<if test="latestOperCode != null and latestOperCode != ''">
+	 		and LATEST_OPER_CODE = #{latestOperCode}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and ID like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="menuNo != null and menuNo != ''">
+ 			and MENU_NO like '%' || #{menuNo} || '%'
+ 		</if>
+ 		<if test="upMenuNo != null and upMenuNo != ''">
+ 			and UP_MENU_NO like '%' || #{upMenuNo} || '%'
+ 		</if>
+ 		<if test="orderNo != null and orderNo != ''">
+ 			and ORDER_NO like '%' || cast (#{orderNo} as numeric )|| '%'
+ 		</if>
+ 		<if test="isParent != null and isParent != ''">
+ 			and IS_PARENT like '%' || #{isParent} || '%'
+ 		</if>
+ 		<if test="menuUrl != null and menuUrl != ''">
+ 			and MENU_URL like '%' || #{menuUrl} || '%'
+ 		</if>
+ 		<if test="menuName != null and menuName != ''">
+ 			and MENU_NAME like '%' || #{menuName} || '%'
+ 		</if>
+ 		<if test="menuIcon != null and menuIcon != ''">
+ 			and MENU_ICON like '%' || #{menuIcon} || '%'
+ 		</if>
+ 		<if test="menuStatus != null and menuStatus != ''">
+ 			and MENU_STATUS like '%' || #{menuStatus} || '%'
+ 		</if>
+ 		<if test="menuType != null and menuType != ''">
+ 			and MENU_TYPE like '%' || #{menuType} || '%'
+ 		</if>
+ 		<if test="latestModifyDate != null and latestModifyDate != ''">
+ 			and LATEST_MODIFY_DATE like '%' || #{latestModifyDate} || '%'
+ 		</if>
+ 		<if test="latestModifyTime != null and latestModifyTime != ''">
+ 			and LATEST_MODIFY_TIME like '%' || #{latestModifyTime} || '%'
+ 		</if>
+ 		<if test="latestOperCode != null and latestOperCode != ''">
+ 			and LATEST_OPER_CODE like '%' || #{latestOperCode} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_MENU_INFO 
+        <where> 
+        	ID = #{id} 
+        </where>
+    </select>
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebMenuInfo" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebMenuInfo" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	   order by ORDER_NO
+    </select>
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebMenuInfo" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebMenuInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_MENU_INFO 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebMenuInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_MENU_INFO 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_MENU_INFO 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<select id="selectRoleFuns" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+		<!-- <![CDATA[
+		select m.* from WEB_MENU_INFO m where m.menu_no in (
+    	select rf.fun_code from web_role_fun rf 
+    	where rf.role_code in (SELECT REGEXP_SUBSTR(
+    	(select substr(OPERDEGREE,0,3) || ',' || substr(OPERDEGREE,4,3) from fd_oper o 
+    	where o.opercode = #{opercode}), '[^,]+', 1, LEVEL, 'i') FROM DUAL  
+		CONNECT BY LEVEL <= 2)
+    	)
+    	]]> -->
+    	 <![CDATA[
+		 select m.*
+  		 from WEB_MENU_INFO m
+ 		 where m.menu_no in
+        (select rf.fun_code
+           from web_role_fun rf
+          where rf.role_code in
+                (select substr(OPERDEGREE,1,3) || ',' || substr(OPERDEGREE,4,3) from fd_oper o 
+    	where o.opercode =  #{opercode}))
+    	]]>
+    	<if test="menuStatus != null and menuStatus != ''">
+ 			and MENU_STATUS = #{menuStatus}
+ 		</if>
+ 		<if test="menuType != null and menuType != ''">
+	 		and MENU_TYPE = #{menuType}
+	 	</if>
+	 	<if test="upMenuNo != null and upMenuNo != ''">
+	 		and UP_MENU_NO = #{upMenuNo}
+	 	</if>
+	 	order by order_no
+	</select>
+	<!-- 修改获取菜单的方法 -->
+	<select id="selectMenuByAttr" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+		<!-- <![CDATA[
+		select m.* from WEB_MENU_INFO m where m.menu_no in (
+    	select rf.fun_code from web_role_fun rf 
+    	where rf.role_code in (SELECT REGEXP_SUBSTR(
+    	(${roleCodes}), '[^,]+', 1, LEVEL, 'i') FROM DUAL  
+		CONNECT BY LEVEL <= 2)
+    	)
+    	]]> -->
+    	<![CDATA[
+		select m.* from WEB_MENU_INFO m where m.menu_no in (
+    	select rf.fun_code from web_role_fun rf 
+    	where rf.role_code in (${roleCodes}))
+    	]]> 
+    	<if test="menuStatus != null and menuStatus != ''">
+ 			and MENU_STATUS = #{menuStatus}
+ 		</if>
+ 		<if test="menuType != null and menuType != ''">
+	 		and MENU_TYPE = #{menuType}
+	 	</if>
+	 	<if test="upMenuNo != null and upMenuNo != ''">
+	 		and UP_MENU_NO = #{upMenuNo}
+	 	</if>
+	 	order by order_no
+	</select>
+	
+	 <!-- 根据条件查询记录 -->
+    <select id="selectMenuInfo" parameterType="java.lang.String" resultType="java.util.HashMap" flushCache="true">
+	   select max(t.order_no) as ORDERBY,max(t.menu_no) as MENUNO 
+	   from web_menu_info t where t.up_menu_no = #{upMenuNo}
+    </select>
+     <!-- 根据条件查询记录 -->
+    <select id="selectMenuOrder" resultType="java.lang.String" flushCache="true">
+	   select max(t.order_no) as ORDERBY  from web_menu_info t
+    </select>
+	<!-- ##############################################自定义方法############################################# -->
+	<!-- 根据条件查询记录 -->
+    <select id="selectByUpMenuNo" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO 
+	    WHERE MENU_TYPE = '1' AND UP_MENU_NO != #{upMenuNo}
+	    order by MENU_NO
+    </select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByNo" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	   SELECT * FROM WEB_MENU_INFO S 
+	   WHERE S.UP_MENU_NO IN(SELECT T.MENU_NO FROM WEB_MENU_INFO T 
+	   WHERE T.MENU_NO = #{upMenuNo} OR T.UP_MENU_NO = #{upMenuNo}) OR S.MENU_NO = #{upMenuNo} AND S.MENU_STATUS = #{menuStatus}
+    </select>
+    
+     <!-- 动态根据柜员的角色获取该柜员拥有的功能 -->
+    <select id="selectMenuByRole" parameterType="java.util.List" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO T
+        <where> 
+        	T.MENU_NO IN(SELECT S.FUN_CODE FROM WEB_ROLE_FUN S WHERE
+	         <foreach collection="list" item="item" index="index" separator="OR">
+	        	S.ROLE_CODE = #{item}
+	        </foreach>
+	        ) AND T.MENU_TYPE = '1' AND T.MENU_STATUS = '1'
+        </where>
+    </select>
+   
+	<!-- 获取快捷菜单信息-->
+    <select id="selectShortMenus" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT * FROM WEB_MENU_INFO S 
+	    WHERE S.MENU_NO IN(SELECT T.MENU_CODE FROM WEB_SHORT_MENU_INFO T WHERE T.OPER_CODE = #{opercode})
+    </select>
+    
+    
+    <!-- 获取报表菜单信息-->
+     <select id="selectReportMenuByRole" parameterType="java.util.List" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_MENU_INFO T
+        <where> 
+        	T.MENU_NO IN(SELECT S.FUN_CODE FROM WEB_ROLE_FUN S WHERE
+	        <foreach collection="list" item="item" index="index" separator="OR">
+	        	S.ROLE_CODE = #{item}
+	        </foreach>
+	        ) AND T.menu_status = '1'
+	        AND T.UP_MENU_NO='REPORT' AND T.MENU_NO !='REPORT-00'
+        </where>
+         order by T.order_no
+    </select>
+</mapper>

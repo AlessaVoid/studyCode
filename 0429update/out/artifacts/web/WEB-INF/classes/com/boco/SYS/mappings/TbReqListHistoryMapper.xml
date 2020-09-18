@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.TbReqHistoryMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <resultMap id="req_result_map" type="com.boco.SYS.entity.TbReqList">
+        <id column="req_id" property="reqId"/>
+        <result column="req_month" property="reqMonth"/>
+        <result column="req_organ" property="reqOragn"/>
+        <result column="req_type" property="reqType"/>
+        <result column="req_state" property="reqState"/>
+        <result column="req_date_start" property="reqDateStart"/>
+        <result column="req_date_end" property="reqDateEnd"/>
+        <result column="req_attachment_id" property="reqAttachmentId"/>
+        <result column="req_note" property="reqNote"/>
+        <result column="req_to" property="reqTo"/>
+        <result column="req_create_oper" property="reqCreateOper"/>
+        <result column="req_update_oper" property="reqUpdateOper"/>
+        <result column="req_create_time" property="reqCreatetime"/>
+        <result column="req_update_time" property="reqUpdatetime"/>
+    </resultMap>
+    <select id="insertReqHistory" parameterType="com.boco.TONY.biz.loanreq.POJO.DO.TbHistoryReqDetailDO" flushCache="true">
+        insert into tb_history_req_list
+        (req_month,
+         req_oragn,
+         req_type,
+         req_state,
+         req_date_start,
+         req_date_end,
+         req_attachment_id,
+         req_note,
+         req_to,
+         req_create_oper,
+         req_update_oper,
+         req_create_time,
+         req_update_time)
+        values (req_month = #{reqMonth},
+                req_oragn = #{reqOrgan},
+                req_type = #{reqType},
+                req_state = #{reqState},
+                req_date_start = #{reqDateStart},
+                req_date_end = #{reqDateEnd},
+                req_attachment_id = #{reqAttachmentId},
+                req_note = #{reqNote},
+                req_to = #{reqTo},
+                req_create_oper = #{reqCreateOper},
+                req_update_oper = #{reqUpdateOper},
+                req_create_time = #{reqCreateTime},
+                req_update_time = #{reqUpdateTime})
+    </select>
+</mapper>

@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 机构评分参数表 -->
+<mapper namespace="com.boco.SYS.mapper.TbOrganRateParamMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbOrganRateParam">
+		<id column="id" property="id"/>
+		<result column="element_type" property="elementType"/>
+		<result column="target_score" property="targetScore"/>
+		<result column="min_target_score" property="minTargetScore"/>
+		<result column="max_target_score" property="maxTargetScore"/>
+		<result column="low" property="low"/>
+		<result column="high" property="high"/>
+		<result column="direct_score" property="directScore"/>
+		<result column="adj_count" property="adjCount"/>
+		<result column="low_high_var" property="lowHighVar"/>
+		<result column="var_score" property="varScore"/>
+		<result column="adj_count_three" property="adjCountThree"/>
+		<result column="adj_count_two" property="adjCountTwo"/>
+		<result column="scale_three" property="scaleThree"/>
+		<result column="scale_two" property="scaleTwo"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="update_oper" property="updateOper"/>
+		<result column="element_type_name" property="elementTypeName"/>
+		<result column="order_rate" property="orderRate"/>
+		<result column="score_one" property="scoreOne"/>
+		<result column="score_two" property="scoreTwo"/>
+		<result column="score_three" property="scoreThree"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+		<![CDATA[
+        id ,element_type ,target_score ,min_target_score ,max_target_score ,low ,high ,direct_score ,adj_count ,low_high_var ,var_score ,adj_count_three ,adj_count_two ,scale_three ,scale_two ,create_time ,update_time ,update_oper ,element_type_name ,order_rate ,score_one ,score_two ,score_three
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbOrganRateParam">
+		<!--
+                -->
+		INSERT INTO tb_organ_rate_param
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="elementType != null">
+				element_type ,
+			</if>
+			<if test="targetScore != null">
+				target_score ,
+			</if>
+			<if test="minTargetScore != null">
+				min_target_score ,
+			</if>
+			<if test="maxTargetScore != null">
+				max_target_score ,
+			</if>
+			<if test="low != null">
+				low ,
+			</if>
+			<if test="high != null">
+				high ,
+			</if>
+			<if test="directScore != null">
+				direct_score ,
+			</if>
+			<if test="adjCount != null">
+				adj_count ,
+			</if>
+			<if test="lowHighVar != null">
+				low_high_var ,
+			</if>
+			<if test="varScore != null">
+				var_score ,
+			</if>
+			<if test="adjCountThree != null">
+				adj_count_three ,
+			</if>
+			<if test="adjCountTwo != null">
+				adj_count_two ,
+			</if>
+			<if test="scaleThree != null">
+				scale_three ,
+			</if>
+			<if test="scaleTwo != null">
+				scale_two ,
+			</if>
+			<if test="createTime != null">
+				create_time ,
+			</if>
+			<if test="updateTime != null">
+				update_time ,
+			</if>
+			<if test="updateOper != null">
+				update_oper ,
+			</if>
+			<if test="elementTypeName != null">
+				element_type_name ,
+			</if>
+			<if test="orderRate != null">
+				order_rate ,
+			</if>
+			<if test="scoreOne != null">
+				score_one ,
+			</if>
+			<if test="scoreTwo != null">
+				score_two ,
+			</if>
+			<if test="scoreThree != null">
+				score_three
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="elementType != null">
+				#{elementType} ,
+			</if>
+			<if test="targetScore != null">
+				#{targetScore} ,
+			</if>
+			<if test="minTargetScore != null">
+				#{minTargetScore} ,
+			</if>
+			<if test="maxTargetScore != null">
+				#{maxTargetScore} ,
+			</if>
+			<if test="low != null">
+				#{low} ,
+			</if>
+			<if test="high != null">
+				#{high} ,
+			</if>
+			<if test="directScore != null">
+				#{directScore} ,
+			</if>
+			<if test="adjCount != null">
+				#{adjCount} ,
+			</if>
+			<if test="lowHighVar != null">
+				#{lowHighVar} ,
+			</if>
+			<if test="varScore != null">
+				#{varScore} ,
+			</if>
+			<if test="adjCountThree != null">
+				#{adjCountThree} ,
+			</if>
+			<if test="adjCountTwo != null">
+				#{adjCountTwo} ,
+			</if>
+			<if test="scaleThree != null">
+				#{scaleThree} ,
+			</if>
+			<if test="scaleTwo != null">
+				#{scaleTwo} ,
+			</if>
+			<if test="createTime != null">
+				#{createTime} ,
+			</if>
+			<if test="updateTime != null">
+				#{updateTime} ,
+			</if>
+			<if test="updateOper != null">
+				#{updateOper} ,
+			</if>
+			<if test="elementTypeName != null">
+				#{elementTypeName} ,
+			</if>
+			<if test="orderRate != null">
+				#{orderRate} ,
+			</if>
+			<if test="scoreOne != null">
+				#{scoreOne} ,
+			</if>
+			<if test="scoreTwo != null">
+				#{scoreTwo} ,
+			</if>
+			<if test="scoreThree != null">
+				#{scoreThree}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_organ_rate_param
+		(id ,element_type ,target_score ,min_target_score ,max_target_score ,low ,high ,direct_score ,adj_count ,low_high_var ,var_score ,adj_count_three ,adj_count_two ,scale_three ,scale_two ,create_time ,update_time ,update_oper ,element_type_name ,order_rate ,score_one ,score_two ,score_three )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.id,jdbcType=VARCHAR},#{item.elementType,jdbcType=VARCHAR},#{item.targetScore,jdbcType=VARCHAR},#{item.minTargetScore,jdbcType=VARCHAR},#{item.maxTargetScore,jdbcType=VARCHAR},#{item.low,jdbcType=VARCHAR},#{item.high,jdbcType=VARCHAR},#{item.directScore,jdbcType=VARCHAR},#{item.adjCount,jdbcType=VARCHAR},#{item.lowHighVar,jdbcType=VARCHAR},#{item.varScore,jdbcType=VARCHAR},#{item.adjCountThree,jdbcType=VARCHAR},#{item.adjCountTwo,jdbcType=VARCHAR},#{item.scaleThree,jdbcType=VARCHAR},#{item.scaleTwo,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR},#{item.elementTypeName,jdbcType=VARCHAR},#{item.orderRate,jdbcType=VARCHAR},#{item.scoreOne,jdbcType=VARCHAR},#{item.scoreTwo,jdbcType=VARCHAR},#{item.scoreThree,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_organ_rate_param
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_organ_rate_param
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_organ_rate_param
+		WHERE id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_organ_rate_param
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbOrganRateParam">
+		UPDATE tb_organ_rate_param
+		<set>
+			<if test="elementType != null">
+				element_type = #{elementType},
+			</if>
+			<if test="targetScore != null">
+				target_score = #{targetScore},
+			</if>
+			<if test="minTargetScore != null">
+				min_target_score = #{minTargetScore},
+			</if>
+			<if test="maxTargetScore != null">
+				max_target_score = #{maxTargetScore},
+			</if>
+			<if test="low != null">
+				low = #{low},
+			</if>
+			<if test="high != null">
+				high = #{high},
+			</if>
+			<if test="directScore != null">
+				direct_score = #{directScore},
+			</if>
+			<if test="adjCount != null">
+				adj_count = #{adjCount},
+			</if>
+			<if test="lowHighVar != null">
+				low_high_var = #{lowHighVar},
+			</if>
+			<if test="varScore != null">
+				var_score = #{varScore},
+			</if>
+			<if test="adjCountThree != null">
+				adj_count_three = #{adjCountThree},
+			</if>
+			<if test="adjCountTwo != null">
+				adj_count_two = #{adjCountTwo},
+			</if>
+			<if test="scaleThree != null">
+				scale_three = #{scaleThree},
+			</if>
+			<if test="scaleTwo != null">
+				scale_two = #{scaleTwo},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateOper != null">
+				update_oper = #{updateOper},
+			</if>
+			<if test="elementTypeName != null">
+				element_type_name = #{elementTypeName},
+			</if>
+			<if test="orderRate != null">
+				order_rate = #{orderRate},
+			</if>
+			<if test="scoreOne != null">
+				score_one = #{scoreOne},
+			</if>
+			<if test="scoreTwo != null">
+				score_two = #{scoreTwo},
+			</if>
+			<if test="scoreThree != null">
+				score_three = #{scoreThree},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_organ_rate_param
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_organ_rate_param
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="elementType != null">
+				element_type = #{elementType},
+			</if>
+			<if test="targetScore != null">
+				target_score = #{targetScore},
+			</if>
+			<if test="minTargetScore != null">
+				min_target_score = #{minTargetScore},
+			</if>
+			<if test="maxTargetScore != null">
+				max_target_score = #{maxTargetScore},
+			</if>
+			<if test="low != null">
+				low = #{low},
+			</if>
+			<if test="high != null">
+				high = #{high},
+			</if>
+			<if test="directScore != null">
+				direct_score = #{directScore},
+			</if>
+			<if test="adjCount != null">
+				adj_count = #{adjCount},
+			</if>
+			<if test="lowHighVar != null">
+				low_high_var = #{lowHighVar},
+			</if>
+			<if test="varScore != null">
+				var_score = #{varScore},
+			</if>
+			<if test="adjCountThree != null">
+				adj_count_three = #{adjCountThree},
+			</if>
+			<if test="adjCountTwo != null">
+				adj_count_two = #{adjCountTwo},
+			</if>
+			<if test="scaleThree != null">
+				scale_three = #{scaleThree},
+			</if>
+			<if test="scaleTwo != null">
+				scale_two = #{scaleTwo},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="updateOper != null">
+				update_oper = #{updateOper},
+			</if>
+			<if test="elementTypeName != null">
+				element_type_name = #{elementTypeName},
+			</if>
+			<if test="orderRate != null">
+				order_rate = #{orderRate},
+			</if>
+			<if test="scoreOne != null">
+				score_one = #{scoreOne},
+			</if>
+			<if test="scoreTwo != null">
+				score_two = #{scoreTwo},
+			</if>
+			<if test="scoreThree != null">
+				score_three = #{scoreThree},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="elementType != null and elementType != ''">
+			and element_type = #{elementType}
+		</if>
+		<if test="targetScore != null and targetScore != ''">
+			and target_score = #{targetScore}
+		</if>
+		<if test="minTargetScore != null and minTargetScore != ''">
+			and min_target_score = #{minTargetScore}
+		</if>
+		<if test="maxTargetScore != null and maxTargetScore != ''">
+			and max_target_score = #{maxTargetScore}
+		</if>
+		<if test="low != null and low != ''">
+			and low = #{low}
+		</if>
+		<if test="high != null and high != ''">
+			and high = #{high}
+		</if>
+		<if test="directScore != null and directScore != ''">
+			and direct_score = #{directScore}
+		</if>
+		<if test="adjCount != null and adjCount != ''">
+			and adj_count = #{adjCount}
+		</if>
+		<if test="lowHighVar != null and lowHighVar != ''">
+			and low_high_var = #{lowHighVar}
+		</if>
+		<if test="varScore != null and varScore != ''">
+			and var_score = #{varScore}
+		</if>
+		<if test="adjCountThree != null and adjCountThree != ''">
+			and adj_count_three = #{adjCountThree}
+		</if>
+		<if test="adjCountTwo != null and adjCountTwo != ''">
+			and adj_count_two = #{adjCountTwo}
+		</if>
+		<if test="scaleThree != null and scaleThree != ''">
+			and scale_three = #{scaleThree}
+		</if>
+		<if test="scaleTwo != null and scaleTwo != ''">
+			and scale_two = #{scaleTwo}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time = #{createTime}
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time = #{updateTime}
+		</if>
+		<if test="updateOper != null and updateOper != ''">
+			and update_oper = #{updateOper}
+		</if>
+		<if test="elementTypeName != null and elementTypeName != ''">
+			and element_type_name = #{elementTypeName}
+		</if>
+		<if test="orderRate != null and orderRate != ''">
+			and order_rate = #{orderRate}
+		</if>
+		<if test="scoreOne != null and scoreOne != ''">
+			and score_one = #{scoreOne}
+		</if>
+		<if test="scoreTwo != null and scoreTwo != ''">
+			and score_two = #{scoreTwo}
+		</if>
+		<if test="scoreThree != null and scoreThree != ''">
+			and score_three = #{scoreThree}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="id != null and id != ''">
+			and id like '%' || #{id} || '%'
+		</if>
+		<if test="elementType != null and elementType != ''">
+			and element_type like '%' || #{elementType} || '%'
+		</if>
+		<if test="targetScore != null and targetScore != ''">
+			and target_score like '%' || #{targetScore} || '%'
+		</if>
+		<if test="minTargetScore != null and minTargetScore != ''">
+			and min_target_score like '%' || #{minTargetScore} || '%'
+		</if>
+		<if test="maxTargetScore != null and maxTargetScore != ''">
+			and max_target_score like '%' || #{maxTargetScore} || '%'
+		</if>
+		<if test="low != null and low != ''">
+			and low like '%' || #{low} || '%'
+		</if>
+		<if test="high != null and high != ''">
+			and high like '%' || #{high} || '%'
+		</if>
+		<if test="directScore != null and directScore != ''">
+			and direct_score like '%' || #{directScore} || '%'
+		</if>
+		<if test="adjCount != null and adjCount != ''">
+			and adj_count like '%' || #{adjCount} || '%'
+		</if>
+		<if test="lowHighVar != null and lowHighVar != ''">
+			and low_high_var like '%' || #{lowHighVar} || '%'
+		</if>
+		<if test="varScore != null and varScore != ''">
+			and var_score like '%' || #{varScore} || '%'
+		</if>
+		<if test="adjCountThree != null and adjCountThree != ''">
+			and adj_count_three like '%' || #{adjCountThree} || '%'
+		</if>
+		<if test="adjCountTwo != null and adjCountTwo != ''">
+			and adj_count_two like '%' || #{adjCountTwo} || '%'
+		</if>
+		<if test="scaleThree != null and scaleThree != ''">
+			and scale_three like '%' || #{scaleThree} || '%'
+		</if>
+		<if test="scaleTwo != null and scaleTwo != ''">
+			and scale_two like '%' || #{scaleTwo} || '%'
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time like '%' || #{createTime} || '%'
+		</if>
+		<if test="updateTime != null and updateTime != ''">
+			and update_time like '%' || #{updateTime} || '%'
+		</if>
+		<if test="updateOper != null and updateOper != ''">
+			and update_oper like '%' || #{updateOper} || '%'
+		</if>
+		<if test="elementTypeName != null and elementTypeName != ''">
+			and element_type_name like '%' || #{elementTypeName} || '%'
+		</if>
+		<if test="orderRate != null and orderRate != ''">
+			and order_rate like '%' || #{orderRate} || '%'
+		</if>
+		<if test="scoreOne != null and scoreOne != ''">
+			and score_one like '%' || #{scoreOne} || '%'
+		</if>
+		<if test="scoreTwo != null and scoreTwo != ''">
+			and score_two like '%' || #{scoreTwo} || '%'
+		</if>
+		<if test="scoreThree != null and scoreThree != ''">
+			and score_three like '%' || #{scoreThree} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_organ_rate_param
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbOrganRateParam" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_organ_rate_param
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbOrganRateParam" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_organ_rate_param
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateParam" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_organ_rate_param
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_organ_rate_param
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbOrganRateParam" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_organ_rate_param
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateParam" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_organ_rate_param
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_organ_rate_param
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+	<select id="selectByType" resultType="java.util.Map" flushCache="true">
+		select param.id                as id,
+			   param.element_type      as elementtype,
+			   param.target_score      as targetscore,
+			   param.min_target_score  as mintargetscore,
+			   param.max_target_score  as maxtargetscore,
+			   param.low               as low,
+			   param.high              as high,
+			   param.direct_score      as directscore,
+			   param.adj_count         as adjcount,
+			   param.low_high_var      as lowhighvar,
+			   param.var_score         as varscore,
+			   param.adj_count_three   as adjcountthree,
+			   param.adj_count_two     as adjcounttwo,
+			   param.scale_three       as scalethree,
+			   param.scale_two         as scaletwo,
+			   param.create_time       as createtime,
+			   param.update_time       as updatetime,
+			   param.update_oper       as updateoper,
+			   param.element_type_name as elementtypename,
+			   param.order_rate        as orderrate,
+			   param.score_one 		   as scoreone,
+			   param.score_two 		   as scoretwo,
+		   	   param.score_three 	   as scorethree
+
+		from (
+				 select *, row_number() over (partition by element_type order by order_rate) as group_idx
+				 from tb_organ_rate_param
+			 ) param
+		where param.group_idx = 1
+		order by order_rate
+
+
+	</select>
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

@@ -1,0 +1,226 @@
+<%@page language="java" pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <%@include file="/common/common_edit.jsp" %>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <!-- 树组件start -->
+    <script type="text/javascript" src="<%=path%>/libs/js/tree/ztree/ztree.js"></script>
+    <link type="text/css" rel="stylesheet" href="<%=path%>/libs/js/tree/ztree/ztree.css"/>
+    <!-- 树组件end -->
+
+    <!-- 树形下拉框start -->
+    <script type="text/javascript" src="<%=path%>/libs/js/form/selectTree.js"></script>
+    <!-- 树形下拉框end -->
+    <title></title>
+</head>
+<script type="text/javascript">
+    var qaId =${TbOver.qaId};
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "<%=path%>/tbTradeManger/over/getReqDetailList.htm",
+            data: {"qaId": qaId},
+            dataType: "json",
+            success: function (result) {
+                if (result) {
+                    var tbOverDOS = result.tbOverDOS;
+                    for (var i = 0; i < tbOverDOS.length; i++) {
+                        var TbOverDO = tbOverDOS[i];
+                        var qaComb = TbOverDO.qaComb;
+                        var qaAmt = TbOverDO.qaAmt;
+                        var qaOverAmt = TbOverDO.qaOverAmt;
+                        $("#" + qaComb + "_AppNum").html(qaOverAmt);
+                        if (qaAmt == 0) {
+                            $("#" + qaComb + "_Num").html("-");
+                        } else {
+                            $("#" + qaComb + "_Num").html(qaAmt);
+                        }
+                        // $("#" + qaComb + "_Num").html(qaAmt);
+                    }
+                }
+            }
+        });
+        initComplete();
+    });
+
+    function initComplete() {
+        $("#span1").html(${oneNum}+"");
+        $("#span2").html(${oneRate}+"%");
+        $("#span3").html(${twoNum}+"");
+        $("#span4").html(${twoRate}+"%");
+        $("#span5").html(${threeNum}+"");
+        $("#span6").html(${threeRate}+"%");
+    }
+
+
+</script>
+<body>
+
+<form id="form2">
+    <table class="tableStyle" id="table1" width="80%" mode="list" formMode="line">
+        <tr>
+            <td align="right">
+                所属月份：
+            </td>
+            <td>
+                <input id="qaId" name="qaId" value="${TbOver.qaId}" hidden="hidden"/>
+                ${TbOver.qaMonth}
+            </td>
+
+            <td align="right">全年计划进度：</td>
+            <td>
+                ${TbOver.qaYearRate}%
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">本月计划：</td>
+            <td>
+                ${TbOver.qaPlanAmt}
+            </td>
+            <td align="right">本月超计划额度：</td>
+            <td>
+                0
+            </td>
+        </tr>
+        <tr>
+            <td align="right">前第三个月超规模或闲置额度：</td>
+            <td>
+                <span id="span1"></span>
+            </td>
+            <td align="right">百分比：</td>
+            <td>
+                <span id="span2"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">前第二个月超规模或闲置额度：</td>
+            <td>
+                <span id="span3"></span>
+            </td>
+            <td align="right">百分比：</td>
+            <td>
+                <span id="span4"></span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">前第一个月超规模或闲置额度：</td>
+            <td>
+                <span id="span5"></span>
+            </td>
+            <td align="right">百分比：</td>
+            <td>
+                <span id="span6"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right">
+                附件名称：
+            </td>
+            <td>
+                <span id="fileName">${fileName}</span>
+            </td>
+
+            <td align="right">下载附件：</td>
+            <td>
+                <a href="<%=path%>/tbTradeManger/single/download.htm?qaFileId=${TbOver.qaFileId}">
+                    <button class="btn btn-primary" type="button">
+                        下载
+                    </button>
+                </a>
+            </td>
+
+        </tr>
+        <tr>
+
+            <td align="right">
+                单位：
+            </td>
+            <td>
+                <dic:out dicType="CURRENCY_UNIT" dicNo="${TbOver.unit}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right" colspan="1">事由：</td>
+            <td colspan="3" style="word-break:break-all">
+                ${TbOver.qaReason}
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+<form id="form1">
+    <div id="scrollContent" class="border_gray">
+        <table class="tableStyle" thTrueWidth="true" mode="list" fixedCellHeight="true">
+            <tr>
+                <th trueWidth="150"></th>
+                <c:forEach items="${combAmountNameList}" var="combAmountName">
+                    <th align="center">
+                            ${combAmountName.name}
+                    </th>
+                </c:forEach>
+            </tr>
+
+            <c:forEach items="${combList}" var="comb">
+                <tr>
+                    <th> ${comb.combName}</th>
+                    <c:forEach items="${combAmountNameList}" var="combAmountName">
+                        <td align="center">
+                            <span id="${comb.combCode}_${combAmountName.code}"></span>
+                        </td>
+                    </c:forEach>
+                    <c:forEach items="${combAmountNameList}" var="combAmountName">
+                        <td align="center">
+                            <span id="${comb.combCode}_AppNum"></span>
+                        </td>
+                    </c:forEach>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</form>
+<input type="hidden" id="comments" name="comments" value="${fn:length(comments)}"/>
+<c:if test="${!empty comments }">
+    <div id="panel23" panelTitle="审批进度" class="box2_custom" boxType="box2" startState="open">
+         <table class="tableStyle tab-hei-30" width="80%" mode="list"
+               style="table-layout:fixed;word-wrap:break-word;word-break:break-all">
+            <tr>
+                <td width="20%" align="left">
+                    审批用户
+                </td>
+                <td width="20%" align="left">
+                    审批时间
+                </td>
+                <td width="20%" align="left">
+                    审批状态
+                </td>
+                <td width="40%" align="left">
+                    审批意见
+                </td>
+            </tr>
+            <c:forEach items="${comments}" var="comment">
+                <tr>
+                    <td> ${comment.userId }</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${empty comment.time}">
+                                ----
+                            </c:when>
+                            <c:otherwise>
+                                <fm:formatDate value="${comment.time}" pattern="yyyyMMdd HH:mm:ss"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td> ${comment.type }</td>
+                    <td style="word-break:break-all">${comment.fullMessage }</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</c:if>
+</body>
+</html>

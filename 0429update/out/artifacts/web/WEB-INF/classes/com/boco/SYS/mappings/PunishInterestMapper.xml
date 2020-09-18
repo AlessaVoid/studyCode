@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 评分管理参数表 -->
+<mapper namespace="com.boco.SYS.mapper.PunishInterestMapper">
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.RptBaseinfo">
+        <result column="rpt_date" property="rptDate"/>
+        <result column="organ" property="organ"/>
+        <result column="rpt_month" property="rptMonth"/>
+        <result column="loan_kind" property="loanKind"/>
+        <result column="balance" property="balance"/>
+        <result column="month_occ" property="monthOcc"/>
+        <result column="month_limit" property="monthLimit"/>
+        <result column="day_occ" property="dayOcc"/>
+        <result column="day_limit" property="dayLimit"/>
+        <result column="month_limit_left" property="monthLimitLeft"/>
+    </resultMap>
+
+    <select id="selectOrgan1" resultType="java.util.HashMap">
+        select fo.provincecode from tb_rpt_baseinfo tr,fd_organ fo where tr.organ=fo.thiscode group by fo.provincecode;
+    </select>
+    <select id="queryDetail" resultType="com.boco.SYS.entity.RptBaseinfo">
+        select * from tb_rpt_baseinfo where rpt_date=#{rptDate} and organ=#{organ};
+    </select>
+    <select id="getcomb1" resultType="string">
+        select comb_code from tb_comb_detail where prod_code=(select comb_code from tb_comb_detail where prod_code=#{loanKind});
+        </select>
+    <select id="getMonthOcc" resultType="java.lang.Float">
+        select month_occ from tb_rpt_baseinfo where rpt_date=#{rptDate} and organ=#{organ} and loan_kind=#{loanKind};
+    </select>
+    <select id="getMonthLimit" resultType="java.lang.Float">
+        select month_limit from tb_rpt_baseinfo where rpt_date=#{rptDate} and organ=#{organ} and loan_kind=#{loanKind};
+    </select>
+<insert id="insertPunishDetail" parameterType="com.boco.SYS.entity.PunishDetail">
+    insert into tb_punish_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="day != null">
+            day ,
+        </if>
+        <if test="month != null">
+            month ,
+        </if>
+        <if test="organ != null">
+            organ ,
+        </if>
+        <if test="type != null">
+            type ,
+        </if>
+        <if test="comb != null">
+            comb ,
+        </if>
+        <if test="plan != null">
+            plan ,
+        </if>
+        <if test="diff != null">
+            diff ,
+        </if>
+        <if test="departure != null">
+            departure ,
+        </if>
+        <if test="punishMoney != null">
+            punish_money ,
+        </if>
+        <if test="punishDay != null">
+            punish_day ,
+        </if>
+        <if test="leftDay != null">
+            left_day ,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="day != null">
+            #{day} ,
+        </if>
+        <if test="month != null">
+            #{month} ,
+        </if>
+        <if test="organ != null">
+            #{organ} ,
+        </if>
+        <if test="type != null">
+            #{type} ,
+        </if>
+        <if test="comb != null">
+            #{comb} ,
+        </if>
+        <if test="plan != null">
+            #{plan} ,
+        </if>
+        <if test="diff != null">
+            #{diff} ,
+        </if>
+        <if test="departure != null">
+            #{departure} ,
+        </if>
+        <if test="punishMoney != null">
+            #{punishMoney} ,
+        </if>
+        <if test="punishDay != null">
+            #{punishDay} ,
+        </if>
+        <if test="leftDay != null">
+            #{leftDay} ,
+        </if>
+    </trim>
+</insert>
+</mapper>

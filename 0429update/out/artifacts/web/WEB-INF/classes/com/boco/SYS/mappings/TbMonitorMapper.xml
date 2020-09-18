@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 服务监控状态 -->
+<mapper namespace="com.boco.SYS.mapper.TbMonitorMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbMonitor">
+       	<id column="mo_ip" property="moIp"/>
+       	<id column="mo_svr_id" property="moSvrId"/>
+     	<result column="mo_svr_type" property="moSvrType"/>
+     	<result column="mo_svr_path" property="moSvrPath"/>
+     	<result column="mo_svr_name" property="moSvrName"/>
+     	<result column="mo_svr_port" property="moSvrPort"/>
+     	<result column="mo_svr_run_status" property="moSvrRunStatus"/>
+     	<result column="mo_svr_port_status" property="moSvrPortStatus"/>
+     	<result column="mo_collect_time" property="moCollectTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        mo_ip ,mo_svr_id ,mo_svr_type ,mo_svr_path ,mo_svr_name ,mo_svr_port ,mo_svr_run_status ,mo_svr_port_status ,mo_collect_time 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbMonitor">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_monitor 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="moIp != null">
+	        	mo_ip ,
+	       	</if>
+	       	<if test="moSvrId != null">
+	        	mo_svr_id ,
+	       	</if>
+	       	<if test="moSvrType != null">
+	        	mo_svr_type ,
+	       	</if>
+	       	<if test="moSvrPath != null">
+	        	mo_svr_path ,
+	       	</if>
+	       	<if test="moSvrName != null">
+	        	mo_svr_name ,
+	       	</if>
+	       	<if test="moSvrPort != null">
+	        	mo_svr_port ,
+	       	</if>
+	       	<if test="moSvrRunStatus != null">
+	        	mo_svr_run_status ,
+	       	</if>
+	       	<if test="moSvrPortStatus != null">
+	        	mo_svr_port_status ,
+	       	</if>
+	       	<if test="moCollectTime != null">
+	        	mo_collect_time 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="moIp != null">
+	        	#{moIp} ,
+	       	</if>
+	       	<if test="moSvrId != null">
+	        	#{moSvrId} ,
+	       	</if>
+	       	<if test="moSvrType != null">
+	        	#{moSvrType} ,
+	       	</if>
+	       	<if test="moSvrPath != null">
+	        	#{moSvrPath} ,
+	       	</if>
+	       	<if test="moSvrName != null">
+	        	#{moSvrName} ,
+	       	</if>
+	       	<if test="moSvrPort != null">
+	        	#{moSvrPort} ,
+	       	</if>
+	       	<if test="moSvrRunStatus != null">
+	        	#{moSvrRunStatus} ,
+	       	</if>
+	       	<if test="moSvrPortStatus != null">
+	        	#{moSvrPortStatus} ,
+	       	</if>
+	       	<if test="moCollectTime != null">
+	        	#{moCollectTime} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_monitor 
+        (mo_ip ,mo_svr_id ,mo_svr_type ,mo_svr_path ,mo_svr_name ,mo_svr_port ,mo_svr_run_status ,mo_svr_port_status ,mo_collect_time )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.moIp,jdbcType=VARCHAR},#{item.moSvrId,jdbcType=VARCHAR},#{item.moSvrType,jdbcType=VARCHAR},#{item.moSvrPath,jdbcType=VARCHAR},#{item.moSvrName,jdbcType=VARCHAR},#{item.moSvrPort,jdbcType=VARCHAR},#{item.moSvrRunStatus,jdbcType=VARCHAR},#{item.moSvrPortStatus,jdbcType=VARCHAR},#{item.moCollectTime,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_monitor 
+        <where>
+        	mo_ip = #{moIp} and
+        	mo_svr_id = #{moSvrId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM tb_monitor 
+        <where>
+        	mo_ip = #{moIp} and
+        	mo_svr_id = #{moSvrId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_monitor 
+        WHERE mo_ipmo_svr_id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_monitor
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbMonitor">
+        UPDATE tb_monitor 
+        <set>
+       	<if test="moSvrType != null">
+       		mo_svr_type = #{moSvrType},
+       	</if>
+       	<if test="moSvrPath != null">
+       		mo_svr_path = #{moSvrPath},
+       	</if>
+       	<if test="moSvrName != null">
+       		mo_svr_name = #{moSvrName},
+       	</if>
+       	<if test="moSvrPort != null">
+       		mo_svr_port = #{moSvrPort},
+       	</if>
+       	<if test="moSvrRunStatus != null">
+       		mo_svr_run_status = #{moSvrRunStatus},
+       	</if>
+       	<if test="moSvrPortStatus != null">
+       		mo_svr_port_status = #{moSvrPortStatus},
+       	</if>
+       	<if test="moCollectTime != null">
+       		mo_collect_time = #{moCollectTime},
+       	</if>
+        </set>
+        <where>
+        	mo_ip = #{moIp} and
+        	mo_svr_id = #{moSvrId} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_monitor 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_monitor 
+        <set>
+       	<if test="moIp != null">
+       		mo_ip = #{moIp},
+       	</if>
+       	<if test="moSvrId != null">
+       		mo_svr_id = #{moSvrId},
+       	</if>
+       	<if test="moSvrType != null">
+       		mo_svr_type = #{moSvrType},
+       	</if>
+       	<if test="moSvrPath != null">
+       		mo_svr_path = #{moSvrPath},
+       	</if>
+       	<if test="moSvrName != null">
+       		mo_svr_name = #{moSvrName},
+       	</if>
+       	<if test="moSvrPort != null">
+       		mo_svr_port = #{moSvrPort},
+       	</if>
+       	<if test="moSvrRunStatus != null">
+       		mo_svr_run_status = #{moSvrRunStatus},
+       	</if>
+       	<if test="moSvrPortStatus != null">
+       		mo_svr_port_status = #{moSvrPortStatus},
+       	</if>
+       	<if test="moCollectTime != null">
+       		mo_collect_time = #{moCollectTime},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="moIp != null and moIp != ''">
+	 		and mo_ip = #{moIp}
+	 	</if>
+	 	<if test="moSvrId != null and moSvrId != ''">
+	 		and mo_svr_id = #{moSvrId}
+	 	</if>
+	 	<if test="moSvrType != null and moSvrType != ''">
+	 		and mo_svr_type = #{moSvrType}
+	 	</if>
+	 	<if test="moSvrPath != null and moSvrPath != ''">
+	 		and mo_svr_path = #{moSvrPath}
+	 	</if>
+	 	<if test="moSvrName != null and moSvrName != ''">
+	 		and mo_svr_name = #{moSvrName}
+	 	</if>
+	 	<if test="moSvrPort != null and moSvrPort != ''">
+	 		and mo_svr_port = #{moSvrPort}
+	 	</if>
+	 	<if test="moSvrRunStatus != null and moSvrRunStatus != ''">
+	 		and mo_svr_run_status = #{moSvrRunStatus}
+	 	</if>
+	 	<if test="moSvrPortStatus != null and moSvrPortStatus != ''">
+	 		and mo_svr_port_status = #{moSvrPortStatus}
+	 	</if>
+	 	<if test="moCollectTime != null and moCollectTime != ''">
+	 		and mo_collect_time = #{moCollectTime}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="moIp != null and moIp != ''">
+ 			and mo_ip like '%' || #{moIp} || '%'
+ 		</if>
+ 		<if test="moSvrId != null and moSvrId != ''">
+ 			and mo_svr_id like '%' || #{moSvrId} || '%'
+ 		</if>
+ 		<if test="moSvrType != null and moSvrType != ''">
+ 			and mo_svr_type like '%' || #{moSvrType} || '%'
+ 		</if>
+ 		<if test="moSvrPath != null and moSvrPath != ''">
+ 			and mo_svr_path like '%' || #{moSvrPath} || '%'
+ 		</if>
+ 		<if test="moSvrName != null and moSvrName != ''">
+ 			and mo_svr_name like '%' || #{moSvrName} || '%'
+ 		</if>
+ 		<if test="moSvrPort != null and moSvrPort != ''">
+ 			and mo_svr_port like '%' || #{moSvrPort} || '%'
+ 		</if>
+ 		<if test="moSvrRunStatus != null and moSvrRunStatus != ''">
+ 			and mo_svr_run_status like '%' || #{moSvrRunStatus} || '%'
+ 		</if>
+ 		<if test="moSvrPortStatus != null and moSvrPortStatus != ''">
+ 			and mo_svr_port_status like '%' || #{moSvrPortStatus} || '%'
+ 		</if>
+ 		<if test="moCollectTime != null and moCollectTime != ''">
+ 			and mo_collect_time like '%' || #{moCollectTime} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_monitor 
+        <where> 
+        	mo_ip = #{moIp} and
+        	mo_svr_id = #{moSvrId} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbMonitor" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_monitor
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbMonitor" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_monitor 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbMonitor" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_monitor 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_monitor 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbMonitor" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbMonitor" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_monitor 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!--获取监控页面的汇总值-->
+	<select id="selectRunCount" resultType="java.util.Map" flushCache="true">
+        select
+        m.mo_svr_type as mosvrtype,
+        count(1)as allcount,
+        (
+			select count(1)
+			from tb_monitor t
+			where t.mo_svr_type = m.mo_svr_type
+			and t.mo_svr_run_status = '0'
+        ) as runcount
+        from tb_monitor m
+        group by m.mo_svr_type
+
+	</select>
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

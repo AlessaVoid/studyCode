@@ -1,0 +1,1329 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 机构评分季度详情备份表 -->
+<mapper namespace="com.boco.SYS.mapper.TbOrganRateScoreQuarterDetailBackupMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup">
+       	<id column="id" property="id"/>
+     	<result column="ref_id" property="refId"/>
+     	<result column="rate_month" property="rateMonth"/>
+     	<result column="rate_organ" property="rateOrgan"/>
+     	<result column="rate_score_quarter" property="rateScoreQuarter"/>
+     	<result column="rate_rank" property="rateRank"/>
+     	<result column="rate_ratio" property="rateRatio"/>
+     	<result column="rate_level" property="rateLevel"/>
+     	<result column="bad_condition_score_quarter" property="badConditionScoreQuarter"/>
+     	<result column="bad_condition_score_one" property="badConditionScoreOne"/>
+     	<result column="bad_condition_score_two" property="badConditionScoreTwo"/>
+     	<result column="bad_condition_score_three" property="badConditionScoreThree"/>
+     	<result column="deposit_loan_ratio_score_quarter" property="depositLoanRatioScoreQuarter"/>
+     	<result column="deposit_loan_ratio_score_one" property="depositLoanRatioScoreOne"/>
+     	<result column="deposit_loan_ratio_score_two" property="depositLoanRatioScoreTwo"/>
+     	<result column="deposit_loan_ratio_score_three" property="depositLoanRatioScoreThree"/>
+     	<result column="new_loan_ratio_score_quarter" property="newLoanRatioScoreQuarter"/>
+     	<result column="new_loan_ratio_score_one" property="newLoanRatioScoreOne"/>
+     	<result column="new_loan_ratio_score_two" property="newLoanRatioScoreTwo"/>
+     	<result column="new_loan_ratio_score_three" property="newLoanRatioScoreThree"/>
+     	<result column="loan_struct_score_quarter" property="loanStructScoreQuarter"/>
+     	<result column="loan_struct_score_one" property="loanStructScoreOne"/>
+     	<result column="loan_struct_score_two" property="loanStructScoreTwo"/>
+     	<result column="loan_struct_score_three" property="loanStructScoreThree"/>
+     	<result column="scale_amount_score_quarter" property="scaleAmountScoreQuarter"/>
+     	<result column="scale_amount_score_one" property="scaleAmountScoreOne"/>
+     	<result column="scale_amount_score_two" property="scaleAmountScoreTwo"/>
+     	<result column="scale_amount_score_three" property="scaleAmountScoreThree"/>
+     	<result column="plan_submit_deviation_score_quarter" property="planSubmitDeviationScoreQuarter"/>
+     	<result column="plan_submit_deviation_score_one" property="planSubmitDeviationScoreOne"/>
+     	<result column="plan_submit_deviation_score_two" property="planSubmitDeviationScoreTwo"/>
+     	<result column="plan_submit_deviation_score_three" property="planSubmitDeviationScoreThree"/>
+     	<result column="plan_execute_deviation_month_mid_score_quarter" property="planExecuteDeviationMonthMidScoreQuarter"/>
+     	<result column="plan_execute_deviation_month_mid_score_one" property="planExecuteDeviationMonthMidScoreOne"/>
+     	<result column="plan_execute_deviation_month_mid_score_two" property="planExecuteDeviationMonthMidScoreTwo"/>
+     	<result column="plan_execute_deviation_month_mid_score_three" property="planExecuteDeviationMonthMidScoreThree"/>
+     	<result column="plan_execute_deviation_month_init_score_quarter" property="planExecuteDeviationMonthInitScoreQuarter"/>
+     	<result column="plan_execute_deviation_month_init_score_one" property="planExecuteDeviationMonthInitScoreOne"/>
+     	<result column="plan_execute_deviation_month_init_score_two" property="planExecuteDeviationMonthInitScoreTwo"/>
+     	<result column="plan_execute_deviation_month_init_score_three" property="planExecuteDeviationMonthInitScoreThree"/>
+     	<result column="adj_count_score_quarter" property="adjCountScoreQuarter"/>
+     	<result column="adj_count_score_one" property="adjCountScoreOne"/>
+     	<result column="adj_count_score_two" property="adjCountScoreTwo"/>
+     	<result column="adj_count_score_three" property="adjCountScoreThree"/>
+     	<result column="scale_amount_month_count_score_quarter" property="scaleAmountMonthCountScoreQuarter"/>
+     	<result column="scale_amount_month_count" property="scaleAmountMonthCount"/>
+     	<result column="adj_count_month_count_score_quarter" property="adjCountMonthCountScoreQuarter"/>
+     	<result column="adj_count_month_count" property="adjCountMonthCount"/>
+     	<result column="good_idea_score" property="goodIdeaScore"/>
+     	<result column="good_job_score" property="goodJobScore"/>
+     	<result column="create_time" property="createTime"/>
+     	<result column="update_time" property="updateTime"/>
+     	<result column="update_oper" property="updateOper"/>
+     	<result column="add_score" property="addScore"/>
+     	<result column="remark" property="remark"/>
+     	<result column="add_score_quarter" property="addScoreQuarter"/>
+     	<result column="add_score_one" property="addScoreOne"/>
+     	<result column="add_score_two" property="addScoreTwo"/>
+     	<result column="add_score_three" property="addScoreThree"/>
+     	<result column="history_number" property="historyNumber"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,ref_id ,rate_month ,rate_organ ,rate_score_quarter ,rate_rank ,rate_ratio ,rate_level ,bad_condition_score_quarter ,bad_condition_score_one ,bad_condition_score_two ,bad_condition_score_three ,deposit_loan_ratio_score_quarter ,deposit_loan_ratio_score_one ,deposit_loan_ratio_score_two ,deposit_loan_ratio_score_three ,new_loan_ratio_score_quarter ,new_loan_ratio_score_one ,new_loan_ratio_score_two ,new_loan_ratio_score_three ,loan_struct_score_quarter ,loan_struct_score_one ,loan_struct_score_two ,loan_struct_score_three ,scale_amount_score_quarter ,scale_amount_score_one ,scale_amount_score_two ,scale_amount_score_three ,plan_submit_deviation_score_quarter ,plan_submit_deviation_score_one ,plan_submit_deviation_score_two ,plan_submit_deviation_score_three ,plan_execute_deviation_month_mid_score_quarter ,plan_execute_deviation_month_mid_score_one ,plan_execute_deviation_month_mid_score_two ,plan_execute_deviation_month_mid_score_three ,plan_execute_deviation_month_init_score_quarter ,plan_execute_deviation_month_init_score_one ,plan_execute_deviation_month_init_score_two ,plan_execute_deviation_month_init_score_three ,adj_count_score_quarter ,adj_count_score_one ,adj_count_score_two ,adj_count_score_three ,scale_amount_month_count_score_quarter ,scale_amount_month_count ,adj_count_month_count_score_quarter ,adj_count_month_count ,good_idea_score ,good_job_score ,create_time ,update_time ,update_oper ,add_score ,remark ,add_score_quarter ,add_score_one ,add_score_two ,add_score_three ,history_number 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup">
+<!-- 
+	    -->       
+  INSERT INTO tb_organ_rate_score_quarter_detail_backup 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="refId != null">
+	        	ref_id ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	rate_month ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	rate_organ ,
+	       	</if>
+	       	<if test="rateScoreQuarter != null">
+	        	rate_score_quarter ,
+	       	</if>
+	       	<if test="rateRank != null">
+	        	rate_rank ,
+	       	</if>
+	       	<if test="rateRatio != null">
+	        	rate_ratio ,
+	       	</if>
+	       	<if test="rateLevel != null">
+	        	rate_level ,
+	       	</if>
+	       	<if test="badConditionScoreQuarter != null">
+	        	bad_condition_score_quarter ,
+	       	</if>
+	       	<if test="badConditionScoreOne != null">
+	        	bad_condition_score_one ,
+	       	</if>
+	       	<if test="badConditionScoreTwo != null">
+	        	bad_condition_score_two ,
+	       	</if>
+	       	<if test="badConditionScoreThree != null">
+	        	bad_condition_score_three ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreQuarter != null">
+	        	deposit_loan_ratio_score_quarter ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreOne != null">
+	        	deposit_loan_ratio_score_one ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreTwo != null">
+	        	deposit_loan_ratio_score_two ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreThree != null">
+	        	deposit_loan_ratio_score_three ,
+	       	</if>
+	       	<if test="newLoanRatioScoreQuarter != null">
+	        	new_loan_ratio_score_quarter ,
+	       	</if>
+	       	<if test="newLoanRatioScoreOne != null">
+	        	new_loan_ratio_score_one ,
+	       	</if>
+	       	<if test="newLoanRatioScoreTwo != null">
+	        	new_loan_ratio_score_two ,
+	       	</if>
+	       	<if test="newLoanRatioScoreThree != null">
+	        	new_loan_ratio_score_three ,
+	       	</if>
+	       	<if test="loanStructScoreQuarter != null">
+	        	loan_struct_score_quarter ,
+	       	</if>
+	       	<if test="loanStructScoreOne != null">
+	        	loan_struct_score_one ,
+	       	</if>
+	       	<if test="loanStructScoreTwo != null">
+	        	loan_struct_score_two ,
+	       	</if>
+	       	<if test="loanStructScoreThree != null">
+	        	loan_struct_score_three ,
+	       	</if>
+	       	<if test="scaleAmountScoreQuarter != null">
+	        	scale_amount_score_quarter ,
+	       	</if>
+	       	<if test="scaleAmountScoreOne != null">
+	        	scale_amount_score_one ,
+	       	</if>
+	       	<if test="scaleAmountScoreTwo != null">
+	        	scale_amount_score_two ,
+	       	</if>
+	       	<if test="scaleAmountScoreThree != null">
+	        	scale_amount_score_three ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreQuarter != null">
+	        	plan_submit_deviation_score_quarter ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreOne != null">
+	        	plan_submit_deviation_score_one ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreTwo != null">
+	        	plan_submit_deviation_score_two ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreThree != null">
+	        	plan_submit_deviation_score_three ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreQuarter != null">
+	        	plan_execute_deviation_month_mid_score_quarter ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreOne != null">
+	        	plan_execute_deviation_month_mid_score_one ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreTwo != null">
+	        	plan_execute_deviation_month_mid_score_two ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreThree != null">
+	        	plan_execute_deviation_month_mid_score_three ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreQuarter != null">
+	        	plan_execute_deviation_month_init_score_quarter ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreOne != null">
+	        	plan_execute_deviation_month_init_score_one ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreTwo != null">
+	        	plan_execute_deviation_month_init_score_two ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreThree != null">
+	        	plan_execute_deviation_month_init_score_three ,
+	       	</if>
+	       	<if test="adjCountScoreQuarter != null">
+	        	adj_count_score_quarter ,
+	       	</if>
+	       	<if test="adjCountScoreOne != null">
+	        	adj_count_score_one ,
+	       	</if>
+	       	<if test="adjCountScoreTwo != null">
+	        	adj_count_score_two ,
+	       	</if>
+	       	<if test="adjCountScoreThree != null">
+	        	adj_count_score_three ,
+	       	</if>
+	       	<if test="scaleAmountMonthCountScoreQuarter != null">
+	        	scale_amount_month_count_score_quarter ,
+	       	</if>
+	       	<if test="scaleAmountMonthCount != null">
+	        	scale_amount_month_count ,
+	       	</if>
+	       	<if test="adjCountMonthCountScoreQuarter != null">
+	        	adj_count_month_count_score_quarter ,
+	       	</if>
+	       	<if test="adjCountMonthCount != null">
+	        	adj_count_month_count ,
+	       	</if>
+	       	<if test="goodIdeaScore != null">
+	        	good_idea_score ,
+	       	</if>
+	       	<if test="goodJobScore != null">
+	        	good_job_score ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	create_time ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	update_time ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	update_oper ,
+	       	</if>
+	       	<if test="addScore != null">
+	        	add_score ,
+	       	</if>
+	       	<if test="remark != null">
+	        	remark ,
+	       	</if>
+	       	<if test="addScoreQuarter != null">
+	        	add_score_quarter ,
+	       	</if>
+	       	<if test="addScoreOne != null">
+	        	add_score_one ,
+	       	</if>
+	       	<if test="addScoreTwo != null">
+	        	add_score_two ,
+	       	</if>
+	       	<if test="addScoreThree != null">
+	        	add_score_three ,
+	       	</if>
+	       	<if test="historyNumber != null">
+	        	history_number 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="refId != null">
+	        	#{refId} ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	#{rateMonth} ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	#{rateOrgan} ,
+	       	</if>
+	       	<if test="rateScoreQuarter != null">
+	        	#{rateScoreQuarter} ,
+	       	</if>
+	       	<if test="rateRank != null">
+	        	#{rateRank} ,
+	       	</if>
+	       	<if test="rateRatio != null">
+	        	#{rateRatio} ,
+	       	</if>
+	       	<if test="rateLevel != null">
+	        	#{rateLevel} ,
+	       	</if>
+	       	<if test="badConditionScoreQuarter != null">
+	        	#{badConditionScoreQuarter} ,
+	       	</if>
+	       	<if test="badConditionScoreOne != null">
+	        	#{badConditionScoreOne} ,
+	       	</if>
+	       	<if test="badConditionScoreTwo != null">
+	        	#{badConditionScoreTwo} ,
+	       	</if>
+	       	<if test="badConditionScoreThree != null">
+	        	#{badConditionScoreThree} ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreQuarter != null">
+	        	#{depositLoanRatioScoreQuarter} ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreOne != null">
+	        	#{depositLoanRatioScoreOne} ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreTwo != null">
+	        	#{depositLoanRatioScoreTwo} ,
+	       	</if>
+	       	<if test="depositLoanRatioScoreThree != null">
+	        	#{depositLoanRatioScoreThree} ,
+	       	</if>
+	       	<if test="newLoanRatioScoreQuarter != null">
+	        	#{newLoanRatioScoreQuarter} ,
+	       	</if>
+	       	<if test="newLoanRatioScoreOne != null">
+	        	#{newLoanRatioScoreOne} ,
+	       	</if>
+	       	<if test="newLoanRatioScoreTwo != null">
+	        	#{newLoanRatioScoreTwo} ,
+	       	</if>
+	       	<if test="newLoanRatioScoreThree != null">
+	        	#{newLoanRatioScoreThree} ,
+	       	</if>
+	       	<if test="loanStructScoreQuarter != null">
+	        	#{loanStructScoreQuarter} ,
+	       	</if>
+	       	<if test="loanStructScoreOne != null">
+	        	#{loanStructScoreOne} ,
+	       	</if>
+	       	<if test="loanStructScoreTwo != null">
+	        	#{loanStructScoreTwo} ,
+	       	</if>
+	       	<if test="loanStructScoreThree != null">
+	        	#{loanStructScoreThree} ,
+	       	</if>
+	       	<if test="scaleAmountScoreQuarter != null">
+	        	#{scaleAmountScoreQuarter} ,
+	       	</if>
+	       	<if test="scaleAmountScoreOne != null">
+	        	#{scaleAmountScoreOne} ,
+	       	</if>
+	       	<if test="scaleAmountScoreTwo != null">
+	        	#{scaleAmountScoreTwo} ,
+	       	</if>
+	       	<if test="scaleAmountScoreThree != null">
+	        	#{scaleAmountScoreThree} ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreQuarter != null">
+	        	#{planSubmitDeviationScoreQuarter} ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreOne != null">
+	        	#{planSubmitDeviationScoreOne} ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreTwo != null">
+	        	#{planSubmitDeviationScoreTwo} ,
+	       	</if>
+	       	<if test="planSubmitDeviationScoreThree != null">
+	        	#{planSubmitDeviationScoreThree} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreQuarter != null">
+	        	#{planExecuteDeviationMonthMidScoreQuarter} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreOne != null">
+	        	#{planExecuteDeviationMonthMidScoreOne} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreTwo != null">
+	        	#{planExecuteDeviationMonthMidScoreTwo} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScoreThree != null">
+	        	#{planExecuteDeviationMonthMidScoreThree} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreQuarter != null">
+	        	#{planExecuteDeviationMonthInitScoreQuarter} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreOne != null">
+	        	#{planExecuteDeviationMonthInitScoreOne} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreTwo != null">
+	        	#{planExecuteDeviationMonthInitScoreTwo} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScoreThree != null">
+	        	#{planExecuteDeviationMonthInitScoreThree} ,
+	       	</if>
+	       	<if test="adjCountScoreQuarter != null">
+	        	#{adjCountScoreQuarter} ,
+	       	</if>
+	       	<if test="adjCountScoreOne != null">
+	        	#{adjCountScoreOne} ,
+	       	</if>
+	       	<if test="adjCountScoreTwo != null">
+	        	#{adjCountScoreTwo} ,
+	       	</if>
+	       	<if test="adjCountScoreThree != null">
+	        	#{adjCountScoreThree} ,
+	       	</if>
+	       	<if test="scaleAmountMonthCountScoreQuarter != null">
+	        	#{scaleAmountMonthCountScoreQuarter} ,
+	       	</if>
+	       	<if test="scaleAmountMonthCount != null">
+	        	#{scaleAmountMonthCount} ,
+	       	</if>
+	       	<if test="adjCountMonthCountScoreQuarter != null">
+	        	#{adjCountMonthCountScoreQuarter} ,
+	       	</if>
+	       	<if test="adjCountMonthCount != null">
+	        	#{adjCountMonthCount} ,
+	       	</if>
+	       	<if test="goodIdeaScore != null">
+	        	#{goodIdeaScore} ,
+	       	</if>
+	       	<if test="goodJobScore != null">
+	        	#{goodJobScore} ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	#{createTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	#{updateOper} ,
+	       	</if>
+	       	<if test="addScore != null">
+	        	#{addScore} ,
+	       	</if>
+	       	<if test="remark != null">
+	        	#{remark} ,
+	       	</if>
+	       	<if test="addScoreQuarter != null">
+	        	#{addScoreQuarter} ,
+	       	</if>
+	       	<if test="addScoreOne != null">
+	        	#{addScoreOne} ,
+	       	</if>
+	       	<if test="addScoreTwo != null">
+	        	#{addScoreTwo} ,
+	       	</if>
+	       	<if test="addScoreThree != null">
+	        	#{addScoreThree} ,
+	       	</if>
+	       	<if test="historyNumber != null">
+	        	#{historyNumber} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_organ_rate_score_quarter_detail_backup 
+        (id ,ref_id ,rate_month ,rate_organ ,rate_score_quarter ,rate_rank ,rate_ratio ,rate_level ,bad_condition_score_quarter ,bad_condition_score_one ,bad_condition_score_two ,bad_condition_score_three ,deposit_loan_ratio_score_quarter ,deposit_loan_ratio_score_one ,deposit_loan_ratio_score_two ,deposit_loan_ratio_score_three ,new_loan_ratio_score_quarter ,new_loan_ratio_score_one ,new_loan_ratio_score_two ,new_loan_ratio_score_three ,loan_struct_score_quarter ,loan_struct_score_one ,loan_struct_score_two ,loan_struct_score_three ,scale_amount_score_quarter ,scale_amount_score_one ,scale_amount_score_two ,scale_amount_score_three ,plan_submit_deviation_score_quarter ,plan_submit_deviation_score_one ,plan_submit_deviation_score_two ,plan_submit_deviation_score_three ,plan_execute_deviation_month_mid_score_quarter ,plan_execute_deviation_month_mid_score_one ,plan_execute_deviation_month_mid_score_two ,plan_execute_deviation_month_mid_score_three ,plan_execute_deviation_month_init_score_quarter ,plan_execute_deviation_month_init_score_one ,plan_execute_deviation_month_init_score_two ,plan_execute_deviation_month_init_score_three ,adj_count_score_quarter ,adj_count_score_one ,adj_count_score_two ,adj_count_score_three ,scale_amount_month_count_score_quarter ,scale_amount_month_count ,adj_count_month_count_score_quarter ,adj_count_month_count ,good_idea_score ,good_job_score ,create_time ,update_time ,update_oper ,add_score ,remark ,add_score_quarter ,add_score_one ,add_score_two ,add_score_three ,history_number )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.refId,jdbcType=VARCHAR},#{item.rateMonth,jdbcType=VARCHAR},#{item.rateOrgan,jdbcType=VARCHAR},#{item.rateScoreQuarter,jdbcType=VARCHAR},#{item.rateRank,jdbcType=VARCHAR},#{item.rateRatio,jdbcType=VARCHAR},#{item.rateLevel,jdbcType=VARCHAR},#{item.badConditionScoreQuarter,jdbcType=VARCHAR},#{item.badConditionScoreOne,jdbcType=VARCHAR},#{item.badConditionScoreTwo,jdbcType=VARCHAR},#{item.badConditionScoreThree,jdbcType=VARCHAR},#{item.depositLoanRatioScoreQuarter,jdbcType=VARCHAR},#{item.depositLoanRatioScoreOne,jdbcType=VARCHAR},#{item.depositLoanRatioScoreTwo,jdbcType=VARCHAR},#{item.depositLoanRatioScoreThree,jdbcType=VARCHAR},#{item.newLoanRatioScoreQuarter,jdbcType=VARCHAR},#{item.newLoanRatioScoreOne,jdbcType=VARCHAR},#{item.newLoanRatioScoreTwo,jdbcType=VARCHAR},#{item.newLoanRatioScoreThree,jdbcType=VARCHAR},#{item.loanStructScoreQuarter,jdbcType=VARCHAR},#{item.loanStructScoreOne,jdbcType=VARCHAR},#{item.loanStructScoreTwo,jdbcType=VARCHAR},#{item.loanStructScoreThree,jdbcType=VARCHAR},#{item.scaleAmountScoreQuarter,jdbcType=VARCHAR},#{item.scaleAmountScoreOne,jdbcType=VARCHAR},#{item.scaleAmountScoreTwo,jdbcType=VARCHAR},#{item.scaleAmountScoreThree,jdbcType=VARCHAR},#{item.planSubmitDeviationScoreQuarter,jdbcType=VARCHAR},#{item.planSubmitDeviationScoreOne,jdbcType=VARCHAR},#{item.planSubmitDeviationScoreTwo,jdbcType=VARCHAR},#{item.planSubmitDeviationScoreThree,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidScoreQuarter,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidScoreOne,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidScoreTwo,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidScoreThree,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitScoreQuarter,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitScoreOne,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitScoreTwo,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitScoreThree,jdbcType=VARCHAR},#{item.adjCountScoreQuarter,jdbcType=VARCHAR},#{item.adjCountScoreOne,jdbcType=VARCHAR},#{item.adjCountScoreTwo,jdbcType=VARCHAR},#{item.adjCountScoreThree,jdbcType=VARCHAR},#{item.scaleAmountMonthCountScoreQuarter,jdbcType=VARCHAR},#{item.scaleAmountMonthCount,jdbcType=VARCHAR},#{item.adjCountMonthCountScoreQuarter,jdbcType=VARCHAR},#{item.adjCountMonthCount,jdbcType=VARCHAR},#{item.goodIdeaScore,jdbcType=VARCHAR},#{item.goodJobScore,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR},#{item.addScore,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.addScoreQuarter,jdbcType=VARCHAR},#{item.addScoreOne,jdbcType=VARCHAR},#{item.addScoreTwo,jdbcType=VARCHAR},#{item.addScoreThree,jdbcType=VARCHAR},#{item.historyNumber,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_quarter_detail_backup 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_quarter_detail_backup 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_organ_rate_score_quarter_detail_backup 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_quarter_detail_backup
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup">
+        UPDATE tb_organ_rate_score_quarter_detail_backup 
+        <set>
+       	<if test="refId != null">
+       		ref_id = #{refId},
+       	</if>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateScoreQuarter != null">
+       		rate_score_quarter = #{rateScoreQuarter},
+       	</if>
+       	<if test="rateRank != null">
+       		rate_rank = #{rateRank},
+       	</if>
+       	<if test="rateRatio != null">
+       		rate_ratio = #{rateRatio},
+       	</if>
+       	<if test="rateLevel != null">
+       		rate_level = #{rateLevel},
+       	</if>
+       	<if test="badConditionScoreQuarter != null">
+       		bad_condition_score_quarter = #{badConditionScoreQuarter},
+       	</if>
+       	<if test="badConditionScoreOne != null">
+       		bad_condition_score_one = #{badConditionScoreOne},
+       	</if>
+       	<if test="badConditionScoreTwo != null">
+       		bad_condition_score_two = #{badConditionScoreTwo},
+       	</if>
+       	<if test="badConditionScoreThree != null">
+       		bad_condition_score_three = #{badConditionScoreThree},
+       	</if>
+       	<if test="depositLoanRatioScoreQuarter != null">
+       		deposit_loan_ratio_score_quarter = #{depositLoanRatioScoreQuarter},
+       	</if>
+       	<if test="depositLoanRatioScoreOne != null">
+       		deposit_loan_ratio_score_one = #{depositLoanRatioScoreOne},
+       	</if>
+       	<if test="depositLoanRatioScoreTwo != null">
+       		deposit_loan_ratio_score_two = #{depositLoanRatioScoreTwo},
+       	</if>
+       	<if test="depositLoanRatioScoreThree != null">
+       		deposit_loan_ratio_score_three = #{depositLoanRatioScoreThree},
+       	</if>
+       	<if test="newLoanRatioScoreQuarter != null">
+       		new_loan_ratio_score_quarter = #{newLoanRatioScoreQuarter},
+       	</if>
+       	<if test="newLoanRatioScoreOne != null">
+       		new_loan_ratio_score_one = #{newLoanRatioScoreOne},
+       	</if>
+       	<if test="newLoanRatioScoreTwo != null">
+       		new_loan_ratio_score_two = #{newLoanRatioScoreTwo},
+       	</if>
+       	<if test="newLoanRatioScoreThree != null">
+       		new_loan_ratio_score_three = #{newLoanRatioScoreThree},
+       	</if>
+       	<if test="loanStructScoreQuarter != null">
+       		loan_struct_score_quarter = #{loanStructScoreQuarter},
+       	</if>
+       	<if test="loanStructScoreOne != null">
+       		loan_struct_score_one = #{loanStructScoreOne},
+       	</if>
+       	<if test="loanStructScoreTwo != null">
+       		loan_struct_score_two = #{loanStructScoreTwo},
+       	</if>
+       	<if test="loanStructScoreThree != null">
+       		loan_struct_score_three = #{loanStructScoreThree},
+       	</if>
+       	<if test="scaleAmountScoreQuarter != null">
+       		scale_amount_score_quarter = #{scaleAmountScoreQuarter},
+       	</if>
+       	<if test="scaleAmountScoreOne != null">
+       		scale_amount_score_one = #{scaleAmountScoreOne},
+       	</if>
+       	<if test="scaleAmountScoreTwo != null">
+       		scale_amount_score_two = #{scaleAmountScoreTwo},
+       	</if>
+       	<if test="scaleAmountScoreThree != null">
+       		scale_amount_score_three = #{scaleAmountScoreThree},
+       	</if>
+       	<if test="planSubmitDeviationScoreQuarter != null">
+       		plan_submit_deviation_score_quarter = #{planSubmitDeviationScoreQuarter},
+       	</if>
+       	<if test="planSubmitDeviationScoreOne != null">
+       		plan_submit_deviation_score_one = #{planSubmitDeviationScoreOne},
+       	</if>
+       	<if test="planSubmitDeviationScoreTwo != null">
+       		plan_submit_deviation_score_two = #{planSubmitDeviationScoreTwo},
+       	</if>
+       	<if test="planSubmitDeviationScoreThree != null">
+       		plan_submit_deviation_score_three = #{planSubmitDeviationScoreThree},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreQuarter != null">
+       		plan_execute_deviation_month_mid_score_quarter = #{planExecuteDeviationMonthMidScoreQuarter},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreOne != null">
+       		plan_execute_deviation_month_mid_score_one = #{planExecuteDeviationMonthMidScoreOne},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreTwo != null">
+       		plan_execute_deviation_month_mid_score_two = #{planExecuteDeviationMonthMidScoreTwo},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreThree != null">
+       		plan_execute_deviation_month_mid_score_three = #{planExecuteDeviationMonthMidScoreThree},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreQuarter != null">
+       		plan_execute_deviation_month_init_score_quarter = #{planExecuteDeviationMonthInitScoreQuarter},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreOne != null">
+       		plan_execute_deviation_month_init_score_one = #{planExecuteDeviationMonthInitScoreOne},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreTwo != null">
+       		plan_execute_deviation_month_init_score_two = #{planExecuteDeviationMonthInitScoreTwo},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreThree != null">
+       		plan_execute_deviation_month_init_score_three = #{planExecuteDeviationMonthInitScoreThree},
+       	</if>
+       	<if test="adjCountScoreQuarter != null">
+       		adj_count_score_quarter = #{adjCountScoreQuarter},
+       	</if>
+       	<if test="adjCountScoreOne != null">
+       		adj_count_score_one = #{adjCountScoreOne},
+       	</if>
+       	<if test="adjCountScoreTwo != null">
+       		adj_count_score_two = #{adjCountScoreTwo},
+       	</if>
+       	<if test="adjCountScoreThree != null">
+       		adj_count_score_three = #{adjCountScoreThree},
+       	</if>
+       	<if test="scaleAmountMonthCountScoreQuarter != null">
+       		scale_amount_month_count_score_quarter = #{scaleAmountMonthCountScoreQuarter},
+       	</if>
+       	<if test="scaleAmountMonthCount != null">
+       		scale_amount_month_count = #{scaleAmountMonthCount},
+       	</if>
+       	<if test="adjCountMonthCountScoreQuarter != null">
+       		adj_count_month_count_score_quarter = #{adjCountMonthCountScoreQuarter},
+       	</if>
+       	<if test="adjCountMonthCount != null">
+       		adj_count_month_count = #{adjCountMonthCount},
+       	</if>
+       	<if test="goodIdeaScore != null">
+       		good_idea_score = #{goodIdeaScore},
+       	</if>
+       	<if test="goodJobScore != null">
+       		good_job_score = #{goodJobScore},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="addScore != null">
+       		add_score = #{addScore},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+       	<if test="addScoreQuarter != null">
+       		add_score_quarter = #{addScoreQuarter},
+       	</if>
+       	<if test="addScoreOne != null">
+       		add_score_one = #{addScoreOne},
+       	</if>
+       	<if test="addScoreTwo != null">
+       		add_score_two = #{addScoreTwo},
+       	</if>
+       	<if test="addScoreThree != null">
+       		add_score_three = #{addScoreThree},
+       	</if>
+       	<if test="historyNumber != null">
+       		history_number = #{historyNumber},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_organ_rate_score_quarter_detail_backup 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_organ_rate_score_quarter_detail_backup 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="refId != null">
+       		ref_id = #{refId},
+       	</if>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateScoreQuarter != null">
+       		rate_score_quarter = #{rateScoreQuarter},
+       	</if>
+       	<if test="rateRank != null">
+       		rate_rank = #{rateRank},
+       	</if>
+       	<if test="rateRatio != null">
+       		rate_ratio = #{rateRatio},
+       	</if>
+       	<if test="rateLevel != null">
+       		rate_level = #{rateLevel},
+       	</if>
+       	<if test="badConditionScoreQuarter != null">
+       		bad_condition_score_quarter = #{badConditionScoreQuarter},
+       	</if>
+       	<if test="badConditionScoreOne != null">
+       		bad_condition_score_one = #{badConditionScoreOne},
+       	</if>
+       	<if test="badConditionScoreTwo != null">
+       		bad_condition_score_two = #{badConditionScoreTwo},
+       	</if>
+       	<if test="badConditionScoreThree != null">
+       		bad_condition_score_three = #{badConditionScoreThree},
+       	</if>
+       	<if test="depositLoanRatioScoreQuarter != null">
+       		deposit_loan_ratio_score_quarter = #{depositLoanRatioScoreQuarter},
+       	</if>
+       	<if test="depositLoanRatioScoreOne != null">
+       		deposit_loan_ratio_score_one = #{depositLoanRatioScoreOne},
+       	</if>
+       	<if test="depositLoanRatioScoreTwo != null">
+       		deposit_loan_ratio_score_two = #{depositLoanRatioScoreTwo},
+       	</if>
+       	<if test="depositLoanRatioScoreThree != null">
+       		deposit_loan_ratio_score_three = #{depositLoanRatioScoreThree},
+       	</if>
+       	<if test="newLoanRatioScoreQuarter != null">
+       		new_loan_ratio_score_quarter = #{newLoanRatioScoreQuarter},
+       	</if>
+       	<if test="newLoanRatioScoreOne != null">
+       		new_loan_ratio_score_one = #{newLoanRatioScoreOne},
+       	</if>
+       	<if test="newLoanRatioScoreTwo != null">
+       		new_loan_ratio_score_two = #{newLoanRatioScoreTwo},
+       	</if>
+       	<if test="newLoanRatioScoreThree != null">
+       		new_loan_ratio_score_three = #{newLoanRatioScoreThree},
+       	</if>
+       	<if test="loanStructScoreQuarter != null">
+       		loan_struct_score_quarter = #{loanStructScoreQuarter},
+       	</if>
+       	<if test="loanStructScoreOne != null">
+       		loan_struct_score_one = #{loanStructScoreOne},
+       	</if>
+       	<if test="loanStructScoreTwo != null">
+       		loan_struct_score_two = #{loanStructScoreTwo},
+       	</if>
+       	<if test="loanStructScoreThree != null">
+       		loan_struct_score_three = #{loanStructScoreThree},
+       	</if>
+       	<if test="scaleAmountScoreQuarter != null">
+       		scale_amount_score_quarter = #{scaleAmountScoreQuarter},
+       	</if>
+       	<if test="scaleAmountScoreOne != null">
+       		scale_amount_score_one = #{scaleAmountScoreOne},
+       	</if>
+       	<if test="scaleAmountScoreTwo != null">
+       		scale_amount_score_two = #{scaleAmountScoreTwo},
+       	</if>
+       	<if test="scaleAmountScoreThree != null">
+       		scale_amount_score_three = #{scaleAmountScoreThree},
+       	</if>
+       	<if test="planSubmitDeviationScoreQuarter != null">
+       		plan_submit_deviation_score_quarter = #{planSubmitDeviationScoreQuarter},
+       	</if>
+       	<if test="planSubmitDeviationScoreOne != null">
+       		plan_submit_deviation_score_one = #{planSubmitDeviationScoreOne},
+       	</if>
+       	<if test="planSubmitDeviationScoreTwo != null">
+       		plan_submit_deviation_score_two = #{planSubmitDeviationScoreTwo},
+       	</if>
+       	<if test="planSubmitDeviationScoreThree != null">
+       		plan_submit_deviation_score_three = #{planSubmitDeviationScoreThree},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreQuarter != null">
+       		plan_execute_deviation_month_mid_score_quarter = #{planExecuteDeviationMonthMidScoreQuarter},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreOne != null">
+       		plan_execute_deviation_month_mid_score_one = #{planExecuteDeviationMonthMidScoreOne},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreTwo != null">
+       		plan_execute_deviation_month_mid_score_two = #{planExecuteDeviationMonthMidScoreTwo},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScoreThree != null">
+       		plan_execute_deviation_month_mid_score_three = #{planExecuteDeviationMonthMidScoreThree},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreQuarter != null">
+       		plan_execute_deviation_month_init_score_quarter = #{planExecuteDeviationMonthInitScoreQuarter},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreOne != null">
+       		plan_execute_deviation_month_init_score_one = #{planExecuteDeviationMonthInitScoreOne},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreTwo != null">
+       		plan_execute_deviation_month_init_score_two = #{planExecuteDeviationMonthInitScoreTwo},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScoreThree != null">
+       		plan_execute_deviation_month_init_score_three = #{planExecuteDeviationMonthInitScoreThree},
+       	</if>
+       	<if test="adjCountScoreQuarter != null">
+       		adj_count_score_quarter = #{adjCountScoreQuarter},
+       	</if>
+       	<if test="adjCountScoreOne != null">
+       		adj_count_score_one = #{adjCountScoreOne},
+       	</if>
+       	<if test="adjCountScoreTwo != null">
+       		adj_count_score_two = #{adjCountScoreTwo},
+       	</if>
+       	<if test="adjCountScoreThree != null">
+       		adj_count_score_three = #{adjCountScoreThree},
+       	</if>
+       	<if test="scaleAmountMonthCountScoreQuarter != null">
+       		scale_amount_month_count_score_quarter = #{scaleAmountMonthCountScoreQuarter},
+       	</if>
+       	<if test="scaleAmountMonthCount != null">
+       		scale_amount_month_count = #{scaleAmountMonthCount},
+       	</if>
+       	<if test="adjCountMonthCountScoreQuarter != null">
+       		adj_count_month_count_score_quarter = #{adjCountMonthCountScoreQuarter},
+       	</if>
+       	<if test="adjCountMonthCount != null">
+       		adj_count_month_count = #{adjCountMonthCount},
+       	</if>
+       	<if test="goodIdeaScore != null">
+       		good_idea_score = #{goodIdeaScore},
+       	</if>
+       	<if test="goodJobScore != null">
+       		good_job_score = #{goodJobScore},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="addScore != null">
+       		add_score = #{addScore},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+       	<if test="addScoreQuarter != null">
+       		add_score_quarter = #{addScoreQuarter},
+       	</if>
+       	<if test="addScoreOne != null">
+       		add_score_one = #{addScoreOne},
+       	</if>
+       	<if test="addScoreTwo != null">
+       		add_score_two = #{addScoreTwo},
+       	</if>
+       	<if test="addScoreThree != null">
+       		add_score_three = #{addScoreThree},
+       	</if>
+       	<if test="historyNumber != null">
+       		history_number = #{historyNumber},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="refId != null and refId != ''">
+	 		and ref_id = #{refId}
+	 	</if>
+	 	<if test="rateMonth != null and rateMonth != ''">
+	 		and rate_month = #{rateMonth}
+	 	</if>
+	 	<if test="rateOrgan != null and rateOrgan != ''">
+	 		and rate_organ = #{rateOrgan}
+	 	</if>
+	 	<if test="rateScoreQuarter != null and rateScoreQuarter != ''">
+	 		and rate_score_quarter = #{rateScoreQuarter}
+	 	</if>
+	 	<if test="rateRank != null and rateRank != ''">
+	 		and rate_rank = #{rateRank}
+	 	</if>
+	 	<if test="rateRatio != null and rateRatio != ''">
+	 		and rate_ratio = #{rateRatio}
+	 	</if>
+	 	<if test="rateLevel != null and rateLevel != ''">
+	 		and rate_level = #{rateLevel}
+	 	</if>
+	 	<if test="badConditionScoreQuarter != null and badConditionScoreQuarter != ''">
+	 		and bad_condition_score_quarter = #{badConditionScoreQuarter}
+	 	</if>
+	 	<if test="badConditionScoreOne != null and badConditionScoreOne != ''">
+	 		and bad_condition_score_one = #{badConditionScoreOne}
+	 	</if>
+	 	<if test="badConditionScoreTwo != null and badConditionScoreTwo != ''">
+	 		and bad_condition_score_two = #{badConditionScoreTwo}
+	 	</if>
+	 	<if test="badConditionScoreThree != null and badConditionScoreThree != ''">
+	 		and bad_condition_score_three = #{badConditionScoreThree}
+	 	</if>
+	 	<if test="depositLoanRatioScoreQuarter != null and depositLoanRatioScoreQuarter != ''">
+	 		and deposit_loan_ratio_score_quarter = #{depositLoanRatioScoreQuarter}
+	 	</if>
+	 	<if test="depositLoanRatioScoreOne != null and depositLoanRatioScoreOne != ''">
+	 		and deposit_loan_ratio_score_one = #{depositLoanRatioScoreOne}
+	 	</if>
+	 	<if test="depositLoanRatioScoreTwo != null and depositLoanRatioScoreTwo != ''">
+	 		and deposit_loan_ratio_score_two = #{depositLoanRatioScoreTwo}
+	 	</if>
+	 	<if test="depositLoanRatioScoreThree != null and depositLoanRatioScoreThree != ''">
+	 		and deposit_loan_ratio_score_three = #{depositLoanRatioScoreThree}
+	 	</if>
+	 	<if test="newLoanRatioScoreQuarter != null and newLoanRatioScoreQuarter != ''">
+	 		and new_loan_ratio_score_quarter = #{newLoanRatioScoreQuarter}
+	 	</if>
+	 	<if test="newLoanRatioScoreOne != null and newLoanRatioScoreOne != ''">
+	 		and new_loan_ratio_score_one = #{newLoanRatioScoreOne}
+	 	</if>
+	 	<if test="newLoanRatioScoreTwo != null and newLoanRatioScoreTwo != ''">
+	 		and new_loan_ratio_score_two = #{newLoanRatioScoreTwo}
+	 	</if>
+	 	<if test="newLoanRatioScoreThree != null and newLoanRatioScoreThree != ''">
+	 		and new_loan_ratio_score_three = #{newLoanRatioScoreThree}
+	 	</if>
+	 	<if test="loanStructScoreQuarter != null and loanStructScoreQuarter != ''">
+	 		and loan_struct_score_quarter = #{loanStructScoreQuarter}
+	 	</if>
+	 	<if test="loanStructScoreOne != null and loanStructScoreOne != ''">
+	 		and loan_struct_score_one = #{loanStructScoreOne}
+	 	</if>
+	 	<if test="loanStructScoreTwo != null and loanStructScoreTwo != ''">
+	 		and loan_struct_score_two = #{loanStructScoreTwo}
+	 	</if>
+	 	<if test="loanStructScoreThree != null and loanStructScoreThree != ''">
+	 		and loan_struct_score_three = #{loanStructScoreThree}
+	 	</if>
+	 	<if test="scaleAmountScoreQuarter != null and scaleAmountScoreQuarter != ''">
+	 		and scale_amount_score_quarter = #{scaleAmountScoreQuarter}
+	 	</if>
+	 	<if test="scaleAmountScoreOne != null and scaleAmountScoreOne != ''">
+	 		and scale_amount_score_one = #{scaleAmountScoreOne}
+	 	</if>
+	 	<if test="scaleAmountScoreTwo != null and scaleAmountScoreTwo != ''">
+	 		and scale_amount_score_two = #{scaleAmountScoreTwo}
+	 	</if>
+	 	<if test="scaleAmountScoreThree != null and scaleAmountScoreThree != ''">
+	 		and scale_amount_score_three = #{scaleAmountScoreThree}
+	 	</if>
+	 	<if test="planSubmitDeviationScoreQuarter != null and planSubmitDeviationScoreQuarter != ''">
+	 		and plan_submit_deviation_score_quarter = #{planSubmitDeviationScoreQuarter}
+	 	</if>
+	 	<if test="planSubmitDeviationScoreOne != null and planSubmitDeviationScoreOne != ''">
+	 		and plan_submit_deviation_score_one = #{planSubmitDeviationScoreOne}
+	 	</if>
+	 	<if test="planSubmitDeviationScoreTwo != null and planSubmitDeviationScoreTwo != ''">
+	 		and plan_submit_deviation_score_two = #{planSubmitDeviationScoreTwo}
+	 	</if>
+	 	<if test="planSubmitDeviationScoreThree != null and planSubmitDeviationScoreThree != ''">
+	 		and plan_submit_deviation_score_three = #{planSubmitDeviationScoreThree}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidScoreQuarter != null and planExecuteDeviationMonthMidScoreQuarter != ''">
+	 		and plan_execute_deviation_month_mid_score_quarter = #{planExecuteDeviationMonthMidScoreQuarter}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidScoreOne != null and planExecuteDeviationMonthMidScoreOne != ''">
+	 		and plan_execute_deviation_month_mid_score_one = #{planExecuteDeviationMonthMidScoreOne}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidScoreTwo != null and planExecuteDeviationMonthMidScoreTwo != ''">
+	 		and plan_execute_deviation_month_mid_score_two = #{planExecuteDeviationMonthMidScoreTwo}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidScoreThree != null and planExecuteDeviationMonthMidScoreThree != ''">
+	 		and plan_execute_deviation_month_mid_score_three = #{planExecuteDeviationMonthMidScoreThree}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitScoreQuarter != null and planExecuteDeviationMonthInitScoreQuarter != ''">
+	 		and plan_execute_deviation_month_init_score_quarter = #{planExecuteDeviationMonthInitScoreQuarter}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitScoreOne != null and planExecuteDeviationMonthInitScoreOne != ''">
+	 		and plan_execute_deviation_month_init_score_one = #{planExecuteDeviationMonthInitScoreOne}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitScoreTwo != null and planExecuteDeviationMonthInitScoreTwo != ''">
+	 		and plan_execute_deviation_month_init_score_two = #{planExecuteDeviationMonthInitScoreTwo}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitScoreThree != null and planExecuteDeviationMonthInitScoreThree != ''">
+	 		and plan_execute_deviation_month_init_score_three = #{planExecuteDeviationMonthInitScoreThree}
+	 	</if>
+	 	<if test="adjCountScoreQuarter != null and adjCountScoreQuarter != ''">
+	 		and adj_count_score_quarter = #{adjCountScoreQuarter}
+	 	</if>
+	 	<if test="adjCountScoreOne != null and adjCountScoreOne != ''">
+	 		and adj_count_score_one = #{adjCountScoreOne}
+	 	</if>
+	 	<if test="adjCountScoreTwo != null and adjCountScoreTwo != ''">
+	 		and adj_count_score_two = #{adjCountScoreTwo}
+	 	</if>
+	 	<if test="adjCountScoreThree != null and adjCountScoreThree != ''">
+	 		and adj_count_score_three = #{adjCountScoreThree}
+	 	</if>
+	 	<if test="scaleAmountMonthCountScoreQuarter != null and scaleAmountMonthCountScoreQuarter != ''">
+	 		and scale_amount_month_count_score_quarter = #{scaleAmountMonthCountScoreQuarter}
+	 	</if>
+	 	<if test="scaleAmountMonthCount != null and scaleAmountMonthCount != ''">
+	 		and scale_amount_month_count = #{scaleAmountMonthCount}
+	 	</if>
+	 	<if test="adjCountMonthCountScoreQuarter != null and adjCountMonthCountScoreQuarter != ''">
+	 		and adj_count_month_count_score_quarter = #{adjCountMonthCountScoreQuarter}
+	 	</if>
+	 	<if test="adjCountMonthCount != null and adjCountMonthCount != ''">
+	 		and adj_count_month_count = #{adjCountMonthCount}
+	 	</if>
+	 	<if test="goodIdeaScore != null and goodIdeaScore != ''">
+	 		and good_idea_score = #{goodIdeaScore}
+	 	</if>
+	 	<if test="goodJobScore != null and goodJobScore != ''">
+	 		and good_job_score = #{goodJobScore}
+	 	</if>
+	 	<if test="createTime != null and createTime != ''">
+	 		and create_time = #{createTime}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and update_time = #{updateTime}
+	 	</if>
+	 	<if test="updateOper != null and updateOper != ''">
+	 		and update_oper = #{updateOper}
+	 	</if>
+	 	<if test="addScore != null and addScore != ''">
+	 		and add_score = #{addScore}
+	 	</if>
+	 	<if test="remark != null and remark != ''">
+	 		and remark = #{remark}
+	 	</if>
+	 	<if test="addScoreQuarter != null and addScoreQuarter != ''">
+	 		and add_score_quarter = #{addScoreQuarter}
+	 	</if>
+	 	<if test="addScoreOne != null and addScoreOne != ''">
+	 		and add_score_one = #{addScoreOne}
+	 	</if>
+	 	<if test="addScoreTwo != null and addScoreTwo != ''">
+	 		and add_score_two = #{addScoreTwo}
+	 	</if>
+	 	<if test="addScoreThree != null and addScoreThree != ''">
+	 		and add_score_three = #{addScoreThree}
+	 	</if>
+	 	<if test="historyNumber != null and historyNumber != ''">
+	 		and history_number = #{historyNumber}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="refId != null and refId != ''">
+ 			and ref_id like '%' || #{refId} || '%'
+ 		</if>
+ 		<if test="rateMonth != null and rateMonth != ''">
+ 			and rate_month like '%' || #{rateMonth} || '%'
+ 		</if>
+ 		<if test="rateOrgan != null and rateOrgan != ''">
+ 			and rate_organ like '%' || #{rateOrgan} || '%'
+ 		</if>
+ 		<if test="rateScoreQuarter != null and rateScoreQuarter != ''">
+ 			and rate_score_quarter like '%' || #{rateScoreQuarter} || '%'
+ 		</if>
+ 		<if test="rateRank != null and rateRank != ''">
+ 			and rate_rank like '%' || #{rateRank} || '%'
+ 		</if>
+ 		<if test="rateRatio != null and rateRatio != ''">
+ 			and rate_ratio like '%' || #{rateRatio} || '%'
+ 		</if>
+ 		<if test="rateLevel != null and rateLevel != ''">
+ 			and rate_level like '%' || #{rateLevel} || '%'
+ 		</if>
+ 		<if test="badConditionScoreQuarter != null and badConditionScoreQuarter != ''">
+ 			and bad_condition_score_quarter like '%' || #{badConditionScoreQuarter} || '%'
+ 		</if>
+ 		<if test="badConditionScoreOne != null and badConditionScoreOne != ''">
+ 			and bad_condition_score_one like '%' || #{badConditionScoreOne} || '%'
+ 		</if>
+ 		<if test="badConditionScoreTwo != null and badConditionScoreTwo != ''">
+ 			and bad_condition_score_two like '%' || #{badConditionScoreTwo} || '%'
+ 		</if>
+ 		<if test="badConditionScoreThree != null and badConditionScoreThree != ''">
+ 			and bad_condition_score_three like '%' || #{badConditionScoreThree} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioScoreQuarter != null and depositLoanRatioScoreQuarter != ''">
+ 			and deposit_loan_ratio_score_quarter like '%' || #{depositLoanRatioScoreQuarter} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioScoreOne != null and depositLoanRatioScoreOne != ''">
+ 			and deposit_loan_ratio_score_one like '%' || #{depositLoanRatioScoreOne} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioScoreTwo != null and depositLoanRatioScoreTwo != ''">
+ 			and deposit_loan_ratio_score_two like '%' || #{depositLoanRatioScoreTwo} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioScoreThree != null and depositLoanRatioScoreThree != ''">
+ 			and deposit_loan_ratio_score_three like '%' || #{depositLoanRatioScoreThree} || '%'
+ 		</if>
+ 		<if test="newLoanRatioScoreQuarter != null and newLoanRatioScoreQuarter != ''">
+ 			and new_loan_ratio_score_quarter like '%' || #{newLoanRatioScoreQuarter} || '%'
+ 		</if>
+ 		<if test="newLoanRatioScoreOne != null and newLoanRatioScoreOne != ''">
+ 			and new_loan_ratio_score_one like '%' || #{newLoanRatioScoreOne} || '%'
+ 		</if>
+ 		<if test="newLoanRatioScoreTwo != null and newLoanRatioScoreTwo != ''">
+ 			and new_loan_ratio_score_two like '%' || #{newLoanRatioScoreTwo} || '%'
+ 		</if>
+ 		<if test="newLoanRatioScoreThree != null and newLoanRatioScoreThree != ''">
+ 			and new_loan_ratio_score_three like '%' || #{newLoanRatioScoreThree} || '%'
+ 		</if>
+ 		<if test="loanStructScoreQuarter != null and loanStructScoreQuarter != ''">
+ 			and loan_struct_score_quarter like '%' || #{loanStructScoreQuarter} || '%'
+ 		</if>
+ 		<if test="loanStructScoreOne != null and loanStructScoreOne != ''">
+ 			and loan_struct_score_one like '%' || #{loanStructScoreOne} || '%'
+ 		</if>
+ 		<if test="loanStructScoreTwo != null and loanStructScoreTwo != ''">
+ 			and loan_struct_score_two like '%' || #{loanStructScoreTwo} || '%'
+ 		</if>
+ 		<if test="loanStructScoreThree != null and loanStructScoreThree != ''">
+ 			and loan_struct_score_three like '%' || #{loanStructScoreThree} || '%'
+ 		</if>
+ 		<if test="scaleAmountScoreQuarter != null and scaleAmountScoreQuarter != ''">
+ 			and scale_amount_score_quarter like '%' || #{scaleAmountScoreQuarter} || '%'
+ 		</if>
+ 		<if test="scaleAmountScoreOne != null and scaleAmountScoreOne != ''">
+ 			and scale_amount_score_one like '%' || #{scaleAmountScoreOne} || '%'
+ 		</if>
+ 		<if test="scaleAmountScoreTwo != null and scaleAmountScoreTwo != ''">
+ 			and scale_amount_score_two like '%' || #{scaleAmountScoreTwo} || '%'
+ 		</if>
+ 		<if test="scaleAmountScoreThree != null and scaleAmountScoreThree != ''">
+ 			and scale_amount_score_three like '%' || #{scaleAmountScoreThree} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationScoreQuarter != null and planSubmitDeviationScoreQuarter != ''">
+ 			and plan_submit_deviation_score_quarter like '%' || #{planSubmitDeviationScoreQuarter} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationScoreOne != null and planSubmitDeviationScoreOne != ''">
+ 			and plan_submit_deviation_score_one like '%' || #{planSubmitDeviationScoreOne} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationScoreTwo != null and planSubmitDeviationScoreTwo != ''">
+ 			and plan_submit_deviation_score_two like '%' || #{planSubmitDeviationScoreTwo} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationScoreThree != null and planSubmitDeviationScoreThree != ''">
+ 			and plan_submit_deviation_score_three like '%' || #{planSubmitDeviationScoreThree} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidScoreQuarter != null and planExecuteDeviationMonthMidScoreQuarter != ''">
+ 			and plan_execute_deviation_month_mid_score_quarter like '%' || #{planExecuteDeviationMonthMidScoreQuarter} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidScoreOne != null and planExecuteDeviationMonthMidScoreOne != ''">
+ 			and plan_execute_deviation_month_mid_score_one like '%' || #{planExecuteDeviationMonthMidScoreOne} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidScoreTwo != null and planExecuteDeviationMonthMidScoreTwo != ''">
+ 			and plan_execute_deviation_month_mid_score_two like '%' || #{planExecuteDeviationMonthMidScoreTwo} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidScoreThree != null and planExecuteDeviationMonthMidScoreThree != ''">
+ 			and plan_execute_deviation_month_mid_score_three like '%' || #{planExecuteDeviationMonthMidScoreThree} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitScoreQuarter != null and planExecuteDeviationMonthInitScoreQuarter != ''">
+ 			and plan_execute_deviation_month_init_score_quarter like '%' || #{planExecuteDeviationMonthInitScoreQuarter} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitScoreOne != null and planExecuteDeviationMonthInitScoreOne != ''">
+ 			and plan_execute_deviation_month_init_score_one like '%' || #{planExecuteDeviationMonthInitScoreOne} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitScoreTwo != null and planExecuteDeviationMonthInitScoreTwo != ''">
+ 			and plan_execute_deviation_month_init_score_two like '%' || #{planExecuteDeviationMonthInitScoreTwo} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitScoreThree != null and planExecuteDeviationMonthInitScoreThree != ''">
+ 			and plan_execute_deviation_month_init_score_three like '%' || #{planExecuteDeviationMonthInitScoreThree} || '%'
+ 		</if>
+ 		<if test="adjCountScoreQuarter != null and adjCountScoreQuarter != ''">
+ 			and adj_count_score_quarter like '%' || #{adjCountScoreQuarter} || '%'
+ 		</if>
+ 		<if test="adjCountScoreOne != null and adjCountScoreOne != ''">
+ 			and adj_count_score_one like '%' || #{adjCountScoreOne} || '%'
+ 		</if>
+ 		<if test="adjCountScoreTwo != null and adjCountScoreTwo != ''">
+ 			and adj_count_score_two like '%' || #{adjCountScoreTwo} || '%'
+ 		</if>
+ 		<if test="adjCountScoreThree != null and adjCountScoreThree != ''">
+ 			and adj_count_score_three like '%' || #{adjCountScoreThree} || '%'
+ 		</if>
+ 		<if test="scaleAmountMonthCountScoreQuarter != null and scaleAmountMonthCountScoreQuarter != ''">
+ 			and scale_amount_month_count_score_quarter like '%' || #{scaleAmountMonthCountScoreQuarter} || '%'
+ 		</if>
+ 		<if test="scaleAmountMonthCount != null and scaleAmountMonthCount != ''">
+ 			and scale_amount_month_count like '%' || #{scaleAmountMonthCount} || '%'
+ 		</if>
+ 		<if test="adjCountMonthCountScoreQuarter != null and adjCountMonthCountScoreQuarter != ''">
+ 			and adj_count_month_count_score_quarter like '%' || #{adjCountMonthCountScoreQuarter} || '%'
+ 		</if>
+ 		<if test="adjCountMonthCount != null and adjCountMonthCount != ''">
+ 			and adj_count_month_count like '%' || #{adjCountMonthCount} || '%'
+ 		</if>
+ 		<if test="goodIdeaScore != null and goodIdeaScore != ''">
+ 			and good_idea_score like '%' || #{goodIdeaScore} || '%'
+ 		</if>
+ 		<if test="goodJobScore != null and goodJobScore != ''">
+ 			and good_job_score like '%' || #{goodJobScore} || '%'
+ 		</if>
+ 		<if test="createTime != null and createTime != ''">
+ 			and create_time like '%' || #{createTime} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and update_time like '%' || #{updateTime} || '%'
+ 		</if>
+ 		<if test="updateOper != null and updateOper != ''">
+ 			and update_oper like '%' || #{updateOper} || '%'
+ 		</if>
+ 		<if test="addScore != null and addScore != ''">
+ 			and add_score like '%' || #{addScore} || '%'
+ 		</if>
+ 		<if test="remark != null and remark != ''">
+ 			and remark like '%' || #{remark} || '%'
+ 		</if>
+ 		<if test="addScoreQuarter != null and addScoreQuarter != ''">
+ 			and add_score_quarter like '%' || #{addScoreQuarter} || '%'
+ 		</if>
+ 		<if test="addScoreOne != null and addScoreOne != ''">
+ 			and add_score_one like '%' || #{addScoreOne} || '%'
+ 		</if>
+ 		<if test="addScoreTwo != null and addScoreTwo != ''">
+ 			and add_score_two like '%' || #{addScoreTwo} || '%'
+ 		</if>
+ 		<if test="addScoreThree != null and addScoreThree != ''">
+ 			and add_score_three like '%' || #{addScoreThree} || '%'
+ 		</if>
+ 		<if test="historyNumber != null and historyNumber != ''">
+ 			and history_number like '%' || #{historyNumber} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_organ_rate_score_quarter_detail_backup 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_quarter_detail_backup
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_quarter_detail_backup 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_quarter_detail_backup 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_quarter_detail_backup 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_quarter_detail_backup 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreQuarterDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_quarter_detail_backup 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_quarter_detail_backup 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 查询最大历史编号 -->
+	<select id="selectMaxHistoryNumber" parameterType="java.lang.String" resultType="java.util.Map" flushCache="true">
+		select max(history_number) as maxnumber
+		from tb_organ_rate_score_quarter_detail_backup
+		<where>
+			rate_month = #{rateMonth}
+		</where>
+	</select>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

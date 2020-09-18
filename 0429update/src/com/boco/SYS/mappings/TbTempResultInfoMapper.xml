@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 临时额度结果表 -->
+<mapper namespace="com.boco.SYS.mapper.TbTempResultInfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbTempResultInfo">
+		<id column="id" property="id"/>
+		<result column="month" property="month"/>
+		<result column="organcode" property="organcode"/>
+		<result column="comb_id" property="combId"/>
+		<result column="tempamt" property="tempamt"/>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="create_time" property="createTime"/>
+		<result column="create_oper" property="createOper"/>
+		<result column="state" property="state"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,month ,organcode ,comb_id ,tempamt ,start_date ,end_date ,create_time ,create_oper ,state
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbTempResultInfo">
+		<!--
+                -->
+		INSERT INTO tb_temp_result_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="month != null">
+				month ,
+			</if>
+			<if test="organcode != null">
+				organcode ,
+			</if>
+			<if test="combId != null">
+				comb_id ,
+			</if>
+			<if test="tempamt != null">
+				tempamt ,
+			</if>
+			<if test="startDate != null">
+				start_date ,
+			</if>
+			<if test="endDate != null">
+				end_date ,
+			</if>
+			<if test="createTime != null">
+				create_time ,
+			</if>
+			<if test="createOper != null">
+				create_oper ,
+			</if>
+			<if test="state != null">
+				state
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="month != null">
+				#{month} ,
+			</if>
+			<if test="organcode != null">
+				#{organcode} ,
+			</if>
+			<if test="combId != null">
+				#{combId} ,
+			</if>
+			<if test="tempamt != null">
+				#{tempamt} ,
+			</if>
+			<if test="startDate != null">
+				#{startDate} ,
+			</if>
+			<if test="endDate != null">
+				#{endDate} ,
+			</if>
+			<if test="createTime != null">
+				#{createTime} ,
+			</if>
+			<if test="createOper != null">
+				#{createOper} ,
+			</if>
+			<if test="state != null">
+				#{state}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_temp_result_info
+		(id ,month ,organcode ,comb_id ,tempamt ,start_date ,end_date ,create_time ,create_oper ,state )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.id,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.combId,jdbcType=VARCHAR},#{item.tempamt,jdbcType=VARCHAR},#{item.startDate,jdbcType=VARCHAR},#{item.endDate,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.createOper,jdbcType=VARCHAR},#{item.state,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_temp_result_info
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_temp_result_info
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_temp_result_info
+		WHERE id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_temp_result_info
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbTempResultInfo">
+		UPDATE tb_temp_result_info
+		<set>
+			<if test="month != null">
+				month = #{month},
+			</if>
+			<if test="organcode != null">
+				organcode = #{organcode},
+			</if>
+			<if test="combId != null">
+				comb_id = #{combId},
+			</if>
+			<if test="tempamt != null">
+				tempamt = #{tempamt},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="createOper != null">
+				create_oper = #{createOper},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_temp_result_info
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_temp_result_info
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="month != null">
+				month = #{month},
+			</if>
+			<if test="organcode != null">
+				organcode = #{organcode},
+			</if>
+			<if test="combId != null">
+				comb_id = #{combId},
+			</if>
+			<if test="tempamt != null">
+				tempamt = #{tempamt},
+			</if>
+			<if test="startDate != null">
+				start_date = #{startDate},
+			</if>
+			<if test="endDate != null">
+				end_date = #{endDate},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="createOper != null">
+				create_oper = #{createOper},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		 state &lt; 4
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="month != null and month != ''">
+			and month = #{month}
+		</if>
+		<if test="organcode != null and organcode != ''">
+			and organcode = #{organcode}
+		</if>
+		<if test="combId != null and combId != ''">
+			and comb_id = #{combId}
+		</if>
+		<if test="tempamt != null and tempamt != ''">
+			and tempamt = #{tempamt}
+		</if>
+		<if test="startDate != null and startDate != ''">
+			and start_date = #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and end_date = #{endDate}
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time = #{createTime}
+		</if>
+		<if test="createOper != null and createOper != ''">
+			and create_oper = #{createOper}
+		</if>
+
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="id != null and id != ''">
+			and id like '%' || #{id} || '%'
+		</if>
+		<if test="month != null and month != ''">
+			and month like '%' || #{month} || '%'
+		</if>
+		<if test="organcode != null and organcode != ''">
+			and organcode like '%' || #{organcode} || '%'
+		</if>
+		<if test="combId != null and combId != ''">
+			and comb_id like '%' || #{combId} || '%'
+		</if>
+		<if test="tempamt != null and tempamt != ''">
+			and tempamt like '%' || #{tempamt} || '%'
+		</if>
+		<if test="startDate != null and startDate != ''">
+			and start_date like '%' || #{startDate} || '%'
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and end_date like '%' || #{endDate} || '%'
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and create_time like '%' || #{createTime} || '%'
+		</if>
+		<if test="createOper != null and createOper != ''">
+			and create_oper like '%' || #{createOper} || '%'
+		</if>
+		<if test="state != null and state != ''">
+			and state like '%' || #{state} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_temp_result_info
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbTempResultInfo" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_temp_result_info
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbTempResultInfo" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_temp_result_info
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbTempResultInfo" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_temp_result_info
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_temp_result_info
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbTempResultInfo" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_temp_result_info
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbTempResultInfo" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_temp_result_info
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_temp_result_info
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

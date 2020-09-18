@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- FdOper -->
+<mapper namespace="com.boco.SYS.mapper.FdOperMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.FdOper">
+        <id column="ORGANCODE" property="organcode"/>
+        <id column="OPERCODE" property="opercode"/>
+        <result column="OPERNAME" property="opername"/>
+        <result column="OPERPASSWORD" property="operpassword"/>
+        <result column="OPERSTATE" property="operstate"/>
+        <result column="OPERDEGREE" property="operdegree"/>
+        <result column="TTYNO" property="ttyno"/>
+        <result column="VIRTUALFLAG" property="virtualflag"/>
+        <result column="VOUCHERSERIAL" property="voucherserial"/>
+        <result column="ACCTSERIAL" property="acctserial"/>
+        <result column="LOGSERIAL" property="logserial"/>
+        <result column="MODIFYDATE" property="modifydate"/>
+        <result column="MODIFYORGAN" property="modifyorgan"/>
+        <result column="MODIFYOPER" property="modifyoper"/>
+        <result column="CERTNO" property="certno"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        ORGANCODE ,OPERCODE ,OPERNAME ,OPERPASSWORD ,OPERSTATE ,OPERDEGREE ,TTYNO ,VIRTUALFLAG ,VOUCHERSERIAL ,ACCTSERIAL ,LOGSERIAL ,MODIFYDATE ,MODIFYORGAN ,MODIFYOPER ,CERTNO
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.FdOper">
+        INSERT INTO FD_OPER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="organcode != null">
+                ORGANCODE ,
+            </if>
+            <if test="opercode != null">
+                OPERCODE ,
+            </if>
+            <if test="opername != null">
+                OPERNAME ,
+            </if>
+            <if test="operpassword != null">
+                OPERPASSWORD ,
+            </if>
+            <if test="operstate != null">
+                OPERSTATE ,
+            </if>
+            <if test="operdegree != null">
+                OPERDEGREE ,
+            </if>
+            <if test="ttyno != null">
+                TTYNO ,
+            </if>
+            <if test="virtualflag != null">
+                VIRTUALFLAG ,
+            </if>
+            <if test="voucherserial != null">
+                VOUCHERSERIAL ,
+            </if>
+            <if test="acctserial != null">
+                ACCTSERIAL ,
+            </if>
+            <if test="logserial != null">
+                LOGSERIAL ,
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE ,
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN ,
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER ,
+            </if>
+            <if test="certno != null">
+                CERTNO ,
+            </if>
+            last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="organcode != null">
+                #{organcode} ,
+            </if>
+            <if test="opercode != null">
+                #{opercode} ,
+            </if>
+            <if test="opername != null">
+                #{opername} ,
+            </if>
+            <if test="operpassword != null">
+                #{operpassword} ,
+            </if>
+            <if test="operstate != null">
+                #{operstate} ,
+            </if>
+            <if test="operdegree != null">
+                #{operdegree} ,
+            </if>
+            <if test="ttyno != null">
+                #{ttyno} ,
+            </if>
+            <if test="virtualflag != null">
+                #{virtualflag} ,
+            </if>
+            <if test="voucherserial != null">
+                #{voucherserial} ,
+            </if>
+            <if test="acctserial != null">
+                #{acctserial} ,
+            </if>
+            <if test="logserial != null">
+                #{logserial} ,
+            </if>
+            <if test="modifydate != null">
+                #{modifydate} ,
+            </if>
+            <if test="modifyorgan != null">
+                #{modifyorgan} ,
+            </if>
+            <if test="modifyoper != null">
+                #{modifyoper} ,
+            </if>
+            <if test="certno != null">
+                #{certno} ,
+            </if>
+            to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO FD_OPER
+        (ORGANCODE ,OPERCODE ,OPERNAME ,OPERPASSWORD ,OPERSTATE ,OPERDEGREE ,TTYNO ,VIRTUALFLAG ,VOUCHERSERIAL
+        ,ACCTSERIAL ,LOGSERIAL ,MODIFYDATE ,MODIFYORGAN ,MODIFYOPER ,CERTNO ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.organcode} ,#{item.opercode} ,#{item.opername} ,#{item.operpassword} ,#{item.operstate}
+            ,#{item.operdegree} ,#{item.ttyno} ,#{item.virtualflag} ,#{item.voucherserial} ,#{item.acctserial}
+            ,#{item.logserial} ,#{item.modifydate} ,#{item.modifyorgan} ,#{item.modifyoper} ,#{item.certno}
+            ,to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM FD_OPER
+        <where>
+            ORGANCODE = #{organcode} and
+            OPERCODE = #{opercode}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM FD_OPER
+        <where>
+            ORGANCODE = #{organcode} and
+            OPERCODE = #{opercode}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM FD_OPER
+        WHERE ORGANCODEOPERCODE IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM FD_OPER
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.FdOper">
+        UPDATE FD_OPER
+        <set>
+            <if test="opername != null">
+                OPERNAME = #{opername},
+            </if>
+            <if test="operpassword != null">
+                OPERPASSWORD = #{operpassword},
+            </if>
+            <if test="operstate != null">
+                OPERSTATE = #{operstate},
+            </if>
+            <if test="operdegree != null">
+                OPERDEGREE = #{operdegree},
+            </if>
+            <if test="ttyno != null">
+                TTYNO = #{ttyno},
+            </if>
+            <if test="virtualflag != null">
+                VIRTUALFLAG = #{virtualflag},
+            </if>
+            <if test="voucherserial != null">
+                VOUCHERSERIAL = #{voucherserial},
+            </if>
+            <if test="acctserial != null">
+                ACCTSERIAL = #{acctserial},
+            </if>
+            <if test="logserial != null">
+                LOGSERIAL = #{logserial},
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE = #{modifydate},
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN = #{modifyorgan},
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER = #{modifyoper},
+            </if>
+            <if test="certno != null">
+                CERTNO = #{certno},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ORGANCODE = #{organcode} and
+            OPERCODE = #{opercode}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE FD_OPER
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE FD_OPER
+        <set>
+            <if test="organcode != null">
+                ORGANCODE = #{organcode},
+            </if>
+            <if test="opercode != null">
+                OPERCODE = #{opercode},
+            </if>
+            <if test="opername != null">
+                OPERNAME = #{opername},
+            </if>
+            <if test="operpassword != null">
+                OPERPASSWORD = #{operpassword},
+            </if>
+            <if test="operstate != null">
+                OPERSTATE = #{operstate},
+            </if>
+            <if test="operdegree != null">
+                OPERDEGREE = #{operdegree},
+            </if>
+            <if test="ttyno != null">
+                TTYNO = #{ttyno},
+            </if>
+            <if test="virtualflag != null">
+                VIRTUALFLAG = #{virtualflag},
+            </if>
+            <if test="voucherserial != null">
+                VOUCHERSERIAL = #{voucherserial},
+            </if>
+            <if test="acctserial != null">
+                ACCTSERIAL = #{acctserial},
+            </if>
+            <if test="logserial != null">
+                LOGSERIAL = #{logserial},
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE = #{modifydate},
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN = #{modifyorgan},
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER = #{modifyoper},
+            </if>
+            <if test="certno != null">
+                CERTNO = #{certno},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="organcode != null and organcode != ''">
+            and ORGANCODE = #{organcode}
+        </if>
+        <if test="opercode != null and opercode != ''">
+            and OPERCODE = #{opercode}
+        </if>
+        <if test="opername != null and opername != ''">
+            and OPERNAME = #{opername}
+        </if>
+        <if test="operpassword != null and operpassword != ''">
+            and OPERPASSWORD = #{operpassword}
+        </if>
+        <if test="operstate != null and operstate != ''">
+            and OPERSTATE = #{operstate}
+        </if>
+        <if test="operdegree != null and operdegree != ''">
+            and OPERDEGREE = #{operdegree}
+        </if>
+        <if test="ttyno != null and ttyno != ''">
+            and TTYNO = #{ttyno}
+        </if>
+        <if test="virtualflag != null and virtualflag != ''">
+            and VIRTUALFLAG = #{virtualflag}
+        </if>
+        <if test="voucherserial != null and voucherserial != ''">
+            and VOUCHERSERIAL = #{voucherserial}
+        </if>
+        <if test="acctserial != null and acctserial != ''">
+            and ACCTSERIAL = #{acctserial}
+        </if>
+        <if test="logserial != null and logserial != ''">
+            and LOGSERIAL = #{logserial}
+        </if>
+        <if test="modifydate != null and modifydate != ''">
+            and MODIFYDATE = #{modifydate}
+        </if>
+        <if test="modifyorgan != null and modifyorgan != ''">
+            and MODIFYORGAN = #{modifyorgan}
+        </if>
+        <if test="modifyoper != null and modifyoper != ''">
+            and MODIFYOPER = #{modifyoper}
+        </if>
+        <if test="certno != null and certno != ''">
+            and CERTNO = #{certno}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="organcode != null and organcode != ''">
+            and ORGANCODE like '%' || #{organcode} || '%'
+        </if>
+        <if test="opercode != null and opercode != ''">
+            and OPERCODE like '%' || #{opercode} || '%'
+        </if>
+        <if test="opername != null and opername != ''">
+            and OPERNAME like '%' || #{opername} || '%'
+        </if>
+        <if test="operpassword != null and operpassword != ''">
+            and OPERPASSWORD like '%' || #{operpassword} || '%'
+        </if>
+        <if test="operstate != null and operstate != ''">
+            and OPERSTATE like '%' || #{operstate} || '%'
+        </if>
+        <if test="operdegree != null and operdegree != ''">
+            and OPERDEGREE like '%' || #{operdegree} || '%'
+        </if>
+        <if test="ttyno != null and ttyno != ''">
+            and TTYNO like '%' || #{ttyno} || '%'
+        </if>
+        <if test="virtualflag != null and virtualflag != ''">
+            and VIRTUALFLAG like '%' || #{virtualflag} || '%'
+        </if>
+        <if test="voucherserial != null and voucherserial != ''">
+            and VOUCHERSERIAL like '%' || #{voucherserial} || '%'
+        </if>
+        <if test="acctserial != null and acctserial != ''">
+            and ACCTSERIAL like '%' || #{acctserial} || '%'
+        </if>
+        <if test="logserial != null and logserial != ''">
+            and LOGSERIAL like '%' || #{logserial} || '%'
+        </if>
+        <if test="modifydate != null and modifydate != ''">
+            and MODIFYDATE like '%' || #{modifydate} || '%'
+        </if>
+        <if test="modifyorgan != null and modifyorgan != ''">
+            and MODIFYORGAN like '%' || #{modifyorgan} || '%'
+        </if>
+        <if test="modifyoper != null and modifyoper != ''">
+            and MODIFYOPER like '%' || #{modifyoper} || '%'
+        </if>
+        <if test="certno != null and certno != ''">
+            and CERTNO like '%' || #{certno} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_OPER
+        <where>
+            ORGANCODE = #{organcode} and
+            OPERCODE = #{opercode}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.FdOper" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_OPER
+        <where>
+        </where>
+    </select>
+
+    <!-- 查询柜员所属机构号 -->
+    <select id="selectOpersOrgan" parameterType="java.lang.String" resultType="java.lang.String"  flushCache="true">
+        SELECT
+        ORGANCODE
+        FROM FD_OPER
+        WHERE
+            OPERCODE = #{param}
+
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.FdOper" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_OPER
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.FdOper" resultMap="base_result_map"
+                     flushCache="true">
+    SELECT
+    <include refid="base_column_list"/>
+    FROM FD_OPER
+    <where>
+        <include refid="where_like"/>
+    </where>
+    <if test="sortColumn != null and sortColumn != ''">
+        order by ${sortColumn}
+    </if>
+</select>
+
+    <select id="selectByLikeStartAttr" parameterType="com.boco.SYS.entity.FdOper" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_OPER
+        <where>
+        1=1
+            <if test="opercode != null and opercode != ''">
+                and OPERCODE like  #{opercode} || '%'
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOperName" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        SELECT
+        OPERNAME
+        FROM FD_OPER
+        WHERE
+        OPERCODE=#{param}
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_OPER
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.FdOper" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from FD_OPER
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.FdOper" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from FD_OPER
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from FD_OPER
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!--简单复核： 与角色功能表关联查询授权下拉列表数据 -->
+    <select id="getPowerList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT DISTINCT B.OPERCODE AS value, B.OPERNAME AS key
+        FROM WEB_ROLE_FUN A, FD_OPER B
+        WHERE A.FUN_CODE=#{funCode}
+            AND B.ORGANCODE=#{organcode}
+            AND B.OPERSTATE!='2'
+            AND MOD (INSTR(B.OPERDEGREE
+            , A.ROLE_CODE)
+            , 3)=1
+    </select>
+
+    <!--复杂流程： 与角色功能表关联查询授权下拉列表数据 -->
+    <select id="getPowerListByRole" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT DISTINCT B.OPERCODE AS value,B.OPERNAME AS key FROM WEB_ROLE_FUN A,FD_OPER B
+        WHERE A.FUN_CODE=#{funCode}
+        AND B.OPERSTATE!='2'
+        <if test="roleCode != null and roleCode != ''">
+            AND A.ROLE_CODE in (
+            <foreach collection="roleCode" item="item" index="index"
+                     separator=",">
+                #{item}
+            </foreach>
+            )
+        </if>
+        <if test="organcode != null">
+            AND B.ORGANCODE=#{organcode}
+        </if>
+        AND MOD(INSTR(B.OPERDEGREE, A.ROLE_CODE),3)=1
+    </select>
+    <update id="updateOperPassword" parameterType="com.boco.SYS.entity.FdOper">
+        update fd_oper
+        set operpassword=#{operpassword}
+        where opercode = #{opercode}
+          and organcode = #{organcode}
+    </update>
+    <update id="resetOperPassword" parameterType="com.boco.SYS.entity.FdOper">
+        update fd_oper
+        set operpassword=#{operpassword}
+        where opercode = #{opercode}
+    </update>
+    <update id="updateOperOrgan" parameterType="com.boco.SYS.entity.FdOper">
+        update fd_oper
+        set organcode=#{organcode}
+        where opercode = #{opercode}
+    </update>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 调整申请报送要求录入详细表 -->
+<mapper namespace="com.boco.SYS.mapper.TbReqresetDetailMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReqresetDetail">
+        <id column="reqdreset_id" property="reqdresetId"/>
+        <result column="reqdreset_ref_id" property="reqdresetRefId"/>
+        <result column="reqdreset_organ" property="reqdresetOrgan"/>
+        <result column="reqdreset_unit" property="reqdresetUnit"/>
+        <result column="reqdreset_oper" property="reqdresetOper"/>
+        <result column="reqdreset_state" property="reqdresetState"/>
+        <result column="reqdreset_createtime" property="reqdresetCreatetime"/>
+        <result column="reqdreset_updatetime" property="reqdresetUpdatetime"/>
+        <result column="reqdreset_updateoper" property="reqdresetUpdateoper"/>
+        <result column="reqdreset_num" property="reqdresetNum"/>
+        <result column="reqdreset_comb_code" property="reqdresetCombCode"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+
+
+                                        reqdreset_id ,reqdreset_ref_id ,reqdreset_organ ,reqdreset_unit ,reqdreset_oper ,reqdreset_state ,reqdreset_createtime ,reqdreset_updatetime ,reqdreset_updateoper ,reqdreset_num ,reqdreset_comb_code
+
+
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReqresetDetail">
+        <!--
+                -->
+        INSERT INTO tb_reqreset_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reqdresetId != null">
+                reqdreset_id ,
+            </if>
+            <if test="reqdresetRefId != null">
+                reqdreset_ref_id ,
+            </if>
+            <if test="reqdresetOrgan != null">
+                reqdreset_organ ,
+            </if>
+            <if test="reqdresetUnit != null">
+                reqdreset_unit ,
+            </if>
+            <if test="reqdresetOper != null">
+                reqdreset_oper ,
+            </if>
+            <if test="reqdresetState != null">
+                reqdreset_state ,
+            </if>
+            <if test="reqdresetCreatetime != null">
+                reqdreset_createtime ,
+            </if>
+            <if test="reqdresetUpdatetime != null">
+                reqdreset_updatetime ,
+            </if>
+            <if test="reqdresetUpdateoper != null">
+                reqdreset_updateoper ,
+            </if>
+            <if test="reqdresetNum != null">
+                reqdreset_num ,
+            </if>
+            <if test="reqdresetCombCode != null">
+                reqdreset_comb_code
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reqdresetId != null">
+                #{reqdresetId} ,
+            </if>
+            <if test="reqdresetRefId != null">
+                #{reqdresetRefId} ,
+            </if>
+            <if test="reqdresetOrgan != null">
+                #{reqdresetOrgan} ,
+            </if>
+            <if test="reqdresetUnit != null">
+                #{reqdresetUnit} ,
+            </if>
+            <if test="reqdresetOper != null">
+                #{reqdresetOper} ,
+            </if>
+            <if test="reqdresetState != null">
+                #{reqdresetState} ,
+            </if>
+            <if test="reqdresetCreatetime != null">
+                #{reqdresetCreatetime} ,
+            </if>
+            <if test="reqdresetUpdatetime != null">
+                #{reqdresetUpdatetime} ,
+            </if>
+            <if test="reqdresetUpdateoper != null">
+                #{reqdresetUpdateoper} ,
+            </if>
+            <if test="reqdresetNum != null">
+                #{reqdresetNum} ,
+            </if>
+            <if test="reqdresetCombCode != null">
+                #{reqdresetCombCode}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_reqreset_detail
+        (reqdreset_ref_id ,reqdreset_organ ,reqdreset_unit ,reqdreset_oper ,reqdreset_state ,reqdreset_createtime
+        ,reqdreset_updatetime ,reqdreset_updateoper ,reqdreset_num ,reqdreset_comb_code )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.reqdresetRefId,jdbcType=VARCHAR},#{item.reqdresetOrgan,jdbcType=VARCHAR},#{item.reqdresetUnit,jdbcType=VARCHAR},#{item.reqdresetOper,jdbcType=VARCHAR},#{item.reqdresetState,jdbcType=VARCHAR},#{item.reqdresetCreatetime,jdbcType=VARCHAR},#{item.reqdresetUpdatetime,jdbcType=VARCHAR},#{item.reqdresetUpdateoper,jdbcType=VARCHAR},#{item.reqdresetNum,jdbcType=VARCHAR},#{item.reqdresetCombCode,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_detail
+        <where>
+            reqdreset_id = #{reqdresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByAttr" parameterType="com.boco.SYS.entity.TbReqresetDetail">
+        DELETE FROM tb_reqreset_detail
+        <where>
+            reqdreset_ref_id = #{reqdresetRefId}
+            and
+            reqdreset_organ=#{reqdresetOrgan}
+        </where>
+    </delete>
+
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_detail
+        <where>
+            reqdreset_id = #{reqdresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_reqreset_detail
+        WHERE reqdreset_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReqresetDetail">
+        UPDATE tb_reqreset_detail
+        <set>
+            <if test="reqdresetRefId != null">
+                reqdreset_ref_id = #{reqdresetRefId},
+            </if>
+            <if test="reqdresetOrgan != null">
+                reqdreset_organ = #{reqdresetOrgan},
+            </if>
+            <if test="reqdresetUnit != null">
+                reqdreset_unit = #{reqdresetUnit},
+            </if>
+            <if test="reqdresetOper != null">
+                reqdreset_oper = #{reqdresetOper},
+            </if>
+            <if test="reqdresetState != null">
+                reqdreset_state = #{reqdresetState},
+            </if>
+            <if test="reqdresetCreatetime != null">
+                reqdreset_createtime = #{reqdresetCreatetime},
+            </if>
+            <if test="reqdresetUpdatetime != null">
+                reqdreset_updatetime = #{reqdresetUpdatetime},
+            </if>
+            <if test="reqdresetUpdateoper != null">
+                reqdreset_updateoper = #{reqdresetUpdateoper},
+            </if>
+            <if test="reqdresetNum != null">
+                reqdreset_num = #{reqdresetNum},
+            </if>
+            <if test="reqdresetCombCode != null">
+                reqdreset_comb_code = #{reqdresetCombCode},
+            </if>
+        </set>
+        <where>
+            reqdreset_id = #{reqdresetId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_reqreset_detail
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_reqreset_detail
+        <set>
+            <if test="reqdresetId != null">
+                reqdreset_id = #{reqdresetId},
+            </if>
+            <if test="reqdresetRefId != null">
+                reqdreset_ref_id = #{reqdresetRefId},
+            </if>
+            <if test="reqdresetOrgan != null">
+                reqdreset_organ = #{reqdresetOrgan},
+            </if>
+            <if test="reqdresetUnit != null">
+                reqdreset_unit = #{reqdresetUnit},
+            </if>
+            <if test="reqdresetOper != null">
+                reqdreset_oper = #{reqdresetOper},
+            </if>
+            <if test="reqdresetState != null">
+                reqdreset_state = #{reqdresetState},
+            </if>
+            <if test="reqdresetCreatetime != null">
+                reqdreset_createtime = #{reqdresetCreatetime},
+            </if>
+            <if test="reqdresetUpdatetime != null">
+                reqdreset_updatetime = #{reqdresetUpdatetime},
+            </if>
+            <if test="reqdresetUpdateoper != null">
+                reqdreset_updateoper = #{reqdresetUpdateoper},
+            </if>
+            <if test="reqdresetNum != null">
+                reqdreset_num = #{reqdresetNum},
+            </if>
+            <if test="reqdresetCombCode != null">
+                reqdreset_comb_code = #{reqdresetCombCode},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="reqdresetId != null and reqdresetId != ''">
+            and reqdreset_id = #{reqdresetId}
+        </if>
+        <if test="reqdresetRefId != null and reqdresetRefId != ''">
+            and reqdreset_ref_id = #{reqdresetRefId}
+        </if>
+        <if test="reqdresetOrgan != null and reqdresetOrgan != ''">
+            and reqdreset_organ = #{reqdresetOrgan}
+        </if>
+        <if test="reqdresetUnit != null and reqdresetUnit != ''">
+            and reqdreset_unit = #{reqdresetUnit}
+        </if>
+        <if test="reqdresetOper != null and reqdresetOper != ''">
+            and reqdreset_oper = #{reqdresetOper}
+        </if>
+        <if test="reqdresetState != null ">
+            and reqdreset_state = #{reqdresetState}
+        </if>
+        <if test="reqdresetCreatetime != null and reqdresetCreatetime != ''">
+            and reqdreset_createtime = #{reqdresetCreatetime}
+        </if>
+        <if test="reqdresetUpdatetime != null and reqdresetUpdatetime != ''">
+            and reqdreset_updatetime = #{reqdresetUpdatetime}
+        </if>
+        <if test="reqdresetUpdateoper != null and reqdresetUpdateoper != ''">
+            and reqdreset_updateoper = #{reqdresetUpdateoper}
+        </if>
+        <if test="reqdresetNum != null and reqdresetNum != ''">
+            and reqdreset_num = #{reqdresetNum}
+        </if>
+        <if test="reqdresetCombCode != null and reqdresetCombCode != ''">
+            and reqdreset_comb_code = #{reqdresetCombCode}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="reqdresetId != null and reqdresetId != ''">
+            and reqdreset_id like '%' || #{reqdresetId} || '%'
+        </if>
+        <if test="reqdresetRefId != null and reqdresetRefId != ''">
+            and reqdreset_ref_id like '%' || #{reqdresetRefId} || '%'
+        </if>
+        <if test="reqdresetOrgan != null and reqdresetOrgan != ''">
+            and reqdreset_organ like '%' || #{reqdresetOrgan} || '%'
+        </if>
+        <if test="reqdresetUnit != null and reqdresetUnit != ''">
+            and reqdreset_unit like '%' || #{reqdresetUnit} || '%'
+        </if>
+        <if test="reqdresetOper != null and reqdresetOper != ''">
+            and reqdreset_oper like '%' || #{reqdresetOper} || '%'
+        </if>
+        <if test="reqdresetState != null and reqdresetState != ''">
+            and reqdreset_state like '%' || #{reqdresetState} || '%'
+        </if>
+        <if test="reqdresetCreatetime != null and reqdresetCreatetime != ''">
+            and reqdreset_createtime like '%' || #{reqdresetCreatetime} || '%'
+        </if>
+        <if test="reqdresetUpdatetime != null and reqdresetUpdatetime != ''">
+            and reqdreset_updatetime like '%' || #{reqdresetUpdatetime} || '%'
+        </if>
+        <if test="reqdresetUpdateoper != null and reqdresetUpdateoper != ''">
+            and reqdreset_updateoper like '%' || #{reqdresetUpdateoper} || '%'
+        </if>
+        <if test="reqdresetNum != null and reqdresetNum != ''">
+            and reqdreset_num like '%' || #{reqdresetNum} || '%'
+        </if>
+        <if test="reqdresetCombCode != null and reqdresetCombCode != ''">
+            and reqdreset_comb_code like '%' || #{reqdresetCombCode} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_detail
+        <where>
+            reqdreset_id = #{reqdresetId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_detail
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_reqreset_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_reqreset_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入需求id -->
+    <select id="selectReqdId" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqdreset_id FROM tb_reqreset_detail
+	   WHERE  cast( reqdreset_id as char) LIKE '%${reqdresetId}%'
+    </select>
+    <!-- 联想输入所属批次 -->
+    <select id="selectReqdRefId" parameterType="com.boco.SYS.entity.TbReqresetDetail" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqdreset_ref_id FROM tb_reqreset_detail
+	   WHERE reqdreset_ref_id LIKE '%${reqdresetRefId}%'
+    </select>
+    <!--通过批次编号和机构号更新信贷需求调整申请报送状态-->
+    <update id="updateReqDetailByReqdRefIdAndOrganCode" parameterType="com.boco.SYS.entity.TbReqresetDetail">
+        update tb_reqreset_detail
+        set reqdreset_state=${reqdresetState},
+        reqdreset_updatetime=#{reqdresetUpdatetime}
+        where reqdreset_ref_id = #{reqdresetRefId}
+          and reqdreset_organ = #{reqdresetOrgan}
+    </update>
+
+
+    <!--查询已提交的信贷需求 -->
+    <select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct reqreset.reqreset_id as reqresetId,
+        reqreset.reqreset_month as reqresetMonth,
+        reqreset.reqreset_name as reqresetName,
+        reqreset.reqreset_unit as reqresetunit,
+        reqreset.reqreset_time_start as reqresetTimeStart,
+        reqreset.reqreset_time_end as reqresetTimeEnd,
+        reqreset.reqreset_organ as reqresetorgan,
+        reqreset.reqreset_date_end as reqresetdateEnd,
+        reqreset.reqreset_date_start as reqresetdateStart,
+        reqdreset.reqdreset_unit as reqdresetUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        reqdreset.reqdreset_state as reqresetstate
+
+        from tb_reqreset_detail reqdreset,act_hi_procinst hi_proc ,tb_reqreset_list reqreset
+        where
+        cast(reqreset.reqreset_id as varchar)=hi_proc.business_key_
+        and reqdreset.reqdreset_ref_id=reqreset.reqreset_id
+        and hi_proc.start_user_id_ = #{opercode}
+        and reqdreset.reqdreset_organ = #{organCode}
+        and hi_proc.proc_def_id_ like 'ReqReset_%'
+        and reqdreset.reqdreset_state &gt; 4
+
+    </select>
+
+    <!--查询待审批的信贷需求 -->
+    <select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct reqreset.reqreset_id as reqresetId,
+        reqreset.reqreset_month as reqresetMonth,
+        reqreset.reqreset_name as reqresetName,
+        reqreset.reqreset_unit as reqresetunit,
+        reqreset.reqreset_time_start as reqresetTimeStart,
+        reqreset.reqreset_time_end as reqresetTimeEnd,
+        reqreset.reqreset_organ as reqresetorgan,
+        reqreset.reqreset_date_end as reqresetdateEnd,
+        reqreset.reqreset_date_start as reqresetdateStart,
+        reqdreset.reqdreset_unit as reqdresetUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        task.id_ as taskid
+
+        from tb_reqreset_detail reqdreset,act_hi_procinst hi_proc ,tb_reqreset_list reqreset,act_ru_task task
+        where
+        cast(reqreset.reqreset_id as varchar)=hi_proc.business_key_
+        and reqdreset.reqdreset_ref_id=reqreset.reqreset_id
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.assignee_=#{assignee}
+        and reqdreset.reqdreset_organ = #{organCode}
+        and hi_proc.proc_def_id_ like 'ReqReset_%'
+        <if test="proIds!=null and proIds.size() > 0">
+            and hi_proc.proc_inst_id_ in
+            <foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and reqdreset.reqdreset_state= #{auditStatus}
+        </if>
+    </select>
+
+    <!-- 查询已审批信贷需求-->
+    <select id="getApprovedRecord" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct reqreset.reqreset_id as reqresetId,
+        reqreset.reqreset_month as reqresetMonth,
+        reqreset.reqreset_name as reqresetName,
+        reqreset.reqreset_unit as reqresetunit,
+        reqreset.reqreset_time_start as reqresetTimeStart,
+        reqreset.reqreset_time_end as reqresetTimeEnd,
+        reqreset.reqreset_organ as reqresetorgan,
+        reqreset.reqreset_date_end as reqresetdateEnd,
+        reqreset.reqreset_date_start as reqresetdateStart,
+        reqdreset.reqdreset_unit as reqdresetUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        reqdreset.reqdreset_state as reqresetstate
+
+        from tb_reqreset_detail reqdreset,act_hi_procinst hi_proc ,tb_reqreset_list reqreset,act_hi_taskinst task
+        where
+        cast(reqreset.reqreset_id as varchar)=hi_proc.business_key_
+        and reqdreset.reqdreset_ref_id=reqreset.reqreset_id
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.delete_reason_='completed'
+        and task.assignee_=#{opercode}
+        and hi_proc.proc_def_id_ like 'ReqReset_%'
+        and reqdreset.reqdreset_organ = #{organCode}
+        and reqdreset.reqdreset_state &gt; 4
+    </select>
+
+    <select id="getStartWorkFlowPeople" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select start_user_id_ from act_hi_procinst where proc_inst_id_= #{processInstanceId}
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

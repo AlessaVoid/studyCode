@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3g.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.0</jspversion>
+	<shortname>boco_fmt</shortname>
+	<uri>http:/boco.com.cn/tags-fmt</uri>
+	<!-- userListTag start -->
+	
+	<tag>
+		<name>out</name>
+		<tag-class>com.boco.SYS.tag.FmtOutTag</tag-class>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>fmtclass</name>
+			<required>true</required>
+		</attribute>
+		
+		<attribute>
+			<name>fmtvalue</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>prefix</name>
+			<required>false</required>
+		</attribute>
+		
+		<attribute>
+			<name>character</name>
+			<required>false</required>
+		</attribute>
+		
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+		</attribute>
+		
+	</tag>
+	<tag>
+		<name>formatMoneyUp</name>
+		<tag-class>com.boco.SYS.tag.FmtMoneyUpTag</tag-class>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>fmtValue</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fmtClass</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+</taglib>

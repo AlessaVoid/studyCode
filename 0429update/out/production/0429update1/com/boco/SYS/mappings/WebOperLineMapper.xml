@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.WebOperLineMapper">
+    <resultMap id="base_line_product_map" type="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO">
+        <id column="ID" property="id" javaType="java.lang.Long"/>
+        <result column="LINE_ID" property="lineId"/>
+        <result column="OPER_CODE" property="operCode"/>
+        <result column="LINE_UPDATER" property="lineUpdater"/>
+        <result column="CREATE_TIME" property="createTime" javaType="java.time.LocalDateTime"/>
+        <result column="UPDATE_TIME" property="updateTime" javaType="java.time.LocalDateTime"/>
+    </resultMap>
+
+    <!--插入一条柜员条线-->
+    <insert id="insertWebOperLine" parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO">
+        insert into tb_oper_line(line_id, oper_code, status, create_time, update_time)
+        values (#{lineId}, #{operCode}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--更新一条柜员条线-->
+    <update id="updateWebOperLine" parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO">
+        update tb_oper_line
+        set status=#{status},
+            update_time = #{updateTime}
+        where oper_code = #{operCode}
+          and line_id = #{lineId}
+    </update>
+
+    <!--删除一条产品条线相关信息-->
+<!--    <update id="deleteWebOperLine" parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO">-->
+<!--        update tb_oper_line-->
+<!--        set status= -1-->
+<!--        where line_id = #{lineId}-->
+<!--          and oper_code = #{operCode}-->
+<!--    </update>-->
+<!--改为删除该条线信息-->
+    <delete id="deleteWebOperLine" parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO">
+        delete from tb_oper_line
+        where
+        line_id = #{lineId}
+        and oper_code = #{operCode}
+    </delete>
+<!--    根据柜员号删除-->
+    <delete id="deleteWebOperLineByOpercode" parameterType="java.lang.String" >
+        delete from tb_oper_line
+        where
+        oper_code = #{operCode}
+    </delete>
+    <!--获取已选中的产品条线-->
+    <update id="deleteAllWebOperLineByOperCode" parameterType="java.lang.String">
+        update tb_oper_line
+        set status= -1
+        where oper_code = #{_param}
+    </update>
+    <select id="getAllWebOperLineByOperCode" resultMap="base_line_product_map"
+            parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO" flushCache="true">
+        select *
+        from tb_oper_line
+        where status = #{status}
+          and oper_code = #{operCode} ORDER BY create_time DESC
+    </select>
+    <select id="checkWebOperLineIsExist" resultMap="base_line_product_map"
+            parameterType="com.boco.TONY.biz.weboper.POJO.DO.WebOperLineDO" flushCache="true">
+        select *
+        from tb_oper_line
+        where line_id = #{lineId}
+          and oper_code = #{operCode}
+          and status = 1
+    </select>
+
+
+</mapper>

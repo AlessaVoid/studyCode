@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 业务日志表 -->
+<mapper namespace="com.boco.SYS.mapper.WebLogInfoMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebLogInfo">
+        <id column="ID" property="id"/>
+        <result column="THREAD_CODE" property="threadCode"/>
+        <result column="WEB_TRADE_DATE" property="tradeDate"/>
+        <result column="TRADE_TIME" property="tradeTime"/>
+        <result column="ORGAN_CODE" property="organCode"/>
+        <result column="ORGAN_NAME" property="organName"/>
+        <result column="OPER_CODE" property="operCode"/>
+        <result column="OPER_NAME" property="operName"/>
+        <result column="MODULE_NAME" property="moduleName"/>
+        <result column="MODULE_CODE" property="moduleCode"/>
+        <result column="TRADE_CONSUMING_TIME" property="tradeConsumingTime"/>
+        <result column="RUNNING_METHOD" property="runningMethod"/>
+        <result column="REQUEST_IP" property="requestIp"/>
+        <result column="RUNNING_RESULT" property="runningResult"/>
+        <result column="SERVICE_CODE" property="serviceCode"/>
+    </resultMap>
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        ID ,THREAD_CODE ,WEB_TRADE_DATE ,TRADE_TIME ,ORGAN_CODE ,ORGAN_NAME ,OPER_CODE ,OPER_NAME ,MODULE_NAME ,MODULE_CODE ,TRADE_CONSUMING_TIME ,RUNNING_METHOD ,REQUEST_IP ,RUNNING_RESULT ,SERVICE_CODE
+        ]]>
+	</sql>
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebLogInfo">
+        INSERT INTO WEB_LOG_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID ,
+            </if>
+            <if test="threadCode != null">
+                THREAD_CODE ,
+            </if>
+            <if test="tradeDate != null">
+                WEB_TRADE_DATE ,
+            </if>
+            <if test="tradeTime != null">
+                TRADE_TIME ,
+            </if>
+            <if test="organCode != null">
+                ORGAN_CODE ,
+            </if>
+            <if test="organName != null">
+                ORGAN_NAME ,
+            </if>
+            <if test="operCode != null">
+                OPER_CODE ,
+            </if>
+            <if test="operName != null">
+                OPER_NAME ,
+            </if>
+            <if test="moduleName != null">
+                MODULE_NAME ,
+            </if>
+            <if test="moduleCode != null">
+                MODULE_CODE ,
+            </if>
+            <if test="tradeConsumingTime != null">
+                TRADE_CONSUMING_TIME ,
+            </if>
+            <if test="runningMethod != null">
+                RUNNING_METHOD ,
+            </if>
+            <if test="requestIp != null">
+                REQUEST_IP ,
+            </if>
+            <if test="runningResult != null">
+                RUNNING_RESULT ,
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE ,
+            </if>
+<!--            <if test="argu != null">-->
+<!--                ARGU ,-->
+<!--            </if>-->
+            last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="threadCode != null">
+                #{threadCode} ,
+            </if>
+            <if test="tradeDate != null">
+                #{tradeDate} ,
+            </if>
+            <if test="tradeTime != null">
+                #{tradeTime} ,
+            </if>
+            <if test="organCode != null">
+                #{organCode} ,
+            </if>
+            <if test="organName != null">
+                #{organName} ,
+            </if>
+            <if test="operCode != null">
+                #{operCode} ,
+            </if>
+            <if test="operName != null">
+                #{operName} ,
+            </if>
+            <if test="moduleName != null">
+                #{moduleName} ,
+            </if>
+            <if test="moduleCode != null">
+                #{moduleCode} ,
+            </if>
+            <if test="tradeConsumingTime != null">
+                #{tradeConsumingTime} ,
+            </if>
+            <if test="runningMethod != null">
+                #{runningMethod} ,
+            </if>
+            <if test="requestIp != null">
+                #{requestIp} ,
+            </if>
+            <if test="runningResult != null">
+                #{runningResult} ,
+            </if>
+            <if test="serviceCode != null">
+                #{serviceCode} ,
+            </if>
+<!--            <if test="argu != null">-->
+<!--                #{argu} ,-->
+<!--            </if>-->
+            to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_LOG_INFO
+        (ID ,THREAD_CODE ,WEB_TRADE_DATE ,TRADE_TIME ,ORGAN_CODE ,ORGAN_NAME ,OPER_CODE ,OPER_NAME ,MODULE_NAME
+        ,MODULE_CODE ,TRADE_CONSUMING_TIME ,RUNNING_METHOD ,REQUEST_IP ,RUNNING_RESULT ,SERVICE_CODE ,ARGU
+        ,last_mod_stamp)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.id} ,#{item.threadCode} ,#{item.tradeDate} ,#{item.tradeTime} ,#{item.organCode}
+            ,#{item.organName},#{item.operCode} ,#{item.operName} ,#{item.moduleName} ,#{item.moduleCode}
+            ,#{item.tradeConsumingTime} ,#{item.runningMethod} ,#{item.requestIp} ,#{item.runningResult}
+            ,#{item.serviceCode},#{item.argu},to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_LOG_INFO
+        <where>
+            ID = #{id}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_LOG_INFO
+        <where>
+            ID = #{id}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_LOG_INFO
+        WHERE ID IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_LOG_INFO
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebLogInfo">
+        UPDATE WEB_LOG_INFO
+        <set>
+            <if test="threadCode != null">
+                THREAD_CODE = #{threadCode},
+            </if>
+            <if test="tradeDate != null">
+                WEB_TRADE_DATE = #{tradeDate},
+            </if>
+            <if test="tradeTime != null">
+                TRADE_TIME = #{tradeTime},
+            </if>
+            <if test="organCode != null">
+                ORGAN_CODE = #{organCode},
+            </if>
+            <if test="organName != null">
+                ORGAN_NAME = #{organName},
+            </if>
+            <if test="operCode != null">
+                OPER_CODE = #{operCode},
+            </if>
+            <if test="operName != null">
+                OPER_NAME = #{operName},
+            </if>
+            <if test="moduleName != null">
+                MODULE_NAME = #{moduleName},
+            </if>
+            <if test="moduleCode != null">
+                MODULE_CODE = #{moduleCode},
+            </if>
+            <if test="tradeConsumingTime != null">
+                TRADE_CONSUMING_TIME = #{tradeConsumingTime},
+            </if>
+            <if test="runningMethod != null">
+                RUNNING_METHOD = #{runningMethod},
+            </if>
+            <if test="requestIp != null">
+                REQUEST_IP = #{requestIp},
+            </if>
+            <if test="runningResult != null">
+                RUNNING_RESULT = #{runningResult},
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE = #{serviceCode},
+            </if>
+            <if test="argu != null">
+                ARGU = #{argu},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ID = #{id}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE WEB_LOG_INFO
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_LOG_INFO
+        <set>
+            <if test="id != null">
+                ID = #{id},
+            </if>
+            <if test="threadCode != null">
+                THREAD_CODE = #{threadCode},
+            </if>
+            <if test="tradeDate != null">
+                WEB_TRADE_DATE = #{tradeDate},
+            </if>
+            <if test="tradeTime != null">
+                TRADE_TIME = #{tradeTime},
+            </if>
+            <if test="organCode != null">
+                ORGAN_CODE = #{organCode},
+            </if>
+            <if test="organName != null">
+                ORGAN_NAME = #{organName},
+            </if>
+            <if test="operCode != null">
+                OPER_CODE = #{operCode},
+            </if>
+            <if test="operName != null">
+                OPER_NAME = #{operName},
+            </if>
+            <if test="moduleName != null">
+                MODULE_NAME = #{moduleName},
+            </if>
+            <if test="moduleCode != null">
+                MODULE_CODE = #{moduleCode},
+            </if>
+            <if test="tradeConsumingTime != null">
+                TRADE_CONSUMING_TIME = #{tradeConsumingTime},
+            </if>
+            <if test="runningMethod != null">
+                RUNNING_METHOD = #{runningMethod},
+            </if>
+            <if test="requestIp != null">
+                REQUEST_IP = #{requestIp},
+            </if>
+            <if test="runningResult != null">
+                RUNNING_RESULT = #{runningResult},
+            </if>
+            <if test="serviceCode != null">
+                SERVICE_CODE = #{serviceCode},
+            </if>
+            <if test="argu != null">
+                ARGU = #{argu},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="id != null and id != ''">
+            and ID = #{id}
+        </if>
+        <if test="threadCode != null and threadCode != ''">
+            and THREAD_CODE = #{threadCode}
+        </if>
+        <if test="tradeDate != null and tradeDate != ''">
+            and WEB_TRADE_DATE = #{tradeDate}
+        </if>
+        <if test="tradeTime != null and tradeTime != ''">
+            and TRADE_TIME = #{tradeTime}
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and ORGAN_CODE = #{organCode}
+        </if>
+        <if test="organName != null and organName != ''">
+            and ORGAN_NAME = #{organName}
+        </if>
+        <if test="operCode != null and operCode != ''">
+            and OPER_CODE = #{operCode}
+        </if>
+        <if test="operName != null and operName != ''">
+            and OPER_NAME = #{operName}
+        </if>
+        <if test="moduleName != null and moduleName != ''">
+            and MODULE_NAME = #{moduleName}
+        </if>
+        <if test="moduleCode != null and moduleCode != ''">
+            and MODULE_CODE = #{moduleCode}
+        </if>
+        <if test="tradeConsumingTime != null and tradeConsumingTime != ''">
+            and TRADE_CONSUMING_TIME = #{tradeConsumingTime}
+        </if>
+        <if test="runningMethod != null and runningMethod != ''">
+            and RUNNING_METHOD = #{runningMethod}
+        </if>
+        <if test="requestIp != null and requestIp != ''">
+            and REQUEST_IP = #{requestIp}
+        </if>
+        <if test="runningResult != null and runningResult != ''">
+            and RUNNING_RESULT = #{runningResult}
+        </if>
+        <if test="serviceCode != null and serviceCode != ''">
+            and SERVICE_CODE = #{serviceCode}
+        </if>
+    </sql>
+
+    <!-- 动态where  明确列明的 -->
+    <sql id="where_equal_column">
+        <if test="id != null and id != ''">
+            and ID = #{id}
+        </if>
+        <if test="threadCode != null and threadCode != ''">
+            and THREAD_CODE = #{threadCode}
+        </if>
+        <if test="tradeDate != null and tradeDate != ''">
+            and WEB_TRADE_DATE = #{tradeDate}
+        </if>
+        <if test="tradeTime != null and tradeTime != ''">
+            and TRADE_TIME = #{tradeTime}
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and ORGAN_CODE = #{organCode}
+        </if>
+        <if test="organName != null and organName != ''">
+            and ORGAN_NAME = #{organName}
+        </if>
+        <if test="operCode != null and operCode != ''">
+            and OPER_CODE = #{operCode}
+        </if>
+        <if test="operName != null and operName != ''">
+            and OPER_NAME = #{operName}
+        </if>
+        <if test="moduleName != null and moduleName != ''">
+            and MODULE_NAME = #{moduleName}
+        </if>
+        <if test="moduleCode != null and moduleCode != ''">
+            and MODULE_CODE = #{moduleCode}
+        </if>
+        <if test="tradeConsumingTime != null and tradeConsumingTime != ''">
+            and TRADE_CONSUMING_TIME = #{tradeConsumingTime}
+        </if>
+        <if test="runningMethod != null and runningMethod != ''">
+            and RUNNING_METHOD = #{runningMethod}
+        </if>
+        <if test="requestIp != null and requestIp != ''">
+            and REQUEST_IP = #{requestIp}
+        </if>
+        <if test="runningResult != null and runningResult != ''">
+            and RUNNING_RESULT = #{runningResult}
+        </if>
+        <if test="serviceCode != null and serviceCode != ''">
+            and SERVICE_CODE = #{serviceCode}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="id != null and id != ''">
+            and ID like '%' || #{id} || '%'
+        </if>
+        <if test="threadCode != null and threadCode != ''">
+            and THREAD_CODE like '%' || #{threadCode} || '%'
+        </if>
+        <if test="tradeDate != null and tradeDate != ''">
+            and WEB_TRADE_DATE like '%' || #{tradeDate} || '%'
+        </if>
+        <if test="tradeTime != null and tradeTime != ''">
+            and TRADE_TIME like '%' || #{tradeTime} || '%'
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and ORGAN_CODE like '%' || #{organCode} || '%'
+        </if>
+        <if test="organName != null and organName != ''">
+            and ORGAN_NAME like '%' || #{organName} || '%'
+        </if>
+        <if test="operCode != null and operCode != ''">
+            and OPER_CODE like '%' || #{operCode} || '%'
+        </if>
+        <if test="operName != null and operName != ''">
+            and OPER_NAME like '%' || #{operName} || '%'
+        </if>
+        <if test="moduleName != null and moduleName != ''">
+            and MODULE_NAME like '%' || #{moduleName} || '%'
+        </if>
+        <if test="moduleCode != null and moduleCode != ''">
+            and MODULE_CODE like '%' || #{moduleCode} || '%'
+        </if>
+        <if test="tradeConsumingTime != null and tradeConsumingTime != ''">
+            and TRADE_CONSUMING_TIME like '%' || #{tradeConsumingTime} || '%'
+        </if>
+        <if test="runningMethod != null and runningMethod != ''">
+            and RUNNING_METHOD like '%' || #{runningMethod} || '%'
+        </if>
+        <if test="requestIp != null and requestIp != ''">
+            and REQUEST_IP like '%' || #{requestIp} || '%'
+        </if>
+        <if test="runningResult != null and runningResult != ''">
+            and RUNNING_RESULT like '%' || #{runningResult} || '%'
+        </if>
+        <if test="serviceCode != null and serviceCode != ''">
+            and SERVICE_CODE like '%' || #{serviceCode} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT *
+        FROM WEB_LOG_INFO
+        <where>
+            ID = #{id}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebLogInfo" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_LOG_INFO
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebLogInfo" resultMap="base_result_map"
+            flushCache="true">
+        SELECT *
+        FROM WEB_LOG_INFO
+        <where>
+            <include refid="where_equal_column"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebLogInfo" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_LOG_INFO
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM WEB_LOG_INFO
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebLogInfo" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from WEB_LOG_INFO
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebLogInfo" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from WEB_LOG_INFO
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from WEB_LOG_INFO
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+</mapper>

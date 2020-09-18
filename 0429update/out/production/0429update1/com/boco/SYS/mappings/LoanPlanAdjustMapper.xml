@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.LoanPlanAdjustmentMapper">
+    <cache readOnly="true"/>
+    <!--基础信贷明细-->
+    <resultMap id="pd_detail_base_map" type="com.boco.TONY.biz.planadjust.POJO.DO.TbPlanAdjustDetailDO">
+        <id column="pd_id" property="pdId"/>
+        <result column="pd_ref_id" property="pdRefId"/>
+        <result column="pd_organ" property="pdOrgan"/>
+        <result column="pd_create_time" property="pdCreateTime" javaType="java.time.LocalDateTime"/>
+        <result column="pd_state" property="pdState"/>
+        <result column="pd_small_amount_loan_req" property="pdSmallAmountLoanReq"/>
+        <result column="pd_other_loan_req" property="pdOtherLoanReq"/>
+        <result column="pd_per_business_loan_req" property="pdPerBusinessLoanReq"/>
+        <result column="pd_small_business_req" property="pdSmallBusinessReq"/>
+        <result column="pd_small_business_factor_req" property="pdSmallBusinessFactorReq"/>
+        <result column="pd_house_mort_loan_req" property="pdHouseMortLoanReq"/>
+        <result column="pd_other_consume_loan_req" property="pdOtherConsumeLoanReq"/>
+        <result column="pd_supply_line_req" property="pdSupplyLineReq"/>
+        <result column="pd_domestic_trade_finance_req" property="pdDomesticTradeFinanceReq"/>
+        <result column="pd_inter_trade_finance_req" property="pdInterTradeFinanceReq"/>
+        <result column="pd_other_company_loan_req" property="pdOtherCompanyLoanReq"/>
+        <result column="pd_san_company_loan_req" property="pdSanCompanyLoanReq"/>
+        <result column="pd_merge_loan_req" property="pdMergeLoanReq"/>
+        <result column="pd_all_advance_loan_req" property="pdAllAdvanceLoanReq"/>
+        <result column="pd_repost_req" property="pdRepostReq"/>
+        <result column="pd_straight_req" property="pdStraightReq"/>
+        <result column="pd_buy_forfeiting_rmb_req" property="pdBuyForfeitingRMBReq"/>
+        <result column="pd_inter_company_loan_req" property="pdInterCompanyLoanReq"/>
+        <result column="pd_special_finance_req" property="pdSpecialFinanceReq"/>
+        <result column="pd_person_overdraft_req" property="pdPersonOverdraftReq"/>
+        <result column="pd_foreign_currency_loan_req" property="pdForeignCurrencyLoanReq"/>
+        <result column="pd_buy_forfeiting_foreign_cur_req" property="pdBuyForfeitingForeignCurReq"/>
+        <result column="pd_other_req" property="pdOtherReq"/>
+    </resultMap>
+    <!--插入信贷计划明细-->
+    <insert id="insertLoanPlanAdjustmentInfo" parameterType="com.boco.TONY.biz.planadjust.POJO.DO.TbPlanAdjustDetailDO" flushCache="true">
+        insert into tb_plan_detail_adjustment (pd_ref_id, pd_organ, pd_create_time
+            , pd_small_amount_loan_req, pd_other_loan_req, pd_per_business_loan_req, pd_small_business_req,
+                                               pd_small_business_factor_req, pd_house_mort_loan_req,
+                                               pd_other_consume_loan_req, pd_supply_line_req,
+                                               pd_domestic_trade_finance_req,
+                                               pd_inter_trade_finance_req,
+                                               pd_other_company_loan_req, pd_san_company_loan_req, pd_merge_loan_req,
+                                               pd_all_advance_loan_req, pd_repost_req,
+                                               pd_straight_req, pd_buy_forfeiting_rmb_req, pd_inter_company_loan_req,
+                                               pd_special_finance_req, pd_person_overdraft_req,
+                                               pd_foreign_currency_loan_req, pd_buy_forfeiting_foreign_cur_req,
+                                               pd_other_req)
+        values (#{pdRefId}, #{pdOrgan}, #{pdCreateTime}, #{pdSmallAmountLoanReq}, #{pdOtherLoanReq}, #{pdPerBusinessLoanReq}, #{pdSmallBusinessReq}
+                   , #{pdSmallBusinessFactorReq}, #{pdHouseMortLoanReq}, #{pdOtherConsumeLoanReq}, #{pdSupplyLineReq},
+                #{pdDomesticTradeFinanceReq}, #{pdInterTradeFinanceReq}, #{pdOtherCompanyLoanReq},
+                #{pdSanCompanyLoanReq},
+                #{pdMergeLoanReq}, #{pdAllAdvanceLoanReq}, #{pdRepostReq}, #{pdStraightReq}, #{pdBuyForfeitingRMBReq},
+                #{pdInterCompanyLoanReq}, #{pdSpecialFinanceReq}, #{pdPersonOverdraftReq}, #{pdForeignCurrencyLoanReq},
+                #{pdBuyForfeitingForeignCurReq}, #{pdOtherReq});
+    </insert>
+    <!--更新信贷明细-->
+    <update id="updateLoanPlanAdjustmentInfo" parameterType="com.boco.SYS.entity.TbPlanDetail">
+        update tb_plan_detail_adjustment
+        set
+        <if test="pdSmallAmountLoanReq>=0">
+            pd_small_amount_loan_req=#{pdSmallAmountLoanReq},
+        </if>
+        <if test="pdOtherLoanReq>=0">
+            pd_other_loan_req=#{pdOtherLoanReq},
+        </if>
+        <if test="pdPerBusinessLoanReq>=0">
+            pd_per_business_loan_req=#{pdPerBusinessLoanReq},
+        </if>
+        <if test="pdSmallBusinessReq>=0">
+            pd_small_business_req=#{pdSmallBusinessReq},
+        </if>
+        <if test="pdSmallBusinessFactorReq>=0">
+            pd_small_business_factor_req=#{pdSmallBusinessFactorReq},
+        </if>
+        <if test="pdHouseMortLoanReq>=0">
+            pd_house_mort_loan_req=#{pdHouseMortLoanReq},
+        </if>
+        <if test="pdOtherConsumeLoanReq>=0">
+            pd_other_consume_loan_req=#{pdOtherConsumeLoanReq},
+        </if>
+        <if test="pdSupplyLineReq>=0">
+            pd_supply_line_req=#{pdSupplyLineReq},
+        </if>
+        <if test="pdDomesticTradeFinanceReq>=0">
+            pd_domestic_trade_finance_req=#{pdDomesticTradeFinanceReq},
+        </if>
+        <if test="pdInterTradeFinanceReq>=0">
+            pd_inter_trade_finance_req=#{pdInterTradeFinanceReq},
+        </if>
+        <if test="pdOtherCompanyLoanReq>=0">
+            pd_other_company_loan_req=#{pdOtherCompanyLoanReq},
+        </if>
+        <if test="pdSanCompanyLoanReq>=0">
+            pd_san_company_loan_req=#{pdSanCompanyLoanReq},
+        </if>
+        <if test="pdMergeLoanReq>=0">
+            pd_merge_loan_req=#{pdMergeLoanReq},
+        </if>
+        <if test="pdAllAdvanceLoanReq>=0">
+            pd_all_advance_loan_req=#{pdAllAdvanceLoanReq},
+        </if>
+        <if test="pdRepostReq>=0">
+            pd_repost_req=#{pdRepostReq},
+        </if>
+        <if test="pdStraightReq>=0">
+            pd_straight_req=#{pdStraightReq},
+        </if>
+        <if test="pdBuyForfeitingRMBReq>=0">
+            pd_buy_forfeiting_rmb_req=#{pdBuyForfeitingRMBReq},
+        </if>
+        <if test="pdInterCompanyLoanReq>=0">
+            pd_inter_company_loan_req=#{pdInterCompanyLoanReq},
+        </if>
+        <if test="pdSpecialFinanceReq>=0">
+            pd_special_finance_req=#{pdSpecialFinanceReq},
+        </if>
+        <if test="pdPersonOverdraftReq>=0">
+            pd_person_overdraft_req=#{pdPersonOverdraftReq},
+        </if>
+        <if test="pdForeignCurrencyLoanReq>=0">
+            pd_foreign_currency_loan_req=#{pdForeignCurrencyLoanReq},
+        </if>
+        <if test="pdBuyForfeitingForeignCurReq>=0">
+            pd_buy_forfeiting_foreign_cur_req=#{pdBuyForfeitingForeignCurReq},
+        </if>
+        <if test="pdOtherReq>=0">
+            pd_other_req=#{pdOtherReq}
+        </if>
+        where pd_organ = #{pdOrgan} and pd_ref_id=#{pdRefId}
+    </update>
+    <!--选择信贷计划明细-->
+    <select id="selectLoanPlanAdInfoById" parameterType="java.lang.String" resultMap="pd_detail_base_map" flushCache="true">
+        select *
+        from tb_plan_detail_adjustment
+        where pd_ref_id = #{_param}
+    </select>
+    <select id="selectLoanPlanDetailByAttr" parameterType="com.boco.SYS.entity.TbPlanDetail"
+            resultMap="pd_detail_base_map" flushCache="true">
+        select *
+        from tb_plan_detail_adjustment
+        where pd_ref_id = #{pdRefId}
+          and pd_organ = #{pdOrgan}
+    </select>
+</mapper>

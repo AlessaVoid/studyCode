@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 发送短信-参数表 -->
+<mapper namespace="com.boco.SYS.mapper.MsgParamMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.MsgParam">
+		<id column="id" property="id"/>
+		<result column="open_status" property="openStatus"/>
+		<result column="max_count" property="maxCount"/>
+		<result column="open_count" property="openCount"/>
+		<result column="close_count" property="closeCount"/>
+		<result column="today_count" property="todayCount"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        open_status ,max_count ,open_count ,close_count ,today_count ,id 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.MsgParam">
+<!-- 
+	    -->       
+  INSERT INTO msg_param 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="openStatus != null">
+	        	open_status ,
+	       	</if>
+	       	<if test="maxCount != null">
+	        	max_count ,
+	       	</if>
+	       	<if test="openCount != null">
+	        	open_count ,
+	       	</if>
+	       	<if test="closeCount != null">
+	        	close_count ,
+	       	</if>
+	       	<if test="todayCount != null">
+	        	today_count ,
+	       	</if>
+	       	<if test="id != null">
+	        	id 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="openStatus != null">
+	        	#{openStatus} ,
+	       	</if>
+	       	<if test="maxCount != null">
+	        	#{maxCount} ,
+	       	</if>
+	       	<if test="openCount != null">
+	        	#{openCount} ,
+	       	</if>
+	       	<if test="closeCount != null">
+	        	#{closeCount} ,
+	       	</if>
+	       	<if test="todayCount != null">
+	        	#{todayCount} ,
+	       	</if>
+	       	<if test="id != null">
+	        	#{id} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO msg_param 
+        (open_status ,max_count ,open_count ,close_count ,today_count ,id )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.openStatus,jdbcType=VARCHAR},#{item.maxCount,jdbcType=VARCHAR},#{item.openCount,jdbcType=VARCHAR},#{item.closeCount,jdbcType=VARCHAR},#{item.todayCount,jdbcType=VARCHAR},#{item.id,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM msg_param 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM msg_param 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM msg_param 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM msg_param
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.MsgParam">
+        UPDATE msg_param 
+        <set>
+       	<if test="openStatus != null">
+       		open_status = #{openStatus},
+       	</if>
+       	<if test="maxCount != null">
+       		max_count = #{maxCount},
+       	</if>
+       	<if test="openCount != null">
+       		open_count = #{openCount},
+       	</if>
+       	<if test="closeCount != null">
+       		close_count = #{closeCount},
+       	</if>
+       	<if test="todayCount != null">
+       		today_count = #{todayCount},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE msg_param 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE msg_param 
+        <set>
+       	<if test="openStatus != null">
+       		open_status = #{openStatus},
+       	</if>
+       	<if test="maxCount != null">
+       		max_count = #{maxCount},
+       	</if>
+       	<if test="openCount != null">
+       		open_count = #{openCount},
+       	</if>
+       	<if test="closeCount != null">
+       		close_count = #{closeCount},
+       	</if>
+       	<if test="todayCount != null">
+       		today_count = #{todayCount},
+       	</if>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="openStatus != null and openStatus != ''">
+	 		and open_status = #{openStatus}
+	 	</if>
+	 	<if test="maxCount != null and maxCount != ''">
+	 		and max_count = #{maxCount}
+	 	</if>
+	 	<if test="openCount != null and openCount != ''">
+	 		and open_count = #{openCount}
+	 	</if>
+	 	<if test="closeCount != null and closeCount != ''">
+	 		and close_count = #{closeCount}
+	 	</if>
+	 	<if test="todayCount != null and todayCount != ''">
+	 		and today_count = #{todayCount}
+	 	</if>
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="openStatus != null and openStatus != ''">
+ 			and open_status like '%' || #{openStatus} || '%'
+ 		</if>
+ 		<if test="maxCount != null and maxCount != ''">
+ 			and max_count like '%' || #{maxCount} || '%'
+ 		</if>
+ 		<if test="openCount != null and openCount != ''">
+ 			and open_count like '%' || #{openCount} || '%'
+ 		</if>
+ 		<if test="closeCount != null and closeCount != ''">
+ 			and close_count like '%' || #{closeCount} || '%'
+ 		</if>
+ 		<if test="todayCount != null and todayCount != ''">
+ 			and today_count like '%' || #{todayCount} || '%'
+ 		</if>
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM msg_param 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.MsgParam" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM msg_param
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.MsgParam" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM msg_param 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.MsgParam" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM msg_param 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM msg_param 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.MsgParam" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_param 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.MsgParam" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_param 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_param 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

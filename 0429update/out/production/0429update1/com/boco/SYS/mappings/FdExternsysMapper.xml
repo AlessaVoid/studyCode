@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- FdExternsys -->
+<mapper namespace="com.boco.SYS.mapper.FdExternsysMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.FdExternsys">
+       	<id column="EXTERNSYSCODE" property="externsyscode"/>
+     	<result column="OTHERCODE" property="othercode"/>
+     	<result column="EXTERNSYSNAME" property="externsysname"/>
+     	<result column="EXTERNSYSFLAG" property="externsysflag"/>
+     	<result column="OPENDATE" property="opendate"/>
+     	<result column="LASTEXTERNDATE" property="lastexterndate"/>
+     	<result column="EXTERNDATE" property="externdate"/>
+     	<result column="SERIAL" property="serial"/>
+     	<result column="OPENFLAG" property="openflag"/>
+     	<result column="STATE" property="state"/>
+     	<result column="MAXMSGNO" property="maxmsgno"/>
+     	<result column="STOPDATE" property="stopdate"/>
+     	<result column="IPADDR" property="ipaddr"/>
+     	<result column="PORT" property="port"/>
+     	<result column="PRIKEY" property="prikey"/>
+     	<result column="TRANKEY" property="trankey"/>
+     	<result column="MACKEY" property="mackey"/>
+     	<result column="MAINTAINNAME" property="maintainname"/>
+     	<result column="MAINTAINPHONE" property="maintainphone"/>
+     	<result column="FTPUSERNAME" property="ftpusername"/>
+     	<result column="FTPPASSWORD" property="ftppassword"/>
+     	<result column="FTPGETPATH" property="ftpgetpath"/>
+     	<result column="FTPPUTPATH" property="ftpputpath"/>
+     	<result column="SPANPROORGAN" property="spanproorgan"/>
+     	<result column="MODIFYDATE" property="modifydate"/>
+     	<result column="MODIFYORGAN" property="modifyorgan"/>
+     	<result column="MODIFYOPER" property="modifyoper"/>
+     	<result column="LPORT" property="lport"/>
+     	<result column="PORT1" property="port1"/>
+     	<result column="LPORT1" property="lport1"/>
+     	<result column="PORT2" property="port2"/>
+     	<result column="LPORT2" property="lport2"/>
+     	<result column="PORT3" property="port3"/>
+     	<result column="LPORT3" property="lport3"/>
+     	<result column="ORGANCODE" property="organcode"/>
+     	<result column="OPERCODE" property="opercode"/>
+     	<result column="PIN3KEY" property="pin3key"/>
+     	<result column="MAXCHILDPROC" property="maxchildproc"/>
+     	<result column="CFGFILENAME" property="cfgfilename"/>
+     	<result column="SNDQUEUEPATH" property="sndqueuepath"/>
+     	<result column="YYSFLAG" property="yysflag"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        EXTERNSYSCODE ,OTHERCODE ,EXTERNSYSNAME ,EXTERNSYSFLAG ,OPENDATE ,LASTEXTERNDATE ,EXTERNDATE ,SERIAL ,OPENFLAG ,STATE ,MAXMSGNO ,STOPDATE ,IPADDR ,PORT ,PRIKEY ,TRANKEY ,MACKEY ,MAINTAINNAME ,MAINTAINPHONE ,FTPUSERNAME ,FTPPASSWORD ,FTPGETPATH ,FTPPUTPATH ,SPANPROORGAN ,MODIFYDATE ,MODIFYORGAN ,MODIFYOPER ,LPORT ,PORT1 ,LPORT1 ,PORT2 ,LPORT2 ,PORT3 ,LPORT3 ,ORGANCODE ,OPERCODE ,PIN3KEY ,MAXCHILDPROC ,CFGFILENAME ,SNDQUEUEPATH ,YYSFLAG 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.FdExternsys">
+        INSERT INTO FD_EXTERNSYS 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="externsyscode != null">
+	        	EXTERNSYSCODE ,
+	       	</if>
+	       	<if test="othercode != null">
+	        	OTHERCODE ,
+	       	</if>
+	       	<if test="externsysname != null">
+	        	EXTERNSYSNAME ,
+	       	</if>
+	       	<if test="externsysflag != null">
+	        	EXTERNSYSFLAG ,
+	       	</if>
+	       	<if test="opendate != null">
+	        	OPENDATE ,
+	       	</if>
+	       	<if test="lastexterndate != null">
+	        	LASTEXTERNDATE ,
+	       	</if>
+	       	<if test="externdate != null">
+	        	EXTERNDATE ,
+	       	</if>
+	       	<if test="serial != null">
+	        	SERIAL ,
+	       	</if>
+	       	<if test="openflag != null">
+	        	OPENFLAG ,
+	       	</if>
+	       	<if test="state != null">
+	        	STATE ,
+	       	</if>
+	       	<if test="maxmsgno != null">
+	        	MAXMSGNO ,
+	       	</if>
+	       	<if test="stopdate != null">
+	        	STOPDATE ,
+	       	</if>
+	       	<if test="ipaddr != null">
+	        	IPADDR ,
+	       	</if>
+	       	<if test="port != null">
+	        	PORT ,
+	       	</if>
+	       	<if test="prikey != null">
+	        	PRIKEY ,
+	       	</if>
+	       	<if test="trankey != null">
+	        	TRANKEY ,
+	       	</if>
+	       	<if test="mackey != null">
+	        	MACKEY ,
+	       	</if>
+	       	<if test="maintainname != null">
+	        	MAINTAINNAME ,
+	       	</if>
+	       	<if test="maintainphone != null">
+	        	MAINTAINPHONE ,
+	       	</if>
+	       	<if test="ftpusername != null">
+	        	FTPUSERNAME ,
+	       	</if>
+	       	<if test="ftppassword != null">
+	        	FTPPASSWORD ,
+	       	</if>
+	       	<if test="ftpgetpath != null">
+	        	FTPGETPATH ,
+	       	</if>
+	       	<if test="ftpputpath != null">
+	        	FTPPUTPATH ,
+	       	</if>
+	       	<if test="spanproorgan != null">
+	        	SPANPROORGAN ,
+	       	</if>
+	       	<if test="modifydate != null">
+	        	MODIFYDATE ,
+	       	</if>
+	       	<if test="modifyorgan != null">
+	        	MODIFYORGAN ,
+	       	</if>
+	       	<if test="modifyoper != null">
+	        	MODIFYOPER ,
+	       	</if>
+	       	<if test="lport != null">
+	        	LPORT ,
+	       	</if>
+	       	<if test="port1 != null">
+	        	PORT1 ,
+	       	</if>
+	       	<if test="lport1 != null">
+	        	LPORT1 ,
+	       	</if>
+	       	<if test="port2 != null">
+	        	PORT2 ,
+	       	</if>
+	       	<if test="lport2 != null">
+	        	LPORT2 ,
+	       	</if>
+	       	<if test="port3 != null">
+	        	PORT3 ,
+	       	</if>
+	       	<if test="lport3 != null">
+	        	LPORT3 ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	ORGANCODE ,
+	       	</if>
+	       	<if test="opercode != null">
+	        	OPERCODE ,
+	       	</if>
+	       	<if test="pin3key != null">
+	        	PIN3KEY ,
+	       	</if>
+	       	<if test="maxchildproc != null">
+	        	MAXCHILDPROC ,
+	       	</if>
+	       	<if test="cfgfilename != null">
+	        	CFGFILENAME ,
+	       	</if>
+	       	<if test="sndqueuepath != null">
+	        	SNDQUEUEPATH ,
+	       	</if>
+	       	<if test="yysflag != null">
+	        	YYSFLAG ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="externsyscode != null">
+	        	#{externsyscode} ,
+	       	</if>
+	       	<if test="othercode != null">
+	        	#{othercode} ,
+	       	</if>
+	       	<if test="externsysname != null">
+	        	#{externsysname} ,
+	       	</if>
+	       	<if test="externsysflag != null">
+	        	#{externsysflag} ,
+	       	</if>
+	       	<if test="opendate != null">
+	        	#{opendate} ,
+	       	</if>
+	       	<if test="lastexterndate != null">
+	        	#{lastexterndate} ,
+	       	</if>
+	       	<if test="externdate != null">
+	        	#{externdate} ,
+	       	</if>
+	       	<if test="serial != null">
+	        	#{serial} ,
+	       	</if>
+	       	<if test="openflag != null">
+	        	#{openflag} ,
+	       	</if>
+	       	<if test="state != null">
+	        	#{state} ,
+	       	</if>
+	       	<if test="maxmsgno != null">
+	        	#{maxmsgno} ,
+	       	</if>
+	       	<if test="stopdate != null">
+	        	#{stopdate} ,
+	       	</if>
+	       	<if test="ipaddr != null">
+	        	#{ipaddr} ,
+	       	</if>
+	       	<if test="port != null">
+	        	#{port} ,
+	       	</if>
+	       	<if test="prikey != null">
+	        	#{prikey} ,
+	       	</if>
+	       	<if test="trankey != null">
+	        	#{trankey} ,
+	       	</if>
+	       	<if test="mackey != null">
+	        	#{mackey} ,
+	       	</if>
+	       	<if test="maintainname != null">
+	        	#{maintainname} ,
+	       	</if>
+	       	<if test="maintainphone != null">
+	        	#{maintainphone} ,
+	       	</if>
+	       	<if test="ftpusername != null">
+	        	#{ftpusername} ,
+	       	</if>
+	       	<if test="ftppassword != null">
+	        	#{ftppassword} ,
+	       	</if>
+	       	<if test="ftpgetpath != null">
+	        	#{ftpgetpath} ,
+	       	</if>
+	       	<if test="ftpputpath != null">
+	        	#{ftpputpath} ,
+	       	</if>
+	       	<if test="spanproorgan != null">
+	        	#{spanproorgan} ,
+	       	</if>
+	       	<if test="modifydate != null">
+	        	#{modifydate} ,
+	       	</if>
+	       	<if test="modifyorgan != null">
+	        	#{modifyorgan} ,
+	       	</if>
+	       	<if test="modifyoper != null">
+	        	#{modifyoper} ,
+	       	</if>
+	       	<if test="lport != null">
+	        	#{lport} ,
+	       	</if>
+	       	<if test="port1 != null">
+	        	#{port1} ,
+	       	</if>
+	       	<if test="lport1 != null">
+	        	#{lport1} ,
+	       	</if>
+	       	<if test="port2 != null">
+	        	#{port2} ,
+	       	</if>
+	       	<if test="lport2 != null">
+	        	#{lport2} ,
+	       	</if>
+	       	<if test="port3 != null">
+	        	#{port3} ,
+	       	</if>
+	       	<if test="lport3 != null">
+	        	#{lport3} ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	#{organcode} ,
+	       	</if>
+	       	<if test="opercode != null">
+	        	#{opercode} ,
+	       	</if>
+	       	<if test="pin3key != null">
+	        	#{pin3key} ,
+	       	</if>
+	       	<if test="maxchildproc != null">
+	        	#{maxchildproc} ,
+	       	</if>
+	       	<if test="cfgfilename != null">
+	        	#{cfgfilename} ,
+	       	</if>
+	       	<if test="sndqueuepath != null">
+	        	#{sndqueuepath} ,
+	       	</if>
+	       	<if test="yysflag != null">
+	        	#{yysflag} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO FD_EXTERNSYS 
+        (EXTERNSYSCODE ,OTHERCODE ,EXTERNSYSNAME ,EXTERNSYSFLAG ,OPENDATE ,LASTEXTERNDATE ,EXTERNDATE ,SERIAL ,OPENFLAG ,STATE ,MAXMSGNO ,STOPDATE ,IPADDR ,PORT ,PRIKEY ,TRANKEY ,MACKEY ,MAINTAINNAME ,MAINTAINPHONE ,FTPUSERNAME ,FTPPASSWORD ,FTPGETPATH ,FTPPUTPATH ,SPANPROORGAN ,MODIFYDATE ,MODIFYORGAN ,MODIFYOPER ,LPORT ,PORT1 ,LPORT1 ,PORT2 ,LPORT2 ,PORT3 ,LPORT3 ,ORGANCODE ,OPERCODE ,PIN3KEY ,MAXCHILDPROC ,CFGFILENAME ,SNDQUEUEPATH ,YYSFLAG ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.externsyscode} ,#{item.othercode} ,#{item.externsysname} ,#{item.externsysflag} ,#{item.opendate} ,#{item.lastexterndate} ,#{item.externdate} ,#{item.serial} ,#{item.openflag} ,#{item.state} ,#{item.maxmsgno} ,#{item.stopdate} ,#{item.ipaddr} ,#{item.port} ,#{item.prikey} ,#{item.trankey} ,#{item.mackey} ,#{item.maintainname} ,#{item.maintainphone} ,#{item.ftpusername} ,#{item.ftppassword} ,#{item.ftpgetpath} ,#{item.ftpputpath} ,#{item.spanproorgan} ,#{item.modifydate} ,#{item.modifyorgan} ,#{item.modifyoper} ,#{item.lport} ,#{item.port1} ,#{item.lport1} ,#{item.port2} ,#{item.lport2} ,#{item.port3} ,#{item.lport3} ,#{item.organcode} ,#{item.opercode} ,#{item.pin3key} ,#{item.maxchildproc} ,#{item.cfgfilename} ,#{item.sndqueuepath} ,#{item.yysflag} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM FD_EXTERNSYS 
+        <where>
+        	EXTERNSYSCODE = #{externsyscode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM FD_EXTERNSYS 
+        <where>
+        	EXTERNSYSCODE = #{externsyscode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM FD_EXTERNSYS 
+        WHERE EXTERNSYSCODE IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM FD_EXTERNSYS
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.FdExternsys">
+        UPDATE FD_EXTERNSYS 
+        <set>
+       	<if test="othercode != null">
+       		OTHERCODE = #{othercode},
+       	</if>
+       	<if test="externsysname != null">
+       		EXTERNSYSNAME = #{externsysname},
+       	</if>
+       	<if test="externsysflag != null">
+       		EXTERNSYSFLAG = #{externsysflag},
+       	</if>
+       	<if test="opendate != null">
+       		OPENDATE = #{opendate},
+       	</if>
+       	<if test="lastexterndate != null">
+       		LASTEXTERNDATE = #{lastexterndate},
+       	</if>
+       	<if test="externdate != null">
+       		EXTERNDATE = #{externdate},
+       	</if>
+       	<if test="serial != null">
+       		SERIAL = #{serial},
+       	</if>
+       	<if test="openflag != null">
+       		OPENFLAG = #{openflag},
+       	</if>
+       	<if test="state != null">
+       		STATE = #{state},
+       	</if>
+       	<if test="maxmsgno != null">
+       		MAXMSGNO = #{maxmsgno},
+       	</if>
+       	<if test="stopdate != null">
+       		STOPDATE = #{stopdate},
+       	</if>
+       	<if test="ipaddr != null">
+       		IPADDR = #{ipaddr},
+       	</if>
+       	<if test="port != null">
+       		PORT = #{port},
+       	</if>
+       	<if test="prikey != null">
+       		PRIKEY = #{prikey},
+       	</if>
+       	<if test="trankey != null">
+       		TRANKEY = #{trankey},
+       	</if>
+       	<if test="mackey != null">
+       		MACKEY = #{mackey},
+       	</if>
+       	<if test="maintainname != null">
+       		MAINTAINNAME = #{maintainname},
+       	</if>
+       	<if test="maintainphone != null">
+       		MAINTAINPHONE = #{maintainphone},
+       	</if>
+       	<if test="ftpusername != null">
+       		FTPUSERNAME = #{ftpusername},
+       	</if>
+       	<if test="ftppassword != null">
+       		FTPPASSWORD = #{ftppassword},
+       	</if>
+       	<if test="ftpgetpath != null">
+       		FTPGETPATH = #{ftpgetpath},
+       	</if>
+       	<if test="ftpputpath != null">
+       		FTPPUTPATH = #{ftpputpath},
+       	</if>
+       	<if test="spanproorgan != null">
+       		SPANPROORGAN = #{spanproorgan},
+       	</if>
+       	<if test="modifydate != null">
+       		MODIFYDATE = #{modifydate},
+       	</if>
+       	<if test="modifyorgan != null">
+       		MODIFYORGAN = #{modifyorgan},
+       	</if>
+       	<if test="modifyoper != null">
+       		MODIFYOPER = #{modifyoper},
+       	</if>
+       	<if test="lport != null">
+       		LPORT = #{lport},
+       	</if>
+       	<if test="port1 != null">
+       		PORT1 = #{port1},
+       	</if>
+       	<if test="lport1 != null">
+       		LPORT1 = #{lport1},
+       	</if>
+       	<if test="port2 != null">
+       		PORT2 = #{port2},
+       	</if>
+       	<if test="lport2 != null">
+       		LPORT2 = #{lport2},
+       	</if>
+       	<if test="port3 != null">
+       		PORT3 = #{port3},
+       	</if>
+       	<if test="lport3 != null">
+       		LPORT3 = #{lport3},
+       	</if>
+       	<if test="organcode != null">
+       		ORGANCODE = #{organcode},
+       	</if>
+       	<if test="opercode != null">
+       		OPERCODE = #{opercode},
+       	</if>
+       	<if test="pin3key != null">
+       		PIN3KEY = #{pin3key},
+       	</if>
+       	<if test="maxchildproc != null">
+       		MAXCHILDPROC = #{maxchildproc},
+       	</if>
+       	<if test="cfgfilename != null">
+       		CFGFILENAME = #{cfgfilename},
+       	</if>
+       	<if test="sndqueuepath != null">
+       		SNDQUEUEPATH = #{sndqueuepath},
+       	</if>
+       	<if test="yysflag != null">
+       		YYSFLAG = #{yysflag},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	EXTERNSYSCODE = #{externsyscode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE FD_EXTERNSYS 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE FD_EXTERNSYS 
+        <set>
+       	<if test="externsyscode != null">
+       		EXTERNSYSCODE = #{externsyscode},
+       	</if>
+       	<if test="othercode != null">
+       		OTHERCODE = #{othercode},
+       	</if>
+       	<if test="externsysname != null">
+       		EXTERNSYSNAME = #{externsysname},
+       	</if>
+       	<if test="externsysflag != null">
+       		EXTERNSYSFLAG = #{externsysflag},
+       	</if>
+       	<if test="opendate != null">
+       		OPENDATE = #{opendate},
+       	</if>
+       	<if test="lastexterndate != null">
+       		LASTEXTERNDATE = #{lastexterndate},
+       	</if>
+       	<if test="externdate != null">
+       		EXTERNDATE = #{externdate},
+       	</if>
+       	<if test="serial != null">
+       		SERIAL = #{serial},
+       	</if>
+       	<if test="openflag != null">
+       		OPENFLAG = #{openflag},
+       	</if>
+       	<if test="state != null">
+       		STATE = #{state},
+       	</if>
+       	<if test="maxmsgno != null">
+       		MAXMSGNO = #{maxmsgno},
+       	</if>
+       	<if test="stopdate != null">
+       		STOPDATE = #{stopdate},
+       	</if>
+       	<if test="ipaddr != null">
+       		IPADDR = #{ipaddr},
+       	</if>
+       	<if test="port != null">
+       		PORT = #{port},
+       	</if>
+       	<if test="prikey != null">
+       		PRIKEY = #{prikey},
+       	</if>
+       	<if test="trankey != null">
+       		TRANKEY = #{trankey},
+       	</if>
+       	<if test="mackey != null">
+       		MACKEY = #{mackey},
+       	</if>
+       	<if test="maintainname != null">
+       		MAINTAINNAME = #{maintainname},
+       	</if>
+       	<if test="maintainphone != null">
+       		MAINTAINPHONE = #{maintainphone},
+       	</if>
+       	<if test="ftpusername != null">
+       		FTPUSERNAME = #{ftpusername},
+       	</if>
+       	<if test="ftppassword != null">
+       		FTPPASSWORD = #{ftppassword},
+       	</if>
+       	<if test="ftpgetpath != null">
+       		FTPGETPATH = #{ftpgetpath},
+       	</if>
+       	<if test="ftpputpath != null">
+       		FTPPUTPATH = #{ftpputpath},
+       	</if>
+       	<if test="spanproorgan != null">
+       		SPANPROORGAN = #{spanproorgan},
+       	</if>
+       	<if test="modifydate != null">
+       		MODIFYDATE = #{modifydate},
+       	</if>
+       	<if test="modifyorgan != null">
+       		MODIFYORGAN = #{modifyorgan},
+       	</if>
+       	<if test="modifyoper != null">
+       		MODIFYOPER = #{modifyoper},
+       	</if>
+       	<if test="lport != null">
+       		LPORT = #{lport},
+       	</if>
+       	<if test="port1 != null">
+       		PORT1 = #{port1},
+       	</if>
+       	<if test="lport1 != null">
+       		LPORT1 = #{lport1},
+       	</if>
+       	<if test="port2 != null">
+       		PORT2 = #{port2},
+       	</if>
+       	<if test="lport2 != null">
+       		LPORT2 = #{lport2},
+       	</if>
+       	<if test="port3 != null">
+       		PORT3 = #{port3},
+       	</if>
+       	<if test="lport3 != null">
+       		LPORT3 = #{lport3},
+       	</if>
+       	<if test="organcode != null">
+       		ORGANCODE = #{organcode},
+       	</if>
+       	<if test="opercode != null">
+       		OPERCODE = #{opercode},
+       	</if>
+       	<if test="pin3key != null">
+       		PIN3KEY = #{pin3key},
+       	</if>
+       	<if test="maxchildproc != null">
+       		MAXCHILDPROC = #{maxchildproc},
+       	</if>
+       	<if test="cfgfilename != null">
+       		CFGFILENAME = #{cfgfilename},
+       	</if>
+       	<if test="sndqueuepath != null">
+       		SNDQUEUEPATH = #{sndqueuepath},
+       	</if>
+       	<if test="yysflag != null">
+       		YYSFLAG = #{yysflag},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="externsyscode != null and externsyscode != ''">
+	 		and EXTERNSYSCODE = #{externsyscode}
+	 	</if>
+	 	<if test="othercode != null and othercode != ''">
+	 		and OTHERCODE = #{othercode}
+	 	</if>
+	 	<if test="externsysname != null and externsysname != ''">
+	 		and EXTERNSYSNAME = #{externsysname}
+	 	</if>
+	 	<if test="externsysflag != null and externsysflag != ''">
+	 		and EXTERNSYSFLAG = #{externsysflag}
+	 	</if>
+	 	<if test="opendate != null and opendate != ''">
+	 		and OPENDATE = #{opendate}
+	 	</if>
+	 	<if test="lastexterndate != null and lastexterndate != ''">
+	 		and LASTEXTERNDATE = #{lastexterndate}
+	 	</if>
+	 	<if test="externdate != null and externdate != ''">
+	 		and EXTERNDATE = #{externdate}
+	 	</if>
+	 	<if test="serial != null and serial != ''">
+	 		and SERIAL = #{serial}
+	 	</if>
+	 	<if test="openflag != null and openflag != ''">
+	 		and OPENFLAG = #{openflag}
+	 	</if>
+	 	<if test="state != null and state != ''">
+	 		and STATE = #{state}
+	 	</if>
+	 	<if test="maxmsgno != null and maxmsgno != ''">
+	 		and MAXMSGNO = #{maxmsgno}
+	 	</if>
+	 	<if test="stopdate != null and stopdate != ''">
+	 		and STOPDATE = #{stopdate}
+	 	</if>
+	 	<if test="ipaddr != null and ipaddr != ''">
+	 		and IPADDR = #{ipaddr}
+	 	</if>
+	 	<if test="port != null and port != ''">
+	 		and PORT = #{port}
+	 	</if>
+	 	<if test="prikey != null and prikey != ''">
+	 		and PRIKEY = #{prikey}
+	 	</if>
+	 	<if test="trankey != null and trankey != ''">
+	 		and TRANKEY = #{trankey}
+	 	</if>
+	 	<if test="mackey != null and mackey != ''">
+	 		and MACKEY = #{mackey}
+	 	</if>
+	 	<if test="maintainname != null and maintainname != ''">
+	 		and MAINTAINNAME = #{maintainname}
+	 	</if>
+	 	<if test="maintainphone != null and maintainphone != ''">
+	 		and MAINTAINPHONE = #{maintainphone}
+	 	</if>
+	 	<if test="ftpusername != null and ftpusername != ''">
+	 		and FTPUSERNAME = #{ftpusername}
+	 	</if>
+	 	<if test="ftppassword != null and ftppassword != ''">
+	 		and FTPPASSWORD = #{ftppassword}
+	 	</if>
+	 	<if test="ftpgetpath != null and ftpgetpath != ''">
+	 		and FTPGETPATH = #{ftpgetpath}
+	 	</if>
+	 	<if test="ftpputpath != null and ftpputpath != ''">
+	 		and FTPPUTPATH = #{ftpputpath}
+	 	</if>
+	 	<if test="spanproorgan != null and spanproorgan != ''">
+	 		and SPANPROORGAN = #{spanproorgan}
+	 	</if>
+	 	<if test="modifydate != null and modifydate != ''">
+	 		and MODIFYDATE = #{modifydate}
+	 	</if>
+	 	<if test="modifyorgan != null and modifyorgan != ''">
+	 		and MODIFYORGAN = #{modifyorgan}
+	 	</if>
+	 	<if test="modifyoper != null and modifyoper != ''">
+	 		and MODIFYOPER = #{modifyoper}
+	 	</if>
+	 	<if test="lport != null and lport != ''">
+	 		and LPORT = #{lport}
+	 	</if>
+	 	<if test="port1 != null and port1 != ''">
+	 		and PORT1 = #{port1}
+	 	</if>
+	 	<if test="lport1 != null and lport1 != ''">
+	 		and LPORT1 = #{lport1}
+	 	</if>
+	 	<if test="port2 != null and port2 != ''">
+	 		and PORT2 = #{port2}
+	 	</if>
+	 	<if test="lport2 != null and lport2 != ''">
+	 		and LPORT2 = #{lport2}
+	 	</if>
+	 	<if test="port3 != null and port3 != ''">
+	 		and PORT3 = #{port3}
+	 	</if>
+	 	<if test="lport3 != null and lport3 != ''">
+	 		and LPORT3 = #{lport3}
+	 	</if>
+	 	<if test="organcode != null and organcode != ''">
+	 		and ORGANCODE = #{organcode}
+	 	</if>
+	 	<if test="opercode != null and opercode != ''">
+	 		and OPERCODE = #{opercode}
+	 	</if>
+	 	<if test="pin3key != null and pin3key != ''">
+	 		and PIN3KEY = #{pin3key}
+	 	</if>
+	 	<if test="maxchildproc != null and maxchildproc != ''">
+	 		and MAXCHILDPROC = #{maxchildproc}
+	 	</if>
+	 	<if test="cfgfilename != null and cfgfilename != ''">
+	 		and CFGFILENAME = #{cfgfilename}
+	 	</if>
+	 	<if test="sndqueuepath != null and sndqueuepath != ''">
+	 		and SNDQUEUEPATH = #{sndqueuepath}
+	 	</if>
+	 	<if test="yysflag != null and yysflag != ''">
+	 		and YYSFLAG = #{yysflag}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="externsyscode != null and externsyscode != ''">
+ 			and EXTERNSYSCODE like '%' || #{externsyscode} || '%'
+ 		</if>
+ 		<if test="othercode != null and othercode != ''">
+ 			and OTHERCODE like '%' || #{othercode} || '%'
+ 		</if>
+ 		<if test="externsysname != null and externsysname != ''">
+ 			and EXTERNSYSNAME like '%' || #{externsysname} || '%'
+ 		</if>
+ 		<if test="externsysflag != null and externsysflag != ''">
+ 			and EXTERNSYSFLAG like '%' || #{externsysflag} || '%'
+ 		</if>
+ 		<if test="opendate != null and opendate != ''">
+ 			and OPENDATE like '%' || #{opendate} || '%'
+ 		</if>
+ 		<if test="lastexterndate != null and lastexterndate != ''">
+ 			and LASTEXTERNDATE like '%' || #{lastexterndate} || '%'
+ 		</if>
+ 		<if test="externdate != null and externdate != ''">
+ 			and EXTERNDATE like '%' || #{externdate} || '%'
+ 		</if>
+ 		<if test="serial != null and serial != ''">
+ 			and SERIAL like '%' || #{serial} || '%'
+ 		</if>
+ 		<if test="openflag != null and openflag != ''">
+ 			and OPENFLAG like '%' || #{openflag} || '%'
+ 		</if>
+ 		<if test="state != null and state != ''">
+ 			and STATE like '%' || #{state} || '%'
+ 		</if>
+ 		<if test="maxmsgno != null and maxmsgno != ''">
+ 			and MAXMSGNO like '%' || #{maxmsgno} || '%'
+ 		</if>
+ 		<if test="stopdate != null and stopdate != ''">
+ 			and STOPDATE like '%' || #{stopdate} || '%'
+ 		</if>
+ 		<if test="ipaddr != null and ipaddr != ''">
+ 			and IPADDR like '%' || #{ipaddr} || '%'
+ 		</if>
+ 		<if test="port != null and port != ''">
+ 			and PORT like '%' || #{port} || '%'
+ 		</if>
+ 		<if test="prikey != null and prikey != ''">
+ 			and PRIKEY like '%' || #{prikey} || '%'
+ 		</if>
+ 		<if test="trankey != null and trankey != ''">
+ 			and TRANKEY like '%' || #{trankey} || '%'
+ 		</if>
+ 		<if test="mackey != null and mackey != ''">
+ 			and MACKEY like '%' || #{mackey} || '%'
+ 		</if>
+ 		<if test="maintainname != null and maintainname != ''">
+ 			and MAINTAINNAME like '%' || #{maintainname} || '%'
+ 		</if>
+ 		<if test="maintainphone != null and maintainphone != ''">
+ 			and MAINTAINPHONE like '%' || #{maintainphone} || '%'
+ 		</if>
+ 		<if test="ftpusername != null and ftpusername != ''">
+ 			and FTPUSERNAME like '%' || #{ftpusername} || '%'
+ 		</if>
+ 		<if test="ftppassword != null and ftppassword != ''">
+ 			and FTPPASSWORD like '%' || #{ftppassword} || '%'
+ 		</if>
+ 		<if test="ftpgetpath != null and ftpgetpath != ''">
+ 			and FTPGETPATH like '%' || #{ftpgetpath} || '%'
+ 		</if>
+ 		<if test="ftpputpath != null and ftpputpath != ''">
+ 			and FTPPUTPATH like '%' || #{ftpputpath} || '%'
+ 		</if>
+ 		<if test="spanproorgan != null and spanproorgan != ''">
+ 			and SPANPROORGAN like '%' || #{spanproorgan} || '%'
+ 		</if>
+ 		<if test="modifydate != null and modifydate != ''">
+ 			and MODIFYDATE like '%' || #{modifydate} || '%'
+ 		</if>
+ 		<if test="modifyorgan != null and modifyorgan != ''">
+ 			and MODIFYORGAN like '%' || #{modifyorgan} || '%'
+ 		</if>
+ 		<if test="modifyoper != null and modifyoper != ''">
+ 			and MODIFYOPER like '%' || #{modifyoper} || '%'
+ 		</if>
+ 		<if test="lport != null and lport != ''">
+ 			and LPORT like '%' || #{lport} || '%'
+ 		</if>
+ 		<if test="port1 != null and port1 != ''">
+ 			and PORT1 like '%' || #{port1} || '%'
+ 		</if>
+ 		<if test="lport1 != null and lport1 != ''">
+ 			and LPORT1 like '%' || #{lport1} || '%'
+ 		</if>
+ 		<if test="port2 != null and port2 != ''">
+ 			and PORT2 like '%' || #{port2} || '%'
+ 		</if>
+ 		<if test="lport2 != null and lport2 != ''">
+ 			and LPORT2 like '%' || #{lport2} || '%'
+ 		</if>
+ 		<if test="port3 != null and port3 != ''">
+ 			and PORT3 like '%' || #{port3} || '%'
+ 		</if>
+ 		<if test="lport3 != null and lport3 != ''">
+ 			and LPORT3 like '%' || #{lport3} || '%'
+ 		</if>
+ 		<if test="organcode != null and organcode != ''">
+ 			and ORGANCODE like '%' || #{organcode} || '%'
+ 		</if>
+ 		<if test="opercode != null and opercode != ''">
+ 			and OPERCODE like '%' || #{opercode} || '%'
+ 		</if>
+ 		<if test="pin3key != null and pin3key != ''">
+ 			and PIN3KEY like '%' || #{pin3key} || '%'
+ 		</if>
+ 		<if test="maxchildproc != null and maxchildproc != ''">
+ 			and MAXCHILDPROC like '%' || #{maxchildproc} || '%'
+ 		</if>
+ 		<if test="cfgfilename != null and cfgfilename != ''">
+ 			and CFGFILENAME like '%' || #{cfgfilename} || '%'
+ 		</if>
+ 		<if test="sndqueuepath != null and sndqueuepath != ''">
+ 			and SNDQUEUEPATH like '%' || #{sndqueuepath} || '%'
+ 		</if>
+ 		<if test="yysflag != null and yysflag != ''">
+ 			and YYSFLAG like '%' || #{yysflag} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM FD_EXTERNSYS 
+        <where> 
+        	EXTERNSYSCODE = #{externsyscode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.FdExternsys" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM FD_EXTERNSYS
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.FdExternsys" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM FD_EXTERNSYS 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.FdExternsys" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM FD_EXTERNSYS 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM FD_EXTERNSYS 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.FdExternsys" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_EXTERNSYS 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.FdExternsys" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_EXTERNSYS 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_EXTERNSYS 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

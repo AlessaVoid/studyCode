@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.LineProductDetailMapper">
+    <resultMap id="line_detail_map" type="com.boco.TONY.biz.line.POJO.DO.ProductLineDetailDO">
+        <id column="ID" property="id" javaType="java.lang.Long"/>
+        <result column="LINE_ID" property="lineId"/>
+        <result column="COMB_CODE" property="productId"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+
+    <!--获取所有的产品信息-->
+    <insert id="insertProductLineDetail" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineDetailDO">
+        insert into tb_prod_line_details(line_id, comb_code, status)
+        values (#{lineId}, #{productId}, #{status})
+    </insert>
+
+    <!--查询所有可以组合的产品-->
+    <select id="updateProductLineDetailInfo" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineDetailDO" flushCache="true">
+        update tb_prod_line_details
+        set status = #{status}
+        where line_id = #{lineId}
+          and comb_code = #{productId}
+    </select>
+
+    <!--删除产品贷种组合-->
+    <update id="deleteCombProductByProductId" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineDetailDO">
+        update tb_prod_line_details
+        set status= -1
+        where line_id = #{lineId}
+          and comb_code = #{productId}
+    </update>
+
+    <!--获取通过LineId-->
+    <select id="getAllProductLineDetailByLineId" parameterType="java.lang.String" resultMap="line_detail_map" flushCache="true">
+        select *
+        from tb_prod
+        where comb_code = #{_param}
+    </select>
+
+    <!--查询当前所有所有选中产品明细-->
+    <select id="getProductLineDetailById" parameterType="java.lang.String" resultMap="line_detail_map" flushCache="true">
+        select *
+        from tb_prod_line_details
+        where line_id = #{_param}
+          and status = 1
+    </select>
+</mapper>

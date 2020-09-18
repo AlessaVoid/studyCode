@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.LoanPlanDetailMapper">
+    <cache readOnly="true"/>
+    <!--基础信贷明细-->
+    <resultMap id="pd_detail_base_map" type="com.boco.SYS.entity.TbPlanDetail">
+        <id column="pd_id" property="pdId"/>
+        <result column="pd_ref_id" property="pdRefId"/>
+        <result column="pd_plan_month" property="pdMonth"/>
+        <result column="pd_organ" property="pdOrgan"/>
+        <result column="pd_create_time" property="pdCreateTime" javaType="java.time.LocalDateTime"/>
+        <result column="pd_state" property="pdState"/>
+        <result column="pd_small_amount_loan_req" property="pdSmallAmountLoanReq"/>
+        <result column="pd_other_loan_req" property="pdOtherLoanReq"/>
+        <result column="pd_per_business_loan_req" property="pdPerBusinessLoanReq"/>
+        <result column="pd_small_business_req" property="pdSmallBusinessReq"/>
+        <result column="pd_small_business_factor_req" property="pdSmallBusinessFactorReq"/>
+        <result column="pd_house_mort_loan_req" property="pdHouseMortLoanReq"/>
+        <result column="pd_other_consume_loan_req" property="pdOtherConsumeLoanReq"/>
+        <result column="pd_supply_line_req" property="pdSupplyLineReq"/>
+        <result column="pd_domestic_trade_finance_req" property="pdDomesticTradeFinanceReq"/>
+        <result column="pd_inter_trade_finance_req" property="pdInterTradeFinanceReq"/>
+        <result column="pd_other_company_loan_req" property="pdOtherCompanyLoanReq"/>
+        <result column="pd_san_company_loan_req" property="pdSanCompanyLoanReq"/>
+        <result column="pd_merge_loan_req" property="pdMergeLoanReq"/>
+        <result column="pd_all_advance_loan_req" property="pdAllAdvanceLoanReq"/>
+        <result column="pd_repost_req" property="pdRepostReq"/>
+        <result column="pd_straight_req" property="pdStraightReq"/>
+        <result column="pd_buy_forfeiting_rmb_req" property="pdBuyForfeitingRMBReq"/>
+        <result column="pd_inter_company_loan_req" property="pdInterCompanyLoanReq"/>
+        <result column="pd_special_finance_req" property="pdSpecialFinanceReq"/>
+        <result column="pd_person_overdraft_req" property="pdPersonOverdraftReq"/>
+        <result column="pd_foreign_currency_loan_req" property="pdForeignCurrencyLoanReq"/>
+        <result column="pd_buy_forfeiting_foreign_cur_req" property="pdBuyForfeitingForeignCurReq"/>
+        <result column="pd_other_req" property="pdOtherReq"/>
+    </resultMap>
+
+    <!--插入信贷计划明细-->
+    <insert id="insertLoanPlanDetail" parameterType="java.util.List" flushCache="true">
+        insert into tb_plan_detail(pd_id, pd_ref_id, pd_organ, pd_create_time, pd_state, pd_small_amount_loan_req,
+        pd_other_loan_req, pd_per_business_loan_req, pd_small_business_req,
+        pd_small_business_factor_req, pd_house_mort_loan_req,
+        pd_other_consume_loan_req, pd_supply_line_req, pd_domestic_trade_finance_req,
+        pd_inter_trade_finance_req,
+        pd_other_company_loan_req, pd_san_company_loan_req, pd_merge_loan_req,
+        pd_all_advance_loan_req, pd_repost_req,
+        pd_straight_req, pd_buy_forfeiting_rmb_req, pd_inter_company_loan_req,
+        pd_special_finance_req, pd_person_overdraft_req,
+        pd_foreign_currency_loan_req, pd_buy_forfeiting_foreign_cur_req, pd_other_req,pd_plan_month)
+        values
+        <foreach collection="list" open="" item="item" separator="," close="">
+            (#{item.pdId}, #{item.pdRefId}, #{item.pdOrgan}, #{item.pdCreateTime}
+            , #{item.pdState}, #{item.pdSmallAmountLoanReq}, #{item.pdOtherLoanReq}, #{item.pdPerBusinessLoanReq},
+            #{item.pdSmallBusinessReq}
+            , #{item.pdSmallBusinessFactorReq}, #{item.pdHouseMortLoanReq}, #{item.pdOtherConsumeLoanReq},
+            #{item.pdSupplyLineReq},
+            #{item.pdDomesticTradeFinanceReq}, #{item.pdInterTradeFinanceReq}, #{item.pdOtherCompanyLoanReq},
+            #{item.pdSanCompanyLoanReq},
+            #{item.pdMergeLoanReq}, #{item.pdAllAdvanceLoanReq}, #{item.pdRepostReq}, #{item.pdStraightReq},
+            #{item.pdBuyForfeitingRMBReq},
+            #{item.pdInterCompanyLoanReq}, #{item.pdSpecialFinanceReq}, #{item.pdPersonOverdraftReq},
+            #{item.pdForeignCurrencyLoanReq},
+            #{item.pdBuyForfeitingForeignCurReq}, #{item.pdOtherReq},#{item.pdMonth})
+        </foreach>
+    </insert>
+
+    <!--更新信贷明细-->
+    <update id="updateLoanPlanDetail" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator=";">
+            update tb_plan_detail
+            <set>
+                <if test="item.pdState>=0">
+                    pd_state=#{item.pdState}
+                </if>
+                <if test="item.pdSmallAmountLoanReq>=0">
+                    ,pd_small_amount_loan_req=#{item.pdSmallAmountLoanReq}
+                </if>
+                <if test="item.pdOtherLoanReq>=0">
+                    ,pd_other_loan_req=#{item.pdOtherLoanReq}
+                </if>
+                <if test="item.pdPerBusinessLoanReq>=0">
+                    ,pd_per_business_loan_req=#{item.pdPerBusinessLoanReq}
+                </if>
+                <if test="item.pdSmallBusinessReq>=0">
+                    ,pd_small_business_req=#{item.pdSmallBusinessReq}
+                </if>
+                <if test="item.pdSmallBusinessFactorReq>=0">
+                    ,pd_small_business_factor_req=#{item.pdSmallBusinessFactorReq}
+                </if>
+                <if test="item.pdHouseMortLoanReq>=0">
+                    ,pd_house_mort_loan_req=#{item.pdHouseMortLoanReq}
+                </if>
+                <if test="item.pdOtherConsumeLoanReq>=0">
+                    ,pd_other_consume_loan_req=#{item.pdOtherConsumeLoanReq}
+                </if>
+                <if test="item.pdSupplyLineReq>=0">
+                    ,pd_supply_line_req=#{item.pdSupplyLineReq}
+                </if>
+                <if test="item.pdDomesticTradeFinanceReq>=0">
+                    ,pd_domestic_trade_finance_req=#{item.pdDomesticTradeFinanceReq}
+                </if>
+                <if test="item.pdInterTradeFinanceReq>=0">
+                    ,pd_inter_trade_finance_req=#{item.pdInterTradeFinanceReq}
+                </if>
+                <if test="item.pdOtherCompanyLoanReq>=0">
+                    ,pd_other_company_loan_req=#{item.pdOtherCompanyLoanReq}
+                </if>
+                <if test="item.pdSanCompanyLoanReq>=0">
+                    ,pd_san_company_loan_req=#{item.pdSanCompanyLoanReq}
+                </if>
+                <if test="item.pdMergeLoanReq>=0">
+                    ,pd_merge_loan_req=#{item.pdMergeLoanReq}
+                </if>
+                <if test="item.pdAllAdvanceLoanReq>=0">
+                    ,pd_all_advance_loan_req=#{item.pdAllAdvanceLoanReq}
+                </if>
+                <if test="item.pdRepostReq>=0">
+                    ,pd_repost_req=#{item.pdRepostReq}
+                </if>
+                <if test="item.pdStraightReq>=0">
+                    ,pd_straight_req=#{item.pdStraightReq}
+                </if>
+                <if test="item.pdBuyForfeitingRMBReq>=0">
+                    ,pd_buy_forfeiting_rmb_req=#{item.pdBuyForfeitingRMBReq}
+                </if>
+                <if test="item.pdInterCompanyLoanReq>=0">
+                    ,pd_inter_company_loan_req=#{item.pdInterCompanyLoanReq}
+                </if>
+                <if test="item.pdSpecialFinanceReq>=0">
+                    ,pd_special_finance_req=#{item.pdSpecialFinanceReq}
+                </if>
+                <if test="item.pdPersonOverdraftReq>=0">
+                    ,pd_person_overdraft_req=#{item.pdPersonOverdraftReq}
+                </if>
+                <if test="item.pdForeignCurrencyLoanReq>=0">
+                    ,pd_foreign_currency_loan_req=#{item.pdForeignCurrencyLoanReq}
+                </if>
+                <if test="item.pdBuyForfeitingForeignCurReq>=0">
+                    ,pd_buy_forfeiting_foreign_cur_req=#{item.pdBuyForfeitingForeignCurReq}
+                </if>
+                <if test="item.pdOtherReq>=0">
+                    ,pd_other_req=#{item.pdOtherReq}
+                </if>
+            </set>
+             where pd_organ = #{item.pdOrgan} and pd_plan_month=#{item.pdMonth}
+        </foreach>
+    </update>
+    <update id="updateplanDetailList" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator=";">
+        UPDATE tb_plan_detail
+        <set>
+            <if test="item.pdMonth != null">
+                pd_month = #{item.pdMonth},
+            </if>
+
+            <if test="item.pdAmount != null">
+                pd_amount = #{item.pdAmount},
+            </if>
+            <if test="item.pdUnit != null">
+                pd_unit = #{item.pdUnit},
+            </if>
+            <if test="item.pdCreateTime != null">
+                pd_create_time = #{item.pdCreateTime},
+            </if>
+            <if test="item.pdUpdateTime != null">
+                pd_update_time = #{item.pdUpdateTime},
+            </if>
+        </set>
+        where
+        pd_ref_id = #{item.pdRefId}
+        and pd_organ = #{item.pdOrgan}
+        and pd_loan_type = #{item.pdLoanType}
+        </foreach>
+    </update>
+
+    <delete id="deleteLoanPlanDetail" parameterType="java.lang.String">
+        delete
+        from tb_plan_detail
+        where pd_ref_id = #{_param}
+    </delete>
+</mapper>

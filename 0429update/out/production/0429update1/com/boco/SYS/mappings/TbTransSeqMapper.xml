@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 流水表 -->
+<mapper namespace="com.boco.SYS.mapper.TbTransSeqMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbTransSeq">
+		<id column="ctl_seq_no" property="ctlSeqNo"/>
+		<id column="trans_date" property="transDate"/>
+		<id column="systemid" property="systemid"/>
+		<result column="sys_track_no" property="sysTrackNo"/>
+		<result column="trans_inslt" property="transInst"/>
+		<result column="send_inst" property="sendInst"/>
+		<result column="dest_inst" property="destInst"/>
+		<result column="trans_time" property="transTime"/>
+		<result column="acc_date" property="accDate"/>
+		<result column="is_auto" property="isAuto"/>
+		<result column="paper_code" property="paperCode"/>
+		<result column="amt" property="amt"/>
+		<result column="ccy" property="ccy"/>
+		<result column="loan_date" property="loanDate"/>
+		<result column="limit_date" property="limitDate"/>
+		<result column="trans_organ" property="transOrgan"/>
+		<result column="product_code" property="productCode"/>
+		<result column="trade_type" property="tradeType"/>
+		<result column="notify_type" property="notifyType"/>
+		<result column="resp_code" property="respCode"/>
+		<result column="resp_info" property="respInfo"/>
+		<result column="remark" property="remark"/>
+		<result column="quota_detail" property="quotaDetail"/>
+		<result column="trade_cost" property="tradeCost"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        sys_track_no ,trans_inst ,send_inst ,dest_inst ,ctl_seq_no ,trans_date ,trans_time ,acc_date ,systemid ,is_auto ,paper_code ,amt ,ccy ,loan_date ,limit_date ,trans_organ ,product_code ,trade_type ,notify_type ,resp_code ,resp_info ,remark ,quota_detail ,trade_cost
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbTransSeq">
+		<!--
+                <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+                   SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+                </selectKey>
+                -->
+		INSERT INTO tb_trans_seq
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sysTrackNo != null">
+				sys_track_no ,
+			</if>
+			<if test="transInst != null">
+				trans_inst ,
+			</if>
+			<if test="sendInst != null">
+				send_inst ,
+			</if>
+			<if test="destInst != null">
+				dest_inst ,
+			</if>
+			<if test="ctlSeqNo != null">
+				ctl_seq_no ,
+			</if>
+			<if test="transDate != null">
+				trans_date ,
+			</if>
+			<if test="transTime != null">
+				trans_time ,
+			</if>
+			<if test="accDate != null">
+				acc_date ,
+			</if>
+			<if test="systemid != null">
+				systemid ,
+			</if>
+			<if test="isAuto != null">
+				is_auto ,
+			</if>
+			<if test="paperCode != null">
+				paper_code ,
+			</if>
+			<if test="amt != null">
+				amt ,
+			</if>
+			<if test="ccy != null">
+				ccy ,
+			</if>
+			<if test="loanDate != null">
+				loan_date ,
+			</if>
+			<if test="limitDate != null">
+				limit_date ,
+			</if>
+			<if test="transOrgan != null">
+				trans_organ ,
+			</if>
+			<if test="productCode != null">
+				product_code ,
+			</if>
+			<if test="tradeType != null">
+				trade_type ,
+			</if>
+			<if test="notifyType != null">
+				notify_type ,
+			</if>
+			<if test="respCode != null">
+				resp_code ,
+			</if>
+			<if test="respInfo != null">
+				resp_info ,
+			</if>
+			<if test="remark != null">
+				remark ,
+			</if>
+			<if test="quotaDetail != null">
+				quota_detail ,
+			</if>
+			<if test="tradeCost != null">
+				trade_cost
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sysTrackNo != null">
+				#{sysTrackNo} ,
+			</if>
+			<if test="transInst != null">
+				#{transInst} ,
+			</if>
+			<if test="sendInst != null">
+				#{sendInst} ,
+			</if>
+			<if test="destInst != null">
+				#{destInst} ,
+			</if>
+			<if test="ctlSeqNo != null">
+				#{ctlSeqNo} ,
+			</if>
+			<if test="transDate != null">
+				#{transDate} ,
+			</if>
+			<if test="transTime != null">
+				#{transTime} ,
+			</if>
+			<if test="accDate != null">
+				#{accDate} ,
+			</if>
+			<if test="systemid != null">
+				#{systemid} ,
+			</if>
+			<if test="isAuto != null">
+				#{isAuto} ,
+			</if>
+			<if test="paperCode != null">
+				#{paperCode} ,
+			</if>
+			<if test="amt != null">
+				#{amt} ,
+			</if>
+			<if test="ccy != null">
+				#{ccy} ,
+			</if>
+			<if test="loanDate != null">
+				#{loanDate} ,
+			</if>
+			<if test="limitDate != null">
+				#{limitDate} ,
+			</if>
+			<if test="transOrgan != null">
+				#{transOrgan} ,
+			</if>
+			<if test="productCode != null">
+				#{productCode} ,
+			</if>
+			<if test="tradeType != null">
+				#{tradeType} ,
+			</if>
+			<if test="notifyType != null">
+				#{notifyType} ,
+			</if>
+			<if test="respCode != null">
+				#{respCode} ,
+			</if>
+			<if test="respInfo != null">
+				#{respInfo} ,
+			</if>
+			<if test="remark != null">
+				#{remark} ,
+			</if>
+			<if test="quotaDetail != null">
+				#{quotaDetail} ,
+			</if>
+			<if test="tradeCost != null">
+				#{tradeCost}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_trans_seq
+		(sys_track_no ,trans_inst ,send_inst ,dest_inst ,ctl_seq_no ,trans_date ,trans_time ,acc_date ,systemid ,is_auto ,paper_code ,amt ,ccy ,loan_date ,limit_date ,trans_organ ,product_code ,trade_type ,notify_type ,resp_code ,resp_info ,remark ,quota_detail ,trade_cost )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.sysTrackNo,jdbcType=VARCHAR},#{item.transInst,jdbcType=VARCHAR},#{item.sendInst,jdbcType=VARCHAR},#{item.destInst,jdbcType=VARCHAR},#{item.ctlSeqNo,jdbcType=VARCHAR},#{item.transDate,jdbcType=VARCHAR},#{item.transTime,jdbcType=VARCHAR},#{item.accDate,jdbcType=VARCHAR},#{item.systemid,jdbcType=VARCHAR},#{item.isAuto,jdbcType=VARCHAR},#{item.paperCode,jdbcType=VARCHAR},#{item.amt,jdbcType=VARCHAR},#{item.ccy,jdbcType=VARCHAR},#{item.loanDate,jdbcType=VARCHAR},#{item.limitDate,jdbcType=VARCHAR},#{item.transOrgan,jdbcType=VARCHAR},#{item.productCode,jdbcType=VARCHAR},#{item.tradeType,jdbcType=VARCHAR},#{item.notifyType,jdbcType=VARCHAR},#{item.respCode,jdbcType=VARCHAR},#{item.respInfo,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.quotaDetail,jdbcType=VARCHAR},#{item.tradeCost,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.util.HashMap">
+		DELETE FROM tb_trans_seq
+		<where>
+			ctl_seq_no = #{ctlSeqNo} and
+			trans_date = #{transDate} and
+			systemid = #{systemid}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+		DELETE FROM tb_trans_seq
+		<where>
+			ctl_seq_no = #{ctlSeqNo} and
+			trans_date = #{transDate} and
+			systemid = #{systemid}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_trans_seq
+		WHERE ctl_seq_notrans_datesystemid IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_trans_seq
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbTransSeq">
+		UPDATE tb_trans_seq
+		<set>
+			<if test="sysTrackNo != null">
+				sys_track_no = #{sysTrackNo},
+			</if>
+			<if test="transInst != null">
+				trans_inst = #{transInst},
+			</if>
+			<if test="sendInst != null">
+				send_inst = #{sendInst},
+			</if>
+			<if test="destInst != null">
+				dest_inst = #{destInst},
+			</if>
+			<if test="transTime != null">
+				trans_time = #{transTime},
+			</if>
+			<if test="accDate != null">
+				acc_date = #{accDate},
+			</if>
+			<if test="isAuto != null">
+				is_auto = #{isAuto},
+			</if>
+			<if test="paperCode != null">
+				paper_code = #{paperCode},
+			</if>
+			<if test="amt != null">
+				amt = #{amt},
+			</if>
+			<if test="ccy != null">
+				ccy = #{ccy},
+			</if>
+			<if test="loanDate != null">
+				loan_date = #{loanDate},
+			</if>
+			<if test="limitDate != null">
+				limit_date = #{limitDate},
+			</if>
+			<if test="transOrgan != null">
+				trans_organ = #{transOrgan},
+			</if>
+			<if test="productCode != null">
+				product_code = #{productCode},
+			</if>
+			<if test="tradeType != null">
+				trade_type = #{tradeType},
+			</if>
+			<if test="notifyType != null">
+				notify_type = #{notifyType},
+			</if>
+			<if test="respCode != null">
+				resp_code = #{respCode},
+			</if>
+			<if test="respInfo != null">
+				resp_info = #{respInfo},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="quotaDetail != null">
+				quota_detail = #{quotaDetail},
+			</if>
+			<if test="tradeCost != null">
+				trade_cost = #{tradeCost},
+			</if>
+		</set>
+		<where>
+			ctl_seq_no = #{ctlSeqNo} and
+			trans_date = #{transDate} and
+			systemid = #{systemid}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_trans_seq
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_trans_seq
+		<set>
+			<if test="sysTrackNo != null">
+				sys_track_no = #{sysTrackNo},
+			</if>
+			<if test="transInst != null">
+				trans_inst = #{transInst},
+			</if>
+			<if test="sendInst != null">
+				send_inst = #{sendInst},
+			</if>
+			<if test="destInst != null">
+				dest_inst = #{destInst},
+			</if>
+			<if test="ctlSeqNo != null">
+				ctl_seq_no = #{ctlSeqNo},
+			</if>
+			<if test="transDate != null">
+				trans_date = #{transDate},
+			</if>
+			<if test="transTime != null">
+				trans_time = #{transTime},
+			</if>
+			<if test="accDate != null">
+				acc_date = #{accDate},
+			</if>
+			<if test="systemid != null">
+				systemid = #{systemid},
+			</if>
+			<if test="isAuto != null">
+				is_auto = #{isAuto},
+			</if>
+			<if test="paperCode != null">
+				paper_code = #{paperCode},
+			</if>
+			<if test="amt != null">
+				amt = #{amt},
+			</if>
+			<if test="ccy != null">
+				ccy = #{ccy},
+			</if>
+			<if test="loanDate != null">
+				loan_date = #{loanDate},
+			</if>
+			<if test="limitDate != null">
+				limit_date = #{limitDate},
+			</if>
+			<if test="transOrgan != null">
+				trans_organ = #{transOrgan},
+			</if>
+			<if test="productCode != null">
+				product_code = #{productCode},
+			</if>
+			<if test="tradeType != null">
+				trade_type = #{tradeType},
+			</if>
+			<if test="notifyType != null">
+				notify_type = #{notifyType},
+			</if>
+			<if test="respCode != null">
+				resp_code = #{respCode},
+			</if>
+			<if test="respInfo != null">
+				resp_info = #{respInfo},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="quotaDetail != null">
+				quota_detail = #{quotaDetail},
+			</if>
+			<if test="tradeCost != null">
+				trade_cost = #{tradeCost},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="sysTrackNo != null and sysTrackNo != ''">
+			and sys_track_no = #{sysTrackNo}
+		</if>
+		<if test="transInst != null and transInst != ''">
+			and trans_inst = #{transInst}
+		</if>
+		<if test="sendInst != null and sendInst != ''">
+			and send_inst = #{sendInst}
+		</if>
+		<if test="destInst != null and destInst != ''">
+			and dest_inst = #{destInst}
+		</if>
+		<if test="ctlSeqNo != null and ctlSeqNo != ''">
+			and ctl_seq_no = #{ctlSeqNo}
+		</if>
+		<if test="transDate != null and transDate != ''">
+			and trans_date = #{transDate}
+		</if>
+		<if test="transTime != null and transTime != ''">
+			and trans_time = #{transTime}
+		</if>
+		<if test="accDate != null and accDate != ''">
+			and acc_date = #{accDate}
+		</if>
+		<if test="systemid != null and systemid != ''">
+			and systemid = #{systemid}
+		</if>
+		<if test="isAuto != null and isAuto != ''">
+			and is_auto = #{isAuto}
+		</if>
+		<if test="paperCode != null and paperCode != ''">
+			and paper_code = #{paperCode}
+		</if>
+		<if test="amt != null and amt != ''">
+			and amt = #{amt}
+		</if>
+		<if test="ccy != null and ccy != ''">
+			and ccy = #{ccy}
+		</if>
+		<if test="loanDate != null and loanDate != ''">
+			and loan_date = #{loanDate}
+		</if>
+		<if test="limitDate != null and limitDate != ''">
+			and limit_date = #{limitDate}
+		</if>
+		<if test="transOrgan != null and transOrgan != ''">
+			and trans_organ = #{transOrgan}
+		</if>
+		<if test="productCode != null and productCode != ''">
+			and product_code = #{productCode}
+		</if>
+		<if test="tradeType != null and tradeType != ''">
+			and trade_type = #{tradeType}
+		</if>
+		<if test="notifyType != null and notifyType != ''">
+			and notify_type = #{notifyType}
+		</if>
+		<if test="respCode != null and respCode != ''">
+			and resp_code = #{respCode}
+		</if>
+		<if test="respInfo != null and respInfo != ''">
+			and resp_info = #{respInfo}
+		</if>
+		<if test="remark != null and remark != ''">
+			and remark = #{remark}
+		</if>
+		<if test="quotaDetail != null and quotaDetail != ''">
+			and quota_detail = #{quotaDetail}
+		</if>
+		<if test="tradeCost != null and tradeCost != ''">
+			and trade_cost > #{tradeCost}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="sysTrackNo != null and sysTrackNo != ''">
+			and sys_track_no like '%' || #{sysTrackNo} || '%'
+		</if>
+		<if test="transInst != null and transInst != ''">
+			and trans_inst like '%' || #{transInst} || '%'
+		</if>
+		<if test="sendInst != null and sendInst != ''">
+			and send_inst like '%' || #{sendInst} || '%'
+		</if>
+		<if test="destInst != null and destInst != ''">
+			and dest_inst like '%' || #{destInst} || '%'
+		</if>
+		<if test="ctlSeqNo != null and ctlSeqNo != ''">
+			and ctl_seq_no like '%' || #{ctlSeqNo} || '%'
+		</if>
+		<if test="transDate != null and transDate != ''">
+			and trans_date like '%' || #{transDate} || '%'
+		</if>
+		<if test="transTime != null and transTime != ''">
+			and trans_time like '%' || #{transTime} || '%'
+		</if>
+		<if test="accDate != null and accDate != ''">
+			and acc_date like '%' || #{accDate} || '%'
+		</if>
+		<if test="systemid != null and systemid != ''">
+			and systemid like '%' || #{systemid} || '%'
+		</if>
+		<if test="isAuto != null and isAuto != ''">
+			and is_auto like '%' || #{isAuto} || '%'
+		</if>
+		<if test="paperCode != null and paperCode != ''">
+			and paper_code like '%' || #{paperCode} || '%'
+		</if>
+		<if test="amt != null and amt != ''">
+			and amt like '%' || #{amt} || '%'
+		</if>
+		<if test="ccy != null and ccy != ''">
+			and ccy like '%' || #{ccy} || '%'
+		</if>
+		<if test="loanDate != null and loanDate != ''">
+			and loan_date like '%' || #{loanDate} || '%'
+		</if>
+		<if test="limitDate != null and limitDate != ''">
+			and limit_date like '%' || #{limitDate} || '%'
+		</if>
+		<if test="transOrgan != null and transOrgan != ''">
+			and trans_organ like '%' || #{transOrgan} || '%'
+		</if>
+		<if test="productCode != null and productCode != ''">
+			and product_code like '%' || #{productCode} || '%'
+		</if>
+		<if test="tradeType != null and tradeType != ''">
+			and trade_type like '%' || #{tradeType} || '%'
+		</if>
+		<if test="notifyType != null and notifyType != ''">
+			and notify_type like '%' || #{notifyType} || '%'
+		</if>
+		<if test="respCode != null and respCode != ''">
+			and resp_code like '%' || #{respCode} || '%'
+		</if>
+		<if test="respInfo != null and respInfo != ''">
+			and resp_info like '%' || #{respInfo} || '%'
+		</if>
+		<if test="remark != null and remark != ''">
+			and remark like '%' || #{remark} || '%'
+		</if>
+		<if test="quotaDetail != null and quotaDetail != ''">
+			and quota_detail like '%' || #{quotaDetail} || '%'
+		</if>
+		<if test="tradeCost != null and tradeCost != ''">
+			and trade_cost like '%' || #{tradeCost} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_trans_seq
+		<where>
+			ctl_seq_no = #{ctlSeqNo} and
+			trans_date = #{transDate} and
+			systemid = #{systemid}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbTransSeq" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_trans_seq
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbTransSeq" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_trans_seq
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbTransSeq" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_trans_seq
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_trans_seq
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbTransSeq" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_trans_seq
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbTransSeq" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_trans_seq
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_trans_seq
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+	<select id="selectTbTransSeq" parameterType="com.boco.SYS.entity.TbTransSeq" resultMap="base_result_map" flushCache="true">
+		SELECT
+		sys_track_no ,
+		trans_inst ,
+		send_inst ,
+		dest_inst ,
+		ctl_seq_no ,
+		trans_date ,
+		trans_time ,
+		acc_date ,
+		gf.dict_value_in as systemid ,
+		is_auto ,
+		paper_code ,
+		amt ,
+		ccy ,
+		loan_date ,
+		limit_date ,
+		trans_organ ,
+		product_code ,
+		trade_type ,
+		notify_type ,
+		resp_code ,
+		resp_info ,
+		remark ,
+		quota_detail ,
+		trade_cost
+		FROM tb_trans_seq
+		left join gf_dict gf
+		on	gf.dict_no = 'SYSTEM_CTRL_STATUS_TYPE'
+		and systemid = gf.dict_key_in
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

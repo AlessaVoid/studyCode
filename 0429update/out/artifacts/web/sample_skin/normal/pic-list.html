@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!--动画方式入场效果start-->
+<script type="text/javascript" src="../../libs/js/pic/jomino.js"></script>
+<!--动画方式入场效果end-->
+
+<!--图片渐显start-->
+<script type="text/javascript" src="../../libs/js/pic/imgFade.js"></script>
+<!--图片渐显end-->
+<script>
+function initComplete(){
+	//动画入场
+	$(".framegrid").jomino();
+	
+	//标题特效
+	$('.framegrid.nocaption').each(function(){
+		$(".framegrid_cover", this).css({
+			top:"128px",
+			height:"0px"
+		})
+		$(".framegrid_title", this).hide()
+		$(".framegrid_con", this).hide()
+	})
+	$('.framegrid.nocaption').hover(function(){
+		$(".framegrid_cover", this).stop().animate({top:'68px',height:'60px'},{queue:false,duration:160});
+		$(".framegrid_title", this).show()
+		$(".framegrid_con", this).show()
+	}, function() {
+		$(".framegrid_cover", this).stop().animate({top:'125px',height:'0px'},{queue:false,duration:160});
+		$(".framegrid_title", this).hide()
+		$(".framegrid_con", this).hide()
+	});
+}
+</script>
+</head>
+<body>
+ <div class="box1">
+ 
+    <div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo3.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo3.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo3.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo3.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="framegrid nocaption" style="display:none;">
+		<div class="picItem3"><img src="../../libs/images/demo/demo2.jpg"/></div>	
+		<div class="framegrid_cover">
+			<div class="framegrid_title">图片标题</div>
+			<div class="framegrid_con">这里是图片文字说明部分<br />这里是图片文字说明部分</div>
+		</div>	
+	</div>
+	<div class="clear"></div>
+  
+  
+  
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/conte·xt http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- 配置文件路径定义 -->
+	<!--直接读取-->
+
+	<!--加密处理-->
+	<!-- <bean id="propertiesConfig" class="com.boco.SYS.util.EncryptPropertyPlaceholderConfigurer"
+		p:location="classpath:resource/jdbc.properties"></bean> -->
+	<bean id="propertiesConfig" class="com.boco.SYS.util.EncryptPropertyPlaceholderConfigurer" p:ignoreUnresolvablePlaceholders="true">
+		<property name="locations">
+     		<list>
+      			<value>classpath:resource/jdbc.properties</value>
+        		<!-- <value>classpath:redis.properties</value> -->
+     		</list>
+		</property>
+	</bean>
+	<!-- pg108 -->
+	<bean id="testDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.test.driverClassName}" />
+		<property name="url" value="${jdbc.test.url}" />
+		<property name="username" value="${jdbc.test.username}" />
+		<property name="password" value="${jdbc.test.password}" />
+	</bean>
+	<!--参数库 -->
+	<bean id="paraDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.para.driverClassName}" />
+	    <property name="url" value="${jdbc.para.url}" />
+	    <property name="username" value="${jdbc.para.username}" />
+	    <property name="password" value="${jdbc.para.password}" />
+	</bean>
+	<!--查询库 -->
+	<bean id="queryDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.query.driverClassName}" />
+	    <property name="url" value="${jdbc.query.url}" />
+	    <property name="username" value="${jdbc.query.username}" />
+	    <property name="password" value="${jdbc.query.password}" />
+	</bean>
+	<bean id="parentDataSource" class="com.boco.SYS.customdatasource.DynamicDataSource">  
+	    <property name="targetDataSources">  
+	        <map key-type="java.lang.String">
+	            <!-- 指定lookupKey和与之对应的数据源 -->
+				<entry key="testDataSource" value-ref="testDataSource"></entry>
+	            <entry key="paraDataSource" value-ref="paraDataSource"></entry>  
+	            <entry key="queryDataSource" value-ref="queryDataSource"></entry>  
+	        </map>  
+	    </property>  
+	    <!-- 这里可以指定默认的数据源 -->
+	    <property name="defaultTargetDataSource" ref="paraDataSource" />
+	</bean>
+	<!-- <bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" 
+		lazy-init="true" /> -->
+	
+
+
+
+</beans>

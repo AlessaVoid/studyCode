@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbPunishList -->
+<mapper namespace="com.boco.SYS.mapper.TbPunishListMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPunishList">
+       	<id column="id" property="id"/>
+     	<result column="month" property="month"/>
+     	<result column="name" property="name"/>
+     	<result column="note" property="note"/>
+     	<result column="state" property="state"/>
+     	<result column="collect_end_time" property="collectEndTime"/>
+     	<result column="creae_time" property="creaeTime"/>
+     	<result column="update_time" property="updateTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,month ,name ,note ,state ,collect_end_time ,creae_time ,update_time 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPunishList">
+<!-- 
+	    -->       
+  INSERT INTO tb_punish_list 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="name != null">
+	        	name ,
+	       	</if>
+	       	<if test="note != null">
+	        	note ,
+	       	</if>
+	       	<if test="state != null">
+	        	state ,
+	       	</if>
+	       	<if test="collectEndTime != null">
+	        	collect_end_time ,
+	       	</if>
+	       	<if test="creaeTime != null">
+	        	creae_time ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	update_time 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="name != null">
+	        	#{name} ,
+	       	</if>
+	       	<if test="note != null">
+	        	#{note} ,
+	       	</if>
+	       	<if test="state != null">
+	        	#{state} ,
+	       	</if>
+	       	<if test="collectEndTime != null">
+	        	#{collectEndTime} ,
+	       	</if>
+	       	<if test="creaeTime != null">
+	        	#{creaeTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_punish_list 
+        (id ,month ,name ,note ,state ,collect_end_time ,creae_time ,update_time )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.note,jdbcType=VARCHAR},#{item.state,jdbcType=VARCHAR},#{item.collectEndTime,jdbcType=VARCHAR},#{item.creaeTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_punish_list 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_punish_list 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_punish_list 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_punish_list
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPunishList">
+        UPDATE tb_punish_list 
+        <set>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="note != null">
+       		note = #{note},
+       	</if>
+       	<if test="state != null">
+       		state = #{state},
+       	</if>
+       	<if test="collectEndTime != null">
+       		collect_end_time = #{collectEndTime},
+       	</if>
+       	<if test="creaeTime != null">
+       		creae_time = #{creaeTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_punish_list 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_punish_list 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="note != null">
+       		note = #{note},
+       	</if>
+       	<if test="state != null">
+       		state = #{state},
+       	</if>
+       	<if test="collectEndTime != null">
+       		collect_end_time = #{collectEndTime},
+       	</if>
+       	<if test="creaeTime != null">
+       		creae_time = #{creaeTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="name != null and name != ''">
+	 		and name = #{name}
+	 	</if>
+	 	<if test="note != null and note != ''">
+	 		and note = #{note}
+	 	</if>
+	 	<if test="state != null and state != ''">
+	 		and state = #{state}
+	 	</if>
+	 	<if test="collectEndTime != null and collectEndTime != ''">
+	 		and collect_end_time = #{collectEndTime}
+	 	</if>
+	 	<if test="creaeTime != null and creaeTime != ''">
+	 		and creae_time = #{creaeTime}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and update_time = #{updateTime}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="name != null and name != ''">
+ 			and name like '%' || #{name} || '%'
+ 		</if>
+ 		<if test="note != null and note != ''">
+ 			and note like '%' || #{note} || '%'
+ 		</if>
+ 		<if test="state != null and state != ''">
+ 			and state like '%' || #{state} || '%'
+ 		</if>
+ 		<if test="collectEndTime != null and collectEndTime != ''">
+ 			and collect_end_time like '%' || #{collectEndTime} || '%'
+ 		</if>
+ 		<if test="creaeTime != null and creaeTime != ''">
+ 			and creae_time like '%' || #{creaeTime} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and update_time like '%' || #{updateTime} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_punish_list 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPunishList" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_punish_list
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPunishList" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_punish_list 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishList" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_punish_list 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_punish_list 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPunishList" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_list 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishList" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_list 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_list 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+	<!-- 联想输入所属月份 -->
+	<select id="selectMonth" parameterType="com.boco.SYS.entity.TbPunishList" resultType="java.util.HashMap"
+			flushCache="true">
+	    SELECT month FROM tb_punish_list
+	   WHERE month LIKE '%${month}%'
+    </select>
+
+
+	<!--查询已提交的信贷需求 -->
+	<select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+		select
+		tqa.id as id,
+		tqa.month as month,
+		tqa.name as name,
+		tqa.note as note,
+		tqa.state as state,
+		tqa.collect_end_time as collectEndTime,
+		tqa.creae_time as creaeTime,
+		tqa.update_time as updateTime,
+		hi_proc.proc_inst_id_ as procInstID
+		from tb_punish_list tqa ,act_hi_procinst hi_proc
+		where
+		cast(tqa.id as varchar)=hi_proc.business_key_
+		and hi_proc.start_user_id_ = #{opercode}
+		<if test="month != null and month != ''">
+			and tqa.month= #{month}
+		</if>
+		and tqa.state &gt; 4
+	</select>
+
+
+	<!--查询待审批的信贷需求 -->
+	<select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+		select
+		tqa.id as id,
+		tqa.month as month,
+		tqa.name as name,
+		tqa.note as note,
+		tqa.state as state,
+		tqa.collect_end_time as collectEndTime,
+		tqa.creae_time as creaeTime,
+		tqa.update_time as updateTime,
+		hi_proc.proc_inst_id_ as procInstID,
+		task.id_ as taskid
+
+		from tb_punish_list tqa,act_hi_procinst hi_proc ,act_ru_task task
+		where
+		cast(tqa.id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.assignee_=#{assignee}
+		<if test="proIds!=null and proIds.size() > 0">
+			and hi_proc.proc_inst_id_ in
+			<foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="month != null and month != ''">
+			and tqa.month= #{month}
+		</if>
+		<if test="auditStatus != null and auditStatus != ''">
+			and tqa.state= #{auditStatus}
+		</if>
+	</select>
+
+
+	<!-- 查询已审批信贷需求-->
+	<select id="getApprovedRecord" resultType="java.util.HashMap" flushCache="true">
+		select
+		tqa.id as id,
+		tqa.month as month,
+		tqa.name as name,
+		tqa.note as note,
+		tqa.state as state,
+		tqa.collect_end_time as collectEndTime,
+		tqa.creae_time as creaeTime,
+		tqa.update_time as updateTime,
+		hi_proc.proc_inst_id_ as procInstID,
+		tqa.state as state
+
+		from tb_punish_list tqa,act_hi_procinst hi_proc , act_hi_taskinst task
+		where
+		cast(tqa.id as varchar)=hi_proc.business_key_
+		and hi_proc.proc_inst_id_ = task.proc_inst_id_
+		and task.delete_reason_='completed'
+		and hi_proc.proc_def_id_ like 'Punish_%'
+		and task.assignee_=#{opercode}
+		<if test="month != null and month != ''">
+			and tqa.month= #{month}
+		</if>
+		and tqa.state &gt; 4
+	</select>
+
+	<select id="getStartWorkFlowPeople" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select start_user_id_ from act_hi_procinst where proc_inst_id_= #{processInstanceId}
+    </select>
+
+	<update id="updateByIdAndOrganCode" parameterType="com.boco.SYS.entity.TbPunishList">
+        update tb_punish_list
+        set state=${state}
+        where id = #{id}
+    </update>
+
+
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

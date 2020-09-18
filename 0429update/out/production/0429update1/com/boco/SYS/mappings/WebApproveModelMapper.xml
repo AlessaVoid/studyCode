@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- WebApproveModel -->
+<mapper namespace="com.boco.SYS.mapper.WebApproveModelMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebApproveModel">
+       	<id column="APP_CODE" property="appCode"/>
+     	<result column="APP_ADVICE" property="appAdvice"/>
+     	<result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+     	<result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+     	<result column="LATEST_OPER_CODE" property="latestOperCode"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        APP_CODE ,APP_ADVICE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebApproveModel">
+        INSERT INTO WEB_APPROVE_MODEL 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="appCode != null">
+	        	APP_CODE ,
+	       	</if>
+	       	<if test="appAdvice != null">
+	        	APP_ADVICE ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	LATEST_MODIFY_DATE ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	LATEST_MODIFY_TIME ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	LATEST_OPER_CODE ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="appCode != null">
+	        	#{appCode} ,
+	       	</if>
+	       	<if test="appAdvice != null">
+	        	#{appAdvice} ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	#{latestModifyDate} ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	#{latestModifyTime} ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	#{latestOperCode} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_APPROVE_MODEL 
+        (APP_CODE ,APP_ADVICE ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.appCode} ,#{item.appAdvice} ,#{item.latestModifyDate} ,#{item.latestModifyTime} ,#{item.latestOperCode} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_APPROVE_MODEL 
+        <where>
+        	APP_CODE = #{appCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_APPROVE_MODEL 
+        <where>
+        	APP_CODE = #{appCode} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_APPROVE_MODEL 
+        WHERE APP_CODE IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_APPROVE_MODEL
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebApproveModel">
+        UPDATE WEB_APPROVE_MODEL 
+        <set>
+       	<if test="appAdvice != null">
+       		APP_ADVICE = #{appAdvice},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	APP_CODE = #{appCode} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_APPROVE_MODEL 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_APPROVE_MODEL 
+        <set>
+       	<if test="appCode != null">
+       		APP_CODE = #{appCode},
+       	</if>
+       	<if test="appAdvice != null">
+       		APP_ADVICE = #{appAdvice},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="appCode != null and appCode != ''">
+	 		and APP_CODE = #{appCode}
+	 	</if>
+	 	<if test="appAdvice != null and appAdvice != ''">
+	 		and APP_ADVICE = #{appAdvice}
+	 	</if>
+	 	<if test="latestModifyDate != null and latestModifyDate != ''">
+	 		and LATEST_MODIFY_DATE = #{latestModifyDate}
+	 	</if>
+	 	<if test="latestModifyTime != null and latestModifyTime != ''">
+	 		and LATEST_MODIFY_TIME = #{latestModifyTime}
+	 	</if>
+	 	<if test="latestOperCode != null and latestOperCode != ''">
+	 		and LATEST_OPER_CODE = #{latestOperCode}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="appCode != null and appCode != ''">
+ 			and APP_CODE like '%' || #{appCode} || '%'
+ 		</if>
+ 		<if test="appAdvice != null and appAdvice != ''">
+ 			and APP_ADVICE like '%' || #{appAdvice} || '%'
+ 		</if>
+ 		<if test="latestModifyDate != null and latestModifyDate != ''">
+ 			and LATEST_MODIFY_DATE like '%' || #{latestModifyDate} || '%'
+ 		</if>
+ 		<if test="latestModifyTime != null and latestModifyTime != ''">
+ 			and LATEST_MODIFY_TIME like '%' || #{latestModifyTime} || '%'
+ 		</if>
+ 		<if test="latestOperCode != null and latestOperCode != ''">
+ 			and LATEST_OPER_CODE like '%' || #{latestOperCode} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_APPROVE_MODEL 
+        <where> 
+        	APP_CODE = #{appCode} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebApproveModel" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_APPROVE_MODEL
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebApproveModel" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_APPROVE_MODEL 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebApproveModel" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_APPROVE_MODEL 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_APPROVE_MODEL 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebApproveModel" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_APPROVE_MODEL 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebApproveModel" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_APPROVE_MODEL 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_APPROVE_MODEL 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 根据条件查询记录数 查询常见意见是否已存在 -->
+    <select id="countByExist" parameterType="com.boco.SYS.entity.WebApproveModel" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_APPROVE_MODEL 
+    	<where>
+    		APP_CODE != #{appCode} AND APP_ADVICE = #{appAdvice}
+    	</where>
+    </select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

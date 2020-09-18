@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.TbReqDetailHistoryMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <resultMap id="req_result_map" type="com.boco.TONY.biz.loanreq.POJO.DO.TbHistoryReqDetailDO">
+        <result column="version" property="version"/>
+        <association property="tbReqDetail" javaType="com.boco.SYS.entity.TbReqDetail">
+            <id column="reqd_id" property="reqdId"/>
+            <result column="reqd_ref_id" property="reqdRefId"/>
+            <result column="reqd_organ" property="reqdOrgan"/>
+            <result column="reqd_unit" property="reqdUnit"/>
+            <result column="reqd_oper" property="reqdOper"/>
+            <result column="reqd_state" property="reqdState"/>
+            <result column="reqd_smallamount_loan_req" property="reqdSmallamountLoanReq"/>
+            <result column="reqd_smallamount_loan_exp" property="reqdSmallamountLoanExp"/>
+            <result column="reqd_other_loan_req" property="reqdOtherLoanReq"/>
+            <result column="reqd_other_loan_exp" property="reqdOtherLoanExp"/>
+            <result column="reqd_perbusine_loan_req" property="reqdPerbusineLoanReq"/>
+            <result column="reqd_perbusine_loan_exp" property="reqdPerbusineLoanExp"/>
+            <result column="reqd_smallbusine_req" property="reqdSmallbusineReq"/>
+            <result column="reqd_smallbusine_exp" property="reqdSmallbusineExp"/>
+            <result column="reqd_smallbusinefactor_req" property="reqdSmallbusinefactorReq"/>
+            <result column="reqd_smallbusinefactor_exp" property="reqdSmallbusinefactorExp"/>
+            <result column="reqd_housemort_loan_req" property="reqdHousemortLoanReq"/>
+            <result column="reqd_housemort_loan_exp" property="reqdHousemortLoanExp"/>
+            <result column="reqd_otherconsum_loan_req" property="reqdOtherconsumLoanReq"/>
+            <result column="reqd_otherconsum_loan_exp" property="reqdOtherconsumLoanExp"/>
+            <result column="reqd_supplyline_req" property="reqdSupplylineReq"/>
+            <result column="reqd_supplyline_exp" property="reqdSupplylineExp"/>
+            <result column="reqd_domestictradefinance_req" property="reqdDomestictradefinanceReq"/>
+            <result column="reqd_domestictradefinance_exp" property="reqdDomestictradefinanceExp"/>
+            <result column="reqd_intertradefinance_req" property="reqdIntertradefinanceReq"/>
+            <result column="reqd_intertradefinance_exp" property="reqdIntertradefinanceExp"/>
+            <result column="reqd_othercorporate_loan_req" property="reqdOthercorporateLoanReq"/>
+            <result column="reqd_othercorporate_loan_exp" property="reqdOthercorporateLoanExp"/>
+            <result column="reqd_sancompany_loan_req" property="reqdSancompanyLoanReq"/>
+            <result column="reqd_sancompany_loan_exp" property="reqdSancompanyLoanExp"/>
+            <result column="reqd_merger_loan_req" property="reqdMergerLoanReq"/>
+            <result column="reqd_merger_loan_exp" property="reqdMergerLoanExp"/>
+            <result column="reqd_alladvance_loan_req" property="reqdAlladvanceLoanReq"/>
+            <result column="reqd_alladvance_loan_exp" property="reqdAlladvanceLoanExp"/>
+            <result column="reqd_unitoverdraft_req" property="reqdUnitoverdraftReq"/>
+            <result column="reqd_unitoverdraft_exp" property="reqdUnitoverdraftExp"/>
+            <result column="reqd_repost_req" property="reqdRepostReq"/>
+            <result column="reqd_repost_exp" property="reqdRepostExp"/>
+            <result column="reqd_straight_req" property="reqdStraightReq"/>
+            <result column="reqd_straight_exp" property="reqdStraightExp"/>
+            <result column="reqd_buyfftrmb_req" property="reqdBuyfftrmbReq"/>
+            <result column="reqd_buyfftrmb_exp" property="reqdBuyfftrmbExp"/>
+            <result column="reqd_intercorporate_loan_req" property="reqdIntercorporateLoanReq"/>
+            <result column="reqd_intercorporate_loan_exp" property="reqdIntercorporateLoanExp"/>
+            <result column="reqd_specialfinace_req" property="reqdSpecialfinaceReq"/>
+            <result column="reqd_specialfinace_exp" property="reqdSpecialfinaceExp"/>
+            <result column="reqd_personoverdraft_req" property="reqdPersonoverdraftReq"/>
+            <result column="reqd_personoverdraft_exp" property="reqdPersonoverdraftExp"/>
+            <result column="reqd_foreigncurrency_loan_req" property="reqdForeigncurrencyLoanReq"/>
+            <result column="reqd_foreigncurrency_loan_exp" property="reqdForeigncurrencyLoanExp"/>
+            <result column="reqd_buyfftforeigncur_req" property="reqdBuyfftforeigncurReq"/>
+            <result column="reqd_buyfftforeigncur_exp" property="reqdBuyfftforeigncurExp"/>
+            <result column="reqd_other_req" property="reqdOtherReq"/>
+            <result column="reqd_other_exp" property="reqdOtherExp"/>
+            <result column="reqd_create_time" property="reqdCreateTime"/>
+            <result column="reqd_update_time" property="reqdUpdateTime"/>
+        </association>
+    </resultMap>
+    <!-- 获取所有的流程节点信息 -->
+    <insert id="insertReqDetailHistory" parameterType="com.boco.TONY.biz.loanreq.POJO.DO.TbHistoryReqDetailDO">
+        insert into tb_history_req_detail( reqd_id, reqd_ref_id, reqd_organ, reqd_unit, reqd_oper
+                                         , reqd_state, reqd_smallamount_loan_req, reqd_smallamount_loan_exp
+                                         , reqd_other_loan_req, reqd_other_loan_exp, reqd_perbusine_loan_req
+                                         , reqd_perbusine_loan_exp, reqd_smallbusine_req, reqd_smallbusine_exp
+                                         , reqd_smallbusinefactor_req, reqd_smallbusinefactor_exp
+                                         , reqd_housemort_loan_req
+                                         , reqd_housemort_loan_exp, reqd_otherconsum_loan_req, reqd_otherconsum_loan_exp
+                                         , reqd_supplyline_req
+                                         , reqd_supplyline_exp, reqd_domestictradefinance_req
+                                         , reqd_domestictradefinance_exp, reqd_intertradefinance_req
+                                         , reqd_intertradefinance_exp, reqd_othercorporate_loan_req
+                                         , reqd_othercorporate_loan_exp, reqd_sancompany_loan_req
+                                         , reqd_sancompany_loan_exp, reqd_merger_loan_req, reqd_merger_loan_exp
+                                         , reqd_alladvance_loan_req
+                                         , reqd_alladvance_loan_exp, reqd_unitoverdraft_req, reqd_unitoverdraft_exp
+                                         , reqd_repost_req, reqd_repost_exp
+                                         , reqd_straight_req, reqd_straight_exp, reqd_buyfftrmb_req, reqd_buyfftrmb_exp
+                                         , reqd_intercorporate_loan_req
+                                         , reqd_intercorporate_loan_exp, reqd_specialfinace_req, reqd_specialfinace_exp
+                                         , reqd_personoverdraft_req
+                                         , reqd_personoverdraft_exp, reqd_foreigncurrency_loan_req
+                                         , reqd_foreigncurrency_loan_exp, reqd_buyfftforeigncur_req
+                                         , reqd_buyfftforeigncur_exp, reqd_other_req, reqd_other_exp, reqd_create_time
+                                         , reqd_update_time)
+        values ( #{tbReqDetail.reqdId}, #{tbReqDetail.reqdRefId}, #{tbReqDetail.reqdOrgan}, #{tbReqDetail.reqdUnit}, #{tbReqDetail.reqdOper}
+               , #{tbReqDetail.reqdState}, #{tbReqDetail.reqdSmallamountLoanReq}
+               , #{tbReqDetail.reqdSmallamountLoanExp}, #{tbReqDetail.reqdOtherLoanReq}, #{tbReqDetail.reqdOtherLoanExp}
+               , #{tbReqDetail.reqdPerbusineLoanReq}, #{tbReqDetail.reqdPerbusineLoanExp}, #{tbReqDetail.reqdSmallbusineReq}
+               , #{tbReqDetail.reqdSmallbusineExp}, #{tbReqDetail.reqdSmallbusinefactorReq}, #{tbReqDetail.reqdSmallbusinefactorExp}
+               , #{tbReqDetail.reqdHousemortLoanReq}, #{tbReqDetail.reqdHousemortLoanExp}, #{tbReqDetail.reqdOtherconsumLoanReq}
+               , #{tbReqDetail.reqdOtherconsumLoanExp}, #{tbReqDetail.reqdSupplylineReq}, #{tbReqDetail.reqdSupplylineExp}
+               , #{tbReqDetail.reqdDomestictradefinanceReq}, #{tbReqDetail.reqdDomestictradefinanceExp}, #{tbReqDetail.reqdIntertradefinanceReq}
+               , #{tbReqDetail.reqdIntertradefinanceExp}, #{tbReqDetail.reqdOthercorporateLoanReq}
+               , #{tbReqDetail.reqdOthercorporateLoanExp}, #{tbReqDetail.reqdSancompanyLoanReq}, #{tbReqDetail.reqdSancompanyLoanExp}
+               , #{tbReqDetail.reqdMergerLoanReq}, #{tbReqDetail.reqdMergerLoanExp}, #{tbReqDetail.reqdAlladvanceLoanReq}
+               , #{tbReqDetail.reqdAlladvanceLoanExp}, #{tbReqDetail.reqdUnitoverdraftReq}, #{tbReqDetail.reqdUnitoverdraftExp}
+               , #{tbReqDetail.reqdRepostReq}
+               , #{tbReqDetail.reqdRepostExp}, #{tbReqDetail.reqdStraightReq}, #{tbReqDetail.reqdStraightExp}, #{tbReqDetail.reqdBuyfftrmbReq}
+               , #{tbReqDetail.reqdBuyfftrmbExp}
+               , #{tbReqDetail.reqdIntercorporateLoanReq}, #{tbReqDetail.reqdIntercorporateLoanExp}, #{tbReqDetail.reqdSpecialfinaceReq}
+               , #{tbReqDetail.reqdSpecialfinaceExp}, #{tbReqDetail.reqdPersonoverdraftReq}, #{tbReqDetail.eqdPersonoverdraftExp}
+               , #{tbReqDetail.reqdForeigncurrencyLoanReq}, #{tbReqDetail.reqdForeigncurrencyLoanExp}, #{tbReqDetail.reqdBuyfftforeigncurReq}
+               , #{tbReqDetail.reqdBuyfftforeigncurExp}
+               , #{tbReqDetail.reqdOtherReq}, #{tbReqDetail.reqdOtherExp}, #{tbReqDetail.reqdCreateTime}
+               , #{tbReqDetail.reqdUpdateTime})
+    </insert>
+</mapper>

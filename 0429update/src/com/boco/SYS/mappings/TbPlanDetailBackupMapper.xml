@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 计划制定明细表备份表（第一次制定计划） -->
+<mapper namespace="com.boco.SYS.mapper.TbPlanDetailBackupMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPlanDetailBackup">
+       	<id column="pd_id" property="pdId"/>
+     	<result column="pd_ref_id" property="pdRefId"/>
+     	<result column="pd_organ" property="pdOrgan"/>
+     	<result column="pd_month" property="pdMonth"/>
+     	<result column="pd_loan_type" property="pdLoanType"/>
+     	<result column="pd_amount" property="pdAmount"/>
+     	<result column="pd_unit" property="pdUnit"/>
+     	<result column="pd_create_time" property="pdCreateTime"/>
+     	<result column="pd_update_time" property="pdUpdateTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        pd_id ,pd_ref_id ,pd_organ ,pd_month ,pd_loan_type ,pd_amount ,pd_unit ,pd_create_time ,pd_update_time 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPlanDetailBackup">
+<!-- 
+	    -->       
+  INSERT INTO tb_plan_detail_backup 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="pdId != null">
+	        	pd_id ,
+	       	</if>
+	       	<if test="pdRefId != null">
+	        	pd_ref_id ,
+	       	</if>
+	       	<if test="pdOrgan != null">
+	        	pd_organ ,
+	       	</if>
+	       	<if test="pdMonth != null">
+	        	pd_month ,
+	       	</if>
+	       	<if test="pdLoanType != null">
+	        	pd_loan_type ,
+	       	</if>
+	       	<if test="pdAmount != null">
+	        	pd_amount ,
+	       	</if>
+	       	<if test="pdUnit != null">
+	        	pd_unit ,
+	       	</if>
+	       	<if test="pdCreateTime != null">
+	        	pd_create_time ,
+	       	</if>
+	       	<if test="pdUpdateTime != null">
+	        	pd_update_time 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="pdId != null">
+	        	#{pdId} ,
+	       	</if>
+	       	<if test="pdRefId != null">
+	        	#{pdRefId} ,
+	       	</if>
+	       	<if test="pdOrgan != null">
+	        	#{pdOrgan} ,
+	       	</if>
+	       	<if test="pdMonth != null">
+	        	#{pdMonth} ,
+	       	</if>
+	       	<if test="pdLoanType != null">
+	        	#{pdLoanType} ,
+	       	</if>
+	       	<if test="pdAmount != null">
+	        	#{pdAmount} ,
+	       	</if>
+	       	<if test="pdUnit != null">
+	        	#{pdUnit} ,
+	       	</if>
+	       	<if test="pdCreateTime != null">
+	        	#{pdCreateTime} ,
+	       	</if>
+	       	<if test="pdUpdateTime != null">
+	        	#{pdUpdateTime} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_plan_detail_backup 
+        (pd_id ,pd_ref_id ,pd_organ ,pd_month ,pd_loan_type ,pd_amount ,pd_unit ,pd_create_time ,pd_update_time )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.pdId,jdbcType=VARCHAR},#{item.pdRefId,jdbcType=VARCHAR},#{item.pdOrgan,jdbcType=VARCHAR},#{item.pdMonth,jdbcType=VARCHAR},#{item.pdLoanType,jdbcType=VARCHAR},#{item.pdAmount,jdbcType=VARCHAR},#{item.pdUnit,jdbcType=VARCHAR},#{item.pdCreateTime,jdbcType=VARCHAR},#{item.pdUpdateTime,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_plan_detail_backup 
+        <where>
+        	pd_id = #{pdId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_plan_detail_backup 
+        <where>
+        	pd_id = #{pdId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_plan_detail_backup 
+        WHERE pd_id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_plan_detail_backup
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPlanDetailBackup">
+        UPDATE tb_plan_detail_backup 
+        <set>
+       	<if test="pdRefId != null">
+       		pd_ref_id = #{pdRefId},
+       	</if>
+       	<if test="pdOrgan != null">
+       		pd_organ = #{pdOrgan},
+       	</if>
+       	<if test="pdMonth != null">
+       		pd_month = #{pdMonth},
+       	</if>
+       	<if test="pdLoanType != null">
+       		pd_loan_type = #{pdLoanType},
+       	</if>
+       	<if test="pdAmount != null">
+       		pd_amount = #{pdAmount},
+       	</if>
+       	<if test="pdUnit != null">
+       		pd_unit = #{pdUnit},
+       	</if>
+       	<if test="pdCreateTime != null">
+       		pd_create_time = #{pdCreateTime},
+       	</if>
+       	<if test="pdUpdateTime != null">
+       		pd_update_time = #{pdUpdateTime},
+       	</if>
+        </set>
+        <where>
+        	pd_id = #{pdId} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_plan_detail_backup 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_plan_detail_backup 
+        <set>
+       	<if test="pdId != null">
+       		pd_id = #{pdId},
+       	</if>
+       	<if test="pdRefId != null">
+       		pd_ref_id = #{pdRefId},
+       	</if>
+       	<if test="pdOrgan != null">
+       		pd_organ = #{pdOrgan},
+       	</if>
+       	<if test="pdMonth != null">
+       		pd_month = #{pdMonth},
+       	</if>
+       	<if test="pdLoanType != null">
+       		pd_loan_type = #{pdLoanType},
+       	</if>
+       	<if test="pdAmount != null">
+       		pd_amount = #{pdAmount},
+       	</if>
+       	<if test="pdUnit != null">
+       		pd_unit = #{pdUnit},
+       	</if>
+       	<if test="pdCreateTime != null">
+       		pd_create_time = #{pdCreateTime},
+       	</if>
+       	<if test="pdUpdateTime != null">
+       		pd_update_time = #{pdUpdateTime},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="pdId != null and pdId != ''">
+	 		and pd_id = #{pdId}
+	 	</if>
+	 	<if test="pdRefId != null and pdRefId != ''">
+	 		and pd_ref_id = #{pdRefId}
+	 	</if>
+	 	<if test="pdOrgan != null and pdOrgan != ''">
+	 		and pd_organ = #{pdOrgan}
+	 	</if>
+	 	<if test="pdMonth != null and pdMonth != ''">
+	 		and pd_month = #{pdMonth}
+	 	</if>
+	 	<if test="pdLoanType != null and pdLoanType != ''">
+	 		and pd_loan_type = #{pdLoanType}
+	 	</if>
+	 	<if test="pdAmount != null ">
+	 		and pd_amount = #{pdAmount}
+	 	</if>
+	 	<if test="pdUnit != null ">
+	 		and pd_unit = #{pdUnit}
+	 	</if>
+	 	<if test="pdCreateTime != null and pdCreateTime != ''">
+	 		and pd_create_time = #{pdCreateTime}
+	 	</if>
+	 	<if test="pdUpdateTime != null and pdUpdateTime != ''">
+	 		and pd_update_time = #{pdUpdateTime}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="pdId != null and pdId != ''">
+ 			and pd_id like '%' || #{pdId} || '%'
+ 		</if>
+ 		<if test="pdRefId != null and pdRefId != ''">
+ 			and pd_ref_id like '%' || #{pdRefId} || '%'
+ 		</if>
+ 		<if test="pdOrgan != null and pdOrgan != ''">
+ 			and pd_organ like '%' || #{pdOrgan} || '%'
+ 		</if>
+ 		<if test="pdMonth != null and pdMonth != ''">
+ 			and pd_month like '%' || #{pdMonth} || '%'
+ 		</if>
+ 		<if test="pdLoanType != null and pdLoanType != ''">
+ 			and pd_loan_type like '%' || #{pdLoanType} || '%'
+ 		</if>
+ 		<if test="pdAmount != null and pdAmount != ''">
+ 			and pd_amount like '%' || #{pdAmount} || '%'
+ 		</if>
+ 		<if test="pdUnit != null and pdUnit != ''">
+ 			and pd_unit like '%' || #{pdUnit} || '%'
+ 		</if>
+ 		<if test="pdCreateTime != null and pdCreateTime != ''">
+ 			and pd_create_time like '%' || #{pdCreateTime} || '%'
+ 		</if>
+ 		<if test="pdUpdateTime != null and pdUpdateTime != ''">
+ 			and pd_update_time like '%' || #{pdUpdateTime} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_plan_detail_backup 
+        <where> 
+        	pd_id = #{pdId} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPlanDetailBackup" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_plan_detail_backup
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPlanDetailBackup" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_plan_detail_backup 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanDetailBackup" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_plan_detail_backup 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_plan_detail_backup 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPlanDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_detail_backup 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_detail_backup 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_plan_detail_backup 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

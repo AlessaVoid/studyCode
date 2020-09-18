@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 机构评分月度详情备份表 -->
+<mapper namespace="com.boco.SYS.mapper.TbOrganRateScoreMonthDetailBackupMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup">
+       	<id column="id" property="id"/>
+     	<result column="ref_id" property="refId"/>
+     	<result column="rate_month" property="rateMonth"/>
+     	<result column="rate_organ" property="rateOrgan"/>
+     	<result column="rate_score_month" property="rateScoreMonth"/>
+     	<result column="bad_condition_score" property="badConditionScore"/>
+     	<result column="bad_condition_ratio_month_end" property="badConditionRatioMonthEnd"/>
+     	<result column="bad_condition_ratio_year_begin" property="badConditionRatioYearBegin"/>
+     	<result column="bad_condition_ratio_change" property="badConditionRatioChange"/>
+     	<result column="deposit_loan_ratio_score" property="depositLoanRatioScore"/>
+     	<result column="loan_year_add" property="loanYearAdd"/>
+     	<result column="personal_deposit_year_increment" property="personalDepositYearIncrement"/>
+     	<result column="company_deposit_year_increment" property="companyDepositYearIncrement"/>
+     	<result column="deposit_loan_ratio_change" property="depositLoanRatioChange"/>
+     	<result column="new_loan_ratio_score" property="newLoanRatioScore"/>
+     	<result column="new_loan_ratio" property="newLoanRatio"/>
+     	<result column="bank_average_loan_ratio" property="bankAverageLoanRatio"/>
+     	<result column="new_loan_ratio_change" property="newLoanRatioChange"/>
+     	<result column="loan_struct_score" property="loanStructScore"/>
+     	<result column="loan_count" property="loanCount"/>
+     	<result column="month_begin_entity_loan" property="monthBeginEntityLoan"/>
+     	<result column="month_end_entity_loan" property="monthEndEntityLoan"/>
+     	<result column="month_begin_entity_loan_change" property="monthBeginEntityLoanChange"/>
+     	<result column="month_end_entity_loan_change" property="monthEndEntityLoanChange"/>
+     	<result column="month_end_begin_entity_loan_change" property="monthEndBeginEntityLoanChange"/>
+     	<result column="scale_amount_score" property="scaleAmountScore"/>
+     	<result column="organ_scale_amount" property="organScaleAmount"/>
+     	<result column="bank_scale_amount" property="bankScaleAmount"/>
+     	<result column="scale_amount_change" property="scaleAmountChange"/>
+     	<result column="plan_submit_deviation_score" property="planSubmitDeviationScore"/>
+     	<result column="month_end_increment" property="monthEndIncrement"/>
+     	<result column="month_begin_report" property="monthBeginReport"/>
+     	<result column="plan_submit_deviation_change" property="planSubmitDeviationChange"/>
+     	<result column="plan_execute_deviation_month_mid_score" property="planExecuteDeviationMonthMidScore"/>
+     	<result column="month_mid_plan" property="monthMidPlan"/>
+     	<result column="month_end_plan" property="monthEndPlan"/>
+     	<result column="plan_execute_deviation_month_mid_change" property="planExecuteDeviationMonthMidChange"/>
+     	<result column="plan_execute_deviation_month_init_score" property="planExecuteDeviationMonthInitScore"/>
+     	<result column="month_begin_plan" property="monthBeginPlan"/>
+     	<result column="plan_execute_deviation_month_init_change" property="planExecuteDeviationMonthInitChange"/>
+     	<result column="adj_count_score" property="adjCountScore"/>
+     	<result column="adj_count" property="adjCount"/>
+     	<result column="create_time" property="createTime"/>
+     	<result column="update_time" property="updateTime"/>
+     	<result column="update_oper" property="updateOper"/>
+     	<result column="add_score" property="addScore"/>
+     	<result column="remark" property="remark"/>
+     	<result column="history_number" property="historyNumber"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,ref_id ,rate_month ,rate_organ ,rate_score_month ,bad_condition_score ,bad_condition_ratio_month_end ,bad_condition_ratio_year_begin ,bad_condition_ratio_change ,deposit_loan_ratio_score ,loan_year_add ,personal_deposit_year_increment ,company_deposit_year_increment ,deposit_loan_ratio_change ,new_loan_ratio_score ,new_loan_ratio ,bank_average_loan_ratio ,new_loan_ratio_change ,loan_struct_score ,loan_count ,month_begin_entity_loan ,month_end_entity_loan ,month_begin_entity_loan_change ,month_end_entity_loan_change ,month_end_begin_entity_loan_change ,scale_amount_score ,organ_scale_amount ,bank_scale_amount ,scale_amount_change ,plan_submit_deviation_score ,month_end_increment ,month_begin_report ,plan_submit_deviation_change ,plan_execute_deviation_month_mid_score ,month_mid_plan ,month_end_plan ,plan_execute_deviation_month_mid_change ,plan_execute_deviation_month_init_score ,month_begin_plan ,plan_execute_deviation_month_init_change ,adj_count_score ,adj_count ,create_time ,update_time ,update_oper ,add_score ,remark ,history_number 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup">
+<!-- 
+	    -->       
+  INSERT INTO tb_organ_rate_score_month_detail_backup 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="refId != null">
+	        	ref_id ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	rate_month ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	rate_organ ,
+	       	</if>
+	       	<if test="rateScoreMonth != null">
+	        	rate_score_month ,
+	       	</if>
+	       	<if test="badConditionScore != null">
+	        	bad_condition_score ,
+	       	</if>
+	       	<if test="badConditionRatioMonthEnd != null">
+	        	bad_condition_ratio_month_end ,
+	       	</if>
+	       	<if test="badConditionRatioYearBegin != null">
+	        	bad_condition_ratio_year_begin ,
+	       	</if>
+	       	<if test="badConditionRatioChange != null">
+	        	bad_condition_ratio_change ,
+	       	</if>
+	       	<if test="depositLoanRatioScore != null">
+	        	deposit_loan_ratio_score ,
+	       	</if>
+	       	<if test="loanYearAdd != null">
+	        	loan_year_add ,
+	       	</if>
+	       	<if test="personalDepositYearIncrement != null">
+	        	personal_deposit_year_increment ,
+	       	</if>
+	       	<if test="companyDepositYearIncrement != null">
+	        	company_deposit_year_increment ,
+	       	</if>
+	       	<if test="depositLoanRatioChange != null">
+	        	deposit_loan_ratio_change ,
+	       	</if>
+	       	<if test="newLoanRatioScore != null">
+	        	new_loan_ratio_score ,
+	       	</if>
+	       	<if test="newLoanRatio != null">
+	        	new_loan_ratio ,
+	       	</if>
+	       	<if test="bankAverageLoanRatio != null">
+	        	bank_average_loan_ratio ,
+	       	</if>
+	       	<if test="newLoanRatioChange != null">
+	        	new_loan_ratio_change ,
+	       	</if>
+	       	<if test="loanStructScore != null">
+	        	loan_struct_score ,
+	       	</if>
+	       	<if test="loanCount != null">
+	        	loan_count ,
+	       	</if>
+	       	<if test="monthBeginEntityLoan != null">
+	        	month_begin_entity_loan ,
+	       	</if>
+	       	<if test="monthEndEntityLoan != null">
+	        	month_end_entity_loan ,
+	       	</if>
+	       	<if test="monthBeginEntityLoanChange != null">
+	        	month_begin_entity_loan_change ,
+	       	</if>
+	       	<if test="monthEndEntityLoanChange != null">
+	        	month_end_entity_loan_change ,
+	       	</if>
+	       	<if test="monthEndBeginEntityLoanChange != null">
+	        	month_end_begin_entity_loan_change ,
+	       	</if>
+	       	<if test="scaleAmountScore != null">
+	        	scale_amount_score ,
+	       	</if>
+	       	<if test="organScaleAmount != null">
+	        	organ_scale_amount ,
+	       	</if>
+	       	<if test="bankScaleAmount != null">
+	        	bank_scale_amount ,
+	       	</if>
+	       	<if test="scaleAmountChange != null">
+	        	scale_amount_change ,
+	       	</if>
+	       	<if test="planSubmitDeviationScore != null">
+	        	plan_submit_deviation_score ,
+	       	</if>
+	       	<if test="monthEndIncrement != null">
+	        	month_end_increment ,
+	       	</if>
+	       	<if test="monthBeginReport != null">
+	        	month_begin_report ,
+	       	</if>
+	       	<if test="planSubmitDeviationChange != null">
+	        	plan_submit_deviation_change ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScore != null">
+	        	plan_execute_deviation_month_mid_score ,
+	       	</if>
+	       	<if test="monthMidPlan != null">
+	        	month_mid_plan ,
+	       	</if>
+	       	<if test="monthEndPlan != null">
+	        	month_end_plan ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidChange != null">
+	        	plan_execute_deviation_month_mid_change ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScore != null">
+	        	plan_execute_deviation_month_init_score ,
+	       	</if>
+	       	<if test="monthBeginPlan != null">
+	        	month_begin_plan ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitChange != null">
+	        	plan_execute_deviation_month_init_change ,
+	       	</if>
+	       	<if test="adjCountScore != null">
+	        	adj_count_score ,
+	       	</if>
+	       	<if test="adjCount != null">
+	        	adj_count ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	create_time ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	update_time ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	update_oper ,
+	       	</if>
+	       	<if test="addScore != null">
+	        	add_score ,
+	       	</if>
+	       	<if test="remark != null">
+	        	remark ,
+	       	</if>
+	       	<if test="historyNumber != null">
+	        	history_number 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="refId != null">
+	        	#{refId} ,
+	       	</if>
+	       	<if test="rateMonth != null">
+	        	#{rateMonth} ,
+	       	</if>
+	       	<if test="rateOrgan != null">
+	        	#{rateOrgan} ,
+	       	</if>
+	       	<if test="rateScoreMonth != null">
+	        	#{rateScoreMonth} ,
+	       	</if>
+	       	<if test="badConditionScore != null">
+	        	#{badConditionScore} ,
+	       	</if>
+	       	<if test="badConditionRatioMonthEnd != null">
+	        	#{badConditionRatioMonthEnd} ,
+	       	</if>
+	       	<if test="badConditionRatioYearBegin != null">
+	        	#{badConditionRatioYearBegin} ,
+	       	</if>
+	       	<if test="badConditionRatioChange != null">
+	        	#{badConditionRatioChange} ,
+	       	</if>
+	       	<if test="depositLoanRatioScore != null">
+	        	#{depositLoanRatioScore} ,
+	       	</if>
+	       	<if test="loanYearAdd != null">
+	        	#{loanYearAdd} ,
+	       	</if>
+	       	<if test="personalDepositYearIncrement != null">
+	        	#{personalDepositYearIncrement} ,
+	       	</if>
+	       	<if test="companyDepositYearIncrement != null">
+	        	#{companyDepositYearIncrement} ,
+	       	</if>
+	       	<if test="depositLoanRatioChange != null">
+	        	#{depositLoanRatioChange} ,
+	       	</if>
+	       	<if test="newLoanRatioScore != null">
+	        	#{newLoanRatioScore} ,
+	       	</if>
+	       	<if test="newLoanRatio != null">
+	        	#{newLoanRatio} ,
+	       	</if>
+	       	<if test="bankAverageLoanRatio != null">
+	        	#{bankAverageLoanRatio} ,
+	       	</if>
+	       	<if test="newLoanRatioChange != null">
+	        	#{newLoanRatioChange} ,
+	       	</if>
+	       	<if test="loanStructScore != null">
+	        	#{loanStructScore} ,
+	       	</if>
+	       	<if test="loanCount != null">
+	        	#{loanCount} ,
+	       	</if>
+	       	<if test="monthBeginEntityLoan != null">
+	        	#{monthBeginEntityLoan} ,
+	       	</if>
+	       	<if test="monthEndEntityLoan != null">
+	        	#{monthEndEntityLoan} ,
+	       	</if>
+	       	<if test="monthBeginEntityLoanChange != null">
+	        	#{monthBeginEntityLoanChange} ,
+	       	</if>
+	       	<if test="monthEndEntityLoanChange != null">
+	        	#{monthEndEntityLoanChange} ,
+	       	</if>
+	       	<if test="monthEndBeginEntityLoanChange != null">
+	        	#{monthEndBeginEntityLoanChange} ,
+	       	</if>
+	       	<if test="scaleAmountScore != null">
+	        	#{scaleAmountScore} ,
+	       	</if>
+	       	<if test="organScaleAmount != null">
+	        	#{organScaleAmount} ,
+	       	</if>
+	       	<if test="bankScaleAmount != null">
+	        	#{bankScaleAmount} ,
+	       	</if>
+	       	<if test="scaleAmountChange != null">
+	        	#{scaleAmountChange} ,
+	       	</if>
+	       	<if test="planSubmitDeviationScore != null">
+	        	#{planSubmitDeviationScore} ,
+	       	</if>
+	       	<if test="monthEndIncrement != null">
+	        	#{monthEndIncrement} ,
+	       	</if>
+	       	<if test="monthBeginReport != null">
+	        	#{monthBeginReport} ,
+	       	</if>
+	       	<if test="planSubmitDeviationChange != null">
+	        	#{planSubmitDeviationChange} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidScore != null">
+	        	#{planExecuteDeviationMonthMidScore} ,
+	       	</if>
+	       	<if test="monthMidPlan != null">
+	        	#{monthMidPlan} ,
+	       	</if>
+	       	<if test="monthEndPlan != null">
+	        	#{monthEndPlan} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthMidChange != null">
+	        	#{planExecuteDeviationMonthMidChange} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitScore != null">
+	        	#{planExecuteDeviationMonthInitScore} ,
+	       	</if>
+	       	<if test="monthBeginPlan != null">
+	        	#{monthBeginPlan} ,
+	       	</if>
+	       	<if test="planExecuteDeviationMonthInitChange != null">
+	        	#{planExecuteDeviationMonthInitChange} ,
+	       	</if>
+	       	<if test="adjCountScore != null">
+	        	#{adjCountScore} ,
+	       	</if>
+	       	<if test="adjCount != null">
+	        	#{adjCount} ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	#{createTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	#{updateOper} ,
+	       	</if>
+	       	<if test="addScore != null">
+	        	#{addScore} ,
+	       	</if>
+	       	<if test="remark != null">
+	        	#{remark} ,
+	       	</if>
+	       	<if test="historyNumber != null">
+	        	#{historyNumber} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_organ_rate_score_month_detail_backup 
+        (id ,ref_id ,rate_month ,rate_organ ,rate_score_month ,bad_condition_score ,bad_condition_ratio_month_end ,bad_condition_ratio_year_begin ,bad_condition_ratio_change ,deposit_loan_ratio_score ,loan_year_add ,personal_deposit_year_increment ,company_deposit_year_increment ,deposit_loan_ratio_change ,new_loan_ratio_score ,new_loan_ratio ,bank_average_loan_ratio ,new_loan_ratio_change ,loan_struct_score ,loan_count ,month_begin_entity_loan ,month_end_entity_loan ,month_begin_entity_loan_change ,month_end_entity_loan_change ,month_end_begin_entity_loan_change ,scale_amount_score ,organ_scale_amount ,bank_scale_amount ,scale_amount_change ,plan_submit_deviation_score ,month_end_increment ,month_begin_report ,plan_submit_deviation_change ,plan_execute_deviation_month_mid_score ,month_mid_plan ,month_end_plan ,plan_execute_deviation_month_mid_change ,plan_execute_deviation_month_init_score ,month_begin_plan ,plan_execute_deviation_month_init_change ,adj_count_score ,adj_count ,create_time ,update_time ,update_oper ,add_score ,remark ,history_number )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.refId,jdbcType=VARCHAR},#{item.rateMonth,jdbcType=VARCHAR},#{item.rateOrgan,jdbcType=VARCHAR},#{item.rateScoreMonth,jdbcType=VARCHAR},#{item.badConditionScore,jdbcType=VARCHAR},#{item.badConditionRatioMonthEnd,jdbcType=VARCHAR},#{item.badConditionRatioYearBegin,jdbcType=VARCHAR},#{item.badConditionRatioChange,jdbcType=VARCHAR},#{item.depositLoanRatioScore,jdbcType=VARCHAR},#{item.loanYearAdd,jdbcType=VARCHAR},#{item.personalDepositYearIncrement,jdbcType=VARCHAR},#{item.companyDepositYearIncrement,jdbcType=VARCHAR},#{item.depositLoanRatioChange,jdbcType=VARCHAR},#{item.newLoanRatioScore,jdbcType=VARCHAR},#{item.newLoanRatio,jdbcType=VARCHAR},#{item.bankAverageLoanRatio,jdbcType=VARCHAR},#{item.newLoanRatioChange,jdbcType=VARCHAR},#{item.loanStructScore,jdbcType=VARCHAR},#{item.loanCount,jdbcType=VARCHAR},#{item.monthBeginEntityLoan,jdbcType=VARCHAR},#{item.monthEndEntityLoan,jdbcType=VARCHAR},#{item.monthBeginEntityLoanChange,jdbcType=VARCHAR},#{item.monthEndEntityLoanChange,jdbcType=VARCHAR},#{item.monthEndBeginEntityLoanChange,jdbcType=VARCHAR},#{item.scaleAmountScore,jdbcType=VARCHAR},#{item.organScaleAmount,jdbcType=VARCHAR},#{item.bankScaleAmount,jdbcType=VARCHAR},#{item.scaleAmountChange,jdbcType=VARCHAR},#{item.planSubmitDeviationScore,jdbcType=VARCHAR},#{item.monthEndIncrement,jdbcType=VARCHAR},#{item.monthBeginReport,jdbcType=VARCHAR},#{item.planSubmitDeviationChange,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidScore,jdbcType=VARCHAR},#{item.monthMidPlan,jdbcType=VARCHAR},#{item.monthEndPlan,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthMidChange,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitScore,jdbcType=VARCHAR},#{item.monthBeginPlan,jdbcType=VARCHAR},#{item.planExecuteDeviationMonthInitChange,jdbcType=VARCHAR},#{item.adjCountScore,jdbcType=VARCHAR},#{item.adjCount,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR},#{item.addScore,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.historyNumber,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_month_detail_backup 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_month_detail_backup 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_organ_rate_score_month_detail_backup 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_month_detail_backup
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup">
+        UPDATE tb_organ_rate_score_month_detail_backup 
+        <set>
+       	<if test="refId != null">
+       		ref_id = #{refId},
+       	</if>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateScoreMonth != null">
+       		rate_score_month = #{rateScoreMonth},
+       	</if>
+       	<if test="badConditionScore != null">
+       		bad_condition_score = #{badConditionScore},
+       	</if>
+       	<if test="badConditionRatioMonthEnd != null">
+       		bad_condition_ratio_month_end = #{badConditionRatioMonthEnd},
+       	</if>
+       	<if test="badConditionRatioYearBegin != null">
+       		bad_condition_ratio_year_begin = #{badConditionRatioYearBegin},
+       	</if>
+       	<if test="badConditionRatioChange != null">
+       		bad_condition_ratio_change = #{badConditionRatioChange},
+       	</if>
+       	<if test="depositLoanRatioScore != null">
+       		deposit_loan_ratio_score = #{depositLoanRatioScore},
+       	</if>
+       	<if test="loanYearAdd != null">
+       		loan_year_add = #{loanYearAdd},
+       	</if>
+       	<if test="personalDepositYearIncrement != null">
+       		personal_deposit_year_increment = #{personalDepositYearIncrement},
+       	</if>
+       	<if test="companyDepositYearIncrement != null">
+       		company_deposit_year_increment = #{companyDepositYearIncrement},
+       	</if>
+       	<if test="depositLoanRatioChange != null">
+       		deposit_loan_ratio_change = #{depositLoanRatioChange},
+       	</if>
+       	<if test="newLoanRatioScore != null">
+       		new_loan_ratio_score = #{newLoanRatioScore},
+       	</if>
+       	<if test="newLoanRatio != null">
+       		new_loan_ratio = #{newLoanRatio},
+       	</if>
+       	<if test="bankAverageLoanRatio != null">
+       		bank_average_loan_ratio = #{bankAverageLoanRatio},
+       	</if>
+       	<if test="newLoanRatioChange != null">
+       		new_loan_ratio_change = #{newLoanRatioChange},
+       	</if>
+       	<if test="loanStructScore != null">
+       		loan_struct_score = #{loanStructScore},
+       	</if>
+       	<if test="loanCount != null">
+       		loan_count = #{loanCount},
+       	</if>
+       	<if test="monthBeginEntityLoan != null">
+       		month_begin_entity_loan = #{monthBeginEntityLoan},
+       	</if>
+       	<if test="monthEndEntityLoan != null">
+       		month_end_entity_loan = #{monthEndEntityLoan},
+       	</if>
+       	<if test="monthBeginEntityLoanChange != null">
+       		month_begin_entity_loan_change = #{monthBeginEntityLoanChange},
+       	</if>
+       	<if test="monthEndEntityLoanChange != null">
+       		month_end_entity_loan_change = #{monthEndEntityLoanChange},
+       	</if>
+       	<if test="monthEndBeginEntityLoanChange != null">
+       		month_end_begin_entity_loan_change = #{monthEndBeginEntityLoanChange},
+       	</if>
+       	<if test="scaleAmountScore != null">
+       		scale_amount_score = #{scaleAmountScore},
+       	</if>
+       	<if test="organScaleAmount != null">
+       		organ_scale_amount = #{organScaleAmount},
+       	</if>
+       	<if test="bankScaleAmount != null">
+       		bank_scale_amount = #{bankScaleAmount},
+       	</if>
+       	<if test="scaleAmountChange != null">
+       		scale_amount_change = #{scaleAmountChange},
+       	</if>
+       	<if test="planSubmitDeviationScore != null">
+       		plan_submit_deviation_score = #{planSubmitDeviationScore},
+       	</if>
+       	<if test="monthEndIncrement != null">
+       		month_end_increment = #{monthEndIncrement},
+       	</if>
+       	<if test="monthBeginReport != null">
+       		month_begin_report = #{monthBeginReport},
+       	</if>
+       	<if test="planSubmitDeviationChange != null">
+       		plan_submit_deviation_change = #{planSubmitDeviationChange},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScore != null">
+       		plan_execute_deviation_month_mid_score = #{planExecuteDeviationMonthMidScore},
+       	</if>
+       	<if test="monthMidPlan != null">
+       		month_mid_plan = #{monthMidPlan},
+       	</if>
+       	<if test="monthEndPlan != null">
+       		month_end_plan = #{monthEndPlan},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidChange != null">
+       		plan_execute_deviation_month_mid_change = #{planExecuteDeviationMonthMidChange},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScore != null">
+       		plan_execute_deviation_month_init_score = #{planExecuteDeviationMonthInitScore},
+       	</if>
+       	<if test="monthBeginPlan != null">
+       		month_begin_plan = #{monthBeginPlan},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitChange != null">
+       		plan_execute_deviation_month_init_change = #{planExecuteDeviationMonthInitChange},
+       	</if>
+       	<if test="adjCountScore != null">
+       		adj_count_score = #{adjCountScore},
+       	</if>
+       	<if test="adjCount != null">
+       		adj_count = #{adjCount},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="addScore != null">
+       		add_score = #{addScore},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+       	<if test="historyNumber != null">
+       		history_number = #{historyNumber},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_organ_rate_score_month_detail_backup 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_organ_rate_score_month_detail_backup 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="refId != null">
+       		ref_id = #{refId},
+       	</if>
+       	<if test="rateMonth != null">
+       		rate_month = #{rateMonth},
+       	</if>
+       	<if test="rateOrgan != null">
+       		rate_organ = #{rateOrgan},
+       	</if>
+       	<if test="rateScoreMonth != null">
+       		rate_score_month = #{rateScoreMonth},
+       	</if>
+       	<if test="badConditionScore != null">
+       		bad_condition_score = #{badConditionScore},
+       	</if>
+       	<if test="badConditionRatioMonthEnd != null">
+       		bad_condition_ratio_month_end = #{badConditionRatioMonthEnd},
+       	</if>
+       	<if test="badConditionRatioYearBegin != null">
+       		bad_condition_ratio_year_begin = #{badConditionRatioYearBegin},
+       	</if>
+       	<if test="badConditionRatioChange != null">
+       		bad_condition_ratio_change = #{badConditionRatioChange},
+       	</if>
+       	<if test="depositLoanRatioScore != null">
+       		deposit_loan_ratio_score = #{depositLoanRatioScore},
+       	</if>
+       	<if test="loanYearAdd != null">
+       		loan_year_add = #{loanYearAdd},
+       	</if>
+       	<if test="personalDepositYearIncrement != null">
+       		personal_deposit_year_increment = #{personalDepositYearIncrement},
+       	</if>
+       	<if test="companyDepositYearIncrement != null">
+       		company_deposit_year_increment = #{companyDepositYearIncrement},
+       	</if>
+       	<if test="depositLoanRatioChange != null">
+       		deposit_loan_ratio_change = #{depositLoanRatioChange},
+       	</if>
+       	<if test="newLoanRatioScore != null">
+       		new_loan_ratio_score = #{newLoanRatioScore},
+       	</if>
+       	<if test="newLoanRatio != null">
+       		new_loan_ratio = #{newLoanRatio},
+       	</if>
+       	<if test="bankAverageLoanRatio != null">
+       		bank_average_loan_ratio = #{bankAverageLoanRatio},
+       	</if>
+       	<if test="newLoanRatioChange != null">
+       		new_loan_ratio_change = #{newLoanRatioChange},
+       	</if>
+       	<if test="loanStructScore != null">
+       		loan_struct_score = #{loanStructScore},
+       	</if>
+       	<if test="loanCount != null">
+       		loan_count = #{loanCount},
+       	</if>
+       	<if test="monthBeginEntityLoan != null">
+       		month_begin_entity_loan = #{monthBeginEntityLoan},
+       	</if>
+       	<if test="monthEndEntityLoan != null">
+       		month_end_entity_loan = #{monthEndEntityLoan},
+       	</if>
+       	<if test="monthBeginEntityLoanChange != null">
+       		month_begin_entity_loan_change = #{monthBeginEntityLoanChange},
+       	</if>
+       	<if test="monthEndEntityLoanChange != null">
+       		month_end_entity_loan_change = #{monthEndEntityLoanChange},
+       	</if>
+       	<if test="monthEndBeginEntityLoanChange != null">
+       		month_end_begin_entity_loan_change = #{monthEndBeginEntityLoanChange},
+       	</if>
+       	<if test="scaleAmountScore != null">
+       		scale_amount_score = #{scaleAmountScore},
+       	</if>
+       	<if test="organScaleAmount != null">
+       		organ_scale_amount = #{organScaleAmount},
+       	</if>
+       	<if test="bankScaleAmount != null">
+       		bank_scale_amount = #{bankScaleAmount},
+       	</if>
+       	<if test="scaleAmountChange != null">
+       		scale_amount_change = #{scaleAmountChange},
+       	</if>
+       	<if test="planSubmitDeviationScore != null">
+       		plan_submit_deviation_score = #{planSubmitDeviationScore},
+       	</if>
+       	<if test="monthEndIncrement != null">
+       		month_end_increment = #{monthEndIncrement},
+       	</if>
+       	<if test="monthBeginReport != null">
+       		month_begin_report = #{monthBeginReport},
+       	</if>
+       	<if test="planSubmitDeviationChange != null">
+       		plan_submit_deviation_change = #{planSubmitDeviationChange},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidScore != null">
+       		plan_execute_deviation_month_mid_score = #{planExecuteDeviationMonthMidScore},
+       	</if>
+       	<if test="monthMidPlan != null">
+       		month_mid_plan = #{monthMidPlan},
+       	</if>
+       	<if test="monthEndPlan != null">
+       		month_end_plan = #{monthEndPlan},
+       	</if>
+       	<if test="planExecuteDeviationMonthMidChange != null">
+       		plan_execute_deviation_month_mid_change = #{planExecuteDeviationMonthMidChange},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitScore != null">
+       		plan_execute_deviation_month_init_score = #{planExecuteDeviationMonthInitScore},
+       	</if>
+       	<if test="monthBeginPlan != null">
+       		month_begin_plan = #{monthBeginPlan},
+       	</if>
+       	<if test="planExecuteDeviationMonthInitChange != null">
+       		plan_execute_deviation_month_init_change = #{planExecuteDeviationMonthInitChange},
+       	</if>
+       	<if test="adjCountScore != null">
+       		adj_count_score = #{adjCountScore},
+       	</if>
+       	<if test="adjCount != null">
+       		adj_count = #{adjCount},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="addScore != null">
+       		add_score = #{addScore},
+       	</if>
+       	<if test="remark != null">
+       		remark = #{remark},
+       	</if>
+       	<if test="historyNumber != null">
+       		history_number = #{historyNumber},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="refId != null and refId != ''">
+	 		and ref_id = #{refId}
+	 	</if>
+	 	<if test="rateMonth != null and rateMonth != ''">
+	 		and rate_month = #{rateMonth}
+	 	</if>
+	 	<if test="rateOrgan != null and rateOrgan != ''">
+	 		and rate_organ = #{rateOrgan}
+	 	</if>
+	 	<if test="rateScoreMonth != null and rateScoreMonth != ''">
+	 		and rate_score_month = #{rateScoreMonth}
+	 	</if>
+	 	<if test="badConditionScore != null and badConditionScore != ''">
+	 		and bad_condition_score = #{badConditionScore}
+	 	</if>
+	 	<if test="badConditionRatioMonthEnd != null and badConditionRatioMonthEnd != ''">
+	 		and bad_condition_ratio_month_end = #{badConditionRatioMonthEnd}
+	 	</if>
+	 	<if test="badConditionRatioYearBegin != null and badConditionRatioYearBegin != ''">
+	 		and bad_condition_ratio_year_begin = #{badConditionRatioYearBegin}
+	 	</if>
+	 	<if test="badConditionRatioChange != null and badConditionRatioChange != ''">
+	 		and bad_condition_ratio_change = #{badConditionRatioChange}
+	 	</if>
+	 	<if test="depositLoanRatioScore != null and depositLoanRatioScore != ''">
+	 		and deposit_loan_ratio_score = #{depositLoanRatioScore}
+	 	</if>
+	 	<if test="loanYearAdd != null and loanYearAdd != ''">
+	 		and loan_year_add = #{loanYearAdd}
+	 	</if>
+	 	<if test="personalDepositYearIncrement != null and personalDepositYearIncrement != ''">
+	 		and personal_deposit_year_increment = #{personalDepositYearIncrement}
+	 	</if>
+	 	<if test="companyDepositYearIncrement != null and companyDepositYearIncrement != ''">
+	 		and company_deposit_year_increment = #{companyDepositYearIncrement}
+	 	</if>
+	 	<if test="depositLoanRatioChange != null and depositLoanRatioChange != ''">
+	 		and deposit_loan_ratio_change = #{depositLoanRatioChange}
+	 	</if>
+	 	<if test="newLoanRatioScore != null and newLoanRatioScore != ''">
+	 		and new_loan_ratio_score = #{newLoanRatioScore}
+	 	</if>
+	 	<if test="newLoanRatio != null and newLoanRatio != ''">
+	 		and new_loan_ratio = #{newLoanRatio}
+	 	</if>
+	 	<if test="bankAverageLoanRatio != null and bankAverageLoanRatio != ''">
+	 		and bank_average_loan_ratio = #{bankAverageLoanRatio}
+	 	</if>
+	 	<if test="newLoanRatioChange != null and newLoanRatioChange != ''">
+	 		and new_loan_ratio_change = #{newLoanRatioChange}
+	 	</if>
+	 	<if test="loanStructScore != null and loanStructScore != ''">
+	 		and loan_struct_score = #{loanStructScore}
+	 	</if>
+	 	<if test="loanCount != null and loanCount != ''">
+	 		and loan_count = #{loanCount}
+	 	</if>
+	 	<if test="monthBeginEntityLoan != null and monthBeginEntityLoan != ''">
+	 		and month_begin_entity_loan = #{monthBeginEntityLoan}
+	 	</if>
+	 	<if test="monthEndEntityLoan != null and monthEndEntityLoan != ''">
+	 		and month_end_entity_loan = #{monthEndEntityLoan}
+	 	</if>
+	 	<if test="monthBeginEntityLoanChange != null and monthBeginEntityLoanChange != ''">
+	 		and month_begin_entity_loan_change = #{monthBeginEntityLoanChange}
+	 	</if>
+	 	<if test="monthEndEntityLoanChange != null and monthEndEntityLoanChange != ''">
+	 		and month_end_entity_loan_change = #{monthEndEntityLoanChange}
+	 	</if>
+	 	<if test="monthEndBeginEntityLoanChange != null and monthEndBeginEntityLoanChange != ''">
+	 		and month_end_begin_entity_loan_change = #{monthEndBeginEntityLoanChange}
+	 	</if>
+	 	<if test="scaleAmountScore != null and scaleAmountScore != ''">
+	 		and scale_amount_score = #{scaleAmountScore}
+	 	</if>
+	 	<if test="organScaleAmount != null and organScaleAmount != ''">
+	 		and organ_scale_amount = #{organScaleAmount}
+	 	</if>
+	 	<if test="bankScaleAmount != null and bankScaleAmount != ''">
+	 		and bank_scale_amount = #{bankScaleAmount}
+	 	</if>
+	 	<if test="scaleAmountChange != null and scaleAmountChange != ''">
+	 		and scale_amount_change = #{scaleAmountChange}
+	 	</if>
+	 	<if test="planSubmitDeviationScore != null and planSubmitDeviationScore != ''">
+	 		and plan_submit_deviation_score = #{planSubmitDeviationScore}
+	 	</if>
+	 	<if test="monthEndIncrement != null and monthEndIncrement != ''">
+	 		and month_end_increment = #{monthEndIncrement}
+	 	</if>
+	 	<if test="monthBeginReport != null and monthBeginReport != ''">
+	 		and month_begin_report = #{monthBeginReport}
+	 	</if>
+	 	<if test="planSubmitDeviationChange != null and planSubmitDeviationChange != ''">
+	 		and plan_submit_deviation_change = #{planSubmitDeviationChange}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidScore != null and planExecuteDeviationMonthMidScore != ''">
+	 		and plan_execute_deviation_month_mid_score = #{planExecuteDeviationMonthMidScore}
+	 	</if>
+	 	<if test="monthMidPlan != null and monthMidPlan != ''">
+	 		and month_mid_plan = #{monthMidPlan}
+	 	</if>
+	 	<if test="monthEndPlan != null and monthEndPlan != ''">
+	 		and month_end_plan = #{monthEndPlan}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthMidChange != null and planExecuteDeviationMonthMidChange != ''">
+	 		and plan_execute_deviation_month_mid_change = #{planExecuteDeviationMonthMidChange}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitScore != null and planExecuteDeviationMonthInitScore != ''">
+	 		and plan_execute_deviation_month_init_score = #{planExecuteDeviationMonthInitScore}
+	 	</if>
+	 	<if test="monthBeginPlan != null and monthBeginPlan != ''">
+	 		and month_begin_plan = #{monthBeginPlan}
+	 	</if>
+	 	<if test="planExecuteDeviationMonthInitChange != null and planExecuteDeviationMonthInitChange != ''">
+	 		and plan_execute_deviation_month_init_change = #{planExecuteDeviationMonthInitChange}
+	 	</if>
+	 	<if test="adjCountScore != null and adjCountScore != ''">
+	 		and adj_count_score = #{adjCountScore}
+	 	</if>
+	 	<if test="adjCount != null and adjCount != ''">
+	 		and adj_count = #{adjCount}
+	 	</if>
+	 	<if test="createTime != null and createTime != ''">
+	 		and create_time = #{createTime}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and update_time = #{updateTime}
+	 	</if>
+	 	<if test="updateOper != null and updateOper != ''">
+	 		and update_oper = #{updateOper}
+	 	</if>
+	 	<if test="addScore != null and addScore != ''">
+	 		and add_score = #{addScore}
+	 	</if>
+	 	<if test="remark != null and remark != ''">
+	 		and remark = #{remark}
+	 	</if>
+	 	<if test="historyNumber != null and historyNumber != ''">
+	 		and history_number = #{historyNumber}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="refId != null and refId != ''">
+ 			and ref_id like '%' || #{refId} || '%'
+ 		</if>
+ 		<if test="rateMonth != null and rateMonth != ''">
+ 			and rate_month like '%' || #{rateMonth} || '%'
+ 		</if>
+ 		<if test="rateOrgan != null and rateOrgan != ''">
+ 			and rate_organ like '%' || #{rateOrgan} || '%'
+ 		</if>
+ 		<if test="rateScoreMonth != null and rateScoreMonth != ''">
+ 			and rate_score_month like '%' || #{rateScoreMonth} || '%'
+ 		</if>
+ 		<if test="badConditionScore != null and badConditionScore != ''">
+ 			and bad_condition_score like '%' || #{badConditionScore} || '%'
+ 		</if>
+ 		<if test="badConditionRatioMonthEnd != null and badConditionRatioMonthEnd != ''">
+ 			and bad_condition_ratio_month_end like '%' || #{badConditionRatioMonthEnd} || '%'
+ 		</if>
+ 		<if test="badConditionRatioYearBegin != null and badConditionRatioYearBegin != ''">
+ 			and bad_condition_ratio_year_begin like '%' || #{badConditionRatioYearBegin} || '%'
+ 		</if>
+ 		<if test="badConditionRatioChange != null and badConditionRatioChange != ''">
+ 			and bad_condition_ratio_change like '%' || #{badConditionRatioChange} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioScore != null and depositLoanRatioScore != ''">
+ 			and deposit_loan_ratio_score like '%' || #{depositLoanRatioScore} || '%'
+ 		</if>
+ 		<if test="loanYearAdd != null and loanYearAdd != ''">
+ 			and loan_year_add like '%' || #{loanYearAdd} || '%'
+ 		</if>
+ 		<if test="personalDepositYearIncrement != null and personalDepositYearIncrement != ''">
+ 			and personal_deposit_year_increment like '%' || #{personalDepositYearIncrement} || '%'
+ 		</if>
+ 		<if test="companyDepositYearIncrement != null and companyDepositYearIncrement != ''">
+ 			and company_deposit_year_increment like '%' || #{companyDepositYearIncrement} || '%'
+ 		</if>
+ 		<if test="depositLoanRatioChange != null and depositLoanRatioChange != ''">
+ 			and deposit_loan_ratio_change like '%' || #{depositLoanRatioChange} || '%'
+ 		</if>
+ 		<if test="newLoanRatioScore != null and newLoanRatioScore != ''">
+ 			and new_loan_ratio_score like '%' || #{newLoanRatioScore} || '%'
+ 		</if>
+ 		<if test="newLoanRatio != null and newLoanRatio != ''">
+ 			and new_loan_ratio like '%' || #{newLoanRatio} || '%'
+ 		</if>
+ 		<if test="bankAverageLoanRatio != null and bankAverageLoanRatio != ''">
+ 			and bank_average_loan_ratio like '%' || #{bankAverageLoanRatio} || '%'
+ 		</if>
+ 		<if test="newLoanRatioChange != null and newLoanRatioChange != ''">
+ 			and new_loan_ratio_change like '%' || #{newLoanRatioChange} || '%'
+ 		</if>
+ 		<if test="loanStructScore != null and loanStructScore != ''">
+ 			and loan_struct_score like '%' || #{loanStructScore} || '%'
+ 		</if>
+ 		<if test="loanCount != null and loanCount != ''">
+ 			and loan_count like '%' || #{loanCount} || '%'
+ 		</if>
+ 		<if test="monthBeginEntityLoan != null and monthBeginEntityLoan != ''">
+ 			and month_begin_entity_loan like '%' || #{monthBeginEntityLoan} || '%'
+ 		</if>
+ 		<if test="monthEndEntityLoan != null and monthEndEntityLoan != ''">
+ 			and month_end_entity_loan like '%' || #{monthEndEntityLoan} || '%'
+ 		</if>
+ 		<if test="monthBeginEntityLoanChange != null and monthBeginEntityLoanChange != ''">
+ 			and month_begin_entity_loan_change like '%' || #{monthBeginEntityLoanChange} || '%'
+ 		</if>
+ 		<if test="monthEndEntityLoanChange != null and monthEndEntityLoanChange != ''">
+ 			and month_end_entity_loan_change like '%' || #{monthEndEntityLoanChange} || '%'
+ 		</if>
+ 		<if test="monthEndBeginEntityLoanChange != null and monthEndBeginEntityLoanChange != ''">
+ 			and month_end_begin_entity_loan_change like '%' || #{monthEndBeginEntityLoanChange} || '%'
+ 		</if>
+ 		<if test="scaleAmountScore != null and scaleAmountScore != ''">
+ 			and scale_amount_score like '%' || #{scaleAmountScore} || '%'
+ 		</if>
+ 		<if test="organScaleAmount != null and organScaleAmount != ''">
+ 			and organ_scale_amount like '%' || #{organScaleAmount} || '%'
+ 		</if>
+ 		<if test="bankScaleAmount != null and bankScaleAmount != ''">
+ 			and bank_scale_amount like '%' || #{bankScaleAmount} || '%'
+ 		</if>
+ 		<if test="scaleAmountChange != null and scaleAmountChange != ''">
+ 			and scale_amount_change like '%' || #{scaleAmountChange} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationScore != null and planSubmitDeviationScore != ''">
+ 			and plan_submit_deviation_score like '%' || #{planSubmitDeviationScore} || '%'
+ 		</if>
+ 		<if test="monthEndIncrement != null and monthEndIncrement != ''">
+ 			and month_end_increment like '%' || #{monthEndIncrement} || '%'
+ 		</if>
+ 		<if test="monthBeginReport != null and monthBeginReport != ''">
+ 			and month_begin_report like '%' || #{monthBeginReport} || '%'
+ 		</if>
+ 		<if test="planSubmitDeviationChange != null and planSubmitDeviationChange != ''">
+ 			and plan_submit_deviation_change like '%' || #{planSubmitDeviationChange} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidScore != null and planExecuteDeviationMonthMidScore != ''">
+ 			and plan_execute_deviation_month_mid_score like '%' || #{planExecuteDeviationMonthMidScore} || '%'
+ 		</if>
+ 		<if test="monthMidPlan != null and monthMidPlan != ''">
+ 			and month_mid_plan like '%' || #{monthMidPlan} || '%'
+ 		</if>
+ 		<if test="monthEndPlan != null and monthEndPlan != ''">
+ 			and month_end_plan like '%' || #{monthEndPlan} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthMidChange != null and planExecuteDeviationMonthMidChange != ''">
+ 			and plan_execute_deviation_month_mid_change like '%' || #{planExecuteDeviationMonthMidChange} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitScore != null and planExecuteDeviationMonthInitScore != ''">
+ 			and plan_execute_deviation_month_init_score like '%' || #{planExecuteDeviationMonthInitScore} || '%'
+ 		</if>
+ 		<if test="monthBeginPlan != null and monthBeginPlan != ''">
+ 			and month_begin_plan like '%' || #{monthBeginPlan} || '%'
+ 		</if>
+ 		<if test="planExecuteDeviationMonthInitChange != null and planExecuteDeviationMonthInitChange != ''">
+ 			and plan_execute_deviation_month_init_change like '%' || #{planExecuteDeviationMonthInitChange} || '%'
+ 		</if>
+ 		<if test="adjCountScore != null and adjCountScore != ''">
+ 			and adj_count_score like '%' || #{adjCountScore} || '%'
+ 		</if>
+ 		<if test="adjCount != null and adjCount != ''">
+ 			and adj_count like '%' || #{adjCount} || '%'
+ 		</if>
+ 		<if test="createTime != null and createTime != ''">
+ 			and create_time like '%' || #{createTime} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and update_time like '%' || #{updateTime} || '%'
+ 		</if>
+ 		<if test="updateOper != null and updateOper != ''">
+ 			and update_oper like '%' || #{updateOper} || '%'
+ 		</if>
+ 		<if test="addScore != null and addScore != ''">
+ 			and add_score like '%' || #{addScore} || '%'
+ 		</if>
+ 		<if test="remark != null and remark != ''">
+ 			and remark like '%' || #{remark} || '%'
+ 		</if>
+ 		<if test="historyNumber != null and historyNumber != ''">
+ 			and history_number like '%' || #{historyNumber} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_organ_rate_score_month_detail_backup 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_month_detail_backup
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_month_detail_backup 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_month_detail_backup 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_month_detail_backup 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_month_detail_backup 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreMonthDetailBackup" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_month_detail_backup 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_month_detail_backup 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 查询最大历史编号 -->
+	<select id="selectMaxHistoryNumber" parameterType="java.lang.String" resultType="java.util.Map" flushCache="true">
+		select max(history_number) as maxnumber
+		from tb_organ_rate_score_month_detail_backup
+		<where>
+			rate_month = #{rateMonth}
+		</where>
+	</select>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

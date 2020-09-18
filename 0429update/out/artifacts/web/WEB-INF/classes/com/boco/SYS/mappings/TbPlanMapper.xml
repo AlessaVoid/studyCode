@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 罚息详情表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPlanMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPlan">
+        <id column="plan_id" property="planId"/>
+        <result column="plan_organ" property="planOrgan"/>
+        <result column="plan_month" property="planMonth"/>
+        <result column="plan_oper" property="planOper"/>
+        <result column="plan_status" property="planStatus"/>
+        <result column="plan_updater" property="planUpdater"/>
+        <result column="plan_update_time" property="planUpdateTime"/>
+        <result column="plan_unit" property="planUnit"/>
+        <result column="plan_create_time" property="planCreateTime"/>
+        <result column="plan_increment" property="planIncrement"/>
+        <result column="plan_real_increment" property="planRealIncrement"/>
+        <result column="plan_type" property="planType"/>
+        <result column="quota_status" property="quotaStatus"/>
+        <result column="comb_level" property="combLevel"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+                plan_id ,plan_organ ,plan_month ,plan_oper ,plan_status ,plan_updater ,plan_update_time ,plan_unit ,plan_create_time ,plan_increment ,plan_real_increment ,plan_type ,quota_status ,comb_level
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPlan">
+        <!--
+                -->
+        INSERT INTO tb_plan
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="planId != null">
+                plan_id ,
+            </if>
+            <if test="planOrgan != null">
+                plan_organ ,
+            </if>
+            <if test="planMonth != null">
+                plan_month ,
+            </if>
+            <if test="planOper != null">
+                plan_oper ,
+            </if>
+            <if test="planStatus != null">
+                plan_status ,
+            </if>
+            <if test="planUpdater != null">
+                plan_updater ,
+            </if>
+            <if test="planUpdateTime != null">
+                plan_update_time ,
+            </if>
+            <if test="planUnit != null">
+                plan_unit ,
+            </if>
+            <if test="planCreateTime != null">
+                plan_create_time ,
+            </if>
+            <if test="planIncrement != null">
+                plan_increment ,
+            </if>
+            <if test="planRealIncrement != null">
+                plan_real_increment ,
+            </if>
+            <if test="planType != null">
+                plan_type ,
+            </if>
+            <if test="quotaStatus != null">
+                quota_status ,
+            </if>
+            <if test="combLevel != null">
+                comb_level
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="planId != null">
+                #{planId} ,
+            </if>
+            <if test="planOrgan != null">
+                #{planOrgan} ,
+            </if>
+            <if test="planMonth != null">
+                #{planMonth} ,
+            </if>
+            <if test="planOper != null">
+                #{planOper} ,
+            </if>
+            <if test="planStatus != null">
+                #{planStatus} ,
+            </if>
+            <if test="planUpdater != null">
+                #{planUpdater} ,
+            </if>
+            <if test="planUpdateTime != null">
+                #{planUpdateTime} ,
+            </if>
+            <if test="planUnit != null">
+                #{planUnit} ,
+            </if>
+            <if test="planCreateTime != null">
+                #{planCreateTime} ,
+            </if>
+            <if test="planIncrement != null">
+                #{planIncrement} ,
+            </if>
+            <if test="planRealIncrement != null">
+                #{planRealIncrement} ,
+            </if>
+            <if test="planType != null">
+                #{planType} ,
+            </if>
+            <if test="quotaStatus != null">
+                #{quotaStatus} ,
+            </if>
+            <if test="combLevel != null">
+                #{combLevel}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_plan
+        (plan_id ,plan_organ ,plan_month ,plan_oper ,plan_status ,plan_updater ,plan_update_time ,plan_unit
+        ,plan_create_time ,plan_increment ,plan_real_increment ,plan_type ,quota_status ,comb_level )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.planId,jdbcType=VARCHAR},#{item.planOrgan,jdbcType=VARCHAR},#{item.planMonth,jdbcType=VARCHAR},#{item.planOper,jdbcType=VARCHAR},#{item.planStatus,jdbcType=VARCHAR},#{item.planUpdater,jdbcType=VARCHAR},#{item.planUpdateTime,jdbcType=VARCHAR},#{item.planUnit,jdbcType=VARCHAR},#{item.planCreateTime,jdbcType=VARCHAR},#{item.planIncrement,jdbcType=VARCHAR},#{item.planRealIncrement,jdbcType=VARCHAR},#{item.planType,jdbcType=VARCHAR},#{item.quotaStatus,jdbcType=VARCHAR},#{item.combLevel,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_plan
+        <where>
+            plan_id = #{planId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_plan
+        <where>
+            plan_id = #{planId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_plan
+        WHERE plan_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_plan
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPlan">
+        UPDATE tb_plan
+        <set>
+            <if test="planOrgan != null">
+                plan_organ = #{planOrgan},
+            </if>
+            <if test="planMonth != null">
+                plan_month = #{planMonth},
+            </if>
+            <if test="planOper != null">
+                plan_oper = #{planOper},
+            </if>
+            <if test="planStatus != null">
+                plan_status = #{planStatus},
+            </if>
+            <if test="planUpdater != null">
+                plan_updater = #{planUpdater},
+            </if>
+            <if test="planUpdateTime != null">
+                plan_update_time = #{planUpdateTime},
+            </if>
+            <if test="planUnit != null">
+                plan_unit = #{planUnit},
+            </if>
+            <if test="planCreateTime != null">
+                plan_create_time = #{planCreateTime},
+            </if>
+            <if test="planIncrement != null">
+                plan_increment = #{planIncrement},
+            </if>
+            <if test="planRealIncrement != null">
+                plan_real_increment = #{planRealIncrement},
+            </if>
+            <if test="planType != null">
+                plan_type = #{planType},
+            </if>
+            <if test="quotaStatus != null">
+                quota_status = #{quotaStatus},
+            </if>
+            <if test="combLevel != null">
+                comb_level = #{combLevel},
+            </if>
+        </set>
+        <where>
+            plan_id = #{planId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_plan
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_plan
+        <set>
+            <if test="planId != null">
+                plan_id = #{planId},
+            </if>
+            <if test="planOrgan != null">
+                plan_organ = #{planOrgan},
+            </if>
+            <if test="planMonth != null">
+                plan_month = #{planMonth},
+            </if>
+            <if test="planOper != null">
+                plan_oper = #{planOper},
+            </if>
+            <if test="planStatus != null">
+                plan_status = #{planStatus},
+            </if>
+            <if test="planUpdater != null">
+                plan_updater = #{planUpdater},
+            </if>
+            <if test="planUpdateTime != null">
+                plan_update_time = #{planUpdateTime},
+            </if>
+            <if test="planUnit != null">
+                plan_unit = #{planUnit},
+            </if>
+            <if test="planCreateTime != null">
+                plan_create_time = #{planCreateTime},
+            </if>
+            <if test="planIncrement != null">
+                plan_increment = #{planIncrement},
+            </if>
+            <if test="planRealIncrement != null">
+                plan_real_increment = #{planRealIncrement},
+            </if>
+            <if test="planType != null">
+                plan_type = #{planType},
+            </if>
+            <if test="quotaStatus != null">
+                quota_status = #{quotaStatus},
+            </if>
+            <if test="combLevel != null">
+                comb_level = #{combLevel},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="planId != null and planId != ''">
+            and plan_id = #{planId}
+        </if>
+        <if test="planOrgan != null and planOrgan != ''">
+            and plan_organ = #{planOrgan}
+        </if>
+        <if test="planMonth != null and planMonth != ''">
+            and plan_month = #{planMonth}
+        </if>
+        <if test="planOper != null and planOper != ''">
+            and plan_oper = #{planOper}
+        </if>
+        <if test="planStatus != null and planStatus != ''">
+            and plan_status = #{planStatus}
+        </if>
+        <if test="planUpdater != null and planUpdater != ''">
+            and plan_updater = #{planUpdater}
+        </if>
+        <if test="planUpdateTime != null and planUpdateTime != ''">
+            and plan_update_time = #{planUpdateTime}
+        </if>
+        <if test="planUnit != null and planUnit != ''">
+            and plan_unit = #{planUnit}
+        </if>
+        <if test="planCreateTime != null and planCreateTime != ''">
+            and plan_create_time = #{planCreateTime}
+        </if>
+        <if test="planIncrement != null and planIncrement != ''">
+            and plan_increment = #{planIncrement}
+        </if>
+        <if test="planRealIncrement != null and planRealIncrement != ''">
+            and plan_real_increment = #{planRealIncrement}
+        </if>
+        <if test="planType != null and planType != ''">
+            and plan_type = #{planType}
+        </if>
+        <if test="quotaStatus != null and quotaStatus != ''">
+            and quota_status = #{quotaStatus}
+        </if>
+        <if test="combLevel != null and combLevel != ''">
+            and comb_level = #{combLevel}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="planId != null and planId != ''">
+            and plan_id like '%' || #{planId} || '%'
+        </if>
+        <if test="planOrgan != null and planOrgan != ''">
+            and plan_organ like '%' || #{planOrgan} || '%'
+        </if>
+        <if test="planMonth != null and planMonth != ''">
+            and plan_month like '%' || #{planMonth} || '%'
+        </if>
+        <if test="planOper != null and planOper != ''">
+            and plan_oper like '%' || #{planOper} || '%'
+        </if>
+        <if test="planStatus != null and planStatus != ''">
+            and plan_status like '%' || #{planStatus} || '%'
+        </if>
+        <if test="planUpdater != null and planUpdater != ''">
+            and plan_updater like '%' || #{planUpdater} || '%'
+        </if>
+        <if test="planUpdateTime != null and planUpdateTime != ''">
+            and plan_update_time like '%' || #{planUpdateTime} || '%'
+        </if>
+        <if test="planUnit != null and planUnit != ''">
+            and plan_unit like '%' || #{planUnit} || '%'
+        </if>
+        <if test="planCreateTime != null and planCreateTime != ''">
+            and plan_create_time like '%' || #{planCreateTime} || '%'
+        </if>
+        <if test="planIncrement != null and planIncrement != ''">
+            and plan_increment like '%' || #{planIncrement} || '%'
+        </if>
+        <if test="planRealIncrement != null and planRealIncrement != ''">
+            and plan_real_increment like '%' || #{planRealIncrement} || '%'
+        </if>
+        <if test="planType != null and planType != ''">
+            and plan_type like '%' || #{planType} || '%'
+        </if>
+        <if test="quotaStatus != null and quotaStatus != ''">
+            and quota_status like '%' || #{quotaStatus} || '%'
+        </if>
+        <if test="combLevel != null and combLevel != ''">
+            and comb_level like '%' || #{combLevel} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_plan
+        <where>
+            plan_id = #{planId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPlan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_plan
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPlan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_plan
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPlan" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_plan
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_plan
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPlan" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_plan
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPlan" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_plan
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_plan
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!--插入信贷计划-->
+    <insert id="insertLoanPlanInfo" parameterType="com.boco.SYS.entity.TbPlan">
+        insert into tb_plan (plan_id, plan_organ, plan_month, plan_date_start, plan_date_end, plan_oper, plan_updater,
+                             plan_update_time, plan_status, plan_unit)
+        values (#{planId}, #{planOrgan}, #{planMonth}, #{planDateStart}, #{planDateEnd}, #{planOper}, #{planUpdater},
+                #{planUpdateTime},
+                #{planStatus}, #{planUnit})
+    </insert>
+    <!--删除信贷计划-->
+    <delete id="deleteLoanPlanInfo" parameterType="java.lang.String">
+        delete
+        from tb_plan
+        where plan_id = #{_param}
+    </delete>
+
+    <!--更新信贷计划-->
+    <update id="updateLoanPlanInfo" parameterType="com.boco.SYS.entity.TbPlan">
+        update tb_plan
+        set plan_month=#{planMonth},
+            plan_date_start=#{planDateStart},
+            plan_date_end=#{planDateEnd},
+            plan_updater=#{planUpdater},
+            plan_update_time=#{planUpdateTime},
+            plan_unit=#{planUnit}
+        where plan_id = #{planId}
+    </update>
+
+    <!--选择所有信贷计划信息-->
+    <select id="selectAllLoanPlanInfo" parameterType="com.boco.SYS.entity.TbPlan" resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_plan
+        <where>
+            <if test="planId != null and planId != ''">
+                and plan_id=#{planId}
+            </if>
+            <if test="planMonth != null and planMonth !=''">
+                and plan_month=#{planMonth}
+            </if>
+            <if test="planOrgan != null and planOrgan != ''">
+                and plan_organ=#{planOrgan}
+            </if>
+        </where>
+        order by plan_month desc
+    </select>
+
+    <!--选择信贷计划-->
+    <select id="selectLoanPlanByPlanId" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true"
+            resultType="com.boco.SYS.entity.TbPlan">
+        select *
+        from tb_plan
+        where plan_id = #{_param}
+    </select>
+
+
+    <!--选择信贷计划-->
+    <select id="selectLoanPlanByPlanMonth" parameterType="java.lang.String" resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_plan
+        where plan_month = #{_param}
+    </select>
+
+    <!--信贷需求基本信息-->
+    <select id="selectReqPlanInfo" resultType="com.boco.TONY.biz.loanreq.POJO.DO.TbReqPlanInfo" flushCache="true">
+        select req_id as reqId, req_month as reqMonth
+        from tb_req_list
+    </select>
+
+    <update id="updateLoanPlanState" parameterType="com.boco.SYS.entity.TbPlan">
+        update tb_plan
+        set plan_status=#{planStatus}
+        where plan_id = #{planId}
+    </update>
+    <update id="updateLoanPlanAdjustmentState" parameterType="com.boco.SYS.entity.TbPlan">
+        update tb_plan
+        set plan_adjust_status=#{planAdjustmentState}
+        where plan_id = #{planId}
+    </update>
+    <select id="selectLoanPlanByPlanOper" parameterType="java.lang.String" resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_plan
+        where plan_oper = #{_param}
+          and plan_status = 16
+    </select>
+
+    <select id="selectByPlanId" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select plan_id
+        from tb_plan
+        where plan_id like '%${value}%'
+    </select>
+    <select id="selectByPlanMonth" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select plan_month
+        from tb_plan
+        where plan_month like '%${value}%'
+    </select>
+
+    <!--查询已提交的信贷计划-->
+    <select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct plan.plan_id as planid,
+        plan.plan_organ as planorgan,
+        plan.plan_month as planmonth,
+        plan.plan_oper as planoper,
+        plan.plan_status as planstatus,
+        plan.plan_updater as planupdater,
+        plan.plan_update_time as planupdatetime,
+        plan.plan_unit as planunit,
+        plan.plan_create_time as plancreatetime,
+        plan.plan_increment as planincrement,
+        plan_real_increment as planrealincrement,
+        hi_proc.proc_inst_id_ as procinstid,
+        trade.param_mode as parammode
+        from tb_plan plan,act_hi_procinst hi_proc,tb_trade_param trade
+        where
+        cast(plan.plan_id as varchar)=hi_proc.business_key_
+        and hi_proc.start_user_id_ = #{opercode}
+        and plan.plan_month = trade.param_period
+        <if test="reqMonth != null and reqMonth != ''">
+            and plan.plan_month= #{reqMonth}
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and plan.plan_status= #{auditStatus}
+        </if>
+        <if test="planType != null">
+            and plan.plan_type = #{planType}
+        </if>
+
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            order by plan.plan_month desc
+        </if>
+
+    </select>
+    <!--查询待审批的信贷计划 -->
+    <select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct plan.plan_id as planid,
+        plan.plan_organ as planorgan,
+        plan.plan_month as planmonth,
+        plan.plan_oper as planoper,
+        plan.plan_status as planstatus,
+        plan.plan_updater as planupdater,
+        plan.plan_update_time as planupdatetime,
+        plan.plan_unit as planunit,
+        plan.plan_create_time as plancreatetime,
+        plan.plan_increment as planincrement,
+        plan_real_increment as planrealincrement,
+        hi_proc.proc_inst_id_ as procinstid,
+        task.id_ as taskid,
+        trade.param_mode as parammode
+        from tb_plan plan,act_hi_procinst hi_proc,act_ru_task task,tb_trade_param trade
+        where
+        cast(plan.plan_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and plan.plan_month = trade.param_period
+        and task.assignee_=#{assignee}
+        <if test="proIds!=null and proIds.size() > 0">
+            and hi_proc.proc_inst_id_ in
+            <foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="reqMonth != null and reqMonth != ''">
+            and plan.plan_month= #{reqMonth}
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and plan.plan_status= #{auditStatus}
+        </if>
+        <if test="planType != null">
+            and plan.plan_type = #{planType}
+        </if>
+
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            order by plan.plan_month desc
+        </if>
+
+    </select>
+    <!--查询已审批的信贷计划-->
+    <select id="getApprovedRecord" resultType="java.util.Map" flushCache="true">
+        select
+        distinct plan.plan_id as planid,
+        plan.plan_organ as planorgan,
+        plan.plan_month as planmonth,
+        plan.plan_oper as planoper,
+        plan.plan_status as planstatus,
+        plan.plan_updater as planupdater,
+        plan.plan_update_time as planupdatetime,
+        plan.plan_unit as planunit,
+        plan.plan_create_time as plancreatetime,
+        plan.plan_increment as planincrement,
+        plan_real_increment as planrealincrement,
+        hi_proc.proc_inst_id_ as procinstid,
+        trade.param_mode as parammode
+        from tb_plan plan,act_hi_procinst hi_proc,act_hi_taskinst task,tb_trade_param trade
+        where
+        cast(plan.plan_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and plan.plan_month = trade.param_period
+        and task.delete_reason_='completed'
+        and task.assignee_=#{opercode}
+        <if test="reqMonth != null and reqMonth != ''">
+            and plan.plan_month= #{reqMonth}
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and plan.plan_status= #{auditStatus}
+        </if>
+        <if test="planType != null">
+            and plan.plan_type = #{planType}
+        </if>
+
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            order by plan.plan_month desc
+        </if>
+
+
+    </select>
+
+
+    <!--查询信贷计划回显  录入回显-->
+    <select id="getFdOrganPlanInfoListNotPlanId" resultType="java.util.Map" flushCache="true">
+
+        select
+        organ.organname as organname,
+        organ.thiscode as organcode
+        from
+        fd_organ organ
+        where 1=1
+        <if test="thiscode != null and thiscode != ''">
+            and organ.thiscode = #{thiscode}
+            or organ.uporgan = #{thiscode}
+        </if>
+        order by organ.thiscode
+    </select>
+    <!--查询信贷计划列表界面-->
+    <select id="selectTbPlanAndTradeParam" resultType="java.util.Map" flushCache="true">
+        select
+        distinct plan.plan_id as planid,
+        plan.plan_organ as planorgan,
+        plan.plan_month as planmonth,
+        plan.plan_oper as planoper,
+        plan.plan_status as planstatus,
+        plan.plan_updater as planupdater,
+        plan.plan_update_time as planupdatetime,
+        plan.plan_unit as planunit,
+        plan.plan_create_time as plancreatetime,
+        plan.plan_increment as planincrement,
+        plan_real_increment as planrealincrement,
+        trade.param_mode as parammode
+
+        from tb_plan plan,tb_trade_param trade
+        where plan.plan_month = trade.param_period
+        <if test="planStatus != null">
+            and plan.plan_status=#{planStatus}
+        </if>
+        <if test="planId != null and planId != ''">
+            and plan.plan_id=#{planId}
+        </if>
+        <if test="planMonth != null and planMonth !=''">
+            and plan.plan_month=#{planMonth}
+        </if>
+        <if test="planOrgan != null and planOrgan != ''">
+            and plan.plan_organ=#{planOrgan}
+        </if>
+        order by plan.plan_month desc
+
+    </select>
+    <select id="getPlanCol" resultType="java.util.Map" flushCache="true">
+         select
+           l.loan_comb  as loancomb,
+           l.loan_plan_col as loanplancol,
+           l.loan_req_col as loanreqcol,
+            t.comb_name as combname
+        from tb_loankind_map l ,tb_comb t
+        where l.loan_comb = t.comb_code
+
+    </select>
+
+    <!-- 查询信贷计划 -->
+    <select id="selectListByPage" resultType="java.util.Map" flushCache="true">
+        select
+        plan_id as planid,
+        plan_organ as planorgan,
+        plan_month as planmonth,
+        plan_oper as planoper,
+        plan_status as planstatus,
+        plan_updater as planupdater,
+        plan_update_time as planupdatetime,
+        plan_unit as planunit,
+        plan_create_time as plancreatetime,
+        plan_increment as planincrement,
+        plan_real_increment as planrealincrement
+
+        from tb_plan
+        <where>
+            <if test="planStatus != null">
+                and plan_status = #{planStatus}
+            </if>
+            <if test="planType != null">
+                and plan_type = #{planType}
+            </if>
+            <if test="planMonth != null and planMonth !=''">
+                and plan_month = #{planMonth}
+            </if>
+            <if test="planOrgan != null and planOrgan != ''">
+                and plan_organ = #{planOrgan}
+            </if>
+        </where>
+
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            order by plan_create_time desc
+        </if>
+
+    </select>
+
+
+    <select id="selectAll" resultType="java.util.Map" flushCache="true">
+        select
+        plan_id                 as planid,
+        plan_organ              as planorgan,
+        plan_month              as planmonth,
+        plan_oper               as planoper,
+        plan_status             as planstatus,
+        plan_updater            as planupdater,
+        plan_update_time        as planupdatetime,
+        plan_unit               as planunit,
+        plan_create_time        as plancreatetime,
+        plan_increment          as planincrement,
+        plan_real_increment     as planrealincrement
+        from tb_plan
+        order by plan_month desc
+
+    </select>
+
+    <update id="updatePlanDetail" parameterType="com.boco.SYS.entity.TbPlanDetail">
+        UPDATE tb_plan_detail
+        <set>
+            <if test="pdRefId != null">
+                pd_ref_id = #{pdRefId},
+            </if>
+            <if test="pdOrgan != null">
+                pd_organ = #{pdOrgan},
+            </if>
+            <if test="pdMonth != null">
+                pd_month = #{pdMonth},
+            </if>
+            <if test="pdLoanType != null">
+                pd_loan_type = #{pdLoanType},
+            </if>
+            <if test="pdAmount != null">
+                pd_amount = #{pdAmount},
+            </if>
+            <if test="pdUnit != null">
+                pd_unit = #{pdUnit},
+            </if>
+            <if test="pdCreateTime != null">
+                pd_create_time = #{pdCreateTime},
+            </if>
+            <if test="pdUpdateTime != null">
+                pd_update_time = #{pdUpdateTime},
+            </if>
+        </set>
+        where 1=1
+
+        <if test="pdRefId != null and pdRefId != ''">
+            and pd_ref_id = #{pdRefId}
+        </if>
+        <if test="pdOrgan != null and pdOrgan != ''">
+            and pd_organ = #{pdOrgan}
+        </if>
+        <if test="pdMonth != null and pdMonth != ''">
+            and pd_month = #{pdMonth}
+        </if>
+        <if test="pdLoanType != null and pdLoanType != ''">
+            and pd_loan_type = #{pdLoanType}
+        </if>
+        <if test="pdUnit != null and pdUnit != ''">
+            and pd_unit = #{pdUnit}
+        </if>
+        <if test="pdCreateTime != null and pdCreateTime != ''">
+            and pd_create_time = #{pdCreateTime}
+        </if>
+    </update>
+
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByMonth" parameterType="com.boco.SYS.entity.TbPlan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        distinct plan_id ,plan_organ ,plan_month ,plan_oper ,plan_status ,plan_updater ,plan_update_time ,plan_unit
+        ,plan_create_time ,plan_increment ,plan_real_increment ,plan_type
+
+        FROM tb_plan
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        order by plan_month desc
+    </select>
+
+    <update id="updatePlan" parameterType="com.boco.SYS.entity.TbPlan">
+        UPDATE tb_plan
+        <set>
+            <if test="planOrgan != null">
+                plan_organ = #{planOrgan},
+            </if>
+            <if test="planMonth != null">
+                plan_month = #{planMonth},
+            </if>
+            <if test="planOper != null">
+                plan_oper = #{planOper},
+            </if>
+            <if test="planStatus != null">
+                plan_status = #{planStatus},
+            </if>
+            <if test="planUpdater != null">
+                plan_updater = #{planUpdater},
+            </if>
+            <if test="planUpdateTime != null">
+                plan_update_time = #{planUpdateTime},
+            </if>
+            <if test="planUnit != null">
+                plan_unit = #{planUnit},
+            </if>
+            <if test="planCreateTime != null">
+                plan_create_time = #{planCreateTime},
+            </if>
+            <if test="planIncrement != null">
+                plan_increment = #{planIncrement},
+            </if>
+            <if test="planRealIncrement != null">
+                plan_real_increment = #{planRealIncrement},
+            </if>
+            <if test="planType != null">
+                plan_type = #{planType},
+            </if>
+        </set>
+        <where>
+            <if test="planId != null and planId != ''">
+                and plan_id = #{planId}
+            </if>
+            <if test="planOrgan != null and planOrgan != ''">
+                and plan_organ = #{planOrgan}
+            </if>
+            <if test="planMonth != null and planMonth != ''">
+                and plan_month = #{planMonth}
+            </if>
+            <if test="planUnit != null and planUnit != ''">
+                and plan_unit = #{planUnit}
+            </if>
+            <if test="planType != null and planType != ''">
+                and plan_type = #{planType}
+            </if>
+        </where>
+    </update>
+
+    <!-- 查询信贷计划 -->
+    <select id="selectPlanOrganIncreament" resultType="java.util.Map" flushCache="true">
+        select
+        pland.pd_loan_type as upcombcode,
+        pland.pd_amount as increment
+        from tb_plan plan ,tb_plan_detail pland
+        where plan.plan_id = pland.pd_ref_id
+        <if test="planType != null and planType != ''">
+            and plan.plan_type = #{planType}
+        </if>
+        <if test="planMonth != null and planMonth != ''">
+            and plan.plan_month= #{planMonth}
+        </if>
+        <if test="upOrganCode != null and upOrganCode != ''">
+            and plan.plan_organ = #{upOrganCode}
+        </if>
+        <if test="organCode != null and organCode != ''">
+            and pland.pd_organ = #{organCode}
+        </if>
+
+    </select>
+    <select id="selectUporganPlan" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+        select pd.pd_organ as organcode,p.plan_month as planmonth,sum(pd.pd_amount) amount
+        from tb_plan p
+        join tb_plan_detail pd
+        on p.plan_id = pd.pd_ref_id
+        and p.plan_status = 16
+        and p.plan_type = 1
+        <if test="organCode != null and organCode != ''">
+            and pd.pd_organ=#{organCode}
+        </if>
+        <if test="planMonth != null and planMonth != ''">
+            and p.plan_month=#{planMonth}
+        </if>
+        group by pd.pd_organ,p.plan_month
+
+    </select>
+
+    <!--分行查看上级机构给自己制定的计划详情-->
+    <select id="selectLowOrganIncrement" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+        select
+            p.plan_id as planid,
+            pd.pd_organ as organ,
+            sum(pd.pd_amount) as  amount,
+            p.plan_unit as unit,
+            p.plan_month as month,
+            p.comb_level as comblevel
+        from tb_plan_detail pd,tb_plan p
+        <where>
+            p.plan_id = pd.pd_ref_id
+            <if test="planStatus != null and planStatus != ''">
+                and p.plan_status = #{planStatus}
+            </if>
+            <if test="upOrgan != null and upOrgan != ''">
+                and p.plan_organ = #{upOrgan}
+            </if>
+            <if test="planMonth != null and planMonth != ''">
+                and p.plan_month = #{planMonth}
+            </if>
+            <if test="planType != null and planType != ''">
+                and p.plan_type =  #{planType}
+            </if>
+            <if test="planOrgan != null and planOrgan != ''">
+                and pd.pd_organ =  #{planOrgan}
+            </if>
+        </where>
+        group by pd.pd_organ,p.plan_month,p.comb_level,p.plan_id,p.plan_unit
+
+        <if test="sort != null and sort != ''">
+            order by ${sort}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 贷种组合明细表 -->
+<mapper namespace="com.boco.SYS.mapper.ReportCombDetailMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReportCombDetail">
+        <id column="comb_detail_id" property="combDetailId"/>
+        <result column="comb_code" property="combCode"/>
+        <result column="prod_code" property="prodCode"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="prod_sys_id" property="prodSysId"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        comb_detail_id ,comb_code ,prod_code ,status ,create_time ,prod_sys_id
+	    ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReportCombDetail">
+        <!--
+                -->
+        INSERT INTO tb_report_comb_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="combDetailId != null">
+                comb_detail_id ,
+            </if>
+            <if test="combCode != null">
+                comb_code ,
+            </if>
+            <if test="prodCode != null">
+                prod_code ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="createTime != null">
+                create_time ,
+            </if>
+            <if test="prodSysId != null">
+                prod_sys_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="combDetailId != null">
+                #{combDetailId} ,
+            </if>
+            <if test="combCode != null">
+                #{combCode} ,
+            </if>
+            <if test="prodCode != null">
+                #{prodCode} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="createTime != null">
+                #{createTime} ,
+            </if>
+            <if test="prodSysId != null">
+                #{prodSysId}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_report_comb_detail
+        (comb_detail_id ,comb_code ,prod_code ,status ,create_time ,prod_sys_id )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.combDetailId,jdbcType=VARCHAR},#{item.combCode,jdbcType=VARCHAR},#{item.prodCode,jdbcType=VARCHAR},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.prodSysId,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_report_comb_detail
+        <where>
+            comb_detail_id = #{combDetailId}
+        </where>
+    </delete>
+
+
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_report_comb_detail
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReportCombDetail">
+        UPDATE tb_report_comb_detail
+        <set>
+            <if test="combCode != null">
+                comb_code = #{combCode},
+            </if>
+            <if test="prodCode != null">
+                prod_code = #{prodCode},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="prodSysId != null">
+                prod_sys_id = #{prodSysId},
+            </if>
+        </set>
+        <where>
+            comb_detail_id = #{combDetailId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_report_comb_detail
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_report_comb_detail
+        <set>
+            <if test="combDetailId != null">
+                comb_detail_id = #{combDetailId},
+            </if>
+            <if test="combCode != null">
+                comb_code = #{combCode},
+            </if>
+            <if test="prodCode != null">
+                prod_code = #{prodCode},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="prodSysId != null">
+                prod_sys_id = #{prodSysId},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="combDetailId != null and combDetailId != ''">
+            and comb_detail_id = #{combDetailId}
+        </if>
+        <if test="combCode != null and combCode != ''">
+            and comb_code = #{combCode}
+        </if>
+        <if test="prodCode != null and prodCode != ''">
+            and prod_code = #{prodCode}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and create_time = #{createTime}
+        </if>
+        <if test="prodSysId != null and prodSysId != ''">
+            and prod_sys_id = #{prodSysId}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="combDetailId != null and combDetailId != ''">
+            and comb_detail_id like '%' || #{combDetailId} || '%'
+        </if>
+        <if test="combCode != null and combCode != ''">
+            and comb_code like '%' || #{combCode} || '%'
+        </if>
+        <if test="prodCode != null and prodCode != ''">
+            and prod_code like '%' || #{prodCode} || '%'
+        </if>
+        <if test="status != null and status != ''">
+            and status like '%' || #{status} || '%'
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and create_time like '%' || #{createTime} || '%'
+        </if>
+        <if test="prodSysId != null and prodSysId != ''">
+            and prod_sys_id like '%' || #{prodSysId} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/>
+        FROM tb_report_comb_detail
+        <where>
+            comb_detail_id = #{combDetailId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReportCombDetail" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb_detail
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReportCombDetail" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReportCombDetail" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReportCombDetail" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReportCombDetail" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+    <select id="getLoanComposeInfoByCombCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select prod_code
+        from tb_report_comb_detail
+        where comb_code = #{_param}
+    </select>
+
+    <select id="getSelectedLoanComposeInfoByCombCode" parameterType="java.lang.String"
+            resultType="java.lang.String" flushCache="true">
+        select prod_code
+        from tb_report_comb_detail
+        where comb_code = #{_param}
+          and status = 1
+    </select>
+    <!--插入贷种组合信息-->
+    <insert id="insertLoanComposeChildProduct" parameterType="com.boco.SYS.entity.TbReportCombDetail">
+        insert into tb_report_comb_detail(comb_code, prod_code, prod_sys_id, status, create_time)
+        values (#{combCode}, #{prodCode}, #{prodSysId}, #{status}, #{createTime})
+    </insert>
+
+    <!--更新贷种组合信息-->
+    <update id="updateLoanComposeProductInfo" parameterType="com.boco.SYS.entity.TbReportCombDetail">
+        update tb_report_comb_detail
+        set status=#{status}
+        where comb_code = #{combCode}
+          and prod_code = #{prodCode}
+    </update>
+
+    <delete id="deleteLoanComposeProductInfo" parameterType="com.boco.SYS.entity.TbReportCombDetail">
+        delete from tb_report_comb_detail
+        where comb_code = #{combCode}
+          and prod_code = #{prodCode}
+    </delete>
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

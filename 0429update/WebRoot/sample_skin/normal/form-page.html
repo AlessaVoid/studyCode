@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>树的编辑</title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+</head>
+<body>
+
+	<div class="box1" panelWidth="650">
+	<fieldset> 
+		<legend>用户基本信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">姓名：</td><td width="35%"><input type="text"/></td>
+				<td width="15%">性别：</td>
+				<td><input type="radio" id="radio-1" name="ra" value="radio-1" class="hand"/><label for="radio-1" class="hand">男</label>
+					<input type="radio" id="radio-2" name="ra" value="radio-2" class="hand"/><label for="radio-2" class="hand">女</label>
+				</td>
+			</tr>
+			<tr>
+				<td>曾用名：</td>
+				<td><input type="text"/></td>
+				<td>婚姻：</td>
+				<td><input type="radio" id="radio-3" name="ra2" value="radio-3" class="hand"/><label for="radio-3" class="hand">已婚</label>
+					<input type="radio" id="radio-4" name="ra2" value="radio-4" class="hand"/><label for="radio-4" class="hand">未婚</label>
+				</td>
+			</tr>
+		</table>
+	</fieldset> 
+	<div class="height_15"></div>
+	<fieldset> 
+		<legend>用户详细信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">籍贯：</td>
+				<td width="35%">
+					<select><option>北京市</option><option>天津市</option><option>黑龙江省</option></select>
+				</td>
+				<td width="15%">民族：</td>
+				<td>
+					<select><option value="1">汉族</option><option value="2">满族</option><option value="3">维吾尔族</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td>学历：</td>
+				<td>
+				<select><option>博士</option><option>本科</option><option>大专</option><option>其它</option></select>				
+				</td>
+				<td>权限：</td>
+				<td>
+				<select><option value="1">新增图片</option><option value="2">维护图片</option><option value="3">新增新闻</option></select>
+				</td>
+			</tr>
+		</table>
+	</fieldset> 
+	<div class="height_15"></div>
+	<fieldset> 
+		<legend>用户其他信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">邮政编码：</td><td width="35%"><input type="text"/></td>
+				<td width="15%">上传附件：</td><td><input type="file"/></td>
+			</tr>
+			<tr>
+				<td>固定电话：</td><td><input type="text"/></td>
+				
+				<td>上传文档：</td><td><input type="file"/></td>
+			</tr>
+			<tr>
+				<td>备注：</td>
+				<td colspan="3">
+					<textarea style="width:400px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<div class="height_5"></div>
+	<div class="padding_top10">
+		<table class="tableStyle" formMode="transparent">
+			<tr>
+				<td colspan="4">
+					<input type="submit" value="提交"/>
+					<input type="reset" value="重置"/>
+				</td>
+			</tr>
+		</table>
+	</div> 
+	</div>
+
+</div>
+ 
+</body>
+</html>

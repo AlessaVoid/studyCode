@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbCalculateThreeResult -->
+<mapper namespace="com.boco.SYS.mapper.TbCalculateThreeResultMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbCalculateThreeResult">
+       	<id column="id" property="id"/>
+     	<result column="organcode" property="organcode"/>
+     	<result column="month" property="month"/>
+     	<result column="req_list_id" property="reqListId"/>
+     	<result column="req_list_name" property="reqListName"/>
+     	<result column="code" property="code"/>
+     	<result column="old_num" property="oldNum"/>
+     	<result column="new_num" property="newNum"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,organcode ,month ,req_list_id ,req_list_name ,code ,old_num ,new_num 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCalculateThreeResult">
+<!-- 
+	    -->       
+  INSERT INTO tb_calculate_three_result 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	organcode ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="reqListId != null">
+	        	req_list_id ,
+	       	</if>
+	       	<if test="reqListName != null">
+	        	req_list_name ,
+	       	</if>
+	       	<if test="code != null">
+	        	code ,
+	       	</if>
+	       	<if test="oldNum != null">
+	        	old_num ,
+	       	</if>
+	       	<if test="newNum != null">
+	        	new_num 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	#{organcode} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="reqListId != null">
+	        	#{reqListId} ,
+	       	</if>
+	       	<if test="reqListName != null">
+	        	#{reqListName} ,
+	       	</if>
+	       	<if test="code != null">
+	        	#{code} ,
+	       	</if>
+	       	<if test="oldNum != null">
+	        	#{oldNum} ,
+	       	</if>
+	       	<if test="newNum != null">
+	        	#{newNum} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_calculate_three_result 
+        (id ,organcode ,month ,req_list_id ,req_list_name ,code ,old_num ,new_num )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.reqListId,jdbcType=VARCHAR},#{item.reqListName,jdbcType=VARCHAR},#{item.code,jdbcType=VARCHAR},#{item.oldNum,jdbcType=VARCHAR},#{item.newNum,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_three_result 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_three_result 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_calculate_three_result 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_three_result
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbCalculateThreeResult">
+        UPDATE tb_calculate_three_result 
+        <set>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="reqListId != null">
+       		req_list_id = #{reqListId},
+       	</if>
+       	<if test="reqListName != null">
+       		req_list_name = #{reqListName},
+       	</if>
+       	<if test="code != null">
+       		code = #{code},
+       	</if>
+       	<if test="oldNum != null">
+       		old_num = #{oldNum},
+       	</if>
+       	<if test="newNum != null">
+       		new_num = #{newNum},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_calculate_three_result 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_calculate_three_result 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="reqListId != null">
+       		req_list_id = #{reqListId},
+       	</if>
+       	<if test="reqListName != null">
+       		req_list_name = #{reqListName},
+       	</if>
+       	<if test="code != null">
+       		code = #{code},
+       	</if>
+       	<if test="oldNum != null">
+       		old_num = #{oldNum},
+       	</if>
+       	<if test="newNum != null">
+       		new_num = #{newNum},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="organcode != null and organcode != ''">
+	 		and organcode = #{organcode}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="reqListId != null and reqListId != ''">
+	 		and req_list_id = #{reqListId}
+	 	</if>
+	 	<if test="reqListName != null and reqListName != ''">
+	 		and req_list_name = #{reqListName}
+	 	</if>
+	 	<if test="code != null and code != ''">
+	 		and code = #{code}
+	 	</if>
+	 	<if test="oldNum != null and oldNum != ''">
+	 		and old_num = #{oldNum}
+	 	</if>
+	 	<if test="newNum != null and newNum != ''">
+	 		and new_num = #{newNum}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="organcode != null and organcode != ''">
+ 			and organcode like '%' || #{organcode} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="reqListId != null and reqListId != ''">
+ 			and req_list_id like '%' || #{reqListId} || '%'
+ 		</if>
+ 		<if test="reqListName != null and reqListName != ''">
+ 			and req_list_name like '%' || #{reqListName} || '%'
+ 		</if>
+ 		<if test="code != null and code != ''">
+ 			and code like '%' || #{code} || '%'
+ 		</if>
+ 		<if test="oldNum != null and oldNum != ''">
+ 			and old_num like '%' || #{oldNum} || '%'
+ 		</if>
+ 		<if test="newNum != null and newNum != ''">
+ 			and new_num like '%' || #{newNum} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_calculate_three_result 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCalculateThreeResult" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_calculate_three_result
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCalculateThreeResult" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_calculate_three_result 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateThreeResult" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_three_result 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_three_result 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbCalculateThreeResult" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_three_result 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateThreeResult" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_three_result 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_three_result 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

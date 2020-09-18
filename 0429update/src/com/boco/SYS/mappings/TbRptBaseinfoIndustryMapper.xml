@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 新报表，机构行业维度 -->
+<mapper namespace="com.boco.SYS.mapper.TbRptBaseinfoIndustryMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbRptBaseinfoIndustry">
+       	<id column="rpt_date" property="rptDate"/>
+       	<id column="rpt_organ" property="rptOrgan"/>
+       	<id column="industry" property="industry"/>
+     	<result column="balance" property="balance"/>
+     	<result column="balance_month" property="balanceMonth"/>
+     	<result column="balance_season" property="balanceSeason"/>
+     	<result column="balance_year" property="balanceYear"/>
+     	<result column="day_occ" property="dayOcc"/>
+     	<result column="day_expire" property="dayExpire"/>
+     	<result column="day_expire_adv" property="dayExpireAdv"/>
+     	<result column="day_expire_normal" property="dayExpireNormal"/>
+     	<result column="day_increase" property="dayIncrease"/>
+     	<result column="month_occ" property="monthOcc"/>
+     	<result column="month_expire_estimate" property="monthExpireEstimate"/>
+     	<result column="month_expire" property="monthExpire"/>
+     	<result column="month_expire_adv" property="monthExpireAdv"/>
+     	<result column="month_expire_normal" property="monthExpireNormal"/>
+     	<result column="month_expire_estimate_left" property="monthExpireEstimateLeft"/>
+     	<result column="month_increase" property="monthIncrease"/>
+     	<result column="season_occ" property="seasonOcc"/>
+     	<result column="season_expire_estimate" property="seasonExpireEstimate"/>
+     	<result column="season_expire" property="seasonExpire"/>
+     	<result column="season_expire_adv" property="seasonExpireAdv"/>
+     	<result column="season_expire_normal" property="seasonExpireNormal"/>
+     	<result column="season_expire_estimate_left" property="seasonExpireEstimateLeft"/>
+     	<result column="season_increase" property="seasonIncrease"/>
+     	<result column="year_occ" property="yearOcc"/>
+     	<result column="year_expire_estimate" property="yearExpireEstimate"/>
+     	<result column="year_expire" property="yearExpire"/>
+     	<result column="year_expire_adv" property="yearExpireAdv"/>
+     	<result column="year_expire_normal" property="yearExpireNormal"/>
+     	<result column="year_expire_estimate_left" property="yearExpireEstimateLeft"/>
+     	<result column="year_increase" property="yearIncrease"/>
+     	<result column="month1_balance" property="month1Balance"/>
+     	<result column="month1_count" property="month1Count"/>
+     	<result column="month13_balance" property="month13Balance"/>
+     	<result column="month13_count" property="month13Count"/>
+     	<result column="month36_balance" property="month36Balance"/>
+     	<result column="month36_count" property="month36Count"/>
+     	<result column="month612_balance" property="month612Balance"/>
+     	<result column="month612_count" property="month612Count"/>
+     	<result column="year12_balance" property="year12Balance"/>
+     	<result column="year12_count" property="year12Count"/>
+     	<result column="year23_balance" property="year23Balance"/>
+     	<result column="year23_count" property="year23Count"/>
+     	<result column="year35_balance" property="year35Balance"/>
+     	<result column="year35_count" property="year35Count"/>
+     	<result column="year510_balance" property="year510Balance"/>
+     	<result column="year510_count" property="year510Count"/>
+     	<result column="year10_balance" property="year10Balance"/>
+     	<result column="year10_count" property="year10Count"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        rpt_date ,rpt_organ ,industry ,balance ,balance_month ,balance_season ,balance_year ,day_occ ,day_expire ,day_expire_adv ,day_expire_normal ,day_increase ,month_occ ,month_expire_estimate ,month_expire ,month_expire_adv ,month_expire_normal ,month_expire_estimate_left ,month_increase ,season_occ ,season_expire_estimate ,season_expire ,season_expire_adv ,season_expire_normal ,season_expire_estimate_left ,season_increase ,year_occ ,year_expire_estimate ,year_expire ,year_expire_adv ,year_expire_normal ,year_expire_estimate_left ,year_increase ,month1_balance ,month1_count ,month13_balance ,month13_count ,month36_balance ,month36_count ,month612_balance ,month612_count ,year12_balance ,year12_count ,year23_balance ,year23_count ,year35_balance ,year35_count ,year510_balance ,year510_count ,year10_balance ,year10_count 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_rpt_baseinfo_industry 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="rptDate != null">
+	        	rpt_date ,
+	       	</if>
+	       	<if test="rptOrgan != null">
+	        	rpt_organ ,
+	       	</if>
+	       	<if test="industry != null">
+	        	industry ,
+	       	</if>
+	       	<if test="balance != null">
+	        	balance ,
+	       	</if>
+	       	<if test="balanceMonth != null">
+	        	balance_month ,
+	       	</if>
+	       	<if test="balanceSeason != null">
+	        	balance_season ,
+	       	</if>
+	       	<if test="balanceYear != null">
+	        	balance_year ,
+	       	</if>
+	       	<if test="dayOcc != null">
+	        	day_occ ,
+	       	</if>
+	       	<if test="dayExpire != null">
+	        	day_expire ,
+	       	</if>
+	       	<if test="dayExpireAdv != null">
+	        	day_expire_adv ,
+	       	</if>
+	       	<if test="dayExpireNormal != null">
+	        	day_expire_normal ,
+	       	</if>
+	       	<if test="dayIncrease != null">
+	        	day_increase ,
+	       	</if>
+	       	<if test="monthOcc != null">
+	        	month_occ ,
+	       	</if>
+	       	<if test="monthExpireEstimate != null">
+	        	month_expire_estimate ,
+	       	</if>
+	       	<if test="monthExpire != null">
+	        	month_expire ,
+	       	</if>
+	       	<if test="monthExpireAdv != null">
+	        	month_expire_adv ,
+	       	</if>
+	       	<if test="monthExpireNormal != null">
+	        	month_expire_normal ,
+	       	</if>
+	       	<if test="monthExpireEstimateLeft != null">
+	        	month_expire_estimate_left ,
+	       	</if>
+	       	<if test="monthIncrease != null">
+	        	month_increase ,
+	       	</if>
+	       	<if test="seasonOcc != null">
+	        	season_occ ,
+	       	</if>
+	       	<if test="seasonExpireEstimate != null">
+	        	season_expire_estimate ,
+	       	</if>
+	       	<if test="seasonExpire != null">
+	        	season_expire ,
+	       	</if>
+	       	<if test="seasonExpireAdv != null">
+	        	season_expire_adv ,
+	       	</if>
+	       	<if test="seasonExpireNormal != null">
+	        	season_expire_normal ,
+	       	</if>
+	       	<if test="seasonExpireEstimateLeft != null">
+	        	season_expire_estimate_left ,
+	       	</if>
+	       	<if test="seasonIncrease != null">
+	        	season_increase ,
+	       	</if>
+	       	<if test="yearOcc != null">
+	        	year_occ ,
+	       	</if>
+	       	<if test="yearExpireEstimate != null">
+	        	year_expire_estimate ,
+	       	</if>
+	       	<if test="yearExpire != null">
+	        	year_expire ,
+	       	</if>
+	       	<if test="yearExpireAdv != null">
+	        	year_expire_adv ,
+	       	</if>
+	       	<if test="yearExpireNormal != null">
+	        	year_expire_normal ,
+	       	</if>
+	       	<if test="yearExpireEstimateLeft != null">
+	        	year_expire_estimate_left ,
+	       	</if>
+	       	<if test="yearIncrease != null">
+	        	year_increase ,
+	       	</if>
+	       	<if test="month1Balance != null">
+	        	month1_balance ,
+	       	</if>
+	       	<if test="month1Count != null">
+	        	month1_count ,
+	       	</if>
+	       	<if test="month13Balance != null">
+	        	month13_balance ,
+	       	</if>
+	       	<if test="month13Count != null">
+	        	month13_count ,
+	       	</if>
+	       	<if test="month36Balance != null">
+	        	month36_balance ,
+	       	</if>
+	       	<if test="month36Count != null">
+	        	month36_count ,
+	       	</if>
+	       	<if test="month612Balance != null">
+	        	month612_balance ,
+	       	</if>
+	       	<if test="month612Count != null">
+	        	month612_count ,
+	       	</if>
+	       	<if test="year12Balance != null">
+	        	year12_balance ,
+	       	</if>
+	       	<if test="year12Count != null">
+	        	year12_count ,
+	       	</if>
+	       	<if test="year23Balance != null">
+	        	year23_balance ,
+	       	</if>
+	       	<if test="year23Count != null">
+	        	year23_count ,
+	       	</if>
+	       	<if test="year35Balance != null">
+	        	year35_balance ,
+	       	</if>
+	       	<if test="year35Count != null">
+	        	year35_count ,
+	       	</if>
+	       	<if test="year510Balance != null">
+	        	year510_balance ,
+	       	</if>
+	       	<if test="year510Count != null">
+	        	year510_count ,
+	       	</if>
+	       	<if test="year10Balance != null">
+	        	year10_balance ,
+	       	</if>
+	       	<if test="year10Count != null">
+	        	year10_count 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="rptDate != null">
+	        	#{rptDate} ,
+	       	</if>
+	       	<if test="rptOrgan != null">
+	        	#{rptOrgan} ,
+	       	</if>
+	       	<if test="industry != null">
+	        	#{industry} ,
+	       	</if>
+	       	<if test="balance != null">
+	        	#{balance} ,
+	       	</if>
+	       	<if test="balanceMonth != null">
+	        	#{balanceMonth} ,
+	       	</if>
+	       	<if test="balanceSeason != null">
+	        	#{balanceSeason} ,
+	       	</if>
+	       	<if test="balanceYear != null">
+	        	#{balanceYear} ,
+	       	</if>
+	       	<if test="dayOcc != null">
+	        	#{dayOcc} ,
+	       	</if>
+	       	<if test="dayExpire != null">
+	        	#{dayExpire} ,
+	       	</if>
+	       	<if test="dayExpireAdv != null">
+	        	#{dayExpireAdv} ,
+	       	</if>
+	       	<if test="dayExpireNormal != null">
+	        	#{dayExpireNormal} ,
+	       	</if>
+	       	<if test="dayIncrease != null">
+	        	#{dayIncrease} ,
+	       	</if>
+	       	<if test="monthOcc != null">
+	        	#{monthOcc} ,
+	       	</if>
+	       	<if test="monthExpireEstimate != null">
+	        	#{monthExpireEstimate} ,
+	       	</if>
+	       	<if test="monthExpire != null">
+	        	#{monthExpire} ,
+	       	</if>
+	       	<if test="monthExpireAdv != null">
+	        	#{monthExpireAdv} ,
+	       	</if>
+	       	<if test="monthExpireNormal != null">
+	        	#{monthExpireNormal} ,
+	       	</if>
+	       	<if test="monthExpireEstimateLeft != null">
+	        	#{monthExpireEstimateLeft} ,
+	       	</if>
+	       	<if test="monthIncrease != null">
+	        	#{monthIncrease} ,
+	       	</if>
+	       	<if test="seasonOcc != null">
+	        	#{seasonOcc} ,
+	       	</if>
+	       	<if test="seasonExpireEstimate != null">
+	        	#{seasonExpireEstimate} ,
+	       	</if>
+	       	<if test="seasonExpire != null">
+	        	#{seasonExpire} ,
+	       	</if>
+	       	<if test="seasonExpireAdv != null">
+	        	#{seasonExpireAdv} ,
+	       	</if>
+	       	<if test="seasonExpireNormal != null">
+	        	#{seasonExpireNormal} ,
+	       	</if>
+	       	<if test="seasonExpireEstimateLeft != null">
+	        	#{seasonExpireEstimateLeft} ,
+	       	</if>
+	       	<if test="seasonIncrease != null">
+	        	#{seasonIncrease} ,
+	       	</if>
+	       	<if test="yearOcc != null">
+	        	#{yearOcc} ,
+	       	</if>
+	       	<if test="yearExpireEstimate != null">
+	        	#{yearExpireEstimate} ,
+	       	</if>
+	       	<if test="yearExpire != null">
+	        	#{yearExpire} ,
+	       	</if>
+	       	<if test="yearExpireAdv != null">
+	        	#{yearExpireAdv} ,
+	       	</if>
+	       	<if test="yearExpireNormal != null">
+	        	#{yearExpireNormal} ,
+	       	</if>
+	       	<if test="yearExpireEstimateLeft != null">
+	        	#{yearExpireEstimateLeft} ,
+	       	</if>
+	       	<if test="yearIncrease != null">
+	        	#{yearIncrease} ,
+	       	</if>
+	       	<if test="month1Balance != null">
+	        	#{month1Balance} ,
+	       	</if>
+	       	<if test="month1Count != null">
+	        	#{month1Count} ,
+	       	</if>
+	       	<if test="month13Balance != null">
+	        	#{month13Balance} ,
+	       	</if>
+	       	<if test="month13Count != null">
+	        	#{month13Count} ,
+	       	</if>
+	       	<if test="month36Balance != null">
+	        	#{month36Balance} ,
+	       	</if>
+	       	<if test="month36Count != null">
+	        	#{month36Count} ,
+	       	</if>
+	       	<if test="month612Balance != null">
+	        	#{month612Balance} ,
+	       	</if>
+	       	<if test="month612Count != null">
+	        	#{month612Count} ,
+	       	</if>
+	       	<if test="year12Balance != null">
+	        	#{year12Balance} ,
+	       	</if>
+	       	<if test="year12Count != null">
+	        	#{year12Count} ,
+	       	</if>
+	       	<if test="year23Balance != null">
+	        	#{year23Balance} ,
+	       	</if>
+	       	<if test="year23Count != null">
+	        	#{year23Count} ,
+	       	</if>
+	       	<if test="year35Balance != null">
+	        	#{year35Balance} ,
+	       	</if>
+	       	<if test="year35Count != null">
+	        	#{year35Count} ,
+	       	</if>
+	       	<if test="year510Balance != null">
+	        	#{year510Balance} ,
+	       	</if>
+	       	<if test="year510Count != null">
+	        	#{year510Count} ,
+	       	</if>
+	       	<if test="year10Balance != null">
+	        	#{year10Balance} ,
+	       	</if>
+	       	<if test="year10Count != null">
+	        	#{year10Count} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_rpt_baseinfo_industry 
+        (rpt_date ,rpt_organ ,industry ,balance ,balance_month ,balance_season ,balance_year ,day_occ ,day_expire ,day_expire_adv ,day_expire_normal ,day_increase ,month_occ ,month_expire_estimate ,month_expire ,month_expire_adv ,month_expire_normal ,month_expire_estimate_left ,month_increase ,season_occ ,season_expire_estimate ,season_expire ,season_expire_adv ,season_expire_normal ,season_expire_estimate_left ,season_increase ,year_occ ,year_expire_estimate ,year_expire ,year_expire_adv ,year_expire_normal ,year_expire_estimate_left ,year_increase ,month1_balance ,month1_count ,month13_balance ,month13_count ,month36_balance ,month36_count ,month612_balance ,month612_count ,year12_balance ,year12_count ,year23_balance ,year23_count ,year35_balance ,year35_count ,year510_balance ,year510_count ,year10_balance ,year10_count )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.rptDate,jdbcType=VARCHAR},#{item.rptOrgan,jdbcType=VARCHAR},#{item.industry,jdbcType=VARCHAR},#{item.balance,jdbcType=VARCHAR},#{item.balanceMonth,jdbcType=VARCHAR},#{item.balanceSeason,jdbcType=VARCHAR},#{item.balanceYear,jdbcType=VARCHAR},#{item.dayOcc,jdbcType=VARCHAR},#{item.dayExpire,jdbcType=VARCHAR},#{item.dayExpireAdv,jdbcType=VARCHAR},#{item.dayExpireNormal,jdbcType=VARCHAR},#{item.dayIncrease,jdbcType=VARCHAR},#{item.monthOcc,jdbcType=VARCHAR},#{item.monthExpireEstimate,jdbcType=VARCHAR},#{item.monthExpire,jdbcType=VARCHAR},#{item.monthExpireAdv,jdbcType=VARCHAR},#{item.monthExpireNormal,jdbcType=VARCHAR},#{item.monthExpireEstimateLeft,jdbcType=VARCHAR},#{item.monthIncrease,jdbcType=VARCHAR},#{item.seasonOcc,jdbcType=VARCHAR},#{item.seasonExpireEstimate,jdbcType=VARCHAR},#{item.seasonExpire,jdbcType=VARCHAR},#{item.seasonExpireAdv,jdbcType=VARCHAR},#{item.seasonExpireNormal,jdbcType=VARCHAR},#{item.seasonExpireEstimateLeft,jdbcType=VARCHAR},#{item.seasonIncrease,jdbcType=VARCHAR},#{item.yearOcc,jdbcType=VARCHAR},#{item.yearExpireEstimate,jdbcType=VARCHAR},#{item.yearExpire,jdbcType=VARCHAR},#{item.yearExpireAdv,jdbcType=VARCHAR},#{item.yearExpireNormal,jdbcType=VARCHAR},#{item.yearExpireEstimateLeft,jdbcType=VARCHAR},#{item.yearIncrease,jdbcType=VARCHAR},#{item.month1Balance,jdbcType=VARCHAR},#{item.month1Count,jdbcType=VARCHAR},#{item.month13Balance,jdbcType=VARCHAR},#{item.month13Count,jdbcType=VARCHAR},#{item.month36Balance,jdbcType=VARCHAR},#{item.month36Count,jdbcType=VARCHAR},#{item.month612Balance,jdbcType=VARCHAR},#{item.month612Count,jdbcType=VARCHAR},#{item.year12Balance,jdbcType=VARCHAR},#{item.year12Count,jdbcType=VARCHAR},#{item.year23Balance,jdbcType=VARCHAR},#{item.year23Count,jdbcType=VARCHAR},#{item.year35Balance,jdbcType=VARCHAR},#{item.year35Count,jdbcType=VARCHAR},#{item.year510Balance,jdbcType=VARCHAR},#{item.year510Count,jdbcType=VARCHAR},#{item.year10Balance,jdbcType=VARCHAR},#{item.year10Count,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_rpt_baseinfo_industry 
+        <where>
+        	rpt_date = #{rptDate} and
+        	rpt_organ = #{rptOrgan} and
+        	industry = #{industry} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM tb_rpt_baseinfo_industry 
+        <where>
+        	rpt_date = #{rptDate} and
+        	rpt_organ = #{rptOrgan} and
+        	industry = #{industry} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_rpt_baseinfo_industry 
+        WHERE rpt_daterpt_organindustry IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_rpt_baseinfo_industry
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry">
+        UPDATE tb_rpt_baseinfo_industry 
+        <set>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="balanceMonth != null">
+       		balance_month = #{balanceMonth},
+       	</if>
+       	<if test="balanceSeason != null">
+       		balance_season = #{balanceSeason},
+       	</if>
+       	<if test="balanceYear != null">
+       		balance_year = #{balanceYear},
+       	</if>
+       	<if test="dayOcc != null">
+       		day_occ = #{dayOcc},
+       	</if>
+       	<if test="dayExpire != null">
+       		day_expire = #{dayExpire},
+       	</if>
+       	<if test="dayExpireAdv != null">
+       		day_expire_adv = #{dayExpireAdv},
+       	</if>
+       	<if test="dayExpireNormal != null">
+       		day_expire_normal = #{dayExpireNormal},
+       	</if>
+       	<if test="dayIncrease != null">
+       		day_increase = #{dayIncrease},
+       	</if>
+       	<if test="monthOcc != null">
+       		month_occ = #{monthOcc},
+       	</if>
+       	<if test="monthExpireEstimate != null">
+       		month_expire_estimate = #{monthExpireEstimate},
+       	</if>
+       	<if test="monthExpire != null">
+       		month_expire = #{monthExpire},
+       	</if>
+       	<if test="monthExpireAdv != null">
+       		month_expire_adv = #{monthExpireAdv},
+       	</if>
+       	<if test="monthExpireNormal != null">
+       		month_expire_normal = #{monthExpireNormal},
+       	</if>
+       	<if test="monthExpireEstimateLeft != null">
+       		month_expire_estimate_left = #{monthExpireEstimateLeft},
+       	</if>
+       	<if test="monthIncrease != null">
+       		month_increase = #{monthIncrease},
+       	</if>
+       	<if test="seasonOcc != null">
+       		season_occ = #{seasonOcc},
+       	</if>
+       	<if test="seasonExpireEstimate != null">
+       		season_expire_estimate = #{seasonExpireEstimate},
+       	</if>
+       	<if test="seasonExpire != null">
+       		season_expire = #{seasonExpire},
+       	</if>
+       	<if test="seasonExpireAdv != null">
+       		season_expire_adv = #{seasonExpireAdv},
+       	</if>
+       	<if test="seasonExpireNormal != null">
+       		season_expire_normal = #{seasonExpireNormal},
+       	</if>
+       	<if test="seasonExpireEstimateLeft != null">
+       		season_expire_estimate_left = #{seasonExpireEstimateLeft},
+       	</if>
+       	<if test="seasonIncrease != null">
+       		season_increase = #{seasonIncrease},
+       	</if>
+       	<if test="yearOcc != null">
+       		year_occ = #{yearOcc},
+       	</if>
+       	<if test="yearExpireEstimate != null">
+       		year_expire_estimate = #{yearExpireEstimate},
+       	</if>
+       	<if test="yearExpire != null">
+       		year_expire = #{yearExpire},
+       	</if>
+       	<if test="yearExpireAdv != null">
+       		year_expire_adv = #{yearExpireAdv},
+       	</if>
+       	<if test="yearExpireNormal != null">
+       		year_expire_normal = #{yearExpireNormal},
+       	</if>
+       	<if test="yearExpireEstimateLeft != null">
+       		year_expire_estimate_left = #{yearExpireEstimateLeft},
+       	</if>
+       	<if test="yearIncrease != null">
+       		year_increase = #{yearIncrease},
+       	</if>
+       	<if test="month1Balance != null">
+       		month1_balance = #{month1Balance},
+       	</if>
+       	<if test="month1Count != null">
+       		month1_count = #{month1Count},
+       	</if>
+       	<if test="month13Balance != null">
+       		month13_balance = #{month13Balance},
+       	</if>
+       	<if test="month13Count != null">
+       		month13_count = #{month13Count},
+       	</if>
+       	<if test="month36Balance != null">
+       		month36_balance = #{month36Balance},
+       	</if>
+       	<if test="month36Count != null">
+       		month36_count = #{month36Count},
+       	</if>
+       	<if test="month612Balance != null">
+       		month612_balance = #{month612Balance},
+       	</if>
+       	<if test="month612Count != null">
+       		month612_count = #{month612Count},
+       	</if>
+       	<if test="year12Balance != null">
+       		year12_balance = #{year12Balance},
+       	</if>
+       	<if test="year12Count != null">
+       		year12_count = #{year12Count},
+       	</if>
+       	<if test="year23Balance != null">
+       		year23_balance = #{year23Balance},
+       	</if>
+       	<if test="year23Count != null">
+       		year23_count = #{year23Count},
+       	</if>
+       	<if test="year35Balance != null">
+       		year35_balance = #{year35Balance},
+       	</if>
+       	<if test="year35Count != null">
+       		year35_count = #{year35Count},
+       	</if>
+       	<if test="year510Balance != null">
+       		year510_balance = #{year510Balance},
+       	</if>
+       	<if test="year510Count != null">
+       		year510_count = #{year510Count},
+       	</if>
+       	<if test="year10Balance != null">
+       		year10_balance = #{year10Balance},
+       	</if>
+       	<if test="year10Count != null">
+       		year10_count = #{year10Count},
+       	</if>
+        </set>
+        <where>
+        	rpt_date = #{rptDate} and
+        	rpt_organ = #{rptOrgan} and
+        	industry = #{industry} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_rpt_baseinfo_industry 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_rpt_baseinfo_industry 
+        <set>
+       	<if test="rptDate != null">
+       		rpt_date = #{rptDate},
+       	</if>
+       	<if test="rptOrgan != null">
+       		rpt_organ = #{rptOrgan},
+       	</if>
+       	<if test="industry != null">
+       		industry = #{industry},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="balanceMonth != null">
+       		balance_month = #{balanceMonth},
+       	</if>
+       	<if test="balanceSeason != null">
+       		balance_season = #{balanceSeason},
+       	</if>
+       	<if test="balanceYear != null">
+       		balance_year = #{balanceYear},
+       	</if>
+       	<if test="dayOcc != null">
+       		day_occ = #{dayOcc},
+       	</if>
+       	<if test="dayExpire != null">
+       		day_expire = #{dayExpire},
+       	</if>
+       	<if test="dayExpireAdv != null">
+       		day_expire_adv = #{dayExpireAdv},
+       	</if>
+       	<if test="dayExpireNormal != null">
+       		day_expire_normal = #{dayExpireNormal},
+       	</if>
+       	<if test="dayIncrease != null">
+       		day_increase = #{dayIncrease},
+       	</if>
+       	<if test="monthOcc != null">
+       		month_occ = #{monthOcc},
+       	</if>
+       	<if test="monthExpireEstimate != null">
+       		month_expire_estimate = #{monthExpireEstimate},
+       	</if>
+       	<if test="monthExpire != null">
+       		month_expire = #{monthExpire},
+       	</if>
+       	<if test="monthExpireAdv != null">
+       		month_expire_adv = #{monthExpireAdv},
+       	</if>
+       	<if test="monthExpireNormal != null">
+       		month_expire_normal = #{monthExpireNormal},
+       	</if>
+       	<if test="monthExpireEstimateLeft != null">
+       		month_expire_estimate_left = #{monthExpireEstimateLeft},
+       	</if>
+       	<if test="monthIncrease != null">
+       		month_increase = #{monthIncrease},
+       	</if>
+       	<if test="seasonOcc != null">
+       		season_occ = #{seasonOcc},
+       	</if>
+       	<if test="seasonExpireEstimate != null">
+       		season_expire_estimate = #{seasonExpireEstimate},
+       	</if>
+       	<if test="seasonExpire != null">
+       		season_expire = #{seasonExpire},
+       	</if>
+       	<if test="seasonExpireAdv != null">
+       		season_expire_adv = #{seasonExpireAdv},
+       	</if>
+       	<if test="seasonExpireNormal != null">
+       		season_expire_normal = #{seasonExpireNormal},
+       	</if>
+       	<if test="seasonExpireEstimateLeft != null">
+       		season_expire_estimate_left = #{seasonExpireEstimateLeft},
+       	</if>
+       	<if test="seasonIncrease != null">
+       		season_increase = #{seasonIncrease},
+       	</if>
+       	<if test="yearOcc != null">
+       		year_occ = #{yearOcc},
+       	</if>
+       	<if test="yearExpireEstimate != null">
+       		year_expire_estimate = #{yearExpireEstimate},
+       	</if>
+       	<if test="yearExpire != null">
+       		year_expire = #{yearExpire},
+       	</if>
+       	<if test="yearExpireAdv != null">
+       		year_expire_adv = #{yearExpireAdv},
+       	</if>
+       	<if test="yearExpireNormal != null">
+       		year_expire_normal = #{yearExpireNormal},
+       	</if>
+       	<if test="yearExpireEstimateLeft != null">
+       		year_expire_estimate_left = #{yearExpireEstimateLeft},
+       	</if>
+       	<if test="yearIncrease != null">
+       		year_increase = #{yearIncrease},
+       	</if>
+       	<if test="month1Balance != null">
+       		month1_balance = #{month1Balance},
+       	</if>
+       	<if test="month1Count != null">
+       		month1_count = #{month1Count},
+       	</if>
+       	<if test="month13Balance != null">
+       		month13_balance = #{month13Balance},
+       	</if>
+       	<if test="month13Count != null">
+       		month13_count = #{month13Count},
+       	</if>
+       	<if test="month36Balance != null">
+       		month36_balance = #{month36Balance},
+       	</if>
+       	<if test="month36Count != null">
+       		month36_count = #{month36Count},
+       	</if>
+       	<if test="month612Balance != null">
+       		month612_balance = #{month612Balance},
+       	</if>
+       	<if test="month612Count != null">
+       		month612_count = #{month612Count},
+       	</if>
+       	<if test="year12Balance != null">
+       		year12_balance = #{year12Balance},
+       	</if>
+       	<if test="year12Count != null">
+       		year12_count = #{year12Count},
+       	</if>
+       	<if test="year23Balance != null">
+       		year23_balance = #{year23Balance},
+       	</if>
+       	<if test="year23Count != null">
+       		year23_count = #{year23Count},
+       	</if>
+       	<if test="year35Balance != null">
+       		year35_balance = #{year35Balance},
+       	</if>
+       	<if test="year35Count != null">
+       		year35_count = #{year35Count},
+       	</if>
+       	<if test="year510Balance != null">
+       		year510_balance = #{year510Balance},
+       	</if>
+       	<if test="year510Count != null">
+       		year510_count = #{year510Count},
+       	</if>
+       	<if test="year10Balance != null">
+       		year10_balance = #{year10Balance},
+       	</if>
+       	<if test="year10Count != null">
+       		year10_count = #{year10Count},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="rptDate != null and rptDate != ''">
+	 		and rpt_date = #{rptDate}
+	 	</if>
+	 	<if test="rptOrgan != null and rptOrgan != ''">
+	 		and rpt_organ = #{rptOrgan}
+	 	</if>
+	 	<if test="industry != null and industry != ''">
+	 		and industry = #{industry}
+	 	</if>
+	 	<if test="balance != null and balance != ''">
+	 		and balance = #{balance}
+	 	</if>
+	 	<if test="balanceMonth != null and balanceMonth != ''">
+	 		and balance_month = #{balanceMonth}
+	 	</if>
+	 	<if test="balanceSeason != null and balanceSeason != ''">
+	 		and balance_season = #{balanceSeason}
+	 	</if>
+	 	<if test="balanceYear != null and balanceYear != ''">
+	 		and balance_year = #{balanceYear}
+	 	</if>
+	 	<if test="dayOcc != null and dayOcc != ''">
+	 		and day_occ = #{dayOcc}
+	 	</if>
+	 	<if test="dayExpire != null and dayExpire != ''">
+	 		and day_expire = #{dayExpire}
+	 	</if>
+	 	<if test="dayExpireAdv != null and dayExpireAdv != ''">
+	 		and day_expire_adv = #{dayExpireAdv}
+	 	</if>
+	 	<if test="dayExpireNormal != null and dayExpireNormal != ''">
+	 		and day_expire_normal = #{dayExpireNormal}
+	 	</if>
+	 	<if test="dayIncrease != null and dayIncrease != ''">
+	 		and day_increase = #{dayIncrease}
+	 	</if>
+	 	<if test="monthOcc != null and monthOcc != ''">
+	 		and month_occ = #{monthOcc}
+	 	</if>
+	 	<if test="monthExpireEstimate != null and monthExpireEstimate != ''">
+	 		and month_expire_estimate = #{monthExpireEstimate}
+	 	</if>
+	 	<if test="monthExpire != null and monthExpire != ''">
+	 		and month_expire = #{monthExpire}
+	 	</if>
+	 	<if test="monthExpireAdv != null and monthExpireAdv != ''">
+	 		and month_expire_adv = #{monthExpireAdv}
+	 	</if>
+	 	<if test="monthExpireNormal != null and monthExpireNormal != ''">
+	 		and month_expire_normal = #{monthExpireNormal}
+	 	</if>
+	 	<if test="monthExpireEstimateLeft != null and monthExpireEstimateLeft != ''">
+	 		and month_expire_estimate_left = #{monthExpireEstimateLeft}
+	 	</if>
+	 	<if test="monthIncrease != null and monthIncrease != ''">
+	 		and month_increase = #{monthIncrease}
+	 	</if>
+	 	<if test="seasonOcc != null and seasonOcc != ''">
+	 		and season_occ = #{seasonOcc}
+	 	</if>
+	 	<if test="seasonExpireEstimate != null and seasonExpireEstimate != ''">
+	 		and season_expire_estimate = #{seasonExpireEstimate}
+	 	</if>
+	 	<if test="seasonExpire != null and seasonExpire != ''">
+	 		and season_expire = #{seasonExpire}
+	 	</if>
+	 	<if test="seasonExpireAdv != null and seasonExpireAdv != ''">
+	 		and season_expire_adv = #{seasonExpireAdv}
+	 	</if>
+	 	<if test="seasonExpireNormal != null and seasonExpireNormal != ''">
+	 		and season_expire_normal = #{seasonExpireNormal}
+	 	</if>
+	 	<if test="seasonExpireEstimateLeft != null and seasonExpireEstimateLeft != ''">
+	 		and season_expire_estimate_left = #{seasonExpireEstimateLeft}
+	 	</if>
+	 	<if test="seasonIncrease != null and seasonIncrease != ''">
+	 		and season_increase = #{seasonIncrease}
+	 	</if>
+	 	<if test="yearOcc != null and yearOcc != ''">
+	 		and year_occ = #{yearOcc}
+	 	</if>
+	 	<if test="yearExpireEstimate != null and yearExpireEstimate != ''">
+	 		and year_expire_estimate = #{yearExpireEstimate}
+	 	</if>
+	 	<if test="yearExpire != null and yearExpire != ''">
+	 		and year_expire = #{yearExpire}
+	 	</if>
+	 	<if test="yearExpireAdv != null and yearExpireAdv != ''">
+	 		and year_expire_adv = #{yearExpireAdv}
+	 	</if>
+	 	<if test="yearExpireNormal != null and yearExpireNormal != ''">
+	 		and year_expire_normal = #{yearExpireNormal}
+	 	</if>
+	 	<if test="yearExpireEstimateLeft != null and yearExpireEstimateLeft != ''">
+	 		and year_expire_estimate_left = #{yearExpireEstimateLeft}
+	 	</if>
+	 	<if test="yearIncrease != null and yearIncrease != ''">
+	 		and year_increase = #{yearIncrease}
+	 	</if>
+	 	<if test="month1Balance != null and month1Balance != ''">
+	 		and month1_balance = #{month1Balance}
+	 	</if>
+	 	<if test="month1Count != null and month1Count != ''">
+	 		and month1_count = #{month1Count}
+	 	</if>
+	 	<if test="month13Balance != null and month13Balance != ''">
+	 		and month13_balance = #{month13Balance}
+	 	</if>
+	 	<if test="month13Count != null and month13Count != ''">
+	 		and month13_count = #{month13Count}
+	 	</if>
+	 	<if test="month36Balance != null and month36Balance != ''">
+	 		and month36_balance = #{month36Balance}
+	 	</if>
+	 	<if test="month36Count != null and month36Count != ''">
+	 		and month36_count = #{month36Count}
+	 	</if>
+	 	<if test="month612Balance != null and month612Balance != ''">
+	 		and month612_balance = #{month612Balance}
+	 	</if>
+	 	<if test="month612Count != null and month612Count != ''">
+	 		and month612_count = #{month612Count}
+	 	</if>
+	 	<if test="year12Balance != null and year12Balance != ''">
+	 		and year12_balance = #{year12Balance}
+	 	</if>
+	 	<if test="year12Count != null and year12Count != ''">
+	 		and year12_count = #{year12Count}
+	 	</if>
+	 	<if test="year23Balance != null and year23Balance != ''">
+	 		and year23_balance = #{year23Balance}
+	 	</if>
+	 	<if test="year23Count != null and year23Count != ''">
+	 		and year23_count = #{year23Count}
+	 	</if>
+	 	<if test="year35Balance != null and year35Balance != ''">
+	 		and year35_balance = #{year35Balance}
+	 	</if>
+	 	<if test="year35Count != null and year35Count != ''">
+	 		and year35_count = #{year35Count}
+	 	</if>
+	 	<if test="year510Balance != null and year510Balance != ''">
+	 		and year510_balance = #{year510Balance}
+	 	</if>
+	 	<if test="year510Count != null and year510Count != ''">
+	 		and year510_count = #{year510Count}
+	 	</if>
+	 	<if test="year10Balance != null and year10Balance != ''">
+	 		and year10_balance = #{year10Balance}
+	 	</if>
+	 	<if test="year10Count != null and year10Count != ''">
+	 		and year10_count = #{year10Count}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="rptDate != null and rptDate != ''">
+ 			and rpt_date like '%' || #{rptDate} || '%'
+ 		</if>
+ 		<if test="rptOrgan != null and rptOrgan != ''">
+ 			and rpt_organ like '%' || #{rptOrgan} || '%'
+ 		</if>
+ 		<if test="industry != null and industry != ''">
+ 			and industry like '%' || #{industry} || '%'
+ 		</if>
+ 		<if test="balance != null and balance != ''">
+ 			and balance like '%' || #{balance} || '%'
+ 		</if>
+ 		<if test="balanceMonth != null and balanceMonth != ''">
+ 			and balance_month like '%' || #{balanceMonth} || '%'
+ 		</if>
+ 		<if test="balanceSeason != null and balanceSeason != ''">
+ 			and balance_season like '%' || #{balanceSeason} || '%'
+ 		</if>
+ 		<if test="balanceYear != null and balanceYear != ''">
+ 			and balance_year like '%' || #{balanceYear} || '%'
+ 		</if>
+ 		<if test="dayOcc != null and dayOcc != ''">
+ 			and day_occ like '%' || #{dayOcc} || '%'
+ 		</if>
+ 		<if test="dayExpire != null and dayExpire != ''">
+ 			and day_expire like '%' || #{dayExpire} || '%'
+ 		</if>
+ 		<if test="dayExpireAdv != null and dayExpireAdv != ''">
+ 			and day_expire_adv like '%' || #{dayExpireAdv} || '%'
+ 		</if>
+ 		<if test="dayExpireNormal != null and dayExpireNormal != ''">
+ 			and day_expire_normal like '%' || #{dayExpireNormal} || '%'
+ 		</if>
+ 		<if test="dayIncrease != null and dayIncrease != ''">
+ 			and day_increase like '%' || #{dayIncrease} || '%'
+ 		</if>
+ 		<if test="monthOcc != null and monthOcc != ''">
+ 			and month_occ like '%' || #{monthOcc} || '%'
+ 		</if>
+ 		<if test="monthExpireEstimate != null and monthExpireEstimate != ''">
+ 			and month_expire_estimate like '%' || #{monthExpireEstimate} || '%'
+ 		</if>
+ 		<if test="monthExpire != null and monthExpire != ''">
+ 			and month_expire like '%' || #{monthExpire} || '%'
+ 		</if>
+ 		<if test="monthExpireAdv != null and monthExpireAdv != ''">
+ 			and month_expire_adv like '%' || #{monthExpireAdv} || '%'
+ 		</if>
+ 		<if test="monthExpireNormal != null and monthExpireNormal != ''">
+ 			and month_expire_normal like '%' || #{monthExpireNormal} || '%'
+ 		</if>
+ 		<if test="monthExpireEstimateLeft != null and monthExpireEstimateLeft != ''">
+ 			and month_expire_estimate_left like '%' || #{monthExpireEstimateLeft} || '%'
+ 		</if>
+ 		<if test="monthIncrease != null and monthIncrease != ''">
+ 			and month_increase like '%' || #{monthIncrease} || '%'
+ 		</if>
+ 		<if test="seasonOcc != null and seasonOcc != ''">
+ 			and season_occ like '%' || #{seasonOcc} || '%'
+ 		</if>
+ 		<if test="seasonExpireEstimate != null and seasonExpireEstimate != ''">
+ 			and season_expire_estimate like '%' || #{seasonExpireEstimate} || '%'
+ 		</if>
+ 		<if test="seasonExpire != null and seasonExpire != ''">
+ 			and season_expire like '%' || #{seasonExpire} || '%'
+ 		</if>
+ 		<if test="seasonExpireAdv != null and seasonExpireAdv != ''">
+ 			and season_expire_adv like '%' || #{seasonExpireAdv} || '%'
+ 		</if>
+ 		<if test="seasonExpireNormal != null and seasonExpireNormal != ''">
+ 			and season_expire_normal like '%' || #{seasonExpireNormal} || '%'
+ 		</if>
+ 		<if test="seasonExpireEstimateLeft != null and seasonExpireEstimateLeft != ''">
+ 			and season_expire_estimate_left like '%' || #{seasonExpireEstimateLeft} || '%'
+ 		</if>
+ 		<if test="seasonIncrease != null and seasonIncrease != ''">
+ 			and season_increase like '%' || #{seasonIncrease} || '%'
+ 		</if>
+ 		<if test="yearOcc != null and yearOcc != ''">
+ 			and year_occ like '%' || #{yearOcc} || '%'
+ 		</if>
+ 		<if test="yearExpireEstimate != null and yearExpireEstimate != ''">
+ 			and year_expire_estimate like '%' || #{yearExpireEstimate} || '%'
+ 		</if>
+ 		<if test="yearExpire != null and yearExpire != ''">
+ 			and year_expire like '%' || #{yearExpire} || '%'
+ 		</if>
+ 		<if test="yearExpireAdv != null and yearExpireAdv != ''">
+ 			and year_expire_adv like '%' || #{yearExpireAdv} || '%'
+ 		</if>
+ 		<if test="yearExpireNormal != null and yearExpireNormal != ''">
+ 			and year_expire_normal like '%' || #{yearExpireNormal} || '%'
+ 		</if>
+ 		<if test="yearExpireEstimateLeft != null and yearExpireEstimateLeft != ''">
+ 			and year_expire_estimate_left like '%' || #{yearExpireEstimateLeft} || '%'
+ 		</if>
+ 		<if test="yearIncrease != null and yearIncrease != ''">
+ 			and year_increase like '%' || #{yearIncrease} || '%'
+ 		</if>
+ 		<if test="month1Balance != null and month1Balance != ''">
+ 			and month1_balance like '%' || #{month1Balance} || '%'
+ 		</if>
+ 		<if test="month1Count != null and month1Count != ''">
+ 			and month1_count like '%' || #{month1Count} || '%'
+ 		</if>
+ 		<if test="month13Balance != null and month13Balance != ''">
+ 			and month13_balance like '%' || #{month13Balance} || '%'
+ 		</if>
+ 		<if test="month13Count != null and month13Count != ''">
+ 			and month13_count like '%' || #{month13Count} || '%'
+ 		</if>
+ 		<if test="month36Balance != null and month36Balance != ''">
+ 			and month36_balance like '%' || #{month36Balance} || '%'
+ 		</if>
+ 		<if test="month36Count != null and month36Count != ''">
+ 			and month36_count like '%' || #{month36Count} || '%'
+ 		</if>
+ 		<if test="month612Balance != null and month612Balance != ''">
+ 			and month612_balance like '%' || #{month612Balance} || '%'
+ 		</if>
+ 		<if test="month612Count != null and month612Count != ''">
+ 			and month612_count like '%' || #{month612Count} || '%'
+ 		</if>
+ 		<if test="year12Balance != null and year12Balance != ''">
+ 			and year12_balance like '%' || #{year12Balance} || '%'
+ 		</if>
+ 		<if test="year12Count != null and year12Count != ''">
+ 			and year12_count like '%' || #{year12Count} || '%'
+ 		</if>
+ 		<if test="year23Balance != null and year23Balance != ''">
+ 			and year23_balance like '%' || #{year23Balance} || '%'
+ 		</if>
+ 		<if test="year23Count != null and year23Count != ''">
+ 			and year23_count like '%' || #{year23Count} || '%'
+ 		</if>
+ 		<if test="year35Balance != null and year35Balance != ''">
+ 			and year35_balance like '%' || #{year35Balance} || '%'
+ 		</if>
+ 		<if test="year35Count != null and year35Count != ''">
+ 			and year35_count like '%' || #{year35Count} || '%'
+ 		</if>
+ 		<if test="year510Balance != null and year510Balance != ''">
+ 			and year510_balance like '%' || #{year510Balance} || '%'
+ 		</if>
+ 		<if test="year510Count != null and year510Count != ''">
+ 			and year510_count like '%' || #{year510Count} || '%'
+ 		</if>
+ 		<if test="year10Balance != null and year10Balance != ''">
+ 			and year10_balance like '%' || #{year10Balance} || '%'
+ 		</if>
+ 		<if test="year10Count != null and year10Count != ''">
+ 			and year10_count like '%' || #{year10Count} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_rpt_baseinfo_industry 
+        <where> 
+        	rpt_date = #{rptDate} and
+        	rpt_organ = #{rptOrgan} and
+        	industry = #{industry} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo_industry
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo_industry 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo_industry 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo_industry 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo_industry 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfoIndustry" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo_industry 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo_industry 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!--查询行业-->
+	<select id="selectIndustry" resultType="java.util.Map" flushCache="true">
+		select A.industry
+		from
+		(
+			select lower(r.industry) as industry
+			from tb_rpt_baseinfo_industry r
+		)A
+		group by A.industry
+		order by A.industry
+	</select>
+	<!--行业表-总行登录查询一分数据-->
+	<select id="selectLevelOneOrganData" resultType="com.boco.SYS.entity.TbRptBaseinfoIndustry" flushCache="true">
+		select
+		r.industry as industry,
+		sum (coalesce(r.balance,0)) as balance,
+		sum (coalesce(r.balance_month,0)) as balance_month,
+		sum (coalesce(r.balance_season,0)) as balance_season,
+		sum (coalesce(r.balance_year,0)) as balance_year,
+		sum (coalesce(r.day_increase,0))as day_increase,
+		sum (coalesce(r.month_increase,0))as month_increase,
+		sum (coalesce(r.season_increase,0))as season_increase,
+		sum (coalesce(r.year_increase,0))as year_increase,
+
+		sum (coalesce(r.day_occ,0)) as day_occ,
+		sum (coalesce(r.day_expire,0)) as day_expire,
+
+		sum (coalesce(r.month_occ,0)) as month_occ,
+		sum (coalesce(r.month_expire_estimate,0)) as month_expire_estimate,
+		sum (coalesce(r.month_expire,0)) as month_expire,
+		sum (coalesce(r.month_expire_estimate_left,0)) as month_expire_estimate_left,
+
+		sum (coalesce(r.season_occ,0)) as season_occ,
+		sum (coalesce(r.season_expire_estimate,0)) as season_expire_estimate,
+		sum (coalesce(r.season_expire,0)) as season_expire,
+		sum (coalesce(r.season_expire_estimate_left,0)) as season_expire_estimate_left,
+
+		sum (coalesce(r.year_occ,0)) as year_occ,
+		sum (coalesce(r.year_expire_estimate,0)) as year_expire_estimate,
+		sum (coalesce(r.year_expire,0)) as year_expire,
+		sum (coalesce(r.year_expire_estimate_left,0)) as year_expire_estimate_left
+
+		from
+		(
+			select
+				lower(a.industry) as industry ,
+				a.balance,
+				a.balance_month,
+				a.balance_season,
+				a.balance_year,
+				a.day_increase,
+				a.month_increase,
+				a.season_increase,
+				a.year_increase,
+				a.day_occ,
+				a.day_expire,
+				a.month_occ,
+				a.month_expire_estimate,
+				a.month_expire,
+				a.month_expire_estimate_left,
+				a.season_occ,
+				a.season_expire_estimate,
+				a.season_expire,
+				a.season_expire_estimate_left,
+				a.year_occ,
+				a.year_expire_estimate,
+				a.year_expire,
+				a.year_expire_estimate_left
+			from tb_rpt_baseinfo_industry a
+			where 1=1
+			<if test="rptDate != null and rptDate != ''">
+				and rpt_date = #{rptDate}
+			</if>
+		)r
+		group by  r.industry
+	</select>
+	<!--行业表-一分登录查看二分数据-->
+	<select id="selectLevelOhterOrganData" resultType="com.boco.SYS.entity.TbRptBaseinfoIndustry" flushCache="true">
+
+        select
+        r.industry as industry,
+        sum (coalesce(r.balance,0)) as balance,
+        sum (coalesce(r.balance_month,0)) as balance_month,
+        sum (coalesce(r.balance_season,0)) as balance_season,
+        sum (coalesce(r.balance_year,0)) as balance_year,
+        sum (coalesce(r.day_increase,0))as day_increase,
+        sum (coalesce(r.month_increase,0))as month_increase,
+        sum (coalesce(r.season_increase,0))as season_increase,
+        sum (coalesce(r.year_increase,0))as year_increase,
+
+        sum (coalesce(r.day_occ,0)) as day_occ,
+        sum (coalesce(r.day_expire,0)) as day_expire,
+
+        sum (coalesce(r.month_occ,0)) as month_occ,
+        sum (coalesce(r.month_expire_estimate,0)) as month_expire_estimate,
+        sum (coalesce(r.month_expire,0)) as month_expire,
+        sum (coalesce(r.month_expire_estimate_left,0)) as month_expire_estimate_left,
+
+        sum (coalesce(r.season_occ,0)) as season_occ,
+        sum (coalesce(r.season_expire_estimate,0)) as season_expire_estimate,
+        sum (coalesce(r.season_expire,0)) as season_expire,
+        sum (coalesce(r.season_expire_estimate_left,0)) as season_expire_estimate_left,
+
+        sum (coalesce(r.year_occ,0)) as year_occ,
+        sum (coalesce(r.year_expire_estimate,0)) as year_expire_estimate,
+        sum (coalesce(r.year_expire,0)) as year_expire,
+        sum (coalesce(r.year_expire_estimate_left,0)) as year_expire_estimate_left
+
+        from
+		(
+		select
+			lower(a.industry) as industry ,
+			a.balance,
+			a.balance_month,
+			a.balance_season,
+			a.balance_year,
+			a.day_increase,
+			a.month_increase,
+			a.season_increase,
+			a.year_increase,
+			a.day_occ,
+			a.day_expire,
+			a.month_occ,
+			a.month_expire_estimate,
+			a.month_expire,
+			a.month_expire_estimate_left,
+			a.season_occ,
+			a.season_expire_estimate,
+			a.season_expire,
+			a.season_expire_estimate_left,
+			a.year_occ,
+			a.year_expire_estimate,
+			a.year_expire,
+			a.year_expire_estimate_left
+		from tb_rpt_baseinfo_industry a
+		join fd_organ o
+		on a.rpt_organ = o.thiscode
+		where 1=1
+		<if test="organ != null and organ != ''">
+			and o.provincecode = #{organ}
+		</if>
+		<if test="rptDate != null and rptDate != ''">
+			and a.rpt_date = #{rptDate}
+		</if>
+		)r
+        group by  r.industry
+
+	</select>
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

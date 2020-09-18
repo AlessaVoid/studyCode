@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 测算 权重历史表 -->
+<mapper namespace="com.boco.SYS.mapper.TbCalculateOneProportionHistoryMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbCalculateOneProportionHistory">
+       	<id column="id" property="id"/>
+     	<result column="class_type" property="classType"/>
+     	<result column="code" property="code"/>
+     	<result column="name" property="name"/>
+     	<result column="index_type" property="indexType"/>
+     	<result column="sort_type" property="sortType"/>
+     	<result column="weight" property="weight"/>
+     	<result column="ratio" property="ratio"/>
+     	<result column="create_time" property="createTime"/>
+     	<result column="update_time" property="updateTime"/>
+     	<result column="create_oper" property="createOper"/>
+     	<result column="update_oper" property="updateOper"/>
+     	<result column="month" property="month"/>
+     	<result column="type" property="type"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,class_type ,code ,name ,index_type ,sort_type ,weight ,ratio ,create_time ,update_time ,create_oper ,update_oper ,month ,type 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory">
+<!-- 
+	    -->       
+  INSERT INTO tb_calculate_one_proportion_history 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="classType != null">
+	        	class_type ,
+	       	</if>
+	       	<if test="code != null">
+	        	code ,
+	       	</if>
+	       	<if test="name != null">
+	        	name ,
+	       	</if>
+	       	<if test="indexType != null">
+	        	index_type ,
+	       	</if>
+	       	<if test="sortType != null">
+	        	sort_type ,
+	       	</if>
+	       	<if test="weight != null">
+	        	weight ,
+	       	</if>
+	       	<if test="ratio != null">
+	        	ratio ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	create_time ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	update_time ,
+	       	</if>
+	       	<if test="createOper != null">
+	        	create_oper ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	update_oper ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="type != null">
+	        	type 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="classType != null">
+	        	#{classType} ,
+	       	</if>
+	       	<if test="code != null">
+	        	#{code} ,
+	       	</if>
+	       	<if test="name != null">
+	        	#{name} ,
+	       	</if>
+	       	<if test="indexType != null">
+	        	#{indexType} ,
+	       	</if>
+	       	<if test="sortType != null">
+	        	#{sortType} ,
+	       	</if>
+	       	<if test="weight != null">
+	        	#{weight} ,
+	       	</if>
+	       	<if test="ratio != null">
+	        	#{ratio} ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	#{createTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} ,
+	       	</if>
+	       	<if test="createOper != null">
+	        	#{createOper} ,
+	       	</if>
+	       	<if test="updateOper != null">
+	        	#{updateOper} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="type != null">
+	        	#{type} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_calculate_one_proportion_history 
+        (id ,class_type ,code ,name ,index_type ,sort_type ,weight ,ratio ,create_time ,update_time ,create_oper ,update_oper ,month ,type )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.classType,jdbcType=VARCHAR},#{item.code,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.indexType,jdbcType=VARCHAR},#{item.sortType,jdbcType=VARCHAR},#{item.weight,jdbcType=VARCHAR},#{item.ratio,jdbcType=VARCHAR},#{item.createTime,jdbcType=VARCHAR},#{item.updateTime,jdbcType=VARCHAR},#{item.createOper,jdbcType=VARCHAR},#{item.updateOper,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_proportion_history 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_proportion_history 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_calculate_one_proportion_history 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_proportion_history
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory">
+        UPDATE tb_calculate_one_proportion_history 
+        <set>
+       	<if test="classType != null">
+       		class_type = #{classType},
+       	</if>
+       	<if test="code != null">
+       		code = #{code},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="indexType != null">
+       		index_type = #{indexType},
+       	</if>
+       	<if test="sortType != null">
+       		sort_type = #{sortType},
+       	</if>
+       	<if test="weight != null">
+       		weight = #{weight},
+       	</if>
+       	<if test="ratio != null">
+       		ratio = #{ratio},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="createOper != null">
+       		create_oper = #{createOper},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_calculate_one_proportion_history 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_calculate_one_proportion_history 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="classType != null">
+       		class_type = #{classType},
+       	</if>
+       	<if test="code != null">
+       		code = #{code},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="indexType != null">
+       		index_type = #{indexType},
+       	</if>
+       	<if test="sortType != null">
+       		sort_type = #{sortType},
+       	</if>
+       	<if test="weight != null">
+       		weight = #{weight},
+       	</if>
+       	<if test="ratio != null">
+       		ratio = #{ratio},
+       	</if>
+       	<if test="createTime != null">
+       		create_time = #{createTime},
+       	</if>
+       	<if test="updateTime != null">
+       		update_time = #{updateTime},
+       	</if>
+       	<if test="createOper != null">
+       		create_oper = #{createOper},
+       	</if>
+       	<if test="updateOper != null">
+       		update_oper = #{updateOper},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="classType != null and classType != ''">
+	 		and class_type = #{classType}
+	 	</if>
+	 	<if test="code != null and code != ''">
+	 		and code = #{code}
+	 	</if>
+	 	<if test="name != null and name != ''">
+	 		and name = #{name}
+	 	</if>
+	 	<if test="indexType != null and indexType != ''">
+	 		and index_type = #{indexType}
+	 	</if>
+	 	<if test="sortType != null and sortType != ''">
+	 		and sort_type = #{sortType}
+	 	</if>
+	 	<if test="weight != null and weight != ''">
+	 		and weight = #{weight}
+	 	</if>
+	 	<if test="ratio != null and ratio != ''">
+	 		and ratio = #{ratio}
+	 	</if>
+	 	<if test="createTime != null and createTime != ''">
+	 		and create_time = #{createTime}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and update_time = #{updateTime}
+	 	</if>
+	 	<if test="createOper != null and createOper != ''">
+	 		and create_oper = #{createOper}
+	 	</if>
+	 	<if test="updateOper != null and updateOper != ''">
+	 		and update_oper = #{updateOper}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="type != null and type != ''">
+	 		and type = #{type}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="classType != null and classType != ''">
+ 			and class_type like '%' || #{classType} || '%'
+ 		</if>
+ 		<if test="code != null and code != ''">
+ 			and code like '%' || #{code} || '%'
+ 		</if>
+ 		<if test="name != null and name != ''">
+ 			and name like '%' || #{name} || '%'
+ 		</if>
+ 		<if test="indexType != null and indexType != ''">
+ 			and index_type like '%' || #{indexType} || '%'
+ 		</if>
+ 		<if test="sortType != null and sortType != ''">
+ 			and sort_type like '%' || #{sortType} || '%'
+ 		</if>
+ 		<if test="weight != null and weight != ''">
+ 			and weight like '%' || #{weight} || '%'
+ 		</if>
+ 		<if test="ratio != null and ratio != ''">
+ 			and ratio like '%' || #{ratio} || '%'
+ 		</if>
+ 		<if test="createTime != null and createTime != ''">
+ 			and create_time like '%' || #{createTime} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and update_time like '%' || #{updateTime} || '%'
+ 		</if>
+ 		<if test="createOper != null and createOper != ''">
+ 			and create_oper like '%' || #{createOper} || '%'
+ 		</if>
+ 		<if test="updateOper != null and updateOper != ''">
+ 			and update_oper like '%' || #{updateOper} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="type != null and type != ''">
+ 			and type like '%' || #{type} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_calculate_one_proportion_history 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_calculate_one_proportion_history
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_calculate_one_proportion_history 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_one_proportion_history 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_one_proportion_history 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_proportion_history 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneProportionHistory" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_proportion_history 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_proportion_history 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+	<!--根据月份和类型删除测算历史参数表-->
+	<delete id="deleteByMonthAndType" parameterType="java.util.Map">
+		DELETE FROM tb_calculate_one_proportion_history
+		<where>
+			<if test="type != null">
+				and type = #{type}
+			</if>
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+		</where>
+
+	</delete>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

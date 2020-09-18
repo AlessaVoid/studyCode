@@ -1,0 +1,1478 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 报表基础数据-每日生成-包含贷款余额，发生量，到期量等 -->
+<mapper namespace="com.boco.SYS.mapper.TbRptBaseinfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbRptBaseinfo">
+       	<result column="rpt_date" property="rptDate"/>
+       	<result column="organ" property="organ"/>
+     	<result column="rpt_month" property="rptMonth"/>
+       	<result column="loan_kind" property="loanKind"/>
+     	<result column="balance" property="balance"/>
+     	<result column="month_occ" property="monthOcc"/>
+     	<result column="month_limit" property="monthLimit"/>
+     	<result column="day_occ" property="dayOcc"/>
+     	<result column="day_limit" property="dayLimit"/>
+     	<result column="month_limit_left" property="monthLimitLeft"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        rpt_date ,organ ,rpt_month ,loan_kind ,balance ,month_occ ,month_limit ,day_occ ,day_limit ,month_limit_left 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbRptBaseinfo">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO tb_rpt_baseinfo 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="rptDate != null">
+	        	rpt_date ,
+	       	</if>
+	       	<if test="organ != null">
+	        	organ ,
+	       	</if>
+	       	<if test="rptMonth != null">
+	        	rpt_month ,
+	       	</if>
+	       	<if test="loanKind != null">
+	        	loan_kind ,
+	       	</if>
+	       	<if test="balance != null">
+	        	balance ,
+	       	</if>
+	       	<if test="monthOcc != null">
+	        	month_occ ,
+	       	</if>
+	       	<if test="monthLimit != null">
+	        	month_limit ,
+	       	</if>
+	       	<if test="dayOcc != null">
+	        	day_occ ,
+	       	</if>
+	       	<if test="dayLimit != null">
+	        	day_limit ,
+	       	</if>
+	       	<if test="monthLimitLeft != null">
+	        	month_limit_left 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="rptDate != null">
+	        	#{rptDate} ,
+	       	</if>
+	       	<if test="organ != null">
+	        	#{organ} ,
+	       	</if>
+	       	<if test="rptMonth != null">
+	        	#{rptMonth} ,
+	       	</if>
+	       	<if test="loanKind != null">
+	        	#{loanKind} ,
+	       	</if>
+	       	<if test="balance != null">
+	        	#{balance} ,
+	       	</if>
+	       	<if test="monthOcc != null">
+	        	#{monthOcc} ,
+	       	</if>
+	       	<if test="monthLimit != null">
+	        	#{monthLimit} ,
+	       	</if>
+	       	<if test="dayOcc != null">
+	        	#{dayOcc} ,
+	       	</if>
+	       	<if test="dayLimit != null">
+	        	#{dayLimit} ,
+	       	</if>
+	       	<if test="monthLimitLeft != null">
+	        	#{monthLimitLeft} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_rpt_baseinfo 
+        (rpt_date ,organ ,rpt_month ,loan_kind ,balance ,month_occ ,month_limit ,day_occ ,day_limit ,month_limit_left )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.rptDate,jdbcType=VARCHAR},#{item.organ,jdbcType=VARCHAR},#{item.rptMonth,jdbcType=VARCHAR},#{item.loanKind,jdbcType=VARCHAR},#{item.balance,jdbcType=VARCHAR},#{item.monthOcc,jdbcType=VARCHAR},#{item.monthLimit,jdbcType=VARCHAR},#{item.dayOcc,jdbcType=VARCHAR},#{item.dayLimit,jdbcType=VARCHAR},#{item.monthLimitLeft,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM tb_rpt_baseinfo 
+        <where>
+        	rpt_date = #{rptDate} and
+        	organ = #{organ} and
+        	loan_kind = #{loanKind} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM tb_rpt_baseinfo 
+        <where>
+        	rpt_date = #{rptDate} and
+        	organ = #{organ} and
+        	loan_kind = #{loanKind} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_rpt_baseinfo 
+        WHERE rpt_dateorganloan_kind IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_rpt_baseinfo
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbRptBaseinfo">
+        UPDATE tb_rpt_baseinfo 
+        <set>
+       	<if test="rptMonth != null">
+       		rpt_month = #{rptMonth},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="monthOcc != null">
+       		month_occ = #{monthOcc},
+       	</if>
+       	<if test="monthLimit != null">
+       		month_limit = #{monthLimit},
+       	</if>
+       	<if test="dayOcc != null">
+       		day_occ = #{dayOcc},
+       	</if>
+       	<if test="dayLimit != null">
+       		day_limit = #{dayLimit},
+       	</if>
+       	<if test="monthLimitLeft != null">
+       		month_limit_left = #{monthLimitLeft},
+       	</if>
+        </set>
+        <where>
+        	rpt_date = #{rptDate} and
+        	organ = #{organ} and
+        	loan_kind = #{loanKind} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_rpt_baseinfo 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_rpt_baseinfo 
+        <set>
+       	<if test="rptDate != null">
+       		rpt_date = #{rptDate},
+       	</if>
+       	<if test="organ != null">
+       		organ = #{organ},
+       	</if>
+       	<if test="rptMonth != null">
+       		rpt_month = #{rptMonth},
+       	</if>
+       	<if test="loanKind != null">
+       		loan_kind = #{loanKind},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="monthOcc != null">
+       		month_occ = #{monthOcc},
+       	</if>
+       	<if test="monthLimit != null">
+       		month_limit = #{monthLimit},
+       	</if>
+       	<if test="dayOcc != null">
+       		day_occ = #{dayOcc},
+       	</if>
+       	<if test="dayLimit != null">
+       		day_limit = #{dayLimit},
+       	</if>
+       	<if test="monthLimitLeft != null">
+       		month_limit_left = #{monthLimitLeft},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="rptDate != null and rptDate != ''">
+	 		and rpt_date = #{rptDate}
+	 	</if>
+	 	<if test="organ != null and organ != ''">
+	 		and organ = #{organ}
+	 	</if>
+	 	<if test="rptMonth != null and rptMonth != ''">
+	 		and rpt_month = #{rptMonth}
+	 	</if>
+	 	<if test="loanKind != null and loanKind != ''">
+	 		and loan_kind = #{loanKind}
+	 	</if>
+	 	<if test="balance != null and balance != ''">
+	 		and balance = #{balance}
+	 	</if>
+	 	<if test="monthOcc != null and monthOcc != ''">
+	 		and month_occ = #{monthOcc}
+	 	</if>
+	 	<if test="monthLimit != null and monthLimit != ''">
+	 		and month_limit = #{monthLimit}
+	 	</if>
+	 	<if test="dayOcc != null and dayOcc != ''">
+	 		and day_occ = #{dayOcc}
+	 	</if>
+	 	<if test="dayLimit != null and dayLimit != ''">
+	 		and day_limit = #{dayLimit}
+	 	</if>
+	 	<if test="monthLimitLeft != null and monthLimitLeft != ''">
+	 		and month_limit_left = #{monthLimitLeft}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="rptDate != null and rptDate != ''">
+ 			and rpt_date like '%' || #{rptDate} || '%'
+ 		</if>
+ 		<if test="organ != null and organ != ''">
+ 			and organ like '%' || #{organ} || '%'
+ 		</if>
+ 		<if test="rptMonth != null and rptMonth != ''">
+ 			and rpt_month like '%' || #{rptMonth} || '%'
+ 		</if>
+ 		<if test="loanKind != null and loanKind != ''">
+ 			and loan_kind like '%' || #{loanKind} || '%'
+ 		</if>
+ 		<if test="balance != null and balance != ''">
+ 			and balance like '%' || #{balance} || '%'
+ 		</if>
+ 		<if test="monthOcc != null and monthOcc != ''">
+ 			and month_occ like '%' || #{monthOcc} || '%'
+ 		</if>
+ 		<if test="monthLimit != null and monthLimit != ''">
+ 			and month_limit like '%' || #{monthLimit} || '%'
+ 		</if>
+ 		<if test="dayOcc != null and dayOcc != ''">
+ 			and day_occ like '%' || #{dayOcc} || '%'
+ 		</if>
+ 		<if test="dayLimit != null and dayLimit != ''">
+ 			and day_limit like '%' || #{dayLimit} || '%'
+ 		</if>
+ 		<if test="monthLimitLeft != null and monthLimitLeft != ''">
+ 			and month_limit_left like '%' || #{monthLimitLeft} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_rpt_baseinfo 
+        <where> 
+        	rpt_date = #{rptDate} and
+        	organ = #{organ} and
+        	loan_kind = #{loanKind} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbRptBaseinfo" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfo" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfo" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_rpt_baseinfo 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbRptBaseinfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_rpt_baseinfo 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 信贷日报统计查询 （总行查询一级分行） -->
+	<select id="selectForReportOrganOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select og.provincecode                as "organ",
+			   rb.loan_kind                   as "loanKind",
+			   sum(coalesce(rb.balance, 0))   as "balance",
+			   sum(coalesce(rb.day_expire, 0)) as "dayLimit"
+		from tb_rpt_baseinfo_loankind rb
+			join fd_organ og on (rb.rpt_organ = og.thiscode)
+		where rb.rpt_date = #{rptDate}
+		group by og.provincecode, rb.loan_kind
+	</select>
+
+	<!-- 信贷日报统计查询 （一级分行查询二级） -->
+	<select id="selectForReportOrganTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+
+		select
+		aq.grouporgan as "organ",
+		aq.loankind as "loanKind",
+		sum(aq.balance) as "balance",
+		sum(aq.day_limit) as "dayLimit"
+		from
+			(
+				select
+				rb.loan_kind as "loankind",
+				coalesce(rb.balance, 0) as balance,
+				coalesce(rb.day_expire, 0) as day_limit,
+				case when og.organlevel = '3' then og.citycode
+					else og.areacode
+					end as grouporgan
+				from
+				tb_rpt_baseinfo_loankind rb
+				join fd_organ og on
+				(rb.rpt_organ = og.thiscode)
+				where
+				rb.rpt_date = #{rptDate}
+				and og.provincecode = #{organCode}
+			)aq
+		group by aq.grouporgan, aq.loankind
+	</select>
+
+
+
+
+
+	<!-- 首页 - 判断当前登录柜员是否有所属条线 -->
+	<select id="selectOperLine" parameterType="String" resultType="java.util.Map" flushCache="true">
+		select id, line_id, oper_code
+		from tb_oper_line ol
+		where ol.status = '1'
+		  and oper_code = #{operCode}
+	</select>
+
+	<!-- 首页 - 获取机构本月净增量信息 - 无条线（总行查询） -->
+	<select id="selectIndexOrganBarInfoOneNohasLine" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select o.thiscode                                            			     as organcode,
+			   replace(replace(replace(o.organname,'省分行',''),'分行',''),'支行','')  as organname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) 				 as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     			     as planamount,
+				coalesce(A.peinprogress, 0)                     	 	 			as peinprogress
+		from fd_organ o
+
+		<!-- 实际净增量 - 无所属条线 -->
+		left join (
+			select og.provincecode                	  as thiscode,
+				   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+				   sum(coalesce(pe.pe_expire, 0))     as peexpire,
+				   sum(coalesce(pe.pe_inprogress,0))  as peinprogress
+			from tb_plan_execute pe
+				join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			group by og.provincecode
+		) A on (o.thiscode = A.thiscode)
+
+		<!-- 计划净增量 - 无所属条线 -->
+		left join (
+			select pd.pd_organ                    as thiscode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+			join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			where p.plan_month = #{month}
+			  and p.plan_type = 1
+			  and p.plan_organ = #{loginOrganCode}
+			  and p.plan_status=16
+			group by pd.pd_organ
+		) B on (o.thiscode = B.thiscode)
+
+		where o.organlevel in ('0', '1')
+		order by o.organlevel, o.leveloneorder, o.thiscode
+	</select>
+
+	<!-- 首页 - 获取机构本月净增量信息 - 有条线（总行查询） -->
+	<select id="selectIndexOrganBarInfoOnehasLine" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 所属条线贷种临时表 二级贷种 -->
+		with tmp as (
+			select pld.comb_code as combcode
+			from tb_oper_line ol
+				join tb_prod_line pl on (ol.line_id = pl.line_id)
+				join tb_prod_line_details pld on (pl.line_id = pld.line_id)
+			where ol.oper_code = #{operCode}
+			  and ol.status = '1'
+			  and pld.status = '1'
+		)
+
+		select o.thiscode                                            			     as organcode,
+			   replace(replace(replace(o.organname,'省分行',''),'分行',''),'支行','')  as organname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) 				 as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     			     as planamount,
+			   coalesce(A.peinprogress, 0)                     	 	 				 as peinprogress
+		from fd_organ o
+
+		<!-- 实际净增量 - 有所属条线 -->
+		left join (
+			select og.provincecode                	  as thiscode,
+				   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+				   sum(coalesce(pe.pe_expire, 0))     as peexpire,
+				   sum(coalesce(pe.pe_inprogress,0))  as peinprogress
+			from tb_plan_execute pe
+				join fd_organ og on (pe.pe_organ = og.thiscode)
+				join tb_comb_detail cd on (pe.pe_prod_code = cd.prod_code)
+				join tmp t on (t.combcode = cd.comb_code)
+			where pe.pe_month = #{month}
+			  and og.provincecode = #{oneOrganCode}
+			  group by og.provincecode
+		) A on (o.thiscode = A.thiscode)
+
+		<!-- 计划净增量 - 有所属条线 -->
+		left join (
+			select p.plan_organ 	 			  as thiscode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+				join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id )
+				join tmp t on (t.combcode = pd.pd_loan_type)
+			where p.plan_month = #{month}
+			  and p.plan_type = #{planType}
+			  and p.plan_organ = #{oneOrganCode}
+			  and p.plan_status=16
+			  group by p.plan_organ
+		) B on (o.thiscode = B.thiscode)
+
+		where o.thiscode = #{oneOrganCode}
+	</select>
+
+	<!-- 首页 - 获取机构本月净增量信息 - 无条线（一级分行） -->
+	<select id="selectIndexOrganBarInfoTwoNohasLine" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select o.thiscode                                            				 as organcode,
+			   replace(replace(replace(o.organname,'省分行',''),'分行',''),'支行','')  as organname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) 				 as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     				 as planamount,
+				coalesce(A.peinprogress, 0)                     	 	 			as peinprogress
+		from fd_organ o
+
+		<!-- 计划净增量 - 无所属条线 -->
+		left join (
+			select pd.pd_organ                    as thiscode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+				join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			where p.plan_month = #{month}
+			  and p.plan_type = 1
+			  and p.plan_status=16
+			  and p.plan_organ = #{loginOrganCode}
+			  group by pd.pd_organ
+		) B on (o.thiscode = B.thiscode)
+
+		<!-- 实际净增量 - 无所属条线 -->
+		left join (
+			select
+			aq.grouporgan as thiscode,
+			sum(aq.pe_occurrence) as peoccurrence,
+			sum(aq.pe_expire) as peexpire,
+			sum(aq.pe_inprogress) as peinprogress
+			from (
+					select
+					coalesce(pe.pe_occurrence, 0) as pe_occurrence,
+					coalesce(pe.pe_expire, 0) as pe_expire,
+					coalesce(pe.pe_inprogress, 0) as pe_inprogress,
+					case	when og.organlevel = '3' then og.citycode
+					else og.areacode
+					end as grouporgan
+					from tb_plan_execute pe
+					join fd_organ og on (pe.pe_organ = og.thiscode)
+					where pe.pe_month = #{month}
+					and og.provincecode = #{loginOrganCode}
+				)aq
+			group by aq.grouporgan
+		) A on (o.thiscode = A.thiscode)
+		<where>
+				 o.uporgan = #{loginOrganCode}
+				or o.thiscode=#{loginOrganCode}
+		</where>
+		order by o.leveloneorder, o.thiscode
+	</select>
+
+	<!-- 首页 - 获取机构本月净增量信息 - 有条线（一级分行） -->
+	<select id="selectIndexOrganBarInfoTwohasLine" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 所属条线贷种临时表 二级贷种 -->
+		with tmp as (
+			select pld.comb_code as combcode
+			from tb_oper_line ol
+				join tb_prod_line pl on (ol.line_id = pl.line_id)
+				join tb_prod_line_details pld on (pl.line_id = pld.line_id)
+			where ol.oper_code = #{operCode}
+			  and ol.status = '1'
+			  and pld.status = '1'
+		)
+
+		select o.thiscode                                            				 as organcode,
+			   replace(replace(replace(o.organname,'省分行',''),'分行',''),'支行','')   as organname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) 				 as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     				 as planamount,
+				coalesce(A.peinprogress, 0)                     	 	 			as peinprogress
+		from fd_organ o
+
+		<!-- 计划净增量 - 有所属条线 -->
+		left join (
+			select pd.pd_organ                    as thiscode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+				join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+				join tmp t on (t.combcode = pd.pd_loan_type)
+			where p.plan_month = #{month}
+-- 			  and p.plan_type = 1
+			  and p.plan_status=16
+			  and p.plan_organ = #{loginOrganCode}
+			group by pd.pd_organ
+		) B on (o.thiscode = B.thiscode)
+
+		<!-- 实际净增量 - 有所属条线 -->
+		left join (
+			select
+			aq.grouporgan as thiscode,
+			sum(aq.pe_occurrence) as peoccurrence,
+			sum(aq.pe_expire) as peexpire,
+			sum(aq.pe_inprogress)  as peinprogress
+			from
+				(
+					select
+					coalesce(pe.pe_occurrence, 0) as pe_occurrence,
+					coalesce(pe.pe_expire, 0) as pe_expire,
+					coalesce(pe.pe_inprogress,0) as pe_inprogress,
+					case	when og.organlevel = '3' then og.citycode
+					else og.areacode
+					end as grouporgan
+					from tb_plan_execute pe
+					join fd_organ og on	(pe.pe_organ = og.thiscode)
+					join tb_comb_detail cd on (pe.pe_prod_code = cd.prod_code)
+					join tmp t on		(t.combcode = cd.comb_code)
+					where pe.pe_month = #{month}
+					and og.provincecode = #{loginOrganCode}
+				)aq
+			group by aq.grouporgan
+		) A on (o.thiscode = A.thiscode)
+		<where>
+			o.uporgan = #{loginOrganCode}
+			or o.thiscode=#{loginOrganCode}
+		</where>
+		order by o.leveloneorder, o.thiscode
+	</select>
+
+	<sql id="where_exists_line_common">
+		and (
+			<!-- 当前柜员条线判断，无所属条线时：不做限制；  有所属条线时：只查看所属的贷种 -->
+			exists(
+				select 1
+				from tb_oper_line ol
+					join tb_prod_line pl on (ol.line_id = pl.line_id)
+					join tb_prod_line_details pld on (pl.line_id = pld.line_id)
+				where ol.oper_code = #{operCode}
+				  and ol.status = '1'
+				  and pld.status = '1'
+				  and pld.comb_code = c.comb_code
+			)
+			or
+			not exists(
+				select 1
+				from tb_oper_line ol
+				where ol.oper_code = #{operCode}
+				  and ol.status = '1'
+			)
+		)
+	</sql>
+	<!-- 首页 - 二级贷种本月净增量（总行查询） -->
+	<select id="selectIndexCombBarInfoOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                                           as combcode,
+			   c.comb_name                                           as combname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     as planamount,
+			   coalesce(A.peinprogress, 0)                     	 	 as peinprogress
+		from tb_comb c
+			 <!-- 实际净增量 -->
+			 left join (
+				select c.comb_code                        as combcode,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire,
+					   sum(coalesce(pe.pe_inprogress,0))  as peinprogress
+				from tb_comb c
+					 join tb_comb_detail cd on (c.comb_code = cd.comb_code)
+					 join tb_plan_execute pe on (pe.pe_prod_code = cd.prod_code and pe.pe_month = #{month})
+				where c.comb_level = 2
+				group by c.comb_code
+			) A on (c.comb_code = A.combcode)
+
+		     <!-- 计划净增量 -->
+			 left join (
+				select pd.pd_loan_type 	 as combcode,
+						sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+					join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+				where p.plan_month = #{month}
+				  and p.plan_type = #{planType}
+				  and p.plan_status=16
+				  and p.plan_organ = #{organCode}
+				group by pd.pd_loan_type
+			) B on (c.comb_code = B.combcode)
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+	</select>
+
+	<!-- 首页 - 二级贷种本月净增量（一分查询） -->
+	<select id="selectIndexCombBarInfoTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                                           as combcode,
+			   c.comb_name                                           as combname,
+			   coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) as realityamount,
+			   coalesce(B.planamount, 0) * 10000                     as planamount,
+               coalesce(A.peinprogress, 0)                     	 	 as peinprogress
+		from tb_comb c
+
+		<!-- 实际净增量 -->
+		left join (
+			select c.comb_code                        as combcode,
+				   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+				   sum(coalesce(pe.pe_expire, 0))     as peexpire,
+				   sum(coalesce(pe.pe_inprogress,0))  as peinprogress
+			from tb_comb c
+				join tb_comb_detail cd on (c.comb_code = cd.comb_code)
+				join tb_plan_execute pe on (pe.pe_prod_code = cd.prod_code and pe.pe_month = #{month})
+				join fd_organ og on (pe.pe_organ = og.thiscode)
+			where c.comb_level = 2
+			  and og.provincecode = #{organCode}
+			group by c.comb_code
+		) A on (c.comb_code = A.combcode)
+
+		<!-- 计划净增量 -->
+		left join (
+			select pd.pd_loan_type 	 			  as combcode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+				join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			where p.plan_month = #{month}
+			  and p.plan_type = #{planType}
+			  and p.plan_organ = #{organCode}
+			  and p.plan_status=16
+			  group by pd.pd_loan_type
+		) B on (c.comb_code = B.combcode)
+
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+	</select>
+
+
+
+
+
+
+
+	<!-- 首页 - 二级贷种本月计划完成率 - 计划净增量（总行查询） -->
+	<select id="selectIndexCombBarInfoForPlanOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                       as combcode,
+			   c.comb_name                       as combname,
+			   coalesce(B.planamount, 0) * 10000 as planamount
+		from tb_comb c
+			 <!-- 计划净增量 -->
+			 left join (
+				 select pd.pd_loan_type as combcode,
+						sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+						 join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+				where p.plan_month = #{month}
+				  and p.plan_type = #{planType}
+				  and p.plan_status=16
+				  and p.plan_organ = #{organCode}
+				  group by pd.pd_loan_type
+			) B on (c.comb_code = B.combcode)
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+	</select>
+
+	<!-- 首页 - 二级贷种本月计划完成率 - 计划净增量（一分查询） -->
+	<select id="selectIndexCombBarInfoForPlanTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                       as combcode,
+			   c.comb_name                       as combname,
+			   coalesce(B.planamount, 0) * 10000 as planamount
+		from tb_comb c
+		<!-- 计划净增量 -->
+		left join (
+			select pd.pd_loan_type 	 			  as combcode,
+				   sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+				join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			where p.plan_month = #{month}
+			  and p.plan_type = #{planType}
+			  and p.plan_organ = #{organCode}
+			  and p.plan_status=16
+			group by pd.pd_loan_type
+		) B on (c.comb_code = B.combcode)
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+	</select>
+
+	<!-- 首页 - 二级贷种本月计划完成率 - 实际净增量（总行查询） -->
+	<select id="selectIndexCombBarInfoForRealOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+        select A.day                                                 as day,
+        coalesce(B.peoccurrence, 0) - coalesce(B.peexpire, 0) as amount
+        from (
+            select to_char(t.day, 'yyyymmdd') as day
+            from (
+                select generate_series(cast(to_char(current_date, 'yyyy-mm') || '-01' as date), cast(
+                cast(to_char(current_date, 'yyyy-mm') || '-01' as timestamp) + '1 MONTH' +
+                '-1 d' as date), '1 d') as day
+            ) as t
+        ) as A
+
+        <!-- 实际净增量 -->
+        left join (
+            select rb.rpt_date                    	as rptdate,
+                sum(coalesce(rb.month_occ, 0))   as peoccurrence,
+                sum(coalesce(rb.month_expire, 0)) as peexpire
+            from tb_comb_detail cd
+            join tb_rpt_baseinfo_loankind rb on (rb.loan_kind = cd.prod_code and rb.rpt_date like #{month} || '%')
+            where cd.comb_code = #{combcode}
+            group by rb.rpt_date
+        ) as B on (A.day = B.rptdate)
+
+        order by A.day
+	</select>
+
+	<!-- 首页 - 二级贷种本月计划完成率 - 实际净增量（一分查询） -->
+	<select id="selectIndexCombBarInfoForRealTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select A.day                                                 as day,
+			   coalesce(B.peoccurrence, 0) - coalesce(B.peexpire, 0) as amount
+		from (
+			select to_char(t.day, 'yyyymmdd') as day
+			from (
+				select generate_series(cast(to_char(current_date, 'yyyy-mm') || '-01' as date), cast(
+					cast(to_char(current_date, 'yyyy-mm') || '-01' as timestamp) + '1 MONTH' +
+						'-1 d' as date), '1 d') as day
+			) as t
+		) as A
+
+		<!-- 实际净增量 -->
+        left join (
+            select rb.rpt_date                    	as rptdate,
+                sum(coalesce(rb.month_occ, 0))   as peoccurrence,
+                sum(coalesce(rb.month_expire, 0)) as peexpire
+            from tb_comb_detail cd
+                join tb_rpt_baseinfo_loankind rb on (rb.loan_kind = cd.prod_code and  rb.rpt_date like #{month} || '%')
+                join fd_organ og on (rb.rpt_organ = og.thiscode)
+            where cd.comb_code = #{combcode}
+                and og.provincecode = #{organCode}
+            group by rb.rpt_date
+        ) as B on (A.day = B.rptdate)
+
+		order by A.day
+	</select>
+
+
+
+
+
+
+
+
+	<sql id="select_complete_common">
+		tmp.warn_id                                           as warnid,
+	    tmp.warn_name                                         as warnname,
+	    tmp.warn_one_line                                     as warnoneline,
+	    tmp.warn_two_line                                     as warntwoline,
+	    tmp.warn_three_line                                   as warnthreeline,
+	    tmp.warn_four_line                                    as warnfourline,
+	   	tmp.warn_five_line                                    as warnfiveline,
+	   	coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) as realityamount,
+	   	coalesce(B.planamount, 0) * 10000                     as planamount
+	</sql>
+	<sql id="select_abs_common">
+		tmp.warn_id                                           as warnid,
+	    tmp.warn_name                                         as warnname,
+	    coalesce(tmp.warn_one_line, 0) * 100000000            as warnoneline,
+	    coalesce(tmp.warn_two_line, 0) * 100000000            as warntwoline,
+	    coalesce(tmp.warn_three_line, 0) * 100000000          as warnthreeline,
+	    coalesce(tmp.warn_four_line, 0) * 100000000           as warnfourline,
+	   	coalesce(tmp.warn_five_line, 0) * 100000000           as warnfiveline,
+	   	coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) as realityamount
+	</sql>
+	<sql id="select_with_common">
+		with operLineTmp as (
+			select pld.comb_code as combcode
+			from tb_oper_line ol
+			join tb_prod_line pl on (ol.line_id = pl.line_id)
+			join tb_prod_line_details pld on (pl.line_id = pld.line_id)
+			where ol.oper_code = #{operCode}
+			  and ol.status = '1'
+			  and pld.status = '1'
+		),
+		warnTmp1 as (
+			<if test="isExistLine == true">
+				select w.*
+				from tb_warn w
+				where w.warn_id = -999
+			</if>
+			<if test="isExistLine == false">
+				select w.*
+				from tb_warn w
+				join tb_comb c on (w.warn_comb = c.comb_code)
+				where w.warn_organ = '${loginOrganCode}'
+				  and w.warn_type = #{warnType}
+				  and c.comb_level = 1
+			</if>
+		),
+		warnTmp2 as (
+			<if test="isExistLine == true">
+				select w.*
+				from tb_warn w
+				join tb_comb c on (w.warn_comb = c.comb_code)
+				join operLineTmp t on (t.combcode = c.comb_code)
+				where w.warn_organ = '${loginOrganCode}'
+				  and w.warn_type = #{warnType}
+				  and c.comb_level = 2
+			</if>
+			<if test="isExistLine == false">
+				select w.*
+				from tb_warn w
+				join tb_comb c on (w.warn_comb = c.comb_code)
+				where w.warn_organ = '${loginOrganCode}'
+				  and w.warn_type = #{warnType}
+				  and c.comb_level = 2
+			</if>
+		),
+		warnTmp3 as (
+			<if test="isExistLine == true">
+				select w.*
+				from tb_warn w
+				join tb_comb c on (w.warn_comb = c.comb_code)
+				join tb_comb_detail cd on (cd.prod_code = c.comb_code)
+				join operLineTmp t on (t.combcode = cd.comb_code)
+				where w.warn_organ = '${loginOrganCode}'
+				  and w.warn_type = #{warnType}
+				  and c.comb_level = 3
+			</if>
+			<if test="isExistLine == false">
+				select w.*
+				from tb_warn w
+				join tb_comb c on (w.warn_comb = c.comb_code)
+				where w.warn_organ = '${loginOrganCode}'
+				  and w.warn_type = #{warnType}
+				  and c.comb_level = 3
+			</if>
+		)
+	</sql>
+
+	<!-- 首页 - 预警线 - 完成率 （总行查询） -->
+	<select id="selectIndexWarnCompleteOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp1 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp1 t
+						 join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+						 join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+						 join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+				where pe.pe_month = #{month}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id                      as warnid,
+					   sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+						 	join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+							left join tb_comb_detail cd on (cd.prod_code = pd.pd_loan_type)
+							join tb_comb c on (c.comb_code = pd.pd_loan_type or c.comb_code =cd.comb_code)
+							join warnTmp1 t on (t.warn_comb = c.comb_code)
+				where p.plan_month = #{month}
+				  	and p.plan_type = #{planType}
+				  	and p.plan_organ = #{loginOrganCode}
+					and p.plan_status = 16
+				group by t.warn_id
+			) B on (B.warnid = tmp.warn_id)
+		union all
+
+		<!-- 二级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp2 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp2 t
+						 join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+						 join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+				where pe.pe_month = #{month}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id                      as warnid,
+					   sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+						 join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+						 join warnTmp2 t on (t.warn_comb = pd.pd_loan_type)
+				where p.plan_month = #{month}
+				  and p.plan_type = #{planType}
+				  and p.plan_organ  = #{loginOrganCode}
+				  and p.plan_status = 16
+				group by t.warn_id
+			) B on (B.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp3 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp3 t
+						 join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+				where pe.pe_month = #{month}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id as warnid,
+					   0         as planamount
+				from warnTmp3 t
+			) B on (B.warnid = tmp.warn_id)
+	</select>
+
+	<!-- 首页 - 预警线 - 完成率 （一分查询） -->
+	<select id="selectIndexWarnCompleteTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp1 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp1 t
+					join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+					join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+					join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+					join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id                      as warnid,
+					   sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+					join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+                    left join tb_comb_detail cd on (cd.prod_code = pd.pd_loan_type)
+                    join tb_comb c on (c.comb_code = pd.pd_loan_type or c.comb_code =cd.comb_code)
+					join warnTmp1 t on (t.warn_comb = c.comb_code)
+				where p.plan_month = #{month}
+				  and p.plan_type = #{planType}
+				  and p.plan_organ = #{loginOrganCode}
+				  and c.comb_level = 1
+				group by t.warn_id
+			) B on (B.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 二级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp2 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp2 t
+					join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+					join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+					join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id                      as warnid,
+					   sum(coalesce(pd.pd_amount, 0)) as planamount
+				from tb_plan p
+					join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+					join warnTmp2 t on (t.warn_comb = pd.pd_loan_type)
+				where p.plan_month = #{month}
+				  and p.plan_type = #{planType}
+				  and p.plan_organ = #{loginOrganCode}
+				group by t.warn_id
+			) B on (B.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp3 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp3 t
+					join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+				    join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+			left join (
+				select t.warn_id as warnid,
+					   0         as planamount
+				from warnTmp3 t
+			) B on (B.warnid = tmp.warn_id)
+	</select>
+
+	<!-- 首页 - 预警线 - 绝对值 （总行查询） -->
+	<select id="selectIndexWarnAbsOne" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp1 tmp
+		left join (
+			select t.warn_id                          as warnid,
+				   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+				   sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp1 t
+				join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+				join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+				join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+			where pe.pe_month = #{month}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 二级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp2 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp2 t
+					join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+					join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+				where pe.pe_month = #{month}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp3 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp3 t
+					join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+				where pe.pe_month = #{month}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+	</select>
+
+	<!-- 首页 - 预警线 - 绝对值 （一分查询） -->
+	<select id="selectIndexWarnAbsTwo" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp1 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp1 t
+					join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+					join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+					join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+				    join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 二级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp2 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp2 t
+					join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+					join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+					join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp3 tmp
+			left join (
+				select t.warn_id                          as warnid,
+					   sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+					   sum(coalesce(pe.pe_expire, 0))     as peexpire
+				from warnTmp3 t
+					join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+					join fd_organ og on (pe.pe_organ = og.thiscode)
+				where pe.pe_month = #{month}
+				  and og.provincecode = #{loginOrganCode}
+				group by t.warn_id
+			) A on (A.warnid = tmp.warn_id)
+	</select>
+
+	<!--首页 - 二级贷种本月净增量（二分查询）-->
+	<select id="selectIndexCombBarInfoThree" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                                           as combcode,
+		c.comb_name                                           	 as combname,
+		coalesce(A.peoccurrence, 0) - coalesce(A.peexpire, 0) 	 as realityamount,
+		coalesce(B.planamount, 0) * 10000                     	 as planamount,
+        coalesce(A.peinprogress, 0)                     	 	 as peinprogress
+		from tb_comb c
+
+		<!-- 实际净增量 -->
+		left join (
+			select c.comb_code                        as combcode,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire,
+			sum(coalesce(pe.pe_inprogress,0))  as peinprogress
+			from tb_comb c
+			join tb_comb_detail cd on (c.comb_code = cd.comb_code)
+			join tb_plan_execute pe on (pe.pe_prod_code = cd.prod_code and pe.pe_month = #{month})
+			where c.comb_level = 2
+			and pe.pe_organ = #{organCode}
+			group by c.comb_code
+		) A on (c.comb_code = A.combcode)
+
+		<!-- 计划净增量 -->
+		left join (
+			select pd.pd_loan_type 	 			  as combcode,
+			sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+			join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			where
+				pd.pd_organ = #{organCode}
+			and p.plan_month = #{month}
+			and p.plan_type = #{planType}
+			and p.plan_organ = #{planOrganCode}
+			and p.plan_status=16
+			group by pd.pd_loan_type
+		) B on (c.comb_code = B.combcode)
+
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+
+	</select>
+	<!--首页 - 二级贷种本月计划完成率 - 计划净增量（二分查询）-->
+	<select id="selectIndexCombBarInfoForPlanThree" resultType="java.util.Map" flushCache="true">
+		select c.comb_code                       as combcode,
+		c.comb_name                       as combname,
+		coalesce(B.planamount, 0) * 10000 as planamount
+		from tb_comb c
+		<!-- 计划净增量 -->
+		left join (
+		select pd.pd_loan_type 	 			  as combcode,
+		sum(coalesce(pd.pd_amount, 0)) as planamount
+		from tb_plan p
+		join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+		where 1=1
+		and	pd.pd_organ = #{organCode}
+		and p.plan_month = #{month}
+		and p.plan_type = #{planType}
+		and p.plan_organ = #{planOrganCode}
+		and p.plan_status=16
+		group by pd.pd_loan_type
+		) B on (c.comb_code = B.combcode)
+		where c.comb_level = 2
+		<include refid="where_exists_line_common"/>
+		order by c.comb_order, c.comb_code
+
+
+	</select>
+	<!--首页 - 二级贷种本月计划完成率 - 实际净增量（二分查询）-->
+	<select id="selectIndexCombBarInfoForRealThree" resultType="java.util.Map" flushCache="true">
+		select A.day                                                 as day,
+		coalesce(B.peoccurrence, 0) - coalesce(B.peexpire, 0) as amount
+		from (
+		select to_char(t.day, 'yyyymmdd') as day
+		from (
+		select generate_series(cast(to_char(current_date, 'yyyy-mm') || '-01' as date), cast(
+		cast(to_char(current_date, 'yyyy-mm') || '-01' as timestamp) + '1 MONTH' +
+		'-1 d' as date), '1 d') as day
+		) as t
+		) as A
+
+		<!-- 实际净增量 -->
+        left join (
+            select rb.rpt_date                    	as rptdate,
+                sum(coalesce(rb.month_occ, 0))   as peoccurrence,
+                sum(coalesce(rb.month_expire, 0)) as peexpire
+            from tb_comb_detail cd
+                join tb_rpt_baseinfo_loankind rb on (rb.loan_kind = cd.prod_code and rb.rpt_date like #{month} || '%')
+                join fd_organ og on (rb.rpt_organ = og.thiscode)
+            where cd.comb_code = #{combcode}
+                and og.thiscode = #{organCode}
+            group by rb.rpt_date
+        ) as B on (A.day = B.rptdate)
+
+		order by A.day
+
+
+	</select>
+
+	<!--首页 - 预警线 - 完成率 （二分查询）-->
+	<select id="selectIndexWarnCompleteThree" resultType="java.util.Map" flushCache="true">
+
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp1 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp1 t
+			join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+			join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+			join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		left join (
+			select t.warn_id                      as warnid,
+			sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+			join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			left join tb_comb_detail cd on (cd.prod_code = pd.pd_loan_type)
+			join tb_comb c on (c.comb_code = pd.pd_loan_type or c.comb_code =cd.comb_code)
+			join warnTmp1 t on (t.warn_comb = c.comb_code)
+			where p.plan_month = #{month}
+			and p.plan_type = #{planType}
+			and pd.pd_organ = #{loginOrganCode}
+			and p.plan_organ = #{planOrganCode}
+			and c.comb_level = 1
+			group by t.warn_id
+		) B on (B.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 二级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp2 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp2 t
+			join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+			join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		left join (
+			select t.warn_id                      as warnid,
+			sum(coalesce(pd.pd_amount, 0)) as planamount
+			from tb_plan p
+			join tb_plan_detail pd on (p.plan_id = pd.pd_ref_id)
+			join warnTmp2 t on (t.warn_comb = pd.pd_loan_type)
+			where p.plan_month = #{month}
+			and pd.pd_organ = #{loginOrganCode}
+			and p.plan_organ = #{planOrganCode}
+			and p.plan_type = #{planType}
+			group by t.warn_id
+		) B on (B.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种计划净增量、实际净增量 -->
+		select <include refid="select_complete_common"/>
+		from warnTmp3 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp3 t
+			join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		left join (
+		select t.warn_id as warnid,
+		0         as planamount
+		from warnTmp3 t
+		) B on (B.warnid = tmp.warn_id)
+
+	</select>
+
+	<!--首页 - 预警线 - 绝对值 （二分查询）-->
+	<select id="selectIndexWarnAbsThree" resultType="java.util.Map" flushCache="true">
+		<!-- 一、二、三级贷种预警分类 -->
+		<include refid="select_with_common"/>
+
+		<!-- 一级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp1 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp1 t
+			join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+			join tb_comb_detail cd2 on (cd2.comb_code = cd1.prod_code)
+			join tb_plan_execute pe on (pe.pe_prod_code = cd2.prod_code)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 二级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp2 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp2 t
+			join tb_comb_detail cd1 on (t.warn_comb = cd1.comb_code)
+			join tb_plan_execute pe on (pe.pe_prod_code = cd1.prod_code)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+		union all
+
+		<!-- 三级贷种 实际净增量 -->
+		select <include refid="select_abs_common"/>
+		from warnTmp3 tmp
+		left join (
+			select t.warn_id                          as warnid,
+			sum(coalesce(pe.pe_occurrence, 0)) as peoccurrence,
+			sum(coalesce(pe.pe_expire, 0))     as peexpire
+			from warnTmp3 t
+			join tb_plan_execute pe on (pe.pe_prod_code = t.warn_comb)
+			join fd_organ og on (pe.pe_organ = og.thiscode)
+			where pe.pe_month = #{month}
+			and og.thiscode = #{loginOrganCode}
+			group by t.warn_id
+		) A on (A.warnid = tmp.warn_id)
+
+	</select>
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

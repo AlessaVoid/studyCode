@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 额度分配表 -->
+<mapper namespace="com.boco.SYS.mapper.TbQuotaAllocateMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbQuotaAllocate">
+		<id column="pa_id" property="paId"/>
+		<result column="pa_month" property="paMonth"/>
+		<result column="pa_organ" property="paOrgan"/>
+		<result column="pa_prod_code" property="paProdCode"/>
+		<result column="pa_quota_avail" property="paQuotaAvail"/>
+		<result column="pa_plan" property="paPlan"/>
+		<result column="quota_type" property="quotaType"/>
+		<result column="quota_level" property="quotaLevel"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        pa_id ,pa_month ,pa_organ ,pa_prod_code ,pa_quota_avail ,pa_plan ,quota_type ,quota_level
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbQuotaAllocate">
+		<!--
+                -->
+		INSERT INTO tb_quota_allocate
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="paId != null">
+				pa_id ,
+			</if>
+			<if test="paMonth != null">
+				pa_month ,
+			</if>
+			<if test="paOrgan != null">
+				pa_organ ,
+			</if>
+			<if test="paProdCode != null">
+				pa_prod_code ,
+			</if>
+			<if test="paQuotaAvail != null">
+				pa_quota_avail ,
+			</if>
+			<if test="paPlan != null">
+				pa_plan ,
+			</if>
+			<if test="quotaType != null">
+				quota_type ,
+			</if>
+			<if test="quotaLevel != null">
+				quota_level
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="paId != null">
+				#{paId} ,
+			</if>
+			<if test="paMonth != null">
+				#{paMonth} ,
+			</if>
+			<if test="paOrgan != null">
+				#{paOrgan} ,
+			</if>
+			<if test="paProdCode != null">
+				#{paProdCode} ,
+			</if>
+			<if test="paQuotaAvail != null">
+				#{paQuotaAvail} ,
+			</if>
+			<if test="paPlan != null">
+				#{paPlan} ,
+			</if>
+			<if test="quotaType != null">
+				#{quotaType} ,
+			</if>
+			<if test="quotaLevel != null">
+				#{quotaLevel}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_quota_allocate
+		(pa_id ,pa_month ,pa_organ ,pa_prod_code ,pa_quota_avail ,pa_plan ,quota_type ,quota_level )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.paId,jdbcType=VARCHAR},#{item.paMonth,jdbcType=VARCHAR},#{item.paOrgan,jdbcType=VARCHAR},#{item.paProdCode,jdbcType=VARCHAR},#{item.paQuotaAvail,jdbcType=VARCHAR},#{item.paPlan,jdbcType=VARCHAR},#{item.quotaType,jdbcType=VARCHAR},#{item.quotaLevel,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_quota_allocate
+		<where>
+			pa_id = #{paId}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_quota_allocate
+		<where>
+			pa_id = #{paId}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_quota_allocate
+		WHERE pa_id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_quota_allocate
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbQuotaAllocate">
+		UPDATE tb_quota_allocate
+		<set>
+			<if test="paMonth != null">
+				pa_month = #{paMonth},
+			</if>
+			<if test="paOrgan != null">
+				pa_organ = #{paOrgan},
+			</if>
+			<if test="paProdCode != null">
+				pa_prod_code = #{paProdCode},
+			</if>
+			<if test="paQuotaAvail != null">
+				pa_quota_avail = #{paQuotaAvail},
+			</if>
+			<if test="paPlan != null">
+				pa_plan = #{paPlan},
+			</if>
+			<if test="quotaType != null">
+				quota_type = #{quotaType},
+			</if>
+			<if test="quotaLevel != null">
+				quota_level = #{quotaLevel},
+			</if>
+		</set>
+		<where>
+			pa_id = #{paId}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_quota_allocate
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_quota_allocate
+		<set>
+			<if test="paId != null">
+				pa_id = #{paId},
+			</if>
+			<if test="paMonth != null">
+				pa_month = #{paMonth},
+			</if>
+			<if test="paOrgan != null">
+				pa_organ = #{paOrgan},
+			</if>
+			<if test="paProdCode != null">
+				pa_prod_code = #{paProdCode},
+			</if>
+			<if test="paQuotaAvail != null">
+				pa_quota_avail = #{paQuotaAvail},
+			</if>
+			<if test="paPlan != null">
+				pa_plan = #{paPlan},
+			</if>
+			<if test="quotaType != null">
+				quota_type = #{quotaType},
+			</if>
+			<if test="quotaLevel != null">
+				quota_level = #{quotaLevel},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="paId != null and paId != ''">
+			and pa_id = #{paId}
+		</if>
+		<if test="paMonth != null and paMonth != ''">
+			and pa_month = #{paMonth}
+		</if>
+		<if test="paOrgan != null and paOrgan != ''">
+			and pa_organ = #{paOrgan}
+		</if>
+		<if test="paProdCode != null and paProdCode != ''">
+			and pa_prod_code = #{paProdCode}
+		</if>
+		<if test="paQuotaAvail != null and paQuotaAvail != ''">
+			and pa_quota_avail = #{paQuotaAvail}
+		</if>
+		<if test="paPlan != null and paPlan != ''">
+			and pa_plan = #{paPlan}
+		</if>
+		<if test="quotaType != null and quotaType != ''">
+			and quota_type = #{quotaType}
+		</if>
+		<if test="quotaLevel != null and quotaLevel != ''">
+			and quota_level = #{quotaLevel}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="paId != null and paId != ''">
+			and pa_id like '%' || #{paId} || '%'
+		</if>
+		<if test="paMonth != null and paMonth != ''">
+			and pa_month like '%' || #{paMonth} || '%'
+		</if>
+		<if test="paOrgan != null and paOrgan != ''">
+			and pa_organ like '%' || #{paOrgan} || '%'
+		</if>
+		<if test="paProdCode != null and paProdCode != ''">
+			and pa_prod_code like '%' || #{paProdCode} || '%'
+		</if>
+		<if test="paQuotaAvail != null and paQuotaAvail != ''">
+			and pa_quota_avail like '%' || #{paQuotaAvail} || '%'
+		</if>
+		<if test="paPlan != null and paPlan != ''">
+			and pa_plan like '%' || #{paPlan} || '%'
+		</if>
+		<if test="quotaType != null and quotaType != ''">
+			and quota_type like '%' || #{quotaType} || '%'
+		</if>
+		<if test="quotaLevel != null and quotaLevel != ''">
+			and quota_level like '%' || #{quotaLevel} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_quota_allocate
+		<where>
+			pa_id = #{paId}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbQuotaAllocate" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_quota_allocate
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbQuotaAllocate" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_quota_allocate
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbQuotaAllocate" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_quota_allocate
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_quota_allocate
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbQuotaAllocate" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_quota_allocate
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbQuotaAllocate" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_quota_allocate
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_quota_allocate
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

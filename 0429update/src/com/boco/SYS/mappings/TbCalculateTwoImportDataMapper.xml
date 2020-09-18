@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 测算二  历史数据导入表 -->
+<mapper namespace="com.boco.SYS.mapper.TbCalculateTwoImportDataMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbCalculateTwoImportData">
+       	<id column="id" property="id"/>
+     	<result column="type" property="type"/>
+     	<result column="organcode" property="organcode"/>
+     	<result column="month" property="month"/>
+     	<result column="code1" property="code1"/>
+     	<result column="code2" property="code2"/>
+     	<result column="code3" property="code3"/>
+     	<result column="code4" property="code4"/>
+     	<result column="code5" property="code5"/>
+     	<result column="code6" property="code6"/>
+     	<result column="code7" property="code7"/>
+     	<result column="code8" property="code8"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,type ,organcode ,month ,code1 ,code2 ,code3 ,code4 ,code5 ,code6 ,code7 ,code8 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData">
+<!-- 
+	    -->       
+  INSERT INTO tb_calculate_two_import_data 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="type != null">
+	        	type ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	organcode ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="code1 != null">
+	        	code1 ,
+	       	</if>
+	       	<if test="code2 != null">
+	        	code2 ,
+	       	</if>
+	       	<if test="code3 != null">
+	        	code3 ,
+	       	</if>
+	       	<if test="code4 != null">
+	        	code4 ,
+	       	</if>
+	       	<if test="code5 != null">
+	        	code5 ,
+	       	</if>
+	       	<if test="code6 != null">
+	        	code6 ,
+	       	</if>
+	       	<if test="code7 != null">
+	        	code7 ,
+	       	</if>
+	       	<if test="code8 != null">
+	        	code8 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="type != null">
+	        	#{type} ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	#{organcode} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="code1 != null">
+	        	#{code1} ,
+	       	</if>
+	       	<if test="code2 != null">
+	        	#{code2} ,
+	       	</if>
+	       	<if test="code3 != null">
+	        	#{code3} ,
+	       	</if>
+	       	<if test="code4 != null">
+	        	#{code4} ,
+	       	</if>
+	       	<if test="code5 != null">
+	        	#{code5} ,
+	       	</if>
+	       	<if test="code6 != null">
+	        	#{code6} ,
+	       	</if>
+	       	<if test="code7 != null">
+	        	#{code7} ,
+	       	</if>
+	       	<if test="code8 != null">
+	        	#{code8} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_calculate_two_import_data 
+        (id ,type ,organcode ,month ,code1 ,code2 ,code3 ,code4 ,code5 ,code6 ,code7 ,code8 )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.code1,jdbcType=VARCHAR},#{item.code2,jdbcType=VARCHAR},#{item.code3,jdbcType=VARCHAR},#{item.code4,jdbcType=VARCHAR},#{item.code5,jdbcType=VARCHAR},#{item.code6,jdbcType=VARCHAR},#{item.code7,jdbcType=VARCHAR},#{item.code8,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_two_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_two_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_calculate_two_import_data 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_two_import_data
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData">
+        UPDATE tb_calculate_two_import_data 
+        <set>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="code1 != null">
+       		code1 = #{code1},
+       	</if>
+       	<if test="code2 != null">
+       		code2 = #{code2},
+       	</if>
+       	<if test="code3 != null">
+       		code3 = #{code3},
+       	</if>
+       	<if test="code4 != null">
+       		code4 = #{code4},
+       	</if>
+       	<if test="code5 != null">
+       		code5 = #{code5},
+       	</if>
+       	<if test="code6 != null">
+       		code6 = #{code6},
+       	</if>
+       	<if test="code7 != null">
+       		code7 = #{code7},
+       	</if>
+       	<if test="code8 != null">
+       		code8 = #{code8},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_calculate_two_import_data 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_calculate_two_import_data 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="code1 != null">
+       		code1 = #{code1},
+       	</if>
+       	<if test="code2 != null">
+       		code2 = #{code2},
+       	</if>
+       	<if test="code3 != null">
+       		code3 = #{code3},
+       	</if>
+       	<if test="code4 != null">
+       		code4 = #{code4},
+       	</if>
+       	<if test="code5 != null">
+       		code5 = #{code5},
+       	</if>
+       	<if test="code6 != null">
+       		code6 = #{code6},
+       	</if>
+       	<if test="code7 != null">
+       		code7 = #{code7},
+       	</if>
+       	<if test="code8 != null">
+       		code8 = #{code8},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="type != null and type != ''">
+	 		and type = #{type}
+	 	</if>
+	 	<if test="organcode != null and organcode != ''">
+	 		and organcode = #{organcode}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="code1 != null and code1 != ''">
+	 		and code1 = #{code1}
+	 	</if>
+	 	<if test="code2 != null and code2 != ''">
+	 		and code2 = #{code2}
+	 	</if>
+	 	<if test="code3 != null and code3 != ''">
+	 		and code3 = #{code3}
+	 	</if>
+	 	<if test="code4 != null and code4 != ''">
+	 		and code4 = #{code4}
+	 	</if>
+	 	<if test="code5 != null and code5 != ''">
+	 		and code5 = #{code5}
+	 	</if>
+	 	<if test="code6 != null and code6 != ''">
+	 		and code6 = #{code6}
+	 	</if>
+	 	<if test="code7 != null and code7 != ''">
+	 		and code7 = #{code7}
+	 	</if>
+	 	<if test="code8 != null and code8 != ''">
+	 		and code8 = #{code8}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="type != null and type != ''">
+ 			and type like '%' || #{type} || '%'
+ 		</if>
+ 		<if test="organcode != null and organcode != ''">
+ 			and organcode like '%' || #{organcode} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="code1 != null and code1 != ''">
+ 			and code1 like '%' || #{code1} || '%'
+ 		</if>
+ 		<if test="code2 != null and code2 != ''">
+ 			and code2 like '%' || #{code2} || '%'
+ 		</if>
+ 		<if test="code3 != null and code3 != ''">
+ 			and code3 like '%' || #{code3} || '%'
+ 		</if>
+ 		<if test="code4 != null and code4 != ''">
+ 			and code4 like '%' || #{code4} || '%'
+ 		</if>
+ 		<if test="code5 != null and code5 != ''">
+ 			and code5 like '%' || #{code5} || '%'
+ 		</if>
+ 		<if test="code6 != null and code6 != ''">
+ 			and code6 like '%' || #{code6} || '%'
+ 		</if>
+ 		<if test="code7 != null and code7 != ''">
+ 			and code7 like '%' || #{code7} || '%'
+ 		</if>
+ 		<if test="code8 != null and code8 != ''">
+ 			and code8 like '%' || #{code8} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_calculate_two_import_data 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_calculate_two_import_data
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_calculate_two_import_data 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_two_import_data 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_two_import_data 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_two_import_data 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateTwoImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_two_import_data 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_two_import_data 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+	<!--根据月份和类型删除导入记录-->
+	<delete id="deleteByMonthAndType" parameterType = "java.util.Map">
+		DELETE FROM tb_calculate_two_import_data
+		<where>
+			<if test="type != null ">
+				and type = #{type}
+			</if>
+			<if test="organcode != null and organcode != ''">
+				and organcode = #{organcode}
+			</if>
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+		</where>
+
+	</delete>
+
+
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

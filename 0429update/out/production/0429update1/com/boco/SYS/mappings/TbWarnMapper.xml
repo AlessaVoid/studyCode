@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.TbWarnMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbWarn">
+       	<id column="warn_id" property="warnId"/>
+     	<result column="warn_name" property="warnName"/>
+     	<result column="warn_organ" property="warnOrgan"/>
+     	<result column="warn_comb" property="warnComb"/>
+     	<result column="warn_type" property="warnType"/>
+     	<result column="warn_one_line" property="warnOneLine"/>
+     	<result column="warn_two_line" property="warnTwoLine"/>
+     	<result column="warn_three_line" property="warnThreeLine"/>
+     	<result column="warn_four_line" property="warnFourLine"/>
+     	<result column="warn_five_line" property="warnFiveLine"/>
+     	<result column="warn_create_oper" property="warnCreateOper"/>
+     	<result column="warn_update_oper" property="warnUpdateOper"/>
+     	<result column="warn_create_time" property="warnCreateTime"/>
+     	<result column="warn_update_time" property="warnUpdateTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        warn_id ,warn_name ,warn_organ ,warn_comb ,warn_type ,warn_one_line ,warn_two_line ,warn_three_line ,warn_four_line ,warn_five_line ,warn_create_oper ,warn_update_oper ,warn_create_time ,warn_update_time 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbWarn">
+<!-- 
+	    -->       
+  INSERT INTO tb_warn 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="warnId != null">
+	        	warn_id ,
+	       	</if>
+	       	<if test="warnName != null">
+	        	warn_name ,
+	       	</if>
+	       	<if test="warnOrgan != null">
+	        	warn_organ ,
+	       	</if>
+	       	<if test="warnComb != null">
+	        	warn_comb ,
+	       	</if>
+	       	<if test="warnType != null">
+	        	warn_type ,
+	       	</if>
+	       	<if test="warnOneLine != null">
+	        	warn_one_line ,
+	       	</if>
+	       	<if test="warnTwoLine != null">
+	        	warn_two_line ,
+	       	</if>
+	       	<if test="warnThreeLine != null">
+	        	warn_three_line ,
+	       	</if>
+	       	<if test="warnFourLine != null">
+	        	warn_four_line ,
+	       	</if>
+	       	<if test="warnFiveLine != null">
+	        	warn_five_line ,
+	       	</if>
+	       	<if test="warnCreateOper != null">
+	        	warn_create_oper ,
+	       	</if>
+	       	<if test="warnUpdateOper != null">
+	        	warn_update_oper ,
+	       	</if>
+	       	<if test="warnCreateTime != null">
+	        	warn_create_time ,
+	       	</if>
+	       	<if test="warnUpdateTime != null">
+	        	warn_update_time 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="warnId != null">
+	        	#{warnId} ,
+	       	</if>
+	       	<if test="warnName != null">
+	        	#{warnName} ,
+	       	</if>
+	       	<if test="warnOrgan != null">
+	        	#{warnOrgan} ,
+	       	</if>
+	       	<if test="warnComb != null">
+	        	#{warnComb} ,
+	       	</if>
+	       	<if test="warnType != null">
+	        	#{warnType} ,
+	       	</if>
+	       	<if test="warnOneLine != null">
+	        	#{warnOneLine} ,
+	       	</if>
+	       	<if test="warnTwoLine != null">
+	        	#{warnTwoLine} ,
+	       	</if>
+	       	<if test="warnThreeLine != null">
+	        	#{warnThreeLine} ,
+	       	</if>
+	       	<if test="warnFourLine != null">
+	        	#{warnFourLine} ,
+	       	</if>
+	       	<if test="warnFiveLine != null">
+	        	#{warnFiveLine} ,
+	       	</if>
+	       	<if test="warnCreateOper != null">
+	        	#{warnCreateOper} ,
+	       	</if>
+	       	<if test="warnUpdateOper != null">
+	        	#{warnUpdateOper} ,
+	       	</if>
+	       	<if test="warnCreateTime != null">
+	        	#{warnCreateTime} ,
+	       	</if>
+	       	<if test="warnUpdateTime != null">
+	        	#{warnUpdateTime} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_warn 
+        (warn_name ,warn_organ ,warn_comb ,warn_type ,warn_one_line ,warn_two_line ,warn_three_line ,warn_four_line ,warn_five_line ,warn_create_oper ,warn_update_oper ,warn_create_time ,warn_update_time )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.warnName,jdbcType=VARCHAR},#{item.warnOrgan,jdbcType=VARCHAR},#{item.warnComb,jdbcType=VARCHAR},#{item.warnType,jdbcType=VARCHAR},#{item.warnOneLine,jdbcType=VARCHAR},#{item.warnTwoLine,jdbcType=VARCHAR},#{item.warnThreeLine,jdbcType=VARCHAR},#{item.warnFourLine,jdbcType=VARCHAR},#{item.warnFiveLine,jdbcType=VARCHAR},#{item.warnCreateOper,jdbcType=VARCHAR},#{item.warnUpdateOper,jdbcType=VARCHAR},#{item.warnCreateTime,jdbcType=VARCHAR},#{item.warnUpdateTime,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_warn 
+        <where>
+        	warn_id = #{warnId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_warn 
+        <where>
+        	warn_id = #{warnId} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_warn 
+        WHERE warn_id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_warn
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbWarn">
+        UPDATE tb_warn 
+        <set>
+       	<if test="warnName != null">
+       		warn_name = #{warnName},
+       	</if>
+       	<if test="warnOrgan != null">
+       		warn_organ = #{warnOrgan},
+       	</if>
+       	<if test="warnComb != null">
+       		warn_comb = #{warnComb},
+       	</if>
+       	<if test="warnType != null">
+       		warn_type = #{warnType},
+       	</if>
+       	<if test="warnOneLine != null">
+       		warn_one_line = #{warnOneLine},
+       	</if>
+       	<if test="warnTwoLine != null">
+       		warn_two_line = #{warnTwoLine},
+       	</if>
+       	<if test="warnThreeLine != null">
+       		warn_three_line = #{warnThreeLine},
+       	</if>
+       	<if test="warnFourLine != null">
+       		warn_four_line = #{warnFourLine},
+       	</if>
+       	<if test="warnFiveLine != null">
+       		warn_five_line = #{warnFiveLine},
+       	</if>
+       	<if test="warnCreateOper != null">
+       		warn_create_oper = #{warnCreateOper},
+       	</if>
+       	<if test="warnUpdateOper != null">
+       		warn_update_oper = #{warnUpdateOper},
+       	</if>
+       	<if test="warnCreateTime != null">
+       		warn_create_time = #{warnCreateTime},
+       	</if>
+       	<if test="warnUpdateTime != null">
+       		warn_update_time = #{warnUpdateTime},
+       	</if>
+        </set>
+        <where>
+        	warn_id = #{warnId} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_warn 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_warn 
+        <set>
+       	<if test="warnId != null">
+       		warn_id = #{warnId},
+       	</if>
+       	<if test="warnName != null">
+       		warn_name = #{warnName},
+       	</if>
+       	<if test="warnOrgan != null">
+       		warn_organ = #{warnOrgan},
+       	</if>
+       	<if test="warnComb != null">
+       		warn_comb = #{warnComb},
+       	</if>
+       	<if test="warnType != null">
+       		warn_type = #{warnType},
+       	</if>
+       	<if test="warnOneLine != null">
+       		warn_one_line = #{warnOneLine},
+       	</if>
+       	<if test="warnTwoLine != null">
+       		warn_two_line = #{warnTwoLine},
+       	</if>
+       	<if test="warnThreeLine != null">
+       		warn_three_line = #{warnThreeLine},
+       	</if>
+       	<if test="warnFourLine != null">
+       		warn_four_line = #{warnFourLine},
+       	</if>
+       	<if test="warnFiveLine != null">
+       		warn_five_line = #{warnFiveLine},
+       	</if>
+       	<if test="warnCreateOper != null">
+       		warn_create_oper = #{warnCreateOper},
+       	</if>
+       	<if test="warnUpdateOper != null">
+       		warn_update_oper = #{warnUpdateOper},
+       	</if>
+       	<if test="warnCreateTime != null">
+       		warn_create_time = #{warnCreateTime},
+       	</if>
+       	<if test="warnUpdateTime != null">
+       		warn_update_time = #{warnUpdateTime},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="warnId != null and warnId != ''">
+	 		and warn_id = #{warnId}
+	 	</if>
+	 	<if test="warnName != null and warnName != ''">
+	 		and warn_name = #{warnName}
+	 	</if>
+	 	<if test="warnOrgan != null">
+	 		and warn_organ = #{warnOrgan}
+	 	</if>
+	 	<if test="warnComb != null and warnComb != ''">
+	 		and warn_comb = #{warnComb}
+	 	</if>
+	 	<if test="warnType != null">
+	 		and warn_type = #{warnType}
+	 	</if>
+	 	<if test="warnOneLine != null and warnOneLine != ''">
+	 		and warn_one_line = #{warnOneLine}
+	 	</if>
+	 	<if test="warnTwoLine != null and warnTwoLine != ''">
+	 		and warn_two_line = #{warnTwoLine}
+	 	</if>
+	 	<if test="warnThreeLine != null and warnThreeLine != ''">
+	 		and warn_three_line = #{warnThreeLine}
+	 	</if>
+	 	<if test="warnFourLine != null and warnFourLine != ''">
+	 		and warn_four_line = #{warnFourLine}
+	 	</if>
+	 	<if test="warnFiveLine != null and warnFiveLine != ''">
+	 		and warn_five_line = #{warnFiveLine}
+	 	</if>
+	 	<if test="warnCreateOper != null and warnCreateOper != ''">
+	 		and warn_create_oper = #{warnCreateOper}
+	 	</if>
+	 	<if test="warnUpdateOper != null and warnUpdateOper != ''">
+	 		and warn_update_oper = #{warnUpdateOper}
+	 	</if>
+	 	<if test="warnCreateTime != null and warnCreateTime != ''">
+	 		and warn_create_time = #{warnCreateTime}
+	 	</if>
+	 	<if test="warnUpdateTime != null and warnUpdateTime != ''">
+	 		and warn_update_time = #{warnUpdateTime}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="warnId != null and warnId != ''">
+ 			and cast(warn_id as VARCHAR) like '%' || #{warnId} || '%'
+ 		</if>
+ 		<if test="warnName != null and warnName != ''">
+ 			and warn_name like '%' || #{warnName} || '%'
+ 		</if>
+ 		<if test="warnOrgan != null and warnOrgan != ''">
+			and warn_organ = #{warnOrgan}
+ 		</if>
+ 		<if test="warnComb != null and warnComb != ''">
+ 			and warn_comb like '%' || #{warnComb} || '%'
+ 		</if>
+ 		<if test="warnType != null and warnType != ''">
+ 			and warn_type like '%' || #{warnType} || '%'
+ 		</if>
+ 		<if test="warnOneLine != null and warnOneLine != ''">
+ 			and warn_one_line like '%' || #{warnOneLine} || '%'
+ 		</if>
+ 		<if test="warnTwoLine != null and warnTwoLine != ''">
+ 			and warn_two_line like '%' || #{warnTwoLine} || '%'
+ 		</if>
+ 		<if test="warnThreeLine != null and warnThreeLine != ''">
+ 			and warn_three_line like '%' || #{warnThreeLine} || '%'
+ 		</if>
+ 		<if test="warnFourLine != null and warnFourLine != ''">
+ 			and warn_four_line like '%' || #{warnFourLine} || '%'
+ 		</if>
+ 		<if test="warnFiveLine != null and warnFiveLine != ''">
+ 			and warn_five_line like '%' || #{warnFiveLine} || '%'
+ 		</if>
+ 		<if test="warnCreateOper != null and warnCreateOper != ''">
+ 			and warn_create_oper like '%' || #{warnCreateOper} || '%'
+ 		</if>
+ 		<if test="warnUpdateOper != null and warnUpdateOper != ''">
+ 			and warn_update_oper like '%' || #{warnUpdateOper} || '%'
+ 		</if>
+ 		<if test="warnCreateTime != null and warnCreateTime != ''">
+ 			and warn_create_time like '%' || #{warnCreateTime} || '%'
+ 		</if>
+ 		<if test="warnUpdateTime != null and warnUpdateTime != ''">
+ 			and warn_update_time like '%' || #{warnUpdateTime} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_warn 
+        <where> 
+        	warn_id = #{warnId} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbWarn" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_warn
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbWarn" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_warn
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		order by warn_update_time
+
+	</select>
+
+	<!-- 查询该机构下该贷种组合是否已有预警线 -->
+	<select id="selectDistinctTbwarn" parameterType="com.boco.SYS.entity.TbWarn" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_warn
+		<where>
+			<if test="warnId != null and warnId != ''">
+				and warn_id != #{warnId}
+			</if>
+			<if test="warnName != null and warnName != ''">
+				and warn_name = #{warnName}
+			</if>
+			<if test="warnOrgan != null">
+				and warn_organ = #{warnOrgan}
+			</if>
+			<if test="warnComb != null and warnComb != ''">
+				and warn_comb = #{warnComb}
+			</if>
+			<if test="warnType != null">
+				and warn_type = #{warnType}
+			</if>
+			<if test="warnOneLine != null and warnOneLine != ''">
+				and warn_one_line = #{warnOneLine}
+			</if>
+			<if test="warnTwoLine != null and warnTwoLine != ''">
+				and warn_two_line = #{warnTwoLine}
+			</if>
+			<if test="warnThreeLine != null and warnThreeLine != ''">
+				and warn_three_line = #{warnThreeLine}
+			</if>
+			<if test="warnFourLine != null and warnFourLine != ''">
+				and warn_four_line = #{warnFourLine}
+			</if>
+			<if test="warnFiveLine != null and warnFiveLine != ''">
+				and warn_five_line = #{warnFiveLine}
+			</if>
+			<if test="warnCreateOper != null and warnCreateOper != ''">
+				and warn_create_oper = #{warnCreateOper}
+			</if>
+			<if test="warnUpdateOper != null and warnUpdateOper != ''">
+				and warn_update_oper = #{warnUpdateOper}
+			</if>
+			<if test="warnCreateTime != null and warnCreateTime != ''">
+				and warn_create_time = #{warnCreateTime}
+			</if>
+			<if test="warnUpdateTime != null and warnUpdateTime != ''">
+				and warn_update_time = #{warnUpdateTime}
+			</if>
+		</where>
+		order by warn_update_time
+
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbWarn" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_warn
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_warn 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbWarn" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_warn 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbWarn" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_warn 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_warn 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+
+
+	<!-- 联想输入预警线参数id -->
+	<select id="selectWarnId" parameterType="com.boco.SYS.entity.TbWarn" resultType="java.util.HashMap" flushCache="true">
+	    SELECT WARN_ID FROM TB_WARN
+	   WHERE  cast(WARN_ID as varchar(4) )  like '%' || #{warnId} || '%'
+	   	   and WARN_ORGAN = #{warnOrgan}
+    </select>
+	<!-- 联想输入预警线参数名称 -->
+	<select id="selectWarnName" parameterType="com.boco.SYS.entity.TbWarn" resultType="java.util.HashMap" flushCache="true">
+	    SELECT WARN_NAME FROM TB_WARN
+	   WHERE WARN_NAME like '%' || #{warnName} || '%'
+	      and warn_organ = #{warnOrgan}
+    </select>
+
+	<select id="selectWarnNameByOrgan" parameterType="com.boco.SYS.entity.TbWarn" resultType="java.util.HashMap" flushCache="true">
+	    SELECT WARN_NAME FROM TB_WARN
+	   WHERE WARN_NAME like '%' || #{warnName} || '%'
+	   and WARN_ORGAN = #{warnOrgan}
+    </select>
+	<!-- 联想输入预警线所属机构 -->
+	<select id="selectWarnOrgan" parameterType="java.util.Map" resultType="java.util.List" flushCache="true">
+	    SELECT WARN_ORGAN FROM TB_WARN
+	   WHERE WARN_ORGAN = #{warnOrgan}
+    </select>
+<!--根据下拉框选项筛选机构-->
+	<select id="selectWarnOrgan1" parameterType="java.util.HashMap" resultType="java.util.List" flushCache="true">
+	    SELECT WARN_ORGAN FROM TB_WARN
+	   WHERE WARN_ORGAN = #{warnOrgan}
+    </select>
+
+
+
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

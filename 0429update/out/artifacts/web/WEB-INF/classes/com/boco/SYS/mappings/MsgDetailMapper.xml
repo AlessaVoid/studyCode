@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 短信详情表 -->
+<mapper namespace="com.boco.SYS.mapper.MsgDetailMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.MsgDetail">
+       	<id column="id" property="id"/>
+     	<result column="phone_number" property="phoneNumber"/>
+     	<result column="name" property="name"/>
+     	<result column="send_message" property="sendMessage"/>
+     	<result column="return_message" property="returnMessage"/>
+     	<result column="send_date" property="sendDate"/>
+     	<result column="status" property="status"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,phone_number ,name ,send_message ,return_message ,send_date ,status 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.MsgDetail">
+<!-- 
+	    -->       
+  INSERT INTO msg_detail 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="phoneNumber != null">
+	        	phone_number ,
+	       	</if>
+	       	<if test="name != null">
+	        	name ,
+	       	</if>
+	       	<if test="sendMessage != null">
+	        	send_message ,
+	       	</if>
+	       	<if test="returnMessage != null">
+	        	return_message ,
+	       	</if>
+	       	<if test="sendDate != null">
+	        	send_date ,
+	       	</if>
+	       	<if test="status != null">
+	        	status 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="phoneNumber != null">
+	        	#{phoneNumber} ,
+	       	</if>
+	       	<if test="name != null">
+	        	#{name} ,
+	       	</if>
+	       	<if test="sendMessage != null">
+	        	#{sendMessage} ,
+	       	</if>
+	       	<if test="returnMessage != null">
+	        	#{returnMessage} ,
+	       	</if>
+	       	<if test="sendDate != null">
+	        	#{sendDate} ,
+	       	</if>
+	       	<if test="status != null">
+	        	#{status} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO msg_detail 
+        (id ,phone_number ,name ,send_message ,return_message ,send_date ,status )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.phoneNumber,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},#{item.sendMessage,jdbcType=VARCHAR},#{item.returnMessage,jdbcType=VARCHAR},#{item.sendDate,jdbcType=VARCHAR},#{item.status,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM msg_detail 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM msg_detail 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM msg_detail 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM msg_detail
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.MsgDetail">
+        UPDATE msg_detail 
+        <set>
+       	<if test="phoneNumber != null">
+       		phone_number = #{phoneNumber},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="sendMessage != null">
+       		send_message = #{sendMessage},
+       	</if>
+       	<if test="returnMessage != null">
+       		return_message = #{returnMessage},
+       	</if>
+       	<if test="sendDate != null">
+       		send_date = #{sendDate},
+       	</if>
+       	<if test="status != null">
+       		status = #{status},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE msg_detail 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE msg_detail 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="phoneNumber != null">
+       		phone_number = #{phoneNumber},
+       	</if>
+       	<if test="name != null">
+       		name = #{name},
+       	</if>
+       	<if test="sendMessage != null">
+       		send_message = #{sendMessage},
+       	</if>
+       	<if test="returnMessage != null">
+       		return_message = #{returnMessage},
+       	</if>
+       	<if test="sendDate != null">
+       		send_date = #{sendDate},
+       	</if>
+       	<if test="status != null">
+       		status = #{status},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="phoneNumber != null and phoneNumber != ''">
+	 		and phone_number = #{phoneNumber}
+	 	</if>
+	 	<if test="name != null and name != ''">
+	 		and name = #{name}
+	 	</if>
+	 	<if test="sendMessage != null and sendMessage != ''">
+	 		and send_message = #{sendMessage}
+	 	</if>
+	 	<if test="returnMessage != null and returnMessage != ''">
+	 		and return_message = #{returnMessage}
+	 	</if>
+	 	<if test="sendDate != null and sendDate != ''">
+	 		and send_date = #{sendDate}
+	 	</if>
+	 	<if test="status != null and status != ''">
+	 		and status = #{status}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="phoneNumber != null and phoneNumber != ''">
+ 			and phone_number like '%' || #{phoneNumber} || '%'
+ 		</if>
+ 		<if test="name != null and name != ''">
+ 			and name like '%' || #{name} || '%'
+ 		</if>
+ 		<if test="sendMessage != null and sendMessage != ''">
+ 			and send_message like '%' || #{sendMessage} || '%'
+ 		</if>
+ 		<if test="returnMessage != null and returnMessage != ''">
+ 			and return_message like '%' || #{returnMessage} || '%'
+ 		</if>
+ 		<if test="sendDate != null and sendDate != ''">
+ 			and send_date like '%' || #{sendDate} || '%'
+ 		</if>
+ 		<if test="status != null and status != ''">
+ 			and status like '%' || #{status} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM msg_detail 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.MsgDetail" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM msg_detail
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.MsgDetail" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM msg_detail 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.MsgDetail" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM msg_detail 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM msg_detail 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.MsgDetail" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_detail 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.MsgDetail" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_detail 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from msg_detail 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<select id="selectSendShortMsg" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM msg_detail
+		where
+			send_date &lt;= #{date}
+			and status = '2'
+
+	</select>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

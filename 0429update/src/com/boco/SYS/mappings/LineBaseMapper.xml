@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.LineProductMapper">
+    <resultMap id="base_line_product_map" type="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO">
+        <id column="LINE_ID" property="lineId"/>
+        <result column="LINE_NAME" property="lineName"/>
+        <result column="LINE_DESCRIPTION" property="lineDescription"/>
+        <result column="LINE_VERSION" property="lineVersion"/>
+        <result column="LINE_STATUS" property="lineStatus"/>
+        <result column="LINE_CREATOR" property="lineCreator"/>
+        <result column="CREATE_TIME" property="createTime" javaType="java.time.LocalDateTime"/>
+        <result column="LINE_UPDATER" property="lineUpdater"/>
+        <result column="UPDATE_TIME" property="updateTime" javaType="java.time.LocalDateTime"/>
+        <result column="ORGAN_CODE" property="organCode"/>
+    </resultMap>
+    <!--插入一条条线信息-->
+    <insert id="insertProductLine" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO">
+        insert into tb_prod_line(line_id, line_name, line_description, line_version, line_status, line_creator,
+                                 create_time, line_updater, update_time, organ_code)
+        values (#{lineId}, #{lineName}, #{lineDescription}, #{lineVersion}, #{lineStatus}, #{lineCreator},
+                #{createTime}, #{lineUpdater}, #{updateTime}, #{organCode})
+    </insert>
+
+    <!--获取所有的产品信息,用于展示列表条数-->
+    <select id="getAllProductLineInfo" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO"
+            resultMap="base_line_product_map" flushCache="true">
+        select *
+        from tb_prod_line
+        <where>
+            <if test="lineId!=null and lineId!=''">
+                and line_id=#{lineId}
+            </if>
+            <if test="lineName!=null and lineName!=''">
+                and line_name=#{lineName}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <!--查询所有可以赋权条线-->
+    <select id="getProductLineByLineId" parameterType="java.lang.String" resultMap="base_line_product_map"
+            flushCache="true">
+        select *
+        from tb_prod_line
+        where line_id = #{_param}
+    </select>
+    <!--通过名称获取产品条线-->
+    <select id="getProductLineByName" parameterType="java.lang.String" flushCache="true">
+        select *
+        from tb_prod_line
+        where line_name = #{_param}
+    </select>
+
+    <!--查询所有死亡的条线-->
+    <select id="getAllDeadProductLineInfo" resultMap="base_line_product_map" flushCache="true">
+        select *
+        from tb_prod_line
+        where line_status = -1
+    </select>
+
+    <!--查询所有可组合的产品-->
+    <select id="getAllAliveProductLineInfo" resultMap="base_line_product_map" flushCache="true">
+        select *
+        from tb_prod_line
+        where line_status = 0
+        ORDER BY create_time DESC
+    </select>
+    <!--查询本机构下的所有有效条线-->
+    <select id="getAllAliveProductLineInfoByOrganCode" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO"
+            resultMap="base_line_product_map" flushCache="true">
+        select *
+        from tb_prod_line
+        where
+        line_status = 0
+        and
+        organ_code = #{organCode}
+        <if test="lineId!=null and lineId!=''">
+            and line_id like '%' || #{lineId} || '%'
+        </if>
+        <if test="lineName!=null and lineName!=''">
+            and line_name like '%' || #{lineName} || '%'
+        </if>
+        ORDER BY create_time DESC ,order_no ASC
+    </select>
+
+    <!--查询本机构下的所有有效条线-->
+    <select id="getAllAliveProductLineInfoByOrganCode3" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO"
+            resultType="java.lang.String" flushCache="true">
+        select line_name
+        from tb_prod_line
+        where
+        line_status = 0
+        and organ_code = #{organCode}
+        and line_name like '%' || #{lineName} || '%'
+        ORDER BY create_time DESC ,order_no ASC
+    </select>
+
+    <!--更新条线的状态-->
+    <update id="updateProductLineInfo" parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineInfoDO">
+        update tb_prod_line
+        set line_name=#{lineName},
+            line_version=#{lineVersion},
+            line_description=#{lineDescription},
+            line_status=#{lineStatus},
+            line_updater=#{lineUpdater},
+            update_time=#{updateTime}
+        where line_id = #{lineId}
+    </update>
+
+    <!--删除一条产品条线相关信息-->
+    <delete id="deleteProductLineInfo" parameterType="java.lang.String">
+        delete from  tb_prod_line
+        where line_id = #{_param}
+    </delete>
+    <!--获取已选中的产品条线-->
+    <select id="getSelectedProductLineInfo" parameterType="java.lang.String" resultMap="base_line_product_map"
+            flushCache="true">
+        select *
+        from tb_prod_line
+        where prod_code = #{_param}
+        ORDER BY create_time DESC
+    </select>
+
+    <!--获取产品通过lineId-->
+    <select id="getProductLineInfoByLineId" parameterType="java.lang.String" resultMap="base_line_product_map"
+            flushCache="true">
+        select *
+        from tb_prod_line
+        where line_id = #{_param}
+    </select>
+    <!--选择贷种名称-->
+    <select id="selectLineName" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select line_name
+        from tb_prod_line
+        where line_name like '%' || #{lineName} || '%'
+    </select>
+    <!--选择贷种名称-->
+    <select id="selectLineNameByOrgan" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select line_name
+        from tb_prod_line
+        where line_name like '%' || #{_param1} || '%'
+        and organ_code = #{_param2}
+    </select>
+    <!--选择贷种编码-->
+    <select id="selectLineCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select line_id
+        from tb_prod_line
+        where line_id like '%' || #{lineId} || '%'
+    </select>
+    <select id="countLineListSize" resultType="java.lang.Integer" flushCache="true">
+        select count(*)
+        from tb_prod_line
+    </select>
+</mapper>

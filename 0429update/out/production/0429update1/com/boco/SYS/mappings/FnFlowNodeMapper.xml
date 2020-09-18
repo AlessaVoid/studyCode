@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 预警线表 -->
+<mapper namespace="com.boco.SYS.mapper.FnFlowNodeMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <resultMap id="flow_node_map" type="com.boco.TONY.biz.flownode.POJO.DO.ProcessFlowNodeDO">
+        <id column="fn_id" property="fnId"/>
+        <result column="fn_code" property="fnCode"/>
+        <result column="fn_name" property="fnName"/>
+        <result column="fn_kind" property="fnKind"/>
+        <result column="fn_count" property="fnCount"/>
+        <result column="fn_create_oper" property="fnCreateOper"/>
+        <result column="fn_create_time" property="fnCreateTime" javaType="java.time.LocalDateTime"/>
+        <result column="fn_update_oper" property="fnUpdateOper"/>
+        <result column="fn_update_time" property="fnUpdateTime" javaType="java.time.LocalDateTime"/>
+
+    </resultMap>
+    <!-- 获取所有的流程节点信息 -->
+    <select id="getAllSequenceNode" resultMap="flow_node_map" flushCache="true">
+        SELECT *
+        FROM tb_flow_node
+    </select>
+    <select id="getSequenceNodeByFnCode" parameterType="java.lang.String" resultMap="flow_node_map" flushCache="true">
+        select *
+        from tb_flow_node
+        where fn_code = #{_param}
+    </select>
+    <!--更新流程节点-->
+    <update id="updateFlowNodeByFnCode" parameterType="com.boco.TONY.biz.flownode.POJO.DO.ProcessFlowNodeDO">
+        update tb_flow_node
+        set fn_count=#{fnCount},
+            fn_update_time=#{fnUpdateTime},
+            fn_update_oper=#{fnUpdateOper}
+        where fn_code = #{fnCode}
+    </update>
+
+    <select id="getProcessFlowNodeCountByFnCode" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select fn_count
+        from tb_flow_node
+        where fn_code = #{fnCode};
+    </select>
+
+</mapper>

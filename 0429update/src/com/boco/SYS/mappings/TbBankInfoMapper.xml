@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.TbBankInfoMapper">
+
+    <select id="selectBankList" resultType="java.util.Map" flushCache="true">
+        select id, name, code from tb_bank_info
+    </select>
+
+    <select id="selectCodeByName" parameterType="String" resultType="String" flushCache="true">
+        select code from tb_bank_info where name = #{_name}
+    </select>
+</mapper>

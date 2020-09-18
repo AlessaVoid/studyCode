@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- ActRuTask -->
+<mapper namespace="com.boco.SYS.mapper.ActRuTaskMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.ActRuTask">
+       	<id column="ID_" property="id"/>
+     	<result column="REV_" property="rev"/>
+     	<result column="EXECUTION_ID_" property="executionId"/>
+     	<result column="PROC_INST_ID_" property="procInstId"/>
+     	<result column="PROC_DEF_ID_" property="procDefId"/>
+     	<result column="NAME_" property="name"/>
+     	<result column="PARENT_TASK_ID_" property="parentTaskId"/>
+     	<result column="DESCRIPTION_" property="description"/>
+     	<result column="TASK_DEF_KEY_" property="taskDefKey"/>
+     	<result column="OWNER_" property="owner"/>
+     	<result column="ASSIGNEE_" property="assignee"/>
+     	<result column="DELEGATION_" property="delegation"/>
+     	<result column="PRIORITY_" property="priority"/>
+     	<result column="CREATE_TIME_" property="createTime"/>
+     	<result column="DUE_DATE_" property="dueDate"/>
+     	<result column="CATEGORY_" property="category"/>
+     	<result column="SUSPENSION_STATE_" property="suspensionState"/>
+     	<result column="TENANT_ID_" property="tenantId"/>
+     	<result column="FORM_KEY_" property="formKey"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        ID_ ,REV_ ,EXECUTION_ID_ ,PROC_INST_ID_ ,PROC_DEF_ID_ ,NAME_ ,PARENT_TASK_ID_ ,DESCRIPTION_ ,TASK_DEF_KEY_ ,OWNER_ ,ASSIGNEE_ ,DELEGATION_ ,PRIORITY_ ,CREATE_TIME_ ,DUE_DATE_ ,CATEGORY_ ,SUSPENSION_STATE_ ,TENANT_ID_ ,FORM_KEY_ 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.ActRuTask">
+        INSERT INTO ACT_RU_TASK 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	ID_ ,
+	       	</if>
+	       	<if test="rev != null">
+	        	REV_ ,
+	       	</if>
+	       	<if test="executionId != null">
+	        	EXECUTION_ID_ ,
+	       	</if>
+	       	<if test="procInstId != null">
+	        	PROC_INST_ID_ ,
+	       	</if>
+	       	<if test="procDefId != null">
+	        	PROC_DEF_ID_ ,
+	       	</if>
+	       	<if test="name != null">
+	        	NAME_ ,
+	       	</if>
+	       	<if test="parentTaskId != null">
+	        	PARENT_TASK_ID_ ,
+	       	</if>
+	       	<if test="description != null">
+	        	DESCRIPTION_ ,
+	       	</if>
+	       	<if test="taskDefKey != null">
+	        	TASK_DEF_KEY_ ,
+	       	</if>
+	       	<if test="owner != null">
+	        	OWNER_ ,
+	       	</if>
+	       	<if test="assignee != null">
+	        	ASSIGNEE_ ,
+	       	</if>
+	       	<if test="delegation != null">
+	        	DELEGATION_ ,
+	       	</if>
+	       	<if test="priority != null">
+	        	PRIORITY_ ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	CREATE_TIME_ ,
+	       	</if>
+	       	<if test="dueDate != null">
+	        	DUE_DATE_ ,
+	       	</if>
+	       	<if test="category != null">
+	        	CATEGORY_ ,
+	       	</if>
+	       	<if test="suspensionState != null">
+	        	SUSPENSION_STATE_ ,
+	       	</if>
+	       	<if test="tenantId != null">
+	        	TENANT_ID_ ,
+	       	</if>
+	       	<if test="formKey != null">
+	        	FORM_KEY_ ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="rev != null">
+	        	#{rev} ,
+	       	</if>
+	       	<if test="executionId != null">
+	        	#{executionId} ,
+	       	</if>
+	       	<if test="procInstId != null">
+	        	#{procInstId} ,
+	       	</if>
+	       	<if test="procDefId != null">
+	        	#{procDefId} ,
+	       	</if>
+	       	<if test="name != null">
+	        	#{name} ,
+	       	</if>
+	       	<if test="parentTaskId != null">
+	        	#{parentTaskId} ,
+	       	</if>
+	       	<if test="description != null">
+	        	#{description} ,
+	       	</if>
+	       	<if test="taskDefKey != null">
+	        	#{taskDefKey} ,
+	       	</if>
+	       	<if test="owner != null">
+	        	#{owner} ,
+	       	</if>
+	       	<if test="assignee != null">
+	        	#{assignee} ,
+	       	</if>
+	       	<if test="delegation != null">
+	        	#{delegation} ,
+	       	</if>
+	       	<if test="priority != null">
+	        	#{priority} ,
+	       	</if>
+	       	<if test="createTime != null">
+	        	#{createTime} ,
+	       	</if>
+	       	<if test="dueDate != null">
+	        	#{dueDate} ,
+	       	</if>
+	       	<if test="category != null">
+	        	#{category} ,
+	       	</if>
+	       	<if test="suspensionState != null">
+	        	#{suspensionState} ,
+	       	</if>
+	       	<if test="tenantId != null">
+	        	#{tenantId} ,
+	       	</if>
+	       	<if test="formKey != null">
+	        	#{formKey} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO ACT_RU_TASK 
+        (ID_ ,REV_ ,EXECUTION_ID_ ,PROC_INST_ID_ ,PROC_DEF_ID_ ,NAME_ ,PARENT_TASK_ID_ ,DESCRIPTION_ ,TASK_DEF_KEY_ ,OWNER_ ,ASSIGNEE_ ,DELEGATION_ ,PRIORITY_ ,CREATE_TIME_ ,DUE_DATE_ ,CATEGORY_ ,SUSPENSION_STATE_ ,TENANT_ID_ ,FORM_KEY_ ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id} ,#{item.rev} ,#{item.executionId} ,#{item.procInstId} ,#{item.procDefId} ,#{item.name} ,#{item.parentTaskId} ,#{item.description} ,#{item.taskDefKey} ,#{item.owner} ,#{item.assignee} ,#{item.delegation} ,#{item.priority} ,#{item.createTime} ,#{item.dueDate} ,#{item.category} ,#{item.suspensionState} ,#{item.tenantId} ,#{item.formKey} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM ACT_RU_TASK 
+        <where>
+        	ID_ = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM ACT_RU_TASK 
+        <where>
+        	ID_ = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM ACT_RU_TASK 
+        WHERE ID_ IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM ACT_RU_TASK
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.ActRuTask">
+        UPDATE ACT_RU_TASK 
+        <set>
+       	<if test="rev != null">
+       		REV_ = #{rev},
+       	</if>
+       	<if test="executionId != null">
+       		EXECUTION_ID_ = #{executionId},
+       	</if>
+       	<if test="procInstId != null">
+       		PROC_INST_ID_ = #{procInstId},
+       	</if>
+       	<if test="procDefId != null">
+       		PROC_DEF_ID_ = #{procDefId},
+       	</if>
+       	<if test="name != null">
+       		NAME_ = #{name},
+       	</if>
+       	<if test="parentTaskId != null">
+       		PARENT_TASK_ID_ = #{parentTaskId},
+       	</if>
+       	<if test="description != null">
+       		DESCRIPTION_ = #{description},
+       	</if>
+       	<if test="taskDefKey != null">
+       		TASK_DEF_KEY_ = #{taskDefKey},
+       	</if>
+       	<if test="owner != null">
+       		OWNER_ = #{owner},
+       	</if>
+       	<if test="assignee != null">
+       		ASSIGNEE_ = #{assignee},
+       	</if>
+       	<if test="delegation != null">
+       		DELEGATION_ = #{delegation},
+       	</if>
+       	<if test="priority != null">
+       		PRIORITY_ = #{priority},
+       	</if>
+       	<if test="createTime != null">
+       		CREATE_TIME_ = #{createTime},
+       	</if>
+       	<if test="dueDate != null">
+       		DUE_DATE_ = #{dueDate},
+       	</if>
+       	<if test="category != null">
+       		CATEGORY_ = #{category},
+       	</if>
+       	<if test="suspensionState != null">
+       		SUSPENSION_STATE_ = #{suspensionState},
+       	</if>
+       	<if test="tenantId != null">
+       		TENANT_ID_ = #{tenantId},
+       	</if>
+       	<if test="formKey != null">
+       		FORM_KEY_ = #{formKey},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	ID_ = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE ACT_RU_TASK 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE ACT_RU_TASK 
+        <set>
+       	<if test="id != null">
+       		ID_ = #{id},
+       	</if>
+       	<if test="rev != null">
+       		REV_ = #{rev},
+       	</if>
+       	<if test="executionId != null">
+       		EXECUTION_ID_ = #{executionId},
+       	</if>
+       	<if test="procInstId != null">
+       		PROC_INST_ID_ = #{procInstId},
+       	</if>
+       	<if test="procDefId != null">
+       		PROC_DEF_ID_ = #{procDefId},
+       	</if>
+       	<if test="name != null">
+       		NAME_ = #{name},
+       	</if>
+       	<if test="parentTaskId != null">
+       		PARENT_TASK_ID_ = #{parentTaskId},
+       	</if>
+       	<if test="description != null">
+       		DESCRIPTION_ = #{description},
+       	</if>
+       	<if test="taskDefKey != null">
+       		TASK_DEF_KEY_ = #{taskDefKey},
+       	</if>
+       	<if test="owner != null">
+       		OWNER_ = #{owner},
+       	</if>
+       	<if test="assignee != null">
+       		ASSIGNEE_ = #{assignee},
+       	</if>
+       	<if test="delegation != null">
+       		DELEGATION_ = #{delegation},
+       	</if>
+       	<if test="priority != null">
+       		PRIORITY_ = #{priority},
+       	</if>
+       	<if test="createTime != null">
+       		CREATE_TIME_ = #{createTime},
+       	</if>
+       	<if test="dueDate != null">
+       		DUE_DATE_ = #{dueDate},
+       	</if>
+       	<if test="category != null">
+       		CATEGORY_ = #{category},
+       	</if>
+       	<if test="suspensionState != null">
+       		SUSPENSION_STATE_ = #{suspensionState},
+       	</if>
+       	<if test="tenantId != null">
+       		TENANT_ID_ = #{tenantId},
+       	</if>
+       	<if test="formKey != null">
+       		FORM_KEY_ = #{formKey},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and ID_ = #{id}
+	 	</if>
+	 	<if test="rev != null and rev != ''">
+	 		and REV_ = #{rev}
+	 	</if>
+	 	<if test="executionId != null and executionId != ''">
+	 		and EXECUTION_ID_ = #{executionId}
+	 	</if>
+	 	<if test="procInstId != null and procInstId != ''">
+	 		and PROC_INST_ID_ = #{procInstId}
+	 	</if>
+	 	<if test="procDefId != null and procDefId != ''">
+	 		and PROC_DEF_ID_ = #{procDefId}
+	 	</if>
+	 	<if test="name != null and name != ''">
+	 		and NAME_ = #{name}
+	 	</if>
+	 	<if test="parentTaskId != null and parentTaskId != ''">
+	 		and PARENT_TASK_ID_ = #{parentTaskId}
+	 	</if>
+	 	<if test="description != null and description != ''">
+	 		and DESCRIPTION_ = #{description}
+	 	</if>
+	 	<if test="taskDefKey != null and taskDefKey != ''">
+	 		and TASK_DEF_KEY_ = #{taskDefKey}
+	 	</if>
+	 	<if test="owner != null and owner != ''">
+	 		and OWNER_ = #{owner}
+	 	</if>
+	 	<if test="assignee != null and assignee != ''">
+	 		and ASSIGNEE_ = #{assignee}
+	 	</if>
+	 	<if test="delegation != null and delegation != ''">
+	 		and DELEGATION_ = #{delegation}
+	 	</if>
+	 	<if test="priority != null and priority != ''">
+	 		and PRIORITY_ = #{priority}
+	 	</if>
+	 	<if test="createTime != null and createTime != ''">
+	 		and CREATE_TIME_ = #{createTime}
+	 	</if>
+	 	<if test="dueDate != null and dueDate != ''">
+	 		and DUE_DATE_ = #{dueDate}
+	 	</if>
+	 	<if test="category != null and category != ''">
+	 		and CATEGORY_ = #{category}
+	 	</if>
+	 	<if test="suspensionState != null and suspensionState != ''">
+	 		and SUSPENSION_STATE_ = #{suspensionState}
+	 	</if>
+	 	<if test="tenantId != null and tenantId != ''">
+	 		and TENANT_ID_ = #{tenantId}
+	 	</if>
+	 	<if test="formKey != null and formKey != ''">
+	 		and FORM_KEY_ = #{formKey}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and ID_ like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="rev != null and rev != ''">
+ 			and REV_ like '%' || #{rev} || '%'
+ 		</if>
+ 		<if test="executionId != null and executionId != ''">
+ 			and EXECUTION_ID_ like '%' || #{executionId} || '%'
+ 		</if>
+ 		<if test="procInstId != null and procInstId != ''">
+ 			and PROC_INST_ID_ like '%' || #{procInstId} || '%'
+ 		</if>
+ 		<if test="procDefId != null and procDefId != ''">
+ 			and PROC_DEF_ID_ like '%' || #{procDefId} || '%'
+ 		</if>
+ 		<if test="name != null and name != ''">
+ 			and NAME_ like '%' || #{name} || '%'
+ 		</if>
+ 		<if test="parentTaskId != null and parentTaskId != ''">
+ 			and PARENT_TASK_ID_ like '%' || #{parentTaskId} || '%'
+ 		</if>
+ 		<if test="description != null and description != ''">
+ 			and DESCRIPTION_ like '%' || #{description} || '%'
+ 		</if>
+ 		<if test="taskDefKey != null and taskDefKey != ''">
+ 			and TASK_DEF_KEY_ like '%' || #{taskDefKey} || '%'
+ 		</if>
+ 		<if test="owner != null and owner != ''">
+ 			and OWNER_ like '%' || #{owner} || '%'
+ 		</if>
+ 		<if test="assignee != null and assignee != ''">
+ 			and ASSIGNEE_ like '%' || #{assignee} || '%'
+ 		</if>
+ 		<if test="delegation != null and delegation != ''">
+ 			and DELEGATION_ like '%' || #{delegation} || '%'
+ 		</if>
+ 		<if test="priority != null and priority != ''">
+ 			and PRIORITY_ like '%' || #{priority} || '%'
+ 		</if>
+ 		<if test="createTime != null and createTime != ''">
+ 			and CREATE_TIME_ like '%' || #{createTime} || '%'
+ 		</if>
+ 		<if test="dueDate != null and dueDate != ''">
+ 			and DUE_DATE_ like '%' || #{dueDate} || '%'
+ 		</if>
+ 		<if test="category != null and category != ''">
+ 			and CATEGORY_ like '%' || #{category} || '%'
+ 		</if>
+ 		<if test="suspensionState != null and suspensionState != ''">
+ 			and SUSPENSION_STATE_ like '%' || #{suspensionState} || '%'
+ 		</if>
+ 		<if test="tenantId != null and tenantId != ''">
+ 			and TENANT_ID_ like '%' || #{tenantId} || '%'
+ 		</if>
+ 		<if test="formKey != null and formKey != ''">
+ 			and FORM_KEY_ like '%' || #{formKey} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM ACT_RU_TASK 
+        <where> 
+        	ID_ = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.ActRuTask" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM ACT_RU_TASK
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.ActRuTask" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM ACT_RU_TASK 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.ActRuTask" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM ACT_RU_TASK 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM ACT_RU_TASK 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.ActRuTask" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from ACT_RU_TASK 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.ActRuTask" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from ACT_RU_TASK 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from ACT_RU_TASK 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	 <!-- 产品设计审批：某个柜员，某个阶段，要审批的信息列表 -->
+    <select id="getActRuTaskDesign" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM ACT_RU_TASK task,web_design_app_info app
+        <where> 
+        	app.workflow_code = task.proc_inst_id_
+        	<if test="appStatus != null and appStatus != ''">
+		   		AND app.app_status = #{appStatus}
+		    </if>
+        	<include refid="where_like"></include>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+    <!-- 档期安排审批：某个柜员，某个阶段，要审批的信息列表 -->
+    <select id="getActRuTaskSchedule" parameterType="java.util.HashMap" resultType="java.util.HashMap" flushCache="true">
+	    SELECT SCHEDULE_CODE,SCHEDULE_DESC,LATEST_MODIFY_DATE,<include refid="base_column_list"/>
+        FROM ACT_RU_TASK task,web_schedule_app_info app
+        <where> 
+        	app.workflow_code = task.proc_inst_id_
+        	<if test="appStatus != null and appStatus != ''">
+		   		AND app.app_status = #{appStatus}
+		    </if>
+        	<include refid="where_like"></include>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

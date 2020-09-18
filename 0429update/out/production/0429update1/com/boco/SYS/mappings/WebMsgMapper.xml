@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 消息列表||消息列表 -->
+<mapper namespace="com.boco.SYS.mapper.WebMsgMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebMsg">
+       	<id column="MSG_NO" property="msgNo"/>
+     	<result column="WEB_TRADE_CODE" property="webTradeCode"/>
+     	<result column="OPER_DESCRIBE" property="operDescribe"/>
+     	<result column="MSG_TYPE" property="msgType"/>
+     	<result column="OPER_NO" property="operNo"/>
+     	<result column="OPER_NAME" property="operName"/>
+     	<result column="MSG_URL" property="msgUrl"/>
+     	<result column="APP_USER" property="appUser"/>
+     	<result column="APP_DATE" property="appDate"/>
+     	<result column="APP_TIME" property="appTime"/>
+     	<result column="APP_OPER_NAME" property="appOperName"/>
+     	<result column="APP_ROLE_NAME" property="appRoleName"/>
+     	<result column="APP_ORGAN_CODE" property="appOrganCode"/>
+     	<result column="APP_ORGAN_NAME" property="appOrganName"/>
+     	<result column="APP_REMARK" property="appRemark"/>
+     	<result column="REP_USER_CODE" property="repUserCode"/>
+     	<result column="REP_USER_NAME" property="repUserName"/>
+     	<result column="REP_ROLE_NAME" property="repRoleName"/>
+     	<result column="REP_USER_ORGAN_CODE" property="repUserOrganCode"/>
+     	<result column="REP_USER_ORGAN_NAME" property="repUserOrganName"/>
+     	<result column="REP_DATE" property="repDate"/>
+     	<result column="REP_TIME" property="repTime"/>
+     	<result column="REP_REMARK" property="repRemark"/>
+     	<result column="WEB_MSG_STATUS" property="webMsgStatus"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        MSG_NO ,WEB_TRADE_CODE ,OPER_DESCRIBE ,MSG_TYPE ,OPER_NO ,OPER_NAME ,MSG_URL ,APP_USER ,APP_DATE ,APP_TIME ,APP_OPER_NAME ,APP_ROLE_NAME ,APP_ORGAN_CODE ,APP_ORGAN_NAME ,APP_REMARK ,REP_USER_CODE ,REP_USER_NAME ,REP_ROLE_NAME ,REP_USER_ORGAN_CODE ,REP_USER_ORGAN_NAME ,REP_DATE ,REP_TIME ,REP_REMARK ,WEB_MSG_STATUS 
+	    ]]>
+	</sql>
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebMsg">
+<!-- 
+	    -->       
+  INSERT INTO WEB_MSG 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="msgNo != null">
+	        	MSG_NO ,
+	       	</if>
+	       	<if test="webTradeCode != null">
+	        	WEB_TRADE_CODE ,
+	       	</if>
+	       	<if test="operDescribe != null">
+	        	OPER_DESCRIBE ,
+	       	</if>
+	       	<if test="msgType != null">
+	        	MSG_TYPE ,
+	       	</if>
+	       	<if test="operNo != null">
+	        	OPER_NO ,
+	       	</if>
+	       	<if test="operName != null">
+	        	OPER_NAME ,
+	       	</if>
+	       	<if test="msgUrl != null">
+	        	MSG_URL ,
+	       	</if>
+	       	<if test="appUser != null">
+	        	APP_USER ,
+	       	</if>
+	       	<if test="appDate != null">
+	        	APP_DATE ,
+	       	</if>
+	       	<if test="appTime != null">
+	        	APP_TIME ,
+	       	</if>
+	       	<if test="appOperName != null">
+	        	APP_OPER_NAME ,
+	       	</if>
+	       	<if test="appRoleName != null">
+	        	APP_ROLE_NAME ,
+	       	</if>
+	       	<if test="appOrganCode != null">
+	        	APP_ORGAN_CODE ,
+	       	</if>
+	       	<if test="appOrganName != null">
+	        	APP_ORGAN_NAME ,
+	       	</if>
+	       	<if test="appRemark != null">
+	        	APP_REMARK ,
+	       	</if>
+	       	<if test="repUserCode != null">
+	        	REP_USER_CODE ,
+	       	</if>
+	       	<if test="repUserName != null">
+	        	REP_USER_NAME ,
+	       	</if>
+	       	<if test="repRoleName != null">
+	        	REP_ROLE_NAME ,
+	       	</if>
+	       	<if test="repUserOrganCode != null">
+	        	REP_USER_ORGAN_CODE ,
+	       	</if>
+	       	<if test="repUserOrganName != null">
+	        	REP_USER_ORGAN_NAME ,
+	       	</if>
+	       	<if test="repDate != null">
+	        	REP_DATE ,
+	       	</if>
+	       	<if test="repTime != null">
+	        	REP_TIME ,
+	       	</if>
+	       	<if test="repRemark != null">
+	        	REP_REMARK ,
+	       	</if>
+	       	<if test="webMsgStatus != null">
+	        	WEB_MSG_STATUS ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="msgNo != null">
+	        	#{msgNo} ,
+	       	</if>
+	       	<if test="webTradeCode != null">
+	        	#{webTradeCode} ,
+	       	</if>
+	       	<if test="operDescribe != null">
+	        	#{operDescribe} ,
+	       	</if>
+	       	<if test="msgType != null">
+	        	#{msgType} ,
+	       	</if>
+	       	<if test="operNo != null">
+	        	#{operNo} ,
+	       	</if>
+	       	<if test="operName != null">
+	        	#{operName} ,
+	       	</if>
+	       	<if test="msgUrl != null">
+	        	#{msgUrl} ,
+	       	</if>
+	       	<if test="appUser != null">
+	        	#{appUser} ,
+	       	</if>
+	       	<if test="appDate != null">
+	        	#{appDate} ,
+	       	</if>
+	       	<if test="appTime != null">
+	        	#{appTime} ,
+	       	</if>
+	       	<if test="appOperName != null">
+	        	#{appOperName} ,
+	       	</if>
+	       	<if test="appRoleName != null">
+	        	#{appRoleName} ,
+	       	</if>
+	       	<if test="appOrganCode != null">
+	        	#{appOrganCode} ,
+	       	</if>
+	       	<if test="appOrganName != null">
+	        	#{appOrganName} ,
+	       	</if>
+	       	<if test="appRemark != null">
+	        	#{appRemark} ,
+	       	</if>
+	       	<if test="repUserCode != null">
+	        	#{repUserCode} ,
+	       	</if>
+	       	<if test="repUserName != null">
+	        	#{repUserName} ,
+	       	</if>
+	       	<if test="repRoleName != null">
+	        	#{repRoleName} ,
+	       	</if>
+	       	<if test="repUserOrganCode != null">
+	        	#{repUserOrganCode} ,
+	       	</if>
+	       	<if test="repUserOrganName != null">
+	        	#{repUserOrganName} ,
+	       	</if>
+	       	<if test="repDate != null">
+	        	#{repDate} ,
+	       	</if>
+	       	<if test="repTime != null">
+	        	#{repTime} ,
+	       	</if>
+	       	<if test="repRemark != null">
+	        	#{repRemark} ,
+	       	</if>
+	       	<if test="webMsgStatus != null">
+	        	#{webMsgStatus} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_MSG 
+        <where>
+        	MSG_NO = #{msgNo} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_MSG 
+        <where>
+        	MSG_NO = #{msgNo} 
+		</where>
+    </delete>
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebMsg">
+        UPDATE WEB_MSG 
+        <set>
+       	<if test="webTradeCode != null">
+       		WEB_TRADE_CODE = #{webTradeCode},
+       	</if>
+       	<if test="operDescribe != null">
+       		OPER_DESCRIBE = #{operDescribe},
+       	</if>
+       	<if test="msgType != null">
+       		MSG_TYPE = #{msgType},
+       	</if>
+       	<if test="operNo != null">
+       		OPER_NO = #{operNo},
+       	</if>
+       	<if test="operName != null">
+       		OPER_NAME = #{operName},
+       	</if>
+       	<if test="msgUrl != null">
+       		MSG_URL = #{msgUrl},
+       	</if>
+       	<if test="appUser != null">
+       		APP_USER = #{appUser},
+       	</if>
+       	<if test="appDate != null">
+       		APP_DATE = #{appDate},
+       	</if>
+       	<if test="appTime != null">
+       		APP_TIME = #{appTime},
+       	</if>
+       	<if test="appOperName != null">
+       		APP_OPER_NAME = #{appOperName},
+       	</if>
+       	<if test="appRoleName != null">
+       		APP_ROLE_NAME = #{appRoleName},
+       	</if>
+       	<if test="appOrganCode != null">
+       		APP_ORGAN_CODE = #{appOrganCode},
+       	</if>
+       	<if test="appOrganName != null">
+       		APP_ORGAN_NAME = #{appOrganName},
+       	</if>
+       	<if test="appRemark != null">
+       		APP_REMARK = #{appRemark},
+       	</if>
+       	<if test="repUserCode != null">
+       		REP_USER_CODE = #{repUserCode},
+       	</if>
+       	<if test="repUserName != null">
+       		REP_USER_NAME = #{repUserName},
+       	</if>
+       	<if test="repRoleName != null">
+       		REP_ROLE_NAME = #{repRoleName},
+       	</if>
+       	<if test="repUserOrganCode != null">
+       		REP_USER_ORGAN_CODE = #{repUserOrganCode},
+       	</if>
+       	<if test="repUserOrganName != null">
+       		REP_USER_ORGAN_NAME = #{repUserOrganName},
+       	</if>
+       	<if test="repDate != null">
+       		REP_DATE = #{repDate},
+       	</if>
+       	<if test="repTime != null">
+       		REP_TIME = #{repTime},
+       	</if>
+       	<if test="repRemark != null">
+       		REP_REMARK = #{repRemark},
+       	</if>
+       	<if test="webMsgStatus != null">
+       		WEB_MSG_STATUS = #{webMsgStatus},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	MSG_NO = #{msgNo} 
+        </where>
+    </update>
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="msgNo != null and msgNo != ''">
+	 		and MSG_NO = #{msgNo}
+	 	</if>
+	 	<if test="webTradeCode != null and webTradeCode != ''">
+	 		and WEB_TRADE_CODE = #{webTradeCode}
+	 	</if>
+	 	<if test="operDescribe != null and operDescribe != ''">
+	 		and OPER_DESCRIBE = #{operDescribe}
+	 	</if>
+	 	<if test="msgType != null and msgType != ''">
+	 		and MSG_TYPE = #{msgType}
+	 	</if>
+	 	<if test="operNo != null and operNo != ''">
+	 		and OPER_NO = #{operNo}
+	 	</if>
+	 	<if test="operName != null and operName != ''">
+	 		and OPER_NAME = #{operName}
+	 	</if>
+	 	<if test="msgUrl != null and msgUrl != ''">
+	 		and MSG_URL = #{msgUrl}
+	 	</if>
+	 	<if test="appUser != null and appUser != ''">
+	 		and APP_USER = #{appUser}
+	 	</if>
+	 	<if test="appDate != null and appDate != ''">
+	 		and APP_DATE = #{appDate}
+	 	</if>
+	 	<if test="appTime != null and appTime != ''">
+	 		and APP_TIME = #{appTime}
+	 	</if>
+	 	<if test="appOperName != null and appOperName != ''">
+	 		and APP_OPER_NAME = #{appOperName}
+	 	</if>
+	 	<if test="appRoleName != null and appRoleName != ''">
+	 		and APP_ROLE_NAME = #{appRoleName}
+	 	</if>
+	 	<if test="appOrganCode != null and appOrganCode != ''">
+	 		and APP_ORGAN_CODE = #{appOrganCode}
+	 	</if>
+	 	<if test="appOrganName != null and appOrganName != ''">
+	 		and APP_ORGAN_NAME = #{appOrganName}
+	 	</if>
+	 	<if test="appRemark != null and appRemark != ''">
+	 		and APP_REMARK = #{appRemark}
+	 	</if>
+	 	<if test="repUserCode != null and repUserCode != ''">
+	 		and REP_USER_CODE = #{repUserCode}
+	 	</if>
+	 	<if test="repUserName != null and repUserName != ''">
+	 		and REP_USER_NAME = #{repUserName}
+	 	</if>
+	 	<if test="repRoleName != null and repRoleName != ''">
+	 		and REP_ROLE_NAME = #{repRoleName}
+	 	</if>
+	 	<if test="repUserOrganCode != null and repUserOrganCode != ''">
+	 		and REP_USER_ORGAN_CODE = #{repUserOrganCode}
+	 	</if>
+	 	<if test="repUserOrganName != null and repUserOrganName != ''">
+	 		and REP_USER_ORGAN_NAME = #{repUserOrganName}
+	 	</if>
+	 	<if test="repDate != null and repDate != ''">
+	 		and REP_DATE = #{repDate}
+	 	</if>
+	 	<if test="repTime != null and repTime != ''">
+	 		and REP_TIME = #{repTime}
+	 	</if>
+	 	<if test="repRemark != null and repRemark != ''">
+	 		and REP_REMARK = #{repRemark}
+	 	</if>
+	 	<if test="webMsgStatus != null and webMsgStatus != ''">
+	 		and WEB_MSG_STATUS = #{webMsgStatus}
+	 	</if>
+    </sql>
+    
+	<!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_MSG 
+        <where> 
+        	MSG_NO = #{msgNo} 
+        </where>
+    </select>
+    
+   <!--       	mohu
+    <select id="selectBYlIKE" parameterType="com.boco.SYS.entity.WebMsg" resultType=java.lang.Integer" flushCache="true">
+	    SELECT msgType FROM WEB_MSG 
+	   WHERE msgType LIKE '%${msgType}%'
+    </select> -->
+	
+	<!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebMsg" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_MSG 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+<!--	    <if test="sortColumn != null and sortColumn != ''">-->
+<!--    		order by ${sortColumn}-->
+<!--    	</if>-->
+		order by app_date desc,app_time desc
+    </select>
+    
+    <!-- ================================================================ -->
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebMsg" resultType="java.lang.Integer" flushCache="true">
+    	select count(1) from WEB_MSG 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+    <!-- 查询交易操作类型 -->
+    <select id="getMsgType" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+    	select distinct(msg_type) from Web_Msg where REP_USER_CODE=#{opercode} and WEB_MSG_STATUS='1'
+    </select>
+    
+    <!-- 查询每个复核用户的待复核记录数，按复核用户分组 -->
+	<select id="countByRepuser" resultType="java.util.HashMap" flushCache="true">
+		SELECT REP_USER_CODE AS REPUSER,
+			   coalesce(COUNT(1),'0') AS COUNT
+		FROM   WEB_MSG
+		WHERE  WEB_MSG_STATUS='1' 
+			   GROUP BY REP_USER_CODE
+	</select>
+	<!-- 查询交易操作类型，处理详细页面 -->
+	<select id="getMsgTypeUrl" parameterType="com.boco.SYS.entity.WebMsg" resultMap="base_result_map" flushCache="true">
+		select msg_type.OPER_DESCRIBE, msg_type.MSG_URL from (select row_number() over() as r,MSG_URL,OPER_DESCRIBE from Web_Msg  
+								 where  REP_USER_CODE=#{repUserCode} and WEB_MSG_STATUS='1' and MSG_TYPE=#{msgType}
+								 order by APP_TIME desc) as msg_type
+		where msg_type.r between 0 and 5
+	</select>
+	<!-- 查询每个的记录数 -->
+	<select id="getMsgCount" parameterType="com.boco.SYS.entity.WebMsg" resultType="java.lang.String" flushCache="true">
+		select count(1) from Web_Msg where REP_USER_CODE=#{repUserCode} and WEB_MSG_STATUS='1' and MSG_TYPE=#{msgType}
+	</select>
+	<!-- 查询跳转地址 -->
+	<select id="fingUrl" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+		select REPORT_URL from web_report_url where REPORT_CODE=#{msgTypeCode}
+	</select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

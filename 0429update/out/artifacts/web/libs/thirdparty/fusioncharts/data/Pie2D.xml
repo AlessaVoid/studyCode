@@ -1,0 +1,8 @@
+﻿<graph showNames='1'  decimalPrecision='0'>
+   <set name='X小于等于7' value='25' isSliced='1'/>
+   <set name='大于7小于等于30' value='15'/>
+   <set name='大于30小于等于91' value='10'/>
+   <set name='大于91小于等于183' value='20'/>
+   <set name='大于183小于等于365' value='15'/>
+   <set name='大于365' value='15'/>
+</graph>

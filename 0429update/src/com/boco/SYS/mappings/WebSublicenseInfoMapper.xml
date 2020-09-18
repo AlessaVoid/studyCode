@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- WebSublicenseInfo -->
+<mapper namespace="com.boco.SYS.mapper.WebSublicenseInfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebSublicenseInfo">
+       	<id column="ID" property="id"/>
+     	<result column="OUT_OPER" property="outOper"/>
+     	<result column="IN_OPER" property="inOper"/>
+     	<result column="ROLE_CODE" property="roleCode"/>
+     	<result column="OUT_DATE" property="outDate"/>
+     	<result column="OUT_TIME" property="outTime"/>
+     	<result column="IN_DATE" property="inDate"/>
+     	<result column="IN_TIME" property="inTime"/>
+     	<result column="IS_BACK" property="isBack"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        ID ,OUT_OPER ,IN_OPER ,ROLE_CODE ,OUT_DATE ,OUT_TIME ,IN_DATE ,IN_TIME ,IS_BACK 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebSublicenseInfo">
+        INSERT INTO WEB_SUBLICENSE_INFO 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	ID ,
+	       	</if>
+	       	<if test="outOper != null">
+	        	OUT_OPER ,
+	       	</if>
+	       	<if test="inOper != null">
+	        	IN_OPER ,
+	       	</if>
+	       	<if test="roleCode != null">
+	        	ROLE_CODE ,
+	       	</if>
+	       	<if test="outDate != null">
+	        	OUT_DATE ,
+	       	</if>
+	       	<if test="outTime != null">
+	        	OUT_TIME ,
+	       	</if>
+	       	<if test="inDate != null">
+	        	IN_DATE ,
+	       	</if>
+	       	<if test="inTime != null">
+	        	IN_TIME ,
+	       	</if>
+	       	<if test="isBack != null">
+	        	IS_BACK ,
+	       	</if>
+			LAST_MOD_STAMP
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="outOper != null">
+	        	#{outOper} ,
+	       	</if>
+	       	<if test="inOper != null">
+	        	#{inOper} ,
+	       	</if>
+	       	<if test="roleCode != null">
+	        	#{roleCode} ,
+	       	</if>
+	       	<if test="outDate != null">
+	        	#{outDate} ,
+	       	</if>
+	       	<if test="outTime != null">
+	        	#{outTime} ,
+	       	</if>
+	       	<if test="inDate != null">
+	        	#{inDate} ,
+	       	</if>
+	       	<if test="inTime != null">
+	        	#{inTime} ,
+	       	</if>
+	       	<if test="isBack != null">
+	        	#{isBack} ,
+	       	</if>
+			to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_SUBLICENSE_INFO 
+       	(ID ,OUT_OPER ,IN_OPER ,ROLE_CODE ,OUT_DATE ,OUT_TIME ,IN_DATE ,IN_TIME ,IS_BACK ,LAST_MOD_STAMP)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id} ,#{item.outOper} ,#{item.inOper} ,#{item.roleCode} ,#{item.outDate} ,#{item.outTime} ,#{item.inDate} ,#{item.inTime} ,#{item.isBack} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_SUBLICENSE_INFO 
+        <where>
+        	ID = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_SUBLICENSE_INFO 
+        <where>
+        	ID = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_SUBLICENSE_INFO 
+        WHERE ID IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_SUBLICENSE_INFO
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebSublicenseInfo">
+        UPDATE WEB_SUBLICENSE_INFO 
+        <set>
+       	<if test="outOper != null">
+       		OUT_OPER = #{outOper},
+       	</if>
+       	<if test="inOper != null">
+       		IN_OPER = #{inOper},
+       	</if>
+       	<if test="roleCode != null">
+       		ROLE_CODE = #{roleCode},
+       	</if>
+       	<if test="outDate != null">
+       		OUT_DATE = #{outDate},
+       	</if>
+       	<if test="outTime != null">
+       		OUT_TIME = #{outTime},
+       	</if>
+       	<if test="inDate != null">
+       		IN_DATE = #{inDate},
+       	</if>
+       	<if test="inTime != null">
+       		IN_TIME = #{inTime},
+       	</if>
+       	<if test="isBack != null">
+       		IS_BACK = #{isBack},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	ID = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_SUBLICENSE_INFO 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_SUBLICENSE_INFO 
+        <set>
+       	<if test="id != null">
+       		ID = #{id},
+       	</if>
+       	<if test="outOper != null">
+       		OUT_OPER = #{outOper},
+       	</if>
+       	<if test="inOper != null">
+       		IN_OPER = #{inOper},
+       	</if>
+       	<if test="roleCode != null">
+       		ROLE_CODE = #{roleCode},
+       	</if>
+       	<if test="outDate != null">
+       		OUT_DATE = #{outDate},
+       	</if>
+       	<if test="outTime != null">
+       		OUT_TIME = #{outTime},
+       	</if>
+       	<if test="inDate != null">
+       		IN_DATE = #{inDate},
+       	</if>
+       	<if test="inTime != null">
+       		IN_TIME = #{inTime},
+       	</if>
+       	<if test="isBack != null">
+       		IS_BACK = #{isBack},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and ID = #{id}
+	 	</if>
+	 	<if test="outOper != null and outOper != ''">
+	 		and OUT_OPER = #{outOper}
+	 	</if>
+	 	<if test="inOper != null and inOper != ''">
+	 		and IN_OPER = #{inOper}
+	 	</if>
+	 	<if test="roleCode != null and roleCode != ''">
+	 		and ROLE_CODE = #{roleCode}
+	 	</if>
+	 	<if test="outDate != null and outDate != ''">
+	 		and OUT_DATE = #{outDate}
+	 	</if>
+	 	<if test="outTime != null and outTime != ''">
+	 		and OUT_TIME = #{outTime}
+	 	</if>
+	 	<if test="inDate != null and inDate != ''">
+	 		and IN_DATE = #{inDate}
+	 	</if>
+	 	<if test="inTime != null and inTime != ''">
+	 		and IN_TIME = #{inTime}
+	 	</if>
+	 	<if test="isBack != null and isBack != ''">
+	 		and IS_BACK = #{isBack}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and ID like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="outOper != null and outOper != ''">
+ 			and OUT_OPER like '%' || #{outOper} || '%'
+ 		</if>
+ 		<if test="inOper != null and inOper != ''">
+ 			and IN_OPER like '%' || #{inOper} || '%'
+ 		</if>
+ 		<if test="roleCode != null and roleCode != ''">
+ 			and ROLE_CODE like '%' || #{roleCode} || '%'
+ 		</if>
+ 		<if test="outDate != null and outDate != ''">
+ 			and OUT_DATE like '%' || #{outDate} || '%'
+ 		</if>
+ 		<if test="outTime != null and outTime != ''">
+ 			and OUT_TIME like '%' || #{outTime} || '%'
+ 		</if>
+ 		<if test="inDate != null and inDate != ''">
+ 			and IN_DATE like '%' || #{inDate} || '%'
+ 		</if>
+ 		<if test="inTime != null and inTime != ''">
+ 			and IN_TIME like '%' || #{inTime} || '%'
+ 		</if>
+ 		<if test="isBack != null and isBack != ''">
+ 			and IS_BACK like '%' || #{isBack} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_SUBLICENSE_INFO 
+        <where> 
+        	ID = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_SUBLICENSE_INFO
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_SUBLICENSE_INFO 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_SUBLICENSE_INFO 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_SUBLICENSE_INFO 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_SUBLICENSE_INFO 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countOutRole" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_SUBLICENSE_INFO
+    	where OUT_OPER = #{outOper} and IN_OPER != #{inOper} and ROLE_CODE = #{roleCode} and IS_BACK = '2'
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebSublicenseInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_SUBLICENSE_INFO 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_SUBLICENSE_INFO 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 根据转出柜员、转入柜员、角色代码、和收回标识修改一条记录 -->
+    <update id="updateByAttr" parameterType="com.boco.SYS.entity.WebSublicenseInfo">
+        UPDATE WEB_SUBLICENSE_INFO 
+        <set>
+       	<if test="inDate != null">
+       		IN_DATE = #{inDate},
+       	</if>
+       	<if test="inTime != null">
+       		IN_TIME = #{inTime},
+       	</if>
+       	<if test="isBack != null">
+       		IS_BACK = #{isBack},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        where OUT_OPER = #{outOper} and IN_OPER = #{inOper} and ROLE_CODE = #{roleCode} and IS_BACK = '2'
+    </update>
+    <!-- 收回该柜员转出的指定角色 -->
+     <update id="backRoleAll" parameterType="com.boco.SYS.entity.WebSublicenseInfo">
+        UPDATE WEB_SUBLICENSE_INFO 
+        <set>
+       	<if test="inDate != null">
+       		IN_DATE = #{inDate},
+       	</if>
+       	<if test="inTime != null">
+       		IN_TIME = #{inTime},
+       	</if>
+       	<if test="isBack != null">
+       		IS_BACK = #{isBack},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        where OUT_OPER = #{outOper} and ROLE_CODE = #{roleCode} and IS_BACK = '2'
+    </update>
+	<!-- 与角色功能表关联查询授权下拉列表数据 -->
+	<select id="getPowerList"  parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		SELECT DISTINCT B.OPERCODE AS value,B.OPERNAME AS key FROM WEB_ROLE_FUN A,FD_OPER B,WEB_SUBLICENSE_INFO C
+        WHERE A.FUN_CODE= #{funCode}  
+          AND B.ORGANCODE = #{organcode}
+          AND C.IN_OPER = B.OPERCODE
+          AND C.IS_BACK = '2'
+          AND A.ROLE_CODE = C.ROLE_CODE
+	</select>
+	<!--复杂流程：与角色功能表关联查询授权下拉列表数据 -->
+	<select id="getPowerListByRole"  parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		SELECT DISTINCT B.OPERCODE AS value,B.OPERNAME AS key FROM WEB_ROLE_FUN A,FD_OPER B,WEB_SUBLICENSE_INFO C
+        WHERE A.FUN_CODE= #{funCode}
+        AND B.OPERSTATE!='2'  
+       	<if test="organcode != null">
+        	AND B.ORGANCODE = #{organcode}
+       	</if> 
+      	 	<if test="roleCode != null and roleCode != ''">
+				AND C.ROLE_CODE in (
+				<foreach collection="roleCode" item="item" index="index"
+					separator=",">
+					#{item}
+				</foreach>
+				)
+			</if>
+          AND C.IN_OPER = B.OPERCODE
+          AND C.IS_BACK = '2'
+          AND A.ROLE_CODE = C.ROLE_CODE
+	</select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

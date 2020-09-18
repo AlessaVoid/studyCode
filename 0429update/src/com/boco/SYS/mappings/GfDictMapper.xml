@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- GfDict -->
+<mapper namespace="com.boco.SYS.mapper.GfDictMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.GfDict">
+       	<id column="DICT_NO" property="dictNo"/>
+       	<id column="DICT_NAME" property="dictName"/>
+       	<id column="DICT_KEY_IN" property="dictKeyIn"/>
+     	<result column="DICT_VALUE_IN" property="dictValueIn"/>
+     	<result column="DICT_KEY_OUT" property="dictKeyOut"/>
+     	<result column="DICT_VALUE_OUT" property="dictValueOut"/>
+     	<result column="DICT_NO_ORDER" property="dictNoOrder"/>
+     	<result column="DICT_DESC" property="dictDesc"/>
+     	<result column="DICT_STATUS" property="status"/>
+     	<result column="UPDATE_TIME" property="updateTime"/>
+     	<result column="UPDATE_DATE" property="updateDate"/>
+     	<result column="CREATE_OPER" property="createOper"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        DICT_NO ,DICT_NAME ,DICT_KEY_IN ,DICT_VALUE_IN ,DICT_KEY_OUT ,DICT_VALUE_OUT ,DICT_NO_ORDER ,DICT_DESC ,DICT_STATUS ,UPDATE_TIME ,UPDATE_DATE,CREATE_OPER 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.GfDict">
+        INSERT INTO GF_DICT 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="dictNo != null">
+	        	DICT_NO ,
+	       	</if>
+	       	<if test="dictName != null">
+	        	DICT_NAME ,
+	       	</if>
+	       	<if test="dictKeyIn != null">
+	        	DICT_KEY_IN ,
+	       	</if>
+	       	<if test="dictValueIn != null">
+	        	DICT_VALUE_IN ,
+	       	</if>
+	       	<if test="dictKeyOut != null">
+	        	DICT_KEY_OUT ,
+	       	</if>
+	       	<if test="dictValueOut != null">
+	        	DICT_VALUE_OUT ,
+	       	</if>
+	       	<if test="dictNoOrder != null">
+	        	DICT_NO_ORDER ,
+	       	</if>
+	       	<if test="dictDesc != null">
+	        	DICT_DESC ,
+	       	</if>
+	       	<if test="status != null">
+	        	DICT_STATUS ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	UPDATE_TIME ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	UPDATE_DATE ,
+	       	</if>
+	       	<if test="createOper != null">
+	        	CREATE_OPER ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="dictNo != null">
+	        	#{dictNo} ,
+	       	</if>
+	       	<if test="dictName != null">
+	        	#{dictName} ,
+	       	</if>
+	       	<if test="dictKeyIn != null">
+	        	#{dictKeyIn} ,
+	       	</if>
+	       	<if test="dictValueIn != null">
+	        	#{dictValueIn} ,
+	       	</if>
+	       	<if test="dictKeyOut != null">
+	        	#{dictKeyOut} ,
+	       	</if>
+	       	<if test="dictValueOut != null">
+	        	#{dictValueOut} ,
+	       	</if>
+	       	<if test="dictNoOrder != null">
+	        	#{dictNoOrder} ,
+	       	</if>
+	       	<if test="dictDesc != null">
+	        	#{dictDesc} ,
+	       	</if>
+	       	<if test="status != null">
+	        	#{status} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateTime} ,
+	       	</if>
+	       	<if test="updateTime != null">
+	        	#{updateDate} ,
+	       	</if>
+	       	<if test="createOper != null">
+	        	#{createOper} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO GF_DICT 
+        (DICT_NO ,DICT_NAME ,DICT_KEY_IN ,DICT_VALUE_IN ,DICT_KEY_OUT ,DICT_VALUE_OUT ,DICT_NO_ORDER ,DICT_DESC ,DICT_STATUS ,UPDATE_TIME ,UPDATE_DATE ,CREATE_OPER ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.dictNo} ,#{item.dictName} ,#{item.dictKeyIn} ,#{item.dictValueIn} ,#{item.dictKeyOut} ,#{item.dictValueOut} ,#{item.dictNoOrder} ,#{item.dictDesc} ,#{item.status} ,#{item.updateTime} ,#{item.updateDate} ,#{item.createOper} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')  FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM GF_DICT 
+        <where>
+        	DICT_NO = #{dictNo} and
+        	DICT_NAME = #{dictName} and
+        	DICT_KEY_IN = #{dictKeyIn} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM GF_DICT 
+        <where>
+        	DICT_NO = #{dictNo} and
+        	DICT_NAME = #{dictName} and
+        	DICT_KEY_IN = #{dictKeyIn} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM GF_DICT 
+        WHERE DICT_NODICT_NAMEDICT_KEY_IN IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM GF_DICT
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.GfDict">
+        UPDATE GF_DICT 
+        <set>
+       	<if test="dictValueIn != null">
+       		DICT_VALUE_IN = #{dictValueIn},
+       	</if>
+       	<if test="dictKeyOut != null">
+       		DICT_KEY_OUT = #{dictKeyOut},
+       	</if>
+       	<if test="dictValueOut != null">
+       		DICT_VALUE_OUT = #{dictValueOut},
+       	</if>
+       	<if test="dictNoOrder != null">
+       		DICT_NO_ORDER = #{dictNoOrder},
+       	</if>
+       	<if test="dictDesc != null">
+       		DICT_DESC = #{dictDesc},
+       	</if>
+       	<if test="status != null">
+       		DICT_STATUS = #{status},
+       	</if>
+       	<if test="updateTime != null">
+       		UPDATE_TIME = #{updateTime},
+       	</if>
+       	<if test="updateDate != null">
+       		UPDATE_DATE = #{updateDate},
+       	</if>
+       	<if test="createOper != null">
+       		CREATE_OPER = #{createOper},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	DICT_NO = #{dictNo} and
+        	DICT_NAME = #{dictName} and
+        	DICT_KEY_IN = #{dictKeyIn} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE GF_DICT 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE GF_DICT 
+        <set>
+       	<if test="dictNo != null">
+       		DICT_NO = #{dictNo},
+       	</if>
+       	<if test="dictName != null">
+       		DICT_NAME = #{dictName},
+       	</if>
+       	<if test="dictKeyIn != null">
+       		DICT_KEY_IN = #{dictKeyIn},
+       	</if>
+       	<if test="dictValueIn != null">
+       		DICT_VALUE_IN = #{dictValueIn},
+       	</if>
+       	<if test="dictKeyOut != null">
+       		DICT_KEY_OUT = #{dictKeyOut},
+       	</if>
+       	<if test="dictValueOut != null">
+       		DICT_VALUE_OUT = #{dictValueOut},
+       	</if>
+       	<if test="dictNoOrder != null">
+       		DICT_NO_ORDER = #{dictNoOrder},
+       	</if>
+       	<if test="dictDesc != null">
+       		DICT_DESC = #{dictDesc},
+       	</if>
+       	<if test="status != null">
+       		DICT_STATUS = #{status},
+       	</if>
+       	<if test="updateTime != null">
+       		UPDATE_TIME = #{updateTime},
+       	</if>
+       	<if test="updateDate != null">
+       		UPDATE_DATE = #{updateDate},
+       	</if>
+       	<if test="createOper != null">
+       		CREATE_OPER = #{createOper},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="dictNo != null and dictNo != ''">
+	 		and DICT_NO = #{dictNo}
+	 	</if>
+	 	<if test="dictName != null and dictName != ''">
+	 		and DICT_NAME = #{dictName}
+	 	</if>
+	 	<if test="dictKeyIn != null and dictKeyIn != ''">
+	 		and DICT_KEY_IN = #{dictKeyIn}
+	 	</if>
+	 	<if test="dictValueIn != null and dictValueIn != ''">
+	 		and DICT_VALUE_IN = #{dictValueIn}
+	 	</if>
+	 	<if test="dictKeyOut != null and dictKeyOut != ''">
+	 		and DICT_KEY_OUT = #{dictKeyOut}
+	 	</if>
+	 	<if test="dictValueOut != null and dictValueOut != ''">
+	 		and DICT_VALUE_OUT = #{dictValueOut}
+	 	</if>
+	 	<if test="dictNoOrder != null and dictNoOrder != ''">
+	 		and DICT_NO_ORDER = #{dictNoOrder}
+	 	</if>
+	 	<if test="dictDesc != null and dictDesc != ''">
+	 		and DICT_DESC = #{dictDesc}
+	 	</if>
+	 	<if test="status != null and status != ''">
+	 		and DICT_STATUS = #{status}
+	 	</if>
+	 	<if test="updateTime != null and updateTime != ''">
+	 		and UPDATE_TIME = #{updateTime}
+	 	</if>
+	 	<if test="updateDate != null and updateDate != ''">
+	 		and UPDATE_DATE = #{updateDate}
+	 	</if>
+	 	<if test="createOper != null and createOper != ''">
+	 		and CREATE_OPER = #{createOper}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="dictNo != null and dictNo != ''">
+ 			and DICT_NO like '%' || #{dictNo} || '%'
+ 		</if>
+ 		<if test="dictName != null and dictName != ''">
+ 			and DICT_NAME like '%' || #{dictName} || '%'
+ 		</if>
+ 		<if test="dictKeyIn != null and dictKeyIn != ''">
+ 			and DICT_KEY_IN like '%' || #{dictKeyIn} || '%'
+ 		</if>
+ 		<if test="dictValueIn != null and dictValueIn != ''">
+ 			and DICT_VALUE_IN like '%' || #{dictValueIn} || '%'
+ 		</if>
+ 		<if test="dictKeyOut != null and dictKeyOut != ''">
+ 			and DICT_KEY_OUT like '%' || #{dictKeyOut} || '%'
+ 		</if>
+ 		<if test="dictValueOut != null and dictValueOut != ''">
+ 			and DICT_VALUE_OUT like '%' || #{dictValueOut} || '%'
+ 		</if>
+ 		<if test="dictNoOrder != null and dictNoOrder != ''">
+ 			and DICT_NO_ORDER like '%' || #{dictNoOrder} || '%'
+ 		</if>
+ 		<if test="dictDesc != null and dictDesc != ''">
+ 			and DICT_DESC like '%' || #{dictDesc} || '%'
+ 		</if>
+ 		<if test="status != null and status != ''">
+ 			and DICT_STATUS like '%' || #{status} || '%'
+ 		</if>
+ 		<if test="updateTime != null and updateTime != ''">
+ 			and UPDATE_TIME like '%' || #{updateTime} || '%'
+ 		</if>
+ 		<if test="updateDate != null and updateDate != ''">
+ 			and UPDATE_DATE like '%' || #{updateDate} || '%'
+ 		</if>
+ 		<if test="createOper != null and createOper != ''">
+ 			and CREATE_OPER like '%' || #{createOper} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM GF_DICT 
+        <where> 
+        	DICT_NO = #{dictNo} and
+        	DICT_NAME = #{dictName} and
+        	DICT_KEY_IN = #{dictKeyIn} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.GfDict" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM GF_DICT
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.GfDict" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM GF_DICT 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.GfDict" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM GF_DICT 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM GF_DICT 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.GfDict" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_DICT 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.GfDict" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_DICT 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from GF_DICT 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    
+    <!-- 查询标识序号 -->
+    <select id="selectOrder" parameterType="com.boco.SYS.entity.GfDict" resultType="java.lang.Integer" flushCache="true">
+    	SELECT coalesce(MAX(T.DICT_NO_ORDER),'0') as dictNoOrder FROM GF_DICT T
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 联想输入分组英文名 -->
+    <select id="selectDictNo" parameterType="com.boco.SYS.entity.GfDict" resultType="java.util.HashMap" flushCache="true">
+	    SELECT DICT_NO FROM GF_DICT 
+	   WHERE DICT_NO LIKE '%${dictNo}%'
+    </select>
+    
+    <!-- 联想输入分组中文 -->
+    <select id="selectDictName" parameterType="com.boco.SYS.entity.GfDict" resultType="java.util.HashMap" flushCache="true">
+	    SELECT DICT_NAME FROM GF_DICT 
+	   WHERE DICT_NAME LIKE '%${dictName}%'
+    </select>
+    <select id="selectCreateOper" parameterType="com.boco.SYS.entity.GfDict" resultType="java.util.HashMap" flushCache="true">
+	    SELECT CREATE_OPER FROM GF_DICT 
+	   WHERE CREATE_OPER LIKE '%${createOper}%'
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    <!-- 查询交易码 -->
+    <select id="countBy" parameterType="com.boco.SYS.entity.GfDict" resultType="java.lang.Integer" flushCache="true">
+	  select count(*) from gf_Dict where dict_no='D_PROD_CTL_TRADE_CODE_CORP' and  DICT_KEY_IN = #{dictKeyIn}
+    </select>
+    
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 查询交易操作类型码和交易操作类型值 -->
+    <select id="getDictKeyValue"  resultMap="base_result_map" flushCache="true">
+    	select dict_key_in,dict_value_in from gf_dict where dict_no='MSG_TYPE' order by dict_key_in
+    </select>
+		 <!-- 地区表和字典表关联查询列表 -->
+    <select id="selectAreaList" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT a.dict_key_in,a.dict_value_in FROM WEB_AREA_ORGAN_INFO T,gf_dict a where a.dict_no='D_AREA_NAME' and a.dict_status='1' and a.dict_key_in=T.AREA_CODE
+	   <if test="dictKeyIn != null and dictKeyIn != ''">
+	 		and DICT_KEY_IN = #{dictKeyIn}
+	 	</if>
+	 	group by a.dict_key_in,a.dict_value_in order by dict_key_in
+    </select>
+    <!-- 查询产品渠道信息 -->
+     <select id="selectByAreaCodes" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+    	 SELECT <include refid="base_column_list"/> FROM gf_dict 
+        <where>
+ 			dict_key_in IN(
+        	<foreach collection="array" item="item" index="index" separator=",">
+        	#{item}
+        	</foreach>
+        	)
+        </where>
+        </select>
+        <!-- 通过字典类型及字典属性值查询 -->
+       <select id="findByValINKeys" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+    	 SELECT <include refid="base_column_list"/> FROM gf_dict 
+        <where>
+        	dict_no=#{dicNo}
+        	 <if test="valKeys != null and valKeys != ''">
+ 			and dict_key_in IN(
+        	<foreach collection="valKeys" item="item" index="index" separator=",">
+        	#{item}
+        	</foreach>
+        	)
+        	 </if>
+        </where>
+    </select>
+     <select id="selectKeyByNoAndVal" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+    	 SELECT dict_key_in FROM gf_dict 
+        <where>
+        	dict_value_in=#{0}
+        	and dict_no=#{1}
+        </where>
+    </select>
+    
+    
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

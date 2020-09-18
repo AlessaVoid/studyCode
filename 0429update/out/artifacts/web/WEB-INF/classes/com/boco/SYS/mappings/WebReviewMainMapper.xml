@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- WebReviewMain -->
+<mapper namespace="com.boco.SYS.mapper.WebReviewMainMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebReviewMain">
+       	<id column="APP_NO" property="appNo"/>
+     	<result column="WEB_TRADE_CODE" property="tradeCode"/>
+     	<result column="OPER_DESCRIBE" property="operDescribe"/>
+     	<result column="APP_TYPE" property="appType"/>
+     	<result column="OPER_NO" property="operNo"/>
+     	<result column="OPER_NAME" property="operName"/>
+     	<result column="APP_URL" property="appUrl"/>
+     	<result column="REEDIT_URL" property="reeditUrl"/>
+     	<result column="APP_USER" property="appUser"/>
+     	<result column="APP_DATE" property="appDate"/>
+     	<result column="APP_TIME" property="appTime"/>
+     	<result column="APP_OPER_NAME" property="appOperName"/>
+     	<result column="APP_ROLE_NAME" property="appRoleName"/>
+     	<result column="APP_ORGAN_CODE" property="appOrganCode"/>
+     	<result column="APP_ORGAN_NAME" property="appOrganName"/>
+     	<result column="APP_REMARK" property="appRemark"/>
+     	<result column="REP_USER_CODE" property="repUserCode"/>
+     	<result column="REP_USER_NAME" property="repUserName"/>
+     	<result column="REP_ROLE_NAME" property="repRoleName"/>
+     	<result column="REP_USER_ORGAN_CODE" property="repUserOrganCode"/>
+     	<result column="REP_USER_ORGAN_NAME" property="repUserOrganName"/>
+     	<result column="REP_DATE" property="repDate"/>
+     	<result column="REP_TIME" property="repTime"/>
+     	<result column="REP_REMARK" property="repRemark"/>
+     	<result column="REP_STATUS" property="repStatus"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        APP_NO ,WEB_TRADE_CODE ,OPER_DESCRIBE ,APP_TYPE ,OPER_NO ,OPER_NAME ,APP_URL ,REEDIT_URL ,APP_USER ,APP_DATE ,APP_TIME ,APP_OPER_NAME ,APP_ROLE_NAME ,APP_ORGAN_CODE ,APP_ORGAN_NAME ,APP_REMARK ,REP_USER_CODE ,REP_USER_NAME ,REP_ROLE_NAME ,REP_USER_ORGAN_CODE ,REP_USER_ORGAN_NAME ,REP_DATE ,REP_TIME ,REP_REMARK ,REP_STATUS 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebReviewMain">
+        INSERT INTO WEB_REVIEW_MAIN 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="appNo != null">
+	        	APP_NO ,
+	       	</if>
+	       	<if test="tradeCode != null">
+	        	WEB_TRADE_CODE ,
+	       	</if>
+	       	<if test="operDescribe != null">
+	        	OPER_DESCRIBE ,
+	       	</if>
+	       	<if test="appType != null">
+	        	APP_TYPE ,
+	       	</if>
+	       	<if test="operNo != null">
+	        	OPER_NO ,
+	       	</if>
+	       	<if test="operName != null">
+	        	OPER_NAME ,
+	       	</if>
+	       	<if test="appUrl != null">
+	        	APP_URL ,
+	       	</if>
+	       	<if test="reeditUrl != null">
+	        	REEDIT_URL ,
+	       	</if>
+	       	<if test="appUser != null">
+	        	APP_USER ,
+	       	</if>
+	       	<if test="appDate != null">
+	        	APP_DATE ,
+	       	</if>
+	       	<if test="appTime != null">
+	        	APP_TIME ,
+	       	</if>
+	       	<if test="appOperName != null">
+	        	APP_OPER_NAME ,
+	       	</if>
+	       	<if test="appRoleName != null">
+	        	APP_ROLE_NAME ,
+	       	</if>
+	       	<if test="appOrganCode != null">
+	        	APP_ORGAN_CODE ,
+	       	</if>
+	       	<if test="appOrganName != null">
+	        	APP_ORGAN_NAME ,
+	       	</if>
+	       	<if test="appRemark != null">
+	        	APP_REMARK ,
+	       	</if>
+	       	<if test="repUserCode != null">
+	        	REP_USER_CODE ,
+	       	</if>
+	       	<if test="repUserName != null">
+	        	REP_USER_NAME ,
+	       	</if>
+	       	<if test="repRoleName != null">
+	        	REP_ROLE_NAME ,
+	       	</if>
+	       	<if test="repUserOrganCode != null">
+	        	REP_USER_ORGAN_CODE ,
+	       	</if>
+	       	<if test="repUserOrganName != null">
+	        	REP_USER_ORGAN_NAME ,
+	       	</if>
+	       	<if test="repDate != null">
+	        	REP_DATE ,
+	       	</if>
+	       	<if test="repTime != null">
+	        	REP_TIME ,
+	       	</if>
+	       	<if test="repRemark != null">
+	        	REP_REMARK ,
+	       	</if>
+	       	<if test="repStatus != null">
+	        	REP_STATUS ,
+	       	</if>
+			LAST_MOD_STAMP
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="appNo != null">
+	        	#{appNo} ,
+	       	</if>
+	       	<if test="tradeCode != null">
+	        	#{tradeCode} ,
+	       	</if>
+	       	<if test="operDescribe != null">
+	        	#{operDescribe} ,
+	       	</if>
+	       	<if test="appType != null">
+	        	#{appType} ,
+	       	</if>
+	       	<if test="operNo != null">
+	        	#{operNo} ,
+	       	</if>
+	       	<if test="operName != null">
+	        	#{operName} ,
+	       	</if>
+	       	<if test="appUrl != null">
+	        	#{appUrl} ,
+	       	</if>
+	       	<if test="reeditUrl != null">
+	        	#{reeditUrl} ,
+	       	</if>
+	       	<if test="appUser != null">
+	        	#{appUser} ,
+	       	</if>
+	       	<if test="appDate != null">
+	        	#{appDate} ,
+	       	</if>
+	       	<if test="appTime != null">
+	        	#{appTime} ,
+	       	</if>
+	       	<if test="appOperName != null">
+	        	#{appOperName} ,
+	       	</if>
+	       	<if test="appRoleName != null">
+	        	#{appRoleName} ,
+	       	</if>
+	       	<if test="appOrganCode != null">
+	        	#{appOrganCode} ,
+	       	</if>
+	       	<if test="appOrganName != null">
+	        	#{appOrganName} ,
+	       	</if>
+	       	<if test="appRemark != null">
+	        	#{appRemark} ,
+	       	</if>
+	       	<if test="repUserCode != null">
+	        	#{repUserCode} ,
+	       	</if>
+	       	<if test="repUserName != null">
+	        	#{repUserName} ,
+	       	</if>
+	       	<if test="repRoleName != null">
+	        	#{repRoleName} ,
+	       	</if>
+	       	<if test="repUserOrganCode != null">
+	        	#{repUserOrganCode} ,
+	       	</if>
+	       	<if test="repUserOrganName != null">
+	        	#{repUserOrganName} ,
+	       	</if>
+	       	<if test="repDate != null">
+	        	#{repDate} ,
+	       	</if>
+	       	<if test="repTime != null">
+	        	#{repTime} ,
+	       	</if>
+	       	<if test="repRemark != null">
+	        	#{repRemark} ,
+	       	</if>
+	       	<if test="repStatus != null">
+	        	#{repStatus} ,
+	       	</if>
+			to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_REVIEW_MAIN 
+        (APP_NO ,WEB_TRADE_CODE ,OPER_DESCRIBE ,APP_TYPE ,OPER_NO ,OPER_NAME ,APP_URL ,REEDIT_URL ,APP_USER ,APP_DATE ,APP_TIME ,APP_OPER_NAME ,APP_ROLE_NAME ,APP_ORGAN_CODE ,APP_ORGAN_NAME ,APP_REMARK ,REP_USER_CODE ,REP_USER_NAME ,REP_ROLE_NAME ,REP_USER_ORGAN_CODE ,REP_USER_ORGAN_NAME ,REP_DATE ,REP_TIME ,REP_REMARK ,REP_STATUS ,LAST_MOD_STAMP)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.appNo} ,#{item.tradeCode} ,#{item.operDescribe} ,#{item.appType} ,#{item.operNo} ,#{item.operName} ,#{item.appUrl} ,#{item.reeditUrl} ,#{item.appUser} ,#{item.appDate} ,#{item.appTime} ,#{item.appOperName} ,#{item.appRoleName} ,#{item.appOrganCode} ,#{item.appOrganName} ,#{item.appRemark} ,#{item.repUserCode} ,#{item.repUserName} ,#{item.repRoleName} ,#{item.repUserOrganCode} ,#{item.repUserOrganName} ,#{item.repDate} ,#{item.repTime} ,#{item.repRemark} ,#{item.repStatus} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM WEB_REVIEW_MAIN 
+        <where>
+        	APP_NO = #{appNo} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM WEB_REVIEW_MAIN 
+        <where>
+        	APP_NO = #{appNo} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_REVIEW_MAIN 
+        WHERE APP_NO IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_REVIEW_MAIN
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebReviewMain">
+        UPDATE WEB_REVIEW_MAIN 
+        <set>
+       	<if test="tradeCode != null">
+       		WEB_TRADE_CODE = #{tradeCode},
+       	</if>
+       	<if test="operDescribe != null">
+       		OPER_DESCRIBE = #{operDescribe},
+       	</if>
+       	<if test="appType != null">
+       		APP_TYPE = #{appType},
+       	</if>
+       	<if test="operNo != null">
+       		OPER_NO = #{operNo},
+       	</if>
+       	<if test="operName != null">
+       		OPER_NAME = #{operName},
+       	</if>
+       	<if test="appUrl != null">
+       		APP_URL = #{appUrl},
+       	</if>
+       	<if test="reeditUrl != null">
+       		REEDIT_URL = #{reeditUrl},
+       	</if>
+       	<if test="appUser != null">
+       		APP_USER = #{appUser},
+       	</if>
+       	<if test="appDate != null">
+       		APP_DATE = #{appDate},
+       	</if>
+       	<if test="appTime != null">
+       		APP_TIME = #{appTime},
+       	</if>
+       	<if test="appOperName != null">
+       		APP_OPER_NAME = #{appOperName},
+       	</if>
+       	<if test="appRoleName != null">
+       		APP_ROLE_NAME = #{appRoleName},
+       	</if>
+       	<if test="appOrganCode != null">
+       		APP_ORGAN_CODE = #{appOrganCode},
+       	</if>
+       	<if test="appOrganName != null">
+       		APP_ORGAN_NAME = #{appOrganName},
+       	</if>
+       	<if test="appRemark != null">
+       		APP_REMARK = #{appRemark},
+       	</if>
+       	<if test="repUserCode != null">
+       		REP_USER_CODE = #{repUserCode},
+       	</if>
+       	<if test="repUserName != null">
+       		REP_USER_NAME = #{repUserName},
+       	</if>
+       	<if test="repRoleName != null">
+       		REP_ROLE_NAME = #{repRoleName},
+       	</if>
+       	<if test="repUserOrganCode != null">
+       		REP_USER_ORGAN_CODE = #{repUserOrganCode},
+       	</if>
+       	<if test="repUserOrganName != null">
+       		REP_USER_ORGAN_NAME = #{repUserOrganName},
+       	</if>
+       	<if test="repDate != null">
+       		REP_DATE = #{repDate},
+       	</if>
+       	<if test="repTime != null">
+       		REP_TIME = #{repTime},
+       	</if>
+       	<if test="repRemark != null">
+       		REP_REMARK = #{repRemark},
+       	</if>
+       	<if test="repStatus != null">
+       		REP_STATUS = #{repStatus},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	APP_NO = #{appNo} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_REVIEW_MAIN 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_REVIEW_MAIN 
+        <set>
+       	<if test="appNo != null">
+       		APP_NO = #{appNo},
+       	</if>
+       	<if test="tradeCode != null">
+       		WEB_TRADE_CODE = #{tradeCode},
+       	</if>
+       	<if test="operDescribe != null">
+       		OPER_DESCRIBE = #{operDescribe},
+       	</if>
+       	<if test="appType != null">
+       		APP_TYPE = #{appType},
+       	</if>
+       	<if test="operNo != null">
+       		OPER_NO = #{operNo},
+       	</if>
+       	<if test="operName != null">
+       		OPER_NAME = #{operName},
+       	</if>
+       	<if test="appUrl != null">
+       		APP_URL = #{appUrl},
+       	</if>
+       	<if test="reeditUrl != null">
+       		REEDIT_URL = #{reeditUrl},
+       	</if>
+       	<if test="appUser != null">
+       		APP_USER = #{appUser},
+       	</if>
+       	<if test="appDate != null">
+       		APP_DATE = #{appDate},
+       	</if>
+       	<if test="appTime != null">
+       		APP_TIME = #{appTime},
+       	</if>
+       	<if test="appOperName != null">
+       		APP_OPER_NAME = #{appOperName},
+       	</if>
+       	<if test="appRoleName != null">
+       		APP_ROLE_NAME = #{appRoleName},
+       	</if>
+       	<if test="appOrganCode != null">
+       		APP_ORGAN_CODE = #{appOrganCode},
+       	</if>
+       	<if test="appOrganName != null">
+       		APP_ORGAN_NAME = #{appOrganName},
+       	</if>
+       	<if test="appRemark != null">
+       		APP_REMARK = #{appRemark},
+       	</if>
+       	<if test="repUserCode != null">
+       		REP_USER_CODE = #{repUserCode},
+       	</if>
+       	<if test="repUserName != null">
+       		REP_USER_NAME = #{repUserName},
+       	</if>
+       	<if test="repRoleName != null">
+       		REP_ROLE_NAME = #{repRoleName},
+       	</if>
+       	<if test="repUserOrganCode != null">
+       		REP_USER_ORGAN_CODE = #{repUserOrganCode},
+       	</if>
+       	<if test="repUserOrganName != null">
+       		REP_USER_ORGAN_NAME = #{repUserOrganName},
+       	</if>
+       	<if test="repDate != null">
+       		REP_DATE = #{repDate},
+       	</if>
+       	<if test="repTime != null">
+       		REP_TIME = #{repTime},
+       	</if>
+       	<if test="repRemark != null">
+       		REP_REMARK = #{repRemark},
+       	</if>
+       	<if test="repStatus != null">
+       		REP_STATUS = #{repStatus},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="appNo != null and appNo != ''">
+	 		and APP_NO = #{appNo}
+	 	</if>
+	 	<if test="tradeCode != null and tradeCode != ''">
+	 		and WEB_TRADE_CODE = #{tradeCode}
+	 	</if>
+	 	<if test="operDescribe != null and operDescribe != ''">
+	 		and OPER_DESCRIBE = #{operDescribe}
+	 	</if>
+	 	<if test="appType != null and appType != ''">
+	 		and APP_TYPE = #{appType}
+	 	</if>
+	 	<if test="operNo != null and operNo != ''">
+	 		and OPER_NO = #{operNo}
+	 	</if>
+	 	<if test="operName != null and operName != ''">
+	 		and OPER_NAME = #{operName}
+	 	</if>
+	 	<if test="appUrl != null and appUrl != ''">
+	 		and APP_URL = #{appUrl}
+	 	</if>
+	 	<if test="reeditUrl != null and reeditUrl != ''">
+	 		and REEDIT_URL = #{reeditUrl}
+	 	</if>
+	 	<if test="appUser != null and appUser != ''">
+	 		and APP_USER = #{appUser}
+	 	</if>
+	 	<if test="appDate != null and appDate != ''">
+	 		and APP_DATE = #{appDate}
+	 	</if>
+	 	<if test="appTime != null and appTime != ''">
+	 		and APP_TIME = #{appTime}
+	 	</if>
+	 	<if test="appOperName != null and appOperName != ''">
+	 		and APP_OPER_NAME = #{appOperName}
+	 	</if>
+	 	<if test="appRoleName != null and appRoleName != ''">
+	 		and APP_ROLE_NAME = #{appRoleName}
+	 	</if>
+	 	<if test="appOrganCode != null and appOrganCode != ''">
+	 		and APP_ORGAN_CODE = #{appOrganCode}
+	 	</if>
+	 	<if test="appOrganName != null and appOrganName != ''">
+	 		and APP_ORGAN_NAME = #{appOrganName}
+	 	</if>
+	 	<if test="appRemark != null and appRemark != ''">
+	 		and APP_REMARK = #{appRemark}
+	 	</if>
+	 	<if test="repUserCode != null and repUserCode != ''">
+	 		and REP_USER_CODE = #{repUserCode}
+	 	</if>
+	 	<if test="repUserName != null and repUserName != ''">
+	 		and REP_USER_NAME = #{repUserName}
+	 	</if>
+	 	<if test="repRoleName != null and repRoleName != ''">
+	 		and REP_ROLE_NAME = #{repRoleName}
+	 	</if>
+	 	<if test="repUserOrganCode != null and repUserOrganCode != ''">
+	 		and REP_USER_ORGAN_CODE = #{repUserOrganCode}
+	 	</if>
+	 	<if test="repUserOrganName != null and repUserOrganName != ''">
+	 		and REP_USER_ORGAN_NAME = #{repUserOrganName}
+	 	</if>
+	 	<if test="repDate != null and repDate != ''">
+	 		and REP_DATE = #{repDate}
+	 	</if>
+	 	<if test="repTime != null and repTime != ''">
+	 		and REP_TIME = #{repTime}
+	 	</if>
+	 	<if test="repRemark != null and repRemark != ''">
+	 		and REP_REMARK = #{repRemark}
+	 	</if>
+	 	<if test="repStatus != null and repStatus != ''">
+	 		and REP_STATUS = #{repStatus}
+	 	</if>
+	 		<if test="revocationFlag != null and revocationFlag != ''">
+	 		and REP_STATUS != '2'
+	 	</if>
+	 	<if test="defaultList != null and defaultList != ''">
+	 		and  <![CDATA[(APP_USER = #{defaultList} or REP_USER_CODE=#{defaultList})]]>
+	 	</if>
+	 	<if test="appBeginDate != null and appBeginDate != ''">
+	 		and <![CDATA[to_date(APP_DATE,'YYYYMMDD') >= to_date(#{appBeginDate},'YYYYMMDD')]]>
+	 	</if>
+	 	<if test="appEndDate != null and appEndDate != ''">
+	 		and  <![CDATA[to_date(APP_DATE,'YYYYMMDD') <= to_date(#{appEndDate},'YYYYMMDD')]]>
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="appNo != null and appNo != ''">
+ 			and APP_NO like '%' || #{appNo} || '%'
+ 		</if>
+ 		<if test="tradeCode != null and tradeCode != ''">
+ 			and WEB_TRADE_CODE like '%' || #{tradeCode} || '%'
+ 		</if>
+ 		<if test="operDescribe != null and operDescribe != ''">
+ 			and OPER_DESCRIBE like '%' || #{operDescribe} || '%'
+ 		</if>
+ 		<if test="appType != null and appType != ''">
+ 			and APP_TYPE like '%' || #{appType} || '%'
+ 		</if>
+ 		<if test="operNo != null and operNo != ''">
+ 			and OPER_NO like '%' || #{operNo} || '%'
+ 		</if>
+ 		<if test="operName != null and operName != ''">
+ 			and OPER_NAME like '%' || #{operName} || '%'
+ 		</if>
+ 		<if test="appUrl != null and appUrl != ''">
+ 			and APP_URL like '%' || #{appUrl} || '%'
+ 		</if>
+ 		<if test="reeditUrl != null and reeditUrl != ''">
+ 			and REEDIT_URL like '%' || #{reeditUrl} || '%'
+ 		</if>
+ 		<if test="appUser != null and appUser != ''">
+ 			and APP_USER like '%' || #{appUser} || '%'
+ 		</if>
+ 		<if test="appDate != null and appDate != ''">
+ 			and APP_DATE like '%' || #{appDate} || '%'
+ 		</if>
+ 		<if test="appTime != null and appTime != ''">
+ 			and APP_TIME like '%' || #{appTime} || '%'
+ 		</if>
+ 		<if test="appOperName != null and appOperName != ''">
+ 			and APP_OPER_NAME like '%' || #{appOperName} || '%'
+ 		</if>
+ 		<if test="appRoleName != null and appRoleName != ''">
+ 			and APP_ROLE_NAME like '%' || #{appRoleName} || '%'
+ 		</if>
+ 		<if test="appOrganCode != null and appOrganCode != ''">
+ 			and APP_ORGAN_CODE like '%' || #{appOrganCode} || '%'
+ 		</if>
+ 		<if test="appOrganName != null and appOrganName != ''">
+ 			and APP_ORGAN_NAME like '%' || #{appOrganName} || '%'
+ 		</if>
+ 		<if test="appRemark != null and appRemark != ''">
+ 			and APP_REMARK like '%' || #{appRemark} || '%'
+ 		</if>
+ 		<if test="repUserCode != null and repUserCode != ''">
+ 			and REP_USER_CODE like '%' || #{repUserCode} || '%'
+ 		</if>
+ 		<if test="repUserName != null and repUserName != ''">
+ 			and REP_USER_NAME like '%' || #{repUserName} || '%'
+ 		</if>
+ 		<if test="repRoleName != null and repRoleName != ''">
+ 			and REP_ROLE_NAME like '%' || #{repRoleName} || '%'
+ 		</if>
+ 		<if test="repUserOrganCode != null and repUserOrganCode != ''">
+ 			and REP_USER_ORGAN_CODE like '%' || #{repUserOrganCode} || '%'
+ 		</if>
+ 		<if test="repUserOrganName != null and repUserOrganName != ''">
+ 			and REP_USER_ORGAN_NAME like '%' || #{repUserOrganName} || '%'
+ 		</if>
+ 		<if test="repDate != null and repDate != ''">
+ 			and REP_DATE like '%' || #{repDate} || '%'
+ 		</if>
+ 		<if test="repTime != null and repTime != ''">
+ 			and REP_TIME like '%' || #{repTime} || '%'
+ 		</if>
+ 		<if test="repRemark != null and repRemark != ''">
+ 			and REP_REMARK like '%' || #{repRemark} || '%'
+ 		</if>
+ 		<if test="repStatus != null and repStatus != ''">
+ 			and REP_STATUS like '%' || #{repStatus} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_REVIEW_MAIN 
+        <where> 
+        	APP_NO = #{appNo} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebReviewMain" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_MAIN
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebReviewMain" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_MAIN 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebReviewMain" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_MAIN 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_MAIN 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebReviewMain" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_MAIN 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebReviewMain" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_MAIN 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_MAIN 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+<!--     获取对应序列 -->
+   	<select id="getPubSQ" resultType="java.lang.Integer" flushCache="true">
+		select nextval('SQ_WEB_PUB')
+	</select>
+	
+	<!-- 申请之前查询是否存在该交易的复核记录状态未完成(REP_STATUS!=3 or REP_STATUS!='5')的记录 -->
+    <select id="checkRep" resultType="java.util.HashMap" flushCache="true">
+        SELECT APP_NO FROM WEB_REVIEW_MAIN WHERE (REP_STATUS='1' OR REP_STATUS='2' OR REP_STATUS='4') 
+       	<if test="appNo != null and appNo != ''">
+	 		and APP_NO != #{appNo}
+	 	</if>
+	 	<if test="tradeCode != null and tradeCode != ''">
+	 		and WEB_TRADE_CODE like '%' || #{tradeCode} || '%'
+	 	</if>
+       	<if test="operNo != null and operNo != ''">
+	 		and OPER_NO = #{operNo}
+	 	</if>
+	 	<if test="operName != null and operName != ''">
+	 		and OPER_NAME = #{operName}
+	 	</if>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

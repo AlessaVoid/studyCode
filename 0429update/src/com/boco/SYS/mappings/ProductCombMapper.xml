@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boco.SYS.mapper.ProductCombMapper">
+    <resultMap id="base_product_map" type="com.boco.TONY.biz.loancomb.POJO.DO.productbase.ProductDO">
+        <id column="PROD_ID" property="productId"/>
+        <id column="PROD_SYSTEM_ID" property="productSystemId"/>
+        <result column="PROD_CODE" property="productCode"/>
+        <result column="PROD_NAME" property="productName"/>
+        <result column="PROD_LEVEL" property="productLevel"/>
+        <result column="PROD_UP_CODE" property="productUpCode"/>
+        <result column="PROD_STATUS" property="productStatus"/>
+        <result column="PROD_BELONG" property="productBelong"/>
+        <result column="leve1_code" property="level1Code"/>
+        <result column="leve2_code" property="level2Code"/>
+        <result column="leve3_code" property="level3Code"/>
+        <result column="leve4_code" property="level4Code"/>
+        <result column="leve5_code" property="level5Code"/>
+        <result column="leve6_code" property="level6Code"/>
+    </resultMap>
+
+    <!--获取所有的产品信息-->
+    <select id="getAllCombProductInfo" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.productbase.ProductDO"
+            resultMap="base_product_map" flushCache="true">
+        select productTable.*
+        from tb_prod_all productTable
+        inner join (select * from tb_prod_ctrl_level) productCtrlTable on
+        productTable.prod_system_id = productCtrlTable.ctrl_systemid and
+        productTable.prod_level = productCtrlTable.ctrl_level
+        <where>
+            <if test="productCode != null and productCode !=''">
+                and productTable.prod_code=#{productCode}
+            </if>
+            <if test="productSystemId!=null and productSystemId!=''">
+                and productTable.prod_system_id=#{productSystemId}
+            </if>
+            <if test="productName!=null and productName!=''">
+                and productTable.prod_name like '%' || #{productName} || '%'
+            </if>
+            <if test="productLevel!=null and productLevel!=''">
+                and productTable.prod_level=#{productLevel}
+            </if>
+        </where>
+        ORDER BY productTable.prod_code DESC
+    </select>
+
+    <!--List页面获取所有的产品信息-->
+    <select id="getAllCombProduct" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.productbase.ProductDO"
+            resultMap="base_product_map" flushCache="true">
+        select productTable.*
+        from tb_prod_all productTable
+        inner join (select * from tb_prod_ctrl_level) productCtrlTable on
+        productTable.prod_system_id = productCtrlTable.ctrl_systemid
+        <where>
+            <if test="productCode != null and productCode !=''">
+                and productTable.prod_code like '%' || #{productCode} || '%'
+            </if>
+            <if test="productSystemId!=null and productSystemId!=''">
+                and productTable.prod_system_id=#{productSystemId}
+            </if>
+            <if test="productName!=null and productName!=''">
+                and productTable.prod_name like '%' || #{productName} || '%'
+            </if>
+            <if test="productLevel!=null and productLevel!=''">
+                and productTable.prod_level=#{productLevel}
+            </if>
+            <if test="productStatus !=null and productStatus !=''">
+                and productTable.prod_status=cast(#{productStatus} as int)
+            </if>
+        </where>
+        ORDER BY productTable.prod_code DESC
+    </select>
+
+    <!--查询所有可以组合的产品-->
+    <select id="getAllAvailableCombProduct" resultMap="base_product_map" flushCache="true">
+
+        select productTable.*
+        from tb_prod_all productTable
+                 inner join (select * from tb_prod_ctrl_level) productCtrlTable on
+                productTable.prod_system_id = productCtrlTable.ctrl_systemid and
+                productTable.prod_level = productCtrlTable.ctrl_level and prod_status = 1
+        ORDER BY productTable.prod_code DESC
+    </select>
+
+    <!--查询所有不可被组合的产品-->
+    <select id="getAllUnavailableCombProduct" resultMap="base_product_map" flushCache="true">
+        select *
+        from tb_prod_all
+        where prod_status = 2
+    </select>
+
+    <!--更新产品的状态-->
+    <update id="updateCombProductStatus" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.productbase.ProductStatusDO">
+        update tb_prod_all
+        set prod_status=#{productStatus}
+        where prod_code = #{productId}
+    </update>
+
+    <select id="getSelectedCombProduct" parameterType="java.lang.String" resultMap="base_product_map" flushCache="true">
+        select *
+        from tb_prod_all
+        where prod_code = #{_param}
+        ORDER BY prod_code DESC
+    </select>
+
+    <select id="selectProductName" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select distinct prod_name
+        from tb_prod_all
+        where prod_name like '%${value}%'
+    </select>
+
+    <select id="selectSystemId" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select distinct prod_system_id
+        from tb_prod_all
+        where prod_system_id like '%${value}%'
+    </select>
+
+    <select id="selectProdCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select distinct prod_code
+        from tb_prod_all
+        where prod_code like '%${value}%'
+    </select>
+
+    <select id="selectProductCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+
+        select distinct productTable.prod_code
+        from tb_prod_all productTable
+                 inner join (select * from tb_prod_ctrl_level) productCtrlTable on
+                productTable.prod_system_id = productCtrlTable.ctrl_systemid and
+                productTable.prod_level = productCtrlTable.ctrl_level and productTable.prod_code like '${value}%'
+    </select>
+</mapper>

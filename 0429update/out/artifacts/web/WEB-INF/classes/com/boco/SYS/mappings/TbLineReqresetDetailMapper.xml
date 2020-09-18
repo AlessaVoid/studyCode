@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 条线需求调整记录详情表 -->
+<mapper namespace="com.boco.SYS.mapper.TbLineReqresetDetailMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbLineReqresetDetail">
+        <id column="line_reqreset_id" property="lineReqresetId"/>
+        <result column="line_resetref_id" property="lineResetrefId"/>
+        <result column="line_organ" property="lineOrgan"/>
+        <result column="line_code" property="lineCode"/>
+        <result column="line_name" property="lineName"/>
+        <result column="line_comb_code" property="lineCombCode"/>
+        <result column="line_state" property="lineState"/>
+        <result column="line_unit" property="lineUnit"/>
+        <result column="line_num" property="lineNum"/>
+        <result column="line_create_time" property="lineCreateTime"/>
+        <result column="line_update_time" property="lineUpdateTime"/>
+        <result column="line_req_month" property="lineReqMonth"/>
+        <result column="line_req_name" property="lineReqName"/>
+        <result column="line_req_note" property="lineReqNote"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+
+                                line_reqreset_id ,line_resetref_id ,line_organ ,line_code ,line_name ,line_comb_code ,line_state ,line_unit ,line_num ,line_create_time ,line_update_time ,line_req_month ,line_req_name ,line_req_note
+
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbLineReqresetDetail">
+        <!--
+                -->
+        INSERT INTO tb_line_reqreset_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lineReqresetId != null">
+                line_reqreset_id ,
+            </if>
+            <if test="lineResetrefId != null">
+                line_resetref_id ,
+            </if>
+            <if test="lineOrgan != null">
+                line_organ ,
+            </if>
+            <if test="lineCode != null">
+                line_code ,
+            </if>
+            <if test="lineName != null">
+                line_name ,
+            </if>
+            <if test="lineCombCode != null">
+                line_comb_code ,
+            </if>
+            <if test="lineState != null">
+                line_state ,
+            </if>
+            <if test="lineUnit != null">
+                line_unit ,
+            </if>
+            <if test="lineNum != null">
+                line_num ,
+            </if>
+            <if test="lineCreateTime != null">
+                line_create_time ,
+            </if>
+            <if test="lineUpdateTime != null">
+                line_update_time ,
+            </if>
+            <if test="lineReqMonth != null">
+                line_req_month ,
+            </if>
+            <if test="lineReqName != null">
+                line_req_name ,
+            </if>
+            <if test="lineReqNote != null">
+                line_req_note
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lineReqresetId != null">
+                #{lineReqresetId} ,
+            </if>
+            <if test="lineResetrefId != null">
+                #{lineResetrefId} ,
+            </if>
+            <if test="lineOrgan != null">
+                #{lineOrgan} ,
+            </if>
+            <if test="lineCode != null">
+                #{lineCode} ,
+            </if>
+            <if test="lineName != null">
+                #{lineName} ,
+            </if>
+            <if test="lineCombCode != null">
+                #{lineCombCode} ,
+            </if>
+            <if test="lineState != null">
+                #{lineState} ,
+            </if>
+            <if test="lineUnit != null">
+                #{lineUnit} ,
+            </if>
+            <if test="lineNum != null">
+                #{lineNum} ,
+            </if>
+            <if test="lineCreateTime != null">
+                #{lineCreateTime} ,
+            </if>
+            <if test="lineUpdateTime != null">
+                #{lineUpdateTime} ,
+            </if>
+            <if test="lineReqMonth != null">
+                #{lineReqMonth} ,
+            </if>
+            <if test="lineReqName != null">
+                #{lineReqName} ,
+            </if>
+            <if test="lineReqNote != null">
+                #{lineReqNote}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_line_reqreset_detail
+        (line_resetref_id ,line_organ ,line_code ,line_name ,line_comb_code ,line_state ,line_unit
+        ,line_num ,line_create_time ,line_update_time ,line_req_month ,line_req_name ,line_req_note )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.lineResetrefId,jdbcType=VARCHAR},#{item.lineOrgan,jdbcType=VARCHAR},#{item.lineCode,jdbcType=VARCHAR},#{item.lineName,jdbcType=VARCHAR},#{item.lineCombCode,jdbcType=VARCHAR},#{item.lineState,jdbcType=VARCHAR},#{item.lineUnit,jdbcType=VARCHAR},#{item.lineNum,jdbcType=VARCHAR},#{item.lineCreateTime,jdbcType=VARCHAR},#{item.lineUpdateTime,jdbcType=VARCHAR},#{item.lineReqMonth,jdbcType=VARCHAR},#{item.lineReqName,jdbcType=VARCHAR},#{item.lineReqNote,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_line_reqreset_detail
+        <where>
+            line_reqreset_id = #{lineReqresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_line_reqreset_detail
+        <where>
+            line_reqreset_id = #{lineReqresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_line_reqreset_detail
+        WHERE line_reqreset_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_line_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbLineReqresetDetail">
+        UPDATE tb_line_reqreset_detail
+        <set>
+            <if test="lineResetrefId != null">
+                line_resetref_id = #{lineResetrefId},
+            </if>
+            <if test="lineOrgan != null">
+                line_organ = #{lineOrgan},
+            </if>
+            <if test="lineCode != null">
+                line_code = #{lineCode},
+            </if>
+            <if test="lineName != null">
+                line_name = #{lineName},
+            </if>
+            <if test="lineCombCode != null">
+                line_comb_code = #{lineCombCode},
+            </if>
+            <if test="lineState != null">
+                line_state = #{lineState},
+            </if>
+            <if test="lineUnit != null">
+                line_unit = #{lineUnit},
+            </if>
+            <if test="lineNum != null">
+                line_num = #{lineNum},
+            </if>
+            <if test="lineCreateTime != null">
+                line_create_time = #{lineCreateTime},
+            </if>
+            <if test="lineUpdateTime != null">
+                line_update_time = #{lineUpdateTime},
+            </if>
+            <if test="lineReqMonth != null">
+                line_req_month = #{lineReqMonth},
+            </if>
+            <if test="lineReqName != null">
+                line_req_name = #{lineReqName},
+            </if>
+            <if test="lineReqNote != null">
+                line_req_note = #{lineReqNote},
+            </if>
+        </set>
+        <where>
+            line_reqreset_id = #{lineReqresetId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_line_reqreset_detail
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_line_reqreset_detail
+        <set>
+            <if test="lineReqresetId != null">
+                line_reqreset_id = #{lineReqresetId},
+            </if>
+            <if test="lineResetrefId != null">
+                line_resetref_id = #{lineResetrefId},
+            </if>
+            <if test="lineOrgan != null">
+                line_organ = #{lineOrgan},
+            </if>
+            <if test="lineCode != null">
+                line_code = #{lineCode},
+            </if>
+            <if test="lineName != null">
+                line_name = #{lineName},
+            </if>
+            <if test="lineCombCode != null">
+                line_comb_code = #{lineCombCode},
+            </if>
+            <if test="lineState != null">
+                line_state = #{lineState},
+            </if>
+            <if test="lineUnit != null">
+                line_unit = #{lineUnit},
+            </if>
+            <if test="lineNum != null">
+                line_num = #{lineNum},
+            </if>
+            <if test="lineCreateTime != null">
+                line_create_time = #{lineCreateTime},
+            </if>
+            <if test="lineUpdateTime != null">
+                line_update_time = #{lineUpdateTime},
+            </if>
+            <if test="lineReqMonth != null">
+                line_req_month = #{lineReqMonth},
+            </if>
+            <if test="lineReqName != null">
+                line_req_name = #{lineReqName},
+            </if>
+            <if test="lineReqNote != null">
+                line_req_note = #{lineReqNote},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="lineReqresetId != null and lineReqresetId != ''">
+            and line_reqreset_id = #{lineReqresetId}
+        </if>
+        <if test="lineResetrefId != null and lineResetrefId != ''">
+            and line_resetref_id = #{lineResetrefId}
+        </if>
+        <if test="lineOrgan != null and lineOrgan != ''">
+            and line_organ = #{lineOrgan}
+        </if>
+        <if test="lineCode != null and lineCode != ''">
+            and line_code = #{lineCode}
+        </if>
+        <if test="lineName != null and lineName != ''">
+            and line_name = #{lineName}
+        </if>
+        <if test="lineCombCode != null and lineCombCode != ''">
+            and line_comb_code = #{lineCombCode}
+        </if>
+
+        <if test="lineUnit != null and lineUnit != ''">
+            and line_unit = #{lineUnit}
+        </if>
+        <if test="lineNum != null and lineNum != ''">
+            and line_num = #{lineNum}
+        </if>
+        <if test="lineCreateTime != null and lineCreateTime != ''">
+            and line_create_time = #{lineCreateTime}
+        </if>
+        <if test="lineUpdateTime != null and lineUpdateTime != ''">
+            and line_update_time = #{lineUpdateTime}
+        </if>
+        <if test="lineReqMonth != null and lineReqMonth != ''">
+            and line_req_month = #{lineReqMonth}
+        </if>
+        <if test="lineReqName != null and lineReqName != ''">
+            and line_req_name = #{lineReqName}
+        </if>
+        <if test="lineReqNote != null and lineReqNote != ''">
+            and line_req_note = #{lineReqNote}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="lineReqresetId != null and lineReqresetId != ''">
+            and line_reqreset_id like '%' || #{lineReqresetId} || '%'
+        </if>
+        <if test="lineResetrefId != null and lineResetrefId != ''">
+            and line_resetref_id like '%' || #{lineResetrefId} || '%'
+        </if>
+        <if test="lineOrgan != null and lineOrgan != ''">
+            and line_organ like '%' || #{lineOrgan} || '%'
+        </if>
+        <if test="lineCode != null and lineCode != ''">
+            and line_code like '%' || #{lineCode} || '%'
+        </if>
+        <if test="lineName != null and lineName != ''">
+            and line_name like '%' || #{lineName} || '%'
+        </if>
+        <if test="lineCombCode != null and lineCombCode != ''">
+            and line_comb_code like '%' || #{lineCombCode} || '%'
+        </if>
+        <if test="lineState != null and lineState != ''">
+            and line_state like '%' || #{lineState} || '%'
+        </if>
+        <if test="lineUnit != null and lineUnit != ''">
+            and line_unit like '%' || #{lineUnit} || '%'
+        </if>
+        <if test="lineNum != null and lineNum != ''">
+            and line_num like '%' || #{lineNum} || '%'
+        </if>
+        <if test="lineCreateTime != null and lineCreateTime != ''">
+            and line_create_time like '%' || #{lineCreateTime} || '%'
+        </if>
+        <if test="lineUpdateTime != null and lineUpdateTime != ''">
+            and line_update_time like '%' || #{lineUpdateTime} || '%'
+        </if>
+        <if test="lineReqMonth != null and lineReqMonth != ''">
+            and line_req_month like '%' || #{lineReqMonth} || '%'
+        </if>
+        <if test="lineReqName != null and lineReqName != ''">
+            and line_req_name like '%' || #{lineReqName} || '%'
+        </if>
+        <if test="lineReqNote != null and lineReqNote != ''">
+            and line_req_note like '%' || #{lineReqNote} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_line_reqreset_detail
+        <where>
+            line_reqreset_id = #{lineReqresetId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbLineReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_line_reqreset_detail
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbLineReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_line_reqreset_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="lineState >7">
+            and line_state = #{lineState}
+        </if>
+        <if test="lineState =='1'.toString()">
+            and line_state =1
+        </if>
+        <if test="lineState =='7'.toString()">
+            and line_state &lt; 7
+        </if>
+        <if test="lineState =='2'.toString()">
+            and line_state =2
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbLineReqresetDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_line_reqreset_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_line_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbLineReqresetDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_line_reqreset_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbLineReqresetDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_line_reqreset_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_line_reqreset_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+    <!-- 联想输入所属周期 -->
+    <select id="showLineReqResetMonth" parameterType="com.boco.SYS.entity.TbLineReqresetDetail"
+            resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT line_req_month FROM tb_line_reqreset_detail
+	   WHERE line_req_month LIKE '%${lineReqMonth}%'
+    </select>
+
+    <!-- 更新条线需求记录状态 -->
+    <update id="updateReqDetailByReqdRefIdAndOrganCode" parameterType="com.boco.SYS.entity.TbLineReqresetDetail">
+        update tb_line_reqreset_detail
+        set line_state=#{lineState},
+        line_update_time=#{lineUpdateTime}
+        where line_reqreset_id = #{lineReqresetId}
+    </update>
+
+
+    <!--查询已提交的信贷需求 -->
+    <select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct line.line_reqreset_id as lineReqresetId,
+        line.line_req_month as lineReqMonth,
+        line.line_organ as lineOrgan,
+        line.line_req_name as lineReqName,
+        line.line_unit as lineUnit,
+        line.line_name as lineName,
+        line.line_state as state,
+        hi_proc.proc_inst_id_ as procInstID
+
+        from tb_line_reqreset_detail line,act_hi_procinst hi_proc
+        where
+       cast(line.line_reqreset_id as varchar)=hi_proc.business_key_
+        and hi_proc.start_user_id_ = #{opercode}
+         and line.line_organ = #{organCode}
+         and hi_proc.proc_def_id_ like 'ReqReset_%'
+        and line.line_state &gt; 4
+    </select>
+
+    <!--查询待审批的信贷需求 -->
+    <select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct line.line_reqreset_id as lineReqresetId,
+        line.line_req_month as lineReqMonth,
+        line.line_organ as lineOrgan,
+        line.line_req_name as lineReqName,
+        line.line_unit as lineUnit,
+        line.line_name as lineName,
+        line.line_state as state,
+        hi_proc.proc_inst_id_ as procInstID,
+        task.id_ as taskid
+
+        from tb_line_reqreset_detail line,act_hi_procinst hi_proc ,act_ru_task task
+        where
+        cast(line.line_reqreset_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.assignee_=#{assignee}
+        and line.line_organ = #{organCode}
+        and hi_proc.proc_def_id_ like 'ReqReset_%'
+        <if test="proIds!=null and proIds.size() > 0">
+            and hi_proc.proc_inst_id_ in
+            <foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and line.line_state= #{auditStatus}
+        </if>
+    </select>
+
+    <!-- 查询已审批信贷需求-->
+    <select id="getApprovedRecord" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct line.line_reqreset_id as lineReqresetId,
+        line.line_req_month as lineReqMonth,
+        line.line_organ as lineOrgan,
+        line.line_req_name as lineReqName,
+        line.line_unit as lineUnit,
+        line.line_name as lineName,
+        line.line_state as state,
+        hi_proc.proc_inst_id_ as procInstID
+
+        from tb_line_reqreset_detail line,act_hi_procinst hi_proc ,act_hi_taskinst task
+        where
+        cast(line.line_reqreset_id as varchar)=hi_proc.business_key_
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.delete_reason_='completed'
+        and hi_proc.proc_def_id_ like 'ReqReset_%'
+        and task.assignee_=#{opercode}
+        and line.line_organ = #{organCode}
+        and line.line_state  &gt; 4
+    </select>
+
+    <select id="getStartWorkFlowPeople" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select start_user_id_ from act_hi_procinst where proc_inst_id_= #{processInstanceId}
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

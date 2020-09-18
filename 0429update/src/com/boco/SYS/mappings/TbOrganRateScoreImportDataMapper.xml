@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbOrganRateScoreImportData -->
+<mapper namespace="com.boco.SYS.mapper.TbOrganRateScoreImportDataMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbOrganRateScoreImportData">
+       	<id column="id" property="id"/>
+     	<result column="organcode" property="organcode"/>
+     	<result column="month" property="month"/>
+     	<result column="month_end_ratio" property="monthEndRatio"/>
+     	<result column="year_begin_ratio" property="yearBeginRatio"/>
+     	<result column="person_deposit_year_increment" property="personDepositYearIncrement"/>
+     	<result column="company_deposit_year_increment" property="companyDepositYearIncrement"/>
+     	<result column="new_loan_ratio" property="newLoanRatio"/>
+     	<result column="bank_average_loan_ratio" property="bankAverageLoanRatio"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,organcode ,month ,month_end_ratio ,year_begin_ratio ,person_deposit_year_increment ,company_deposit_year_increment ,new_loan_ratio ,bank_average_loan_ratio 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData">
+<!-- 
+	    -->       
+  INSERT INTO tb_organ_rate_score_import_data 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	organcode ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="monthEndRatio != null">
+	        	month_end_ratio ,
+	       	</if>
+	       	<if test="yearBeginRatio != null">
+	        	year_begin_ratio ,
+	       	</if>
+	       	<if test="personDepositYearIncrement != null">
+	        	person_deposit_year_increment ,
+	       	</if>
+	       	<if test="companyDepositYearIncrement != null">
+	        	company_deposit_year_increment ,
+	       	</if>
+	       	<if test="newLoanRatio != null">
+	        	new_loan_ratio ,
+	       	</if>
+	       	<if test="bankAverageLoanRatio != null">
+	        	bank_average_loan_ratio 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	#{organcode} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="monthEndRatio != null">
+	        	#{monthEndRatio} ,
+	       	</if>
+	       	<if test="yearBeginRatio != null">
+	        	#{yearBeginRatio} ,
+	       	</if>
+	       	<if test="personDepositYearIncrement != null">
+	        	#{personDepositYearIncrement} ,
+	       	</if>
+	       	<if test="companyDepositYearIncrement != null">
+	        	#{companyDepositYearIncrement} ,
+	       	</if>
+	       	<if test="newLoanRatio != null">
+	        	#{newLoanRatio} ,
+	       	</if>
+	       	<if test="bankAverageLoanRatio != null">
+	        	#{bankAverageLoanRatio} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_organ_rate_score_import_data 
+        (id ,organcode ,month ,month_end_ratio ,year_begin_ratio ,person_deposit_year_increment ,company_deposit_year_increment ,new_loan_ratio ,bank_average_loan_ratio )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.monthEndRatio,jdbcType=VARCHAR},#{item.yearBeginRatio,jdbcType=VARCHAR},#{item.personDepositYearIncrement,jdbcType=VARCHAR},#{item.companyDepositYearIncrement,jdbcType=VARCHAR},#{item.newLoanRatio,jdbcType=VARCHAR},#{item.bankAverageLoanRatio,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_organ_rate_score_import_data 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_organ_rate_score_import_data
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData">
+        UPDATE tb_organ_rate_score_import_data 
+        <set>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="monthEndRatio != null">
+       		month_end_ratio = #{monthEndRatio},
+       	</if>
+       	<if test="yearBeginRatio != null">
+       		year_begin_ratio = #{yearBeginRatio},
+       	</if>
+       	<if test="personDepositYearIncrement != null">
+       		person_deposit_year_increment = #{personDepositYearIncrement},
+       	</if>
+       	<if test="companyDepositYearIncrement != null">
+       		company_deposit_year_increment = #{companyDepositYearIncrement},
+       	</if>
+       	<if test="newLoanRatio != null">
+       		new_loan_ratio = #{newLoanRatio},
+       	</if>
+       	<if test="bankAverageLoanRatio != null">
+       		bank_average_loan_ratio = #{bankAverageLoanRatio},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_organ_rate_score_import_data 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_organ_rate_score_import_data 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="monthEndRatio != null">
+       		month_end_ratio = #{monthEndRatio},
+       	</if>
+       	<if test="yearBeginRatio != null">
+       		year_begin_ratio = #{yearBeginRatio},
+       	</if>
+       	<if test="personDepositYearIncrement != null">
+       		person_deposit_year_increment = #{personDepositYearIncrement},
+       	</if>
+       	<if test="companyDepositYearIncrement != null">
+       		company_deposit_year_increment = #{companyDepositYearIncrement},
+       	</if>
+       	<if test="newLoanRatio != null">
+       		new_loan_ratio = #{newLoanRatio},
+       	</if>
+       	<if test="bankAverageLoanRatio != null">
+       		bank_average_loan_ratio = #{bankAverageLoanRatio},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="organcode != null and organcode != ''">
+	 		and organcode = #{organcode}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="monthEndRatio != null and monthEndRatio != ''">
+	 		and month_end_ratio = #{monthEndRatio}
+	 	</if>
+	 	<if test="yearBeginRatio != null and yearBeginRatio != ''">
+	 		and year_begin_ratio = #{yearBeginRatio}
+	 	</if>
+	 	<if test="personDepositYearIncrement != null and personDepositYearIncrement != ''">
+	 		and person_deposit_year_increment = #{personDepositYearIncrement}
+	 	</if>
+	 	<if test="companyDepositYearIncrement != null and companyDepositYearIncrement != ''">
+	 		and company_deposit_year_increment = #{companyDepositYearIncrement}
+	 	</if>
+	 	<if test="newLoanRatio != null and newLoanRatio != ''">
+	 		and new_loan_ratio = #{newLoanRatio}
+	 	</if>
+	 	<if test="bankAverageLoanRatio != null and bankAverageLoanRatio != ''">
+	 		and bank_average_loan_ratio = #{bankAverageLoanRatio}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="organcode != null and organcode != ''">
+ 			and organcode like '%' || #{organcode} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="monthEndRatio != null and monthEndRatio != ''">
+ 			and month_end_ratio like '%' || #{monthEndRatio} || '%'
+ 		</if>
+ 		<if test="yearBeginRatio != null and yearBeginRatio != ''">
+ 			and year_begin_ratio like '%' || #{yearBeginRatio} || '%'
+ 		</if>
+ 		<if test="personDepositYearIncrement != null and personDepositYearIncrement != ''">
+ 			and person_deposit_year_increment like '%' || #{personDepositYearIncrement} || '%'
+ 		</if>
+ 		<if test="companyDepositYearIncrement != null and companyDepositYearIncrement != ''">
+ 			and company_deposit_year_increment like '%' || #{companyDepositYearIncrement} || '%'
+ 		</if>
+ 		<if test="newLoanRatio != null and newLoanRatio != ''">
+ 			and new_loan_ratio like '%' || #{newLoanRatio} || '%'
+ 		</if>
+ 		<if test="bankAverageLoanRatio != null and bankAverageLoanRatio != ''">
+ 			and bank_average_loan_ratio like '%' || #{bankAverageLoanRatio} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_organ_rate_score_import_data 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_import_data
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_import_data 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_import_data 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_organ_rate_score_import_data 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_import_data 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbOrganRateScoreImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_import_data 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_organ_rate_score_import_data 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+	<!--根据月份删除-->
+	<delete id="deleteByMonth" parameterType="java.util.Map">
+		DELETE FROM tb_organ_rate_score_import_data
+		<where>
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+		</where>
+
+	</delete>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

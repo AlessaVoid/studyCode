@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 信贷需求录入详细表 -->
+<mapper namespace="com.boco.SYS.mapper.TbReqDetailMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReqDetail">
+        <id column="reqd_id" property="reqdId"/>
+        <result column="reqd_ref_id" property="reqdRefId"/>
+        <result column="reqd_organ" property="reqdOrgan"/>
+        <result column="reqd_comb_code" property="reqdCombCode"/>
+        <result column="reqd_unit" property="reqdUnit"/>
+        <result column="reqd_state" property="reqdState"/>
+        <result column="reqd_create_time" property="reqdCreateTime"/>
+        <result column="reqd_update_time" property="reqdUpdateTime"/>
+        <result column="reqd_expnum" property="reqdExpnum"/>
+        <result column="reqd_reqnum" property="reqdReqnum"/>
+        <result column="reqd_rate" property="reqdRate"/>
+        <result column="reqd_balance" property="reqdBalance"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+
+
+                                        reqd_id ,reqd_ref_id ,reqd_organ ,reqd_comb_code ,reqd_unit ,reqd_state ,reqd_create_time ,reqd_update_time ,reqd_expnum ,reqd_reqnum ,reqd_rate ,reqd_balance
+
+
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReqDetail">
+        <!--
+                -->
+        INSERT INTO tb_req_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reqdId != null">
+                reqd_id ,
+            </if>
+            <if test="reqdRefId != null">
+                reqd_ref_id ,
+            </if>
+            <if test="reqdOrgan != null">
+                reqd_organ ,
+            </if>
+            <if test="reqdCombCode != null">
+                reqd_comb_code ,
+            </if>
+            <if test="reqdUnit != null">
+                reqd_unit ,
+            </if>
+            <if test="reqdState != null">
+                reqd_state ,
+            </if>
+            <if test="reqdCreateTime != null">
+                reqd_create_time ,
+            </if>
+            <if test="reqdUpdateTime != null">
+                reqd_update_time ,
+            </if>
+            <if test="reqdExpnum != null">
+                reqd_expnum ,
+            </if>
+            <if test="reqdReqnum != null">
+                reqd_reqnum ,
+            </if>
+            <if test="reqdRate != null">
+                reqd_rate ,
+            </if>
+            <if test="reqdBalance != null">
+                reqd_balance
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reqdId != null">
+                #{reqdId} ,
+            </if>
+            <if test="reqdRefId != null">
+                #{reqdRefId} ,
+            </if>
+            <if test="reqdOrgan != null">
+                #{reqdOrgan} ,
+            </if>
+            <if test="reqdCombCode != null">
+                #{reqdCombCode} ,
+            </if>
+            <if test="reqdUnit != null">
+                #{reqdUnit} ,
+            </if>
+            <if test="reqdState != null">
+                #{reqdState} ,
+            </if>
+            <if test="reqdCreateTime != null">
+                #{reqdCreateTime} ,
+            </if>
+            <if test="reqdUpdateTime != null">
+                #{reqdUpdateTime} ,
+            </if>
+            <if test="reqdExpnum != null">
+                #{reqdExpnum} ,
+            </if>
+            <if test="reqdReqnum != null">
+                #{reqdReqnum} ,
+            </if>
+            <if test="reqdRate != null">
+                #{reqdRate} ,
+            </if>
+            <if test="reqdBalance != null">
+                #{reqdBalance}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_req_detail
+        (reqd_ref_id ,reqd_organ ,reqd_comb_code ,reqd_unit ,reqd_state ,reqd_create_time ,reqd_update_time
+        ,reqd_expnum ,reqd_reqnum ,reqd_rate ,reqd_balance )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.reqdRefId,jdbcType=VARCHAR},#{item.reqdOrgan,jdbcType=VARCHAR},#{item.reqdCombCode,jdbcType=VARCHAR},#{item.reqdUnit,jdbcType=VARCHAR},#{item.reqdState,jdbcType=VARCHAR},#{item.reqdCreateTime,jdbcType=VARCHAR},#{item.reqdUpdateTime,jdbcType=VARCHAR},#{item.reqdExpnum,jdbcType=DECIMAL},#{item.reqdReqnum,jdbcType=DECIMAL},#{item.reqdRate,jdbcType=DECIMAL},#{item.reqdBalance,jdbcType=DECIMAL}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_req_detail
+        <where>
+            reqd_id = #{reqdId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByAttr" parameterType="com.boco.SYS.entity.TbReqDetail">
+        DELETE FROM tb_req_detail
+        <where>
+            reqd_ref_id = #{reqdRefId}
+            and
+            reqd_organ=#{reqdOrgan}
+        </where>
+    </delete>
+
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_req_detail
+        <where>
+            reqd_id = #{reqdId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_req_detail
+        WHERE reqd_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_req_detail
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReqDetail">
+        UPDATE tb_req_detail
+        <set>
+            <if test="reqdRefId != null">
+                reqd_ref_id = #{reqdRefId},
+            </if>
+            <if test="reqdOrgan != null">
+                reqd_organ = #{reqdOrgan},
+            </if>
+            <if test="reqdCombCode != null">
+                reqd_comb_code = #{reqdCombCode},
+            </if>
+            <if test="reqdUnit != null">
+                reqd_unit = #{reqdUnit},
+            </if>
+            <if test="reqdState != null">
+                reqd_state = #{reqdState},
+            </if>
+            <if test="reqdCreateTime != null">
+                reqd_create_time = #{reqdCreateTime},
+            </if>
+            <if test="reqdUpdateTime != null">
+                reqd_update_time = #{reqdUpdateTime},
+            </if>
+            <if test="reqdExpnum != null">
+                reqd_expnum = #{reqdExpnum},
+            </if>
+            <if test="reqdReqnum != null">
+                reqd_reqnum = #{reqdReqnum},
+            </if>
+            <if test="reqdRate != null">
+                reqd_rate = #{reqdRate},
+            </if>
+            <if test="reqdBalance != null">
+                reqd_balance = #{reqdBalance},
+            </if>
+        </set>
+        <where>
+            reqd_id = #{reqdId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_req_detail
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_req_detail
+        <set>
+            <if test="reqdId != null">
+                reqd_id = #{reqdId},
+            </if>
+            <if test="reqdRefId != null">
+                reqd_ref_id = #{reqdRefId},
+            </if>
+            <if test="reqdOrgan != null">
+                reqd_organ = #{reqdOrgan},
+            </if>
+            <if test="reqdCombCode != null">
+                reqd_comb_code = #{reqdCombCode},
+            </if>
+            <if test="reqdUnit != null">
+                reqd_unit = #{reqdUnit},
+            </if>
+            <if test="reqdState != null">
+                reqd_state = #{reqdState},
+            </if>
+            <if test="reqdCreateTime != null">
+                reqd_create_time = #{reqdCreateTime},
+            </if>
+            <if test="reqdUpdateTime != null">
+                reqd_update_time = #{reqdUpdateTime},
+            </if>
+            <if test="reqdExpnum != null">
+                reqd_expnum = #{reqdExpnum},
+            </if>
+            <if test="reqdReqnum != null">
+                reqd_reqnum = #{reqdReqnum},
+            </if>
+            <if test="reqdRate != null">
+                reqd_rate = #{reqdRate},
+            </if>
+            <if test="reqdBalance != null">
+                reqd_balance = #{reqdBalance},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="reqdId != null and reqdId != ''">
+            and reqd_id = #{reqdId}
+        </if>
+        <if test="reqdRefId != null and reqdRefId != ''">
+            and reqd_ref_id = #{reqdRefId}
+        </if>
+        <if test="reqdOrgan != null and reqdOrgan != ''">
+            and reqd_organ = #{reqdOrgan}
+        </if>
+        <if test="reqdCombCode != null and reqdCombCode != ''">
+            and reqd_comb_code = #{reqdCombCode}
+        </if>
+        <if test="reqdUnit != null and reqdUnit != ''">
+            and reqd_unit = #{reqdUnit}
+        </if>
+        <if test="reqdState != null ">
+            and reqd_state = #{reqdState}
+        </if>
+        <if test="reqdCreateTime != null and reqdCreateTime != ''">
+            and reqd_create_time = #{reqdCreateTime}
+        </if>
+        <if test="reqdUpdateTime != null and reqdUpdateTime != ''">
+            and reqd_update_time = #{reqdUpdateTime}
+        </if>
+        <if test="reqdExpnum != null and reqdExpnum != ''">
+            and reqd_expnum = #{reqdExpnum}
+        </if>
+        <if test="reqdReqnum != null and reqdReqnum != ''">
+            and reqd_reqnum = #{reqdReqnum}
+        </if>
+        <if test="reqdRate != null and reqdRate != ''">
+            and reqd_rate = #{reqdRate}
+        </if>
+        <if test="reqdBalance != null and reqdBalance != ''">
+            and reqd_balance = #{reqdBalance}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="reqdId != null and reqdId != ''">
+            and reqd_id like '%' || #{reqdId} || '%'
+        </if>
+        <if test="reqdRefId != null and reqdRefId != ''">
+            and reqd_ref_id like '%' || #{reqdRefId} || '%'
+        </if>
+        <if test="reqdOrgan != null and reqdOrgan != ''">
+            and reqd_organ like '%' || #{reqdOrgan} || '%'
+        </if>
+        <if test="reqdCombCode != null and reqdCombCode != ''">
+            and reqd_comb_code like '%' || #{reqdCombCode} || '%'
+        </if>
+        <if test="reqdUnit != null and reqdUnit != ''">
+            and reqd_unit like '%' || #{reqdUnit} || '%'
+        </if>
+        <if test="reqdState != null and reqdState != ''">
+            and reqd_state like '%' || #{reqdState} || '%'
+        </if>
+        <if test="reqdCreateTime != null and reqdCreateTime != ''">
+            and reqd_create_time like '%' || #{reqdCreateTime} || '%'
+        </if>
+        <if test="reqdUpdateTime != null and reqdUpdateTime != ''">
+            and reqd_update_time like '%' || #{reqdUpdateTime} || '%'
+        </if>
+        <if test="reqdExpnum != null and reqdExpnum != ''">
+            and reqd_expnum like '%' || #{reqdExpnum} || '%'
+        </if>
+        <if test="reqdReqnum != null and reqdReqnum != ''">
+            and reqd_reqnum like '%' || #{reqdReqnum} || '%'
+        </if>
+        <if test="reqdRate != null and reqdRate != ''">
+            and reqd_rate like '%' || #{reqdRate} || '%'
+        </if>
+        <if test="reqdBalance != null and reqdBalance != ''">
+            and reqd_balance like '%' || #{reqdBalance} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_detail
+        <where>
+            reqd_id = #{reqdId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReqDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_detail
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReqDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReqDetail" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_req_detail
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_req_detail
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_req_detail
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入需求id -->
+    <select id="selectReqdId" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.util.HashMap"
+            flushCache="true">
+        SELECT REQD_ID
+        FROM TB_REQ_DETAIL
+        WHERE cast(REQD_ID as char) LIKE '%${reqdId}%'
+    </select>
+    <!-- 联想输入所属批次 -->
+    <select id="selectReqdRefId" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.util.HashMap"
+            flushCache="true">
+        SELECT REQD_REF_ID
+        FROM TB_REQ_DETAIL
+        WHERE REQD_REF_ID LIKE '%${reqdRefId}%'
+    </select>
+    <update id="updateReqDetailByReqdRefIdAndOrganCode" parameterType="com.boco.SYS.entity.TbReqDetail">
+        update TB_REQ_DETAIL
+        set reqd_state=#{reqdState},
+        reqd_update_time=#{reqdUpdateTime}
+        where reqd_ref_id = #{reqdRefId}
+          and reqd_organ = #{reqdOrgan}
+    </update>
+
+    <select id="sumReqAmount" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.lang.Double"
+            flushCache="true">
+        select
+        1
+        from TB_REQ_DETAIL
+        where reqd_ref_id = #{reqdRefId}
+          and reqd_organ = #{reqdOrgan}
+    </select>
+
+    <select id="sumReqExpire" parameterType="com.boco.SYS.entity.TbReqDetail" resultType="java.lang.Double"
+            flushCache="true">
+        select
+        1
+        from TB_REQ_DETAIL
+        where reqd_ref_id = #{reqdRefId}
+          and reqd_organ = #{reqdOrgan}
+    </select>
+
+    <!--查询已提交的信贷需求 -->
+    <select id="getAuditRecordHist" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct req.req_id as reqId,
+        req.req_month as reqMonth,
+        req.req_organ as reqOrgan,
+        req.req_name as reqName,
+        req.req_unit as reqUnit,
+        req.req_time_start as reqTimeStart,
+        req.req_time_end as reqTimeEnd,
+        req.req_date_end as reqEnd,
+        req.req_date_start as reqStart,
+        reqd.reqd_unit as reqdUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        reqd.reqd_state as state
+
+        from tb_req_detail reqd,act_hi_procinst hi_proc ,tb_req_list req
+        where
+        cast(req.req_id as varchar)=hi_proc.business_key_
+        and reqd.reqd_ref_id=req.req_id
+         and hi_proc.proc_def_id_ like 'Req_%'
+        and hi_proc.start_user_id_ = #{opercode}
+        and reqd.reqd_organ = #{organCode}
+        and reqd.reqd_state &gt; 4
+    </select>
+
+    <!--查询待审批的信贷需求 -->
+    <select id="getPendingAppReq" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct req.req_id as reqId,
+        req.req_month as reqMonth,
+        req.req_organ as reqOrgan,
+        req.req_name as reqName,
+        req.req_unit as reqUnit,
+        req.req_time_start as reqTimeStart,
+        req.req_time_end as reqTimeEnd,
+        req.req_date_end as reqEnd,
+        req.req_date_start as reqStart,
+        reqd.reqd_unit as reqdUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        task.id_ as taskid
+
+        from tb_req_detail reqd,act_hi_procinst hi_proc ,tb_req_list req,act_ru_task task
+        where
+        cast(req.req_id as varchar)=hi_proc.business_key_
+        and reqd.reqd_ref_id=req.req_id
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.assignee_=#{assignee}
+        and reqd.reqd_organ = #{organCode}
+        and hi_proc.proc_def_id_ like 'Req_%'
+        <if test="proIds!=null and proIds.size() > 0">
+            and hi_proc.proc_inst_id_ in
+            <foreach item="item" index="index" collection="proIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="auditStatus != null and auditStatus != ''">
+            and reqd.reqd_state= #{auditStatus}
+        </if>
+    </select>
+
+    <!-- 查询已审批信贷需求-->
+    <select id="getApprovedRecord" resultType="java.util.HashMap" flushCache="true">
+        select
+        distinct req.req_id as reqId,
+        req.req_month as reqMonth,
+        req.req_organ as reqOrgan,
+        req.req_name as reqName,
+        req.req_unit as reqUnit,
+        req.req_time_start as reqTimeStart,
+        req.req_time_end as reqTimeEnd,
+        req.req_date_end as reqEnd,
+        req.req_date_start as reqStart,
+        reqd.reqd_unit as reqdUnit,
+        hi_proc.proc_inst_id_ as procInstID,
+        reqd.reqd_state as state
+
+        from tb_req_detail reqd,act_hi_procinst hi_proc ,tb_req_list req,act_hi_taskinst task
+        where
+        cast(req.req_id as varchar)=hi_proc.business_key_
+        and reqd.reqd_ref_id=req.req_id
+        and hi_proc.proc_inst_id_ = task.proc_inst_id_
+        and task.delete_reason_='completed'
+        and hi_proc.proc_def_id_ like 'Req_%'
+        and task.assignee_=#{opercode}
+        and reqd.reqd_organ = #{organCode}
+        and reqd.reqd_state &gt; 4
+    </select>
+
+    <select id="getStartWorkFlowPeople" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select start_user_id_ from act_hi_procinst where proc_inst_id_= #{processInstanceId}
+    </select>
+
+    <!--根据机构分组，查询计划-->
+    <select id="getOrganReq" resultType="java.util.Map" flushCache="true">
+        select
+        reqd.*
+        from
+        tb_req_detail reqd
+        left join tb_req_list req on
+        reqd.reqd_ref_id = req.req_id
+        where
+        reqd.reqd_state = 16
+        <if test="organList != null and organList.size > 0">
+            and reqd.reqd_organ in
+            <foreach collection="organList" index="index" item="org" open="(" close=")" separator=",">
+                #{org}
+            </foreach>
+        </if>
+
+        <if test="months != null and months.length > 0">
+            and req.req_month in
+            <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                #{month}
+            </foreach>
+        </if>
+
+    </select>
+
+
+</mapper>

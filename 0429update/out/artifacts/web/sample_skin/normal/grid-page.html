@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基本表格模板</title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../" scrollerY="false"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!--数据表格start-->
+<script src="../../libs/js/table/quiGrid.js" type="text/javascript"></script>
+<!--数据表格end-->
+
+<!--表单异步提交start-->
+<script src="../../libs/js/form/form.js" type="text/javascript"></script>
+<!--表单异步提交end-->
+
+<!-- 日期控件start -->
+<script type="text/javascript" src="../../libs/js/form/datePicker/WdatePicker.js"></script>
+<!-- 日期控件end -->
+</head>
+<body>
+	<div class="box2" panelTitle="号码群组查询" id="searchPanel">
+		<form action="../../fullform/listUsers.do" id="queryForm" method="post">
+		<table>
+			<tr>
+				<td>号码群组名称：</td>
+				<td><input type="text" name="form.name"  clearable="true"/></td>
+				<td>共享状态：</td>
+				<td>
+					<select name="form.sex">
+						<option value="">请选择</option>
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+				</td>
+				<td>起止时间:</td>
+				<td>
+					<input type="text" class="date"/>
+				</td>
+				<td><button type="button" onclick="searchHandler()"><span class="icon_find">查询</span></button></td>
+				<!-- <td><button type="button" onclick="resetHandler()"><span class="icon_clear">全部</span></button></td> -->
+			</tr>
+		</table>
+		</form>
+	</div>
+
+	<div class="padding_right5">
+		<div id="maingrid"></div>
+    </div>
+
+<script type="text/javascript">
+	    //定义本地数据
+	  var gridData={"form.paginate.pageNo":1,"form.paginate.totalRows":13,"rows":[
+	  {"deptName":"部门1","sex":"是","remark":"好啊","hobby":["唱歌"],"beginworkDate":"2012-06-13 00:00:00.0","photo":null,"version":null,"id":125,"degree":"硕士结业","age":20,"name":"号码群组名称","deptId":12,"ability":5},
+	  {"deptName":"部门1","sex":"是","remark":"备注啊","hobby":["唱歌"],"beginworkDate":"2012-06-13 00:00:00.0","photo":null,"version":null,"id":124,"degree":"本科毕业","age":20,"name":"号码群组名称","deptId":11,"ability":5},
+	  {"deptName":"部门1","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":123,"degree":"本科毕业","age":20,"name":"号码群组名称","deptId":9,"ability":5},
+	  {"deptName":"部门1","sex":"是","remark":"不错啊","hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":121,"degree":"硕士肄业","age":20,"name":"号码群组名称","deptId":8,"ability":5},
+	  {"deptName":"部门1","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":120,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":7,"ability":5},
+	  {"deptName":"部门2","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"是","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门1","sex":"否","remark":"备注啊","hobby":["唱歌"],"beginworkDate":"2012-06-13 00:00:00.0","photo":null,"version":null,"id":124,"degree":"本科毕业","age":20,"name":"号码群组名称","deptId":11,"ability":5},
+	  {"deptName":"部门1","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":123,"degree":"本科毕业","age":20,"name":"号码群组名称","deptId":9,"ability":5},
+	  {"deptName":"部门1","sex":"否","remark":"不错啊","hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":121,"degree":"硕士肄业","age":20,"name":"号码群组名称","deptId":8,"ability":5},
+	  {"deptName":"部门1","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-12 00:00:00.0","photo":null,"version":null,"id":120,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":7,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5},
+	  {"deptName":"部门2","sex":"否","remark":null,"hobby":["唱歌","跳舞"],"beginworkDate":"2012-06-05 00:00:00.0","photo":null,"version":null,"id":119,"degree":"博士肄业","age":20,"name":"号码群组名称","deptId":6,"ability":5}
+	  ]}
+        var g;
+		function initComplete(){
+			 g = $("#maingrid").quiGrid({
+		       columns: [ 
+			                { display: '号码群组名称', name: 'name',     align: 'left', width: "20%"},
+			                { display: '共享状态', name: 'sex',      align: 'left', width: "10%"},
+			                { display: '录入日期', name: 'beginworkDate', align: 'left', width: "20%", isSort:false},
+			                { display: '有效期', name: 'deptId',   align: 'left', width: "20%" },
+			                { display: '手机号码数量', name: 'age',   align: 'left', width: "10%" },
+		                	{ display: '操作', isAllowHide: false, align: 'center', width:"20%",
+								 //操作列渲染为图标
+								render: function (rowdata, rowindex, value, column){
+				                 	    return '<div class="padding_top4 padding_left5">'
+				                                 + '<span class="img_view hand" title="查看" onclick="onView(' + rowdata.id + ')"></span>'
+				                                 + '<span class="img_edit hand" title="修改" onclick="onEdit(' + rowdata.id + ')"></span>' 
+				                                 + '<span class="img_delete hand" title="删除" onclick="onDelete(' + rowdata.id+','+rowindex + ')"></span>'
+				                             + '</div>';
+					            }
+				      		}
+		       ], 
+		        data:gridData, pageSize: 10, sortName: 'id',rownumbers:true,checkbox:true,
+		        height: '100%', width:"100%",percentWidthMode:true,
+		        //顶部图标按钮栏
+				toolbar: 
+					{ 
+					items: [
+		                { text: '新增', click: addUser, iconClass: 'icon_add' },
+		                { line: true },
+		                { text: '批量删除', click: deleteUser, iconClass: 'icon_delete' },
+		                { line: true },
+		                { text: '导入', click: importUser, iconClass: 'icon_import' },
+		                { line: true },
+		                { text: '导出当前页', click: exportUser, iconClass: 'icon_export' },
+		                { line: true },
+		                { text: '导出所有', click: exportUser2, iconClass: 'icon_export' }
+		            ]
+		        }
+         	});
+			
+			 $("#searchPanel").bind("stateChange",function(e,state){
+				g.resetHeight();
+			});
+		}
+		
+		//查询
+		function searchHandler(){
+			//得到查询参数
+			var query = $("#queryForm").formToArray(); 
+			//将查询参数传给grid表格
+			g.setOptions({ params: query});
+			//页号重置为1
+			g.setNewPage(1);
+			//重新加载数据
+			g.loadData();
+		}
+		
+		//重置
+		function resetHandler(){
+		   //表单常规元素还原
+		   $("#queryForm")[0].reset();
+		   //下拉框还原
+		   $("#queryForm").find("select").render();
+		   //重新查询
+		   searchHandler();
+		}
+		
+	//添加
+	function addUser() {
+		top.Dialog.open({URL:"../../sample_skin/normal/user-management-content.html",Title:"新增",Width:500,Height:330}); 
+	}
+	
+	//批量删除
+	function deleteUser() {
+		top.Dialog.alert("向后台发送ajax请求来批量删除。见JAVA版或.NET版演示。");
+	}
+	
+	//导入
+	function importUser() {
+		top.Dialog.alert("见JAVA版或.NET版演示。");
+	}
+	//导出
+	function exportUser() {
+		top.Dialog.alert("见JAVA版或.NET版演示。");
+	}
+	
+	//导出所有
+	function exportUser2() {
+		top.Dialog.alert("见JAVA版或.NET版演示。");
+	}
+	
+	//查看
+	function onView(rowid){
+		alert("选择的记录Id是:" + rowid );
+		top.Dialog.open({URL:"../../sample_skin/normal/user-management-content2.html",Title:"查看",Width:500,Height:330}); 
+	}
+	
+	//修改
+	function onEdit(rowid){
+		top.Dialog.open({URL:"../../sample_skin/normal/user-management-content.html",Title:"新增",Width:500,Height:330}); 
+	}
+	
+	//删除
+	function onDelete(rowid,rowidx){
+		top.Dialog.confirm("确定要删除该记录吗？",function(){
+		  	top.Dialog.alert("向后台发送ajax请求来删除。见JAVA版或.NET版演示。");
+		});
+	}
+		
+    //刷新表格 表单提交的回调
+    function afterFormSubmit(){
+        g.loadData();
+    }
+ 
+</script>	
+</body>
+</html>

@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbReqresetList -->
+<mapper namespace="com.boco.SYS.mapper.TbReqresetListMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReqresetList">
+        <id column="reqreset_id" property="reqresetId"/>
+        <result column="reqreset_month" property="reqresetMonth"/>
+        <result column="reqreset_organ" property="reqresetOrgan"/>
+        <result column="reqreset_type" property="reqresetType"/>
+        <result column="reqreset_state" property="reqresetState"/>
+        <result column="reqreset_date_start" property="reqresetDateStart"/>
+        <result column="reqreset_date_end" property="reqresetDateEnd"/>
+        <result column="reqreset_attachment_id" property="reqresetAttachmentId"/>
+        <result column="reqreset_note" property="reqresetNote"/>
+        <result column="reqreset_to" property="reqresetTo"/>
+        <result column="reqreset_create_oper" property="reqresetCreateOper"/>
+        <result column="reqreset_update_oper" property="reqresetUpdateOper"/>
+        <result column="reqreset_createtime" property="reqresetCreatetime"/>
+        <result column="reqreset_updatetime" property="reqresetUpdatetime"/>
+        <result column="reqreset_time_start" property="reqresetTimeStart"/>
+        <result column="reqreset_time_end" property="reqresetTimeEnd"/>
+        <result column="reqreset_organ_list" property="reqresetOrganList"/>
+        <result column="reqreset_comb_list" property="reqresetCombList"/>
+        <result column="reqreset_prod_line" property="reqresetProdLine"/>
+        <result column="reqreset_name" property="reqresetName"/>
+        <result column="reqreset_unit" property="reqresetUnit"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+                reqreset_id ,reqreset_month ,reqreset_organ ,reqreset_type ,reqreset_state ,reqreset_date_start ,reqreset_date_end ,reqreset_attachment_id ,reqreset_note ,reqreset_to ,reqreset_create_oper ,reqreset_update_oper ,reqreset_createtime ,reqreset_updatetime ,reqreset_time_start ,reqreset_time_end ,reqreset_organ_list ,reqreset_comb_list ,reqreset_prod_line ,reqreset_name ,reqreset_unit
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReqresetList">
+        <!--
+                -->
+        INSERT INTO tb_reqreset_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reqresetId != null">
+                reqreset_id ,
+            </if>
+            <if test="reqresetMonth != null">
+                reqreset_month ,
+            </if>
+            <if test="reqresetOrgan != null">
+                reqreset_organ ,
+            </if>
+            <if test="reqresetType != null">
+                reqreset_type ,
+            </if>
+            <if test="reqresetState != null">
+                reqreset_state ,
+            </if>
+            <if test="reqresetDateStart != null">
+                reqreset_date_start ,
+            </if>
+            <if test="reqresetDateEnd != null">
+                reqreset_date_end ,
+            </if>
+            <if test="reqresetAttachmentId != null">
+                reqreset_attachment_id ,
+            </if>
+            <if test="reqresetNote != null">
+                reqreset_note ,
+            </if>
+            <if test="reqresetTo != null">
+                reqreset_to ,
+            </if>
+            <if test="reqresetCreateOper != null">
+                reqreset_create_oper ,
+            </if>
+            <if test="reqresetUpdateOper != null">
+                reqreset_update_oper ,
+            </if>
+            <if test="reqresetCreatetime != null">
+                reqreset_createtime ,
+            </if>
+            <if test="reqresetUpdatetime != null">
+                reqreset_updatetime ,
+            </if>
+            <if test="reqresetTimeStart != null">
+                reqreset_time_start ,
+            </if>
+            <if test="reqresetTimeEnd != null">
+                reqreset_time_end ,
+            </if>
+            <if test="reqresetOrganList != null">
+                reqreset_organ_list ,
+            </if>
+            <if test="reqresetCombList != null">
+                reqreset_comb_list ,
+            </if>
+            <if test="reqresetProdLine != null">
+                reqreset_prod_line ,
+            </if>
+            <if test="reqresetName != null">
+                reqreset_name ,
+            </if>
+            <if test="reqresetUnit != null">
+                reqreset_unit
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reqresetId != null">
+                #{reqresetId} ,
+            </if>
+            <if test="reqresetMonth != null">
+                #{reqresetMonth} ,
+            </if>
+            <if test="reqresetOrgan != null">
+                #{reqresetOrgan} ,
+            </if>
+            <if test="reqresetType != null">
+                #{reqresetType} ,
+            </if>
+            <if test="reqresetState != null">
+                #{reqresetState} ,
+            </if>
+            <if test="reqresetDateStart != null">
+                #{reqresetDateStart} ,
+            </if>
+            <if test="reqresetDateEnd != null">
+                #{reqresetDateEnd} ,
+            </if>
+            <if test="reqresetAttachmentId != null">
+                #{reqresetAttachmentId} ,
+            </if>
+            <if test="reqresetNote != null">
+                #{reqresetNote} ,
+            </if>
+            <if test="reqresetTo != null">
+                #{reqresetTo} ,
+            </if>
+            <if test="reqresetCreateOper != null">
+                #{reqresetCreateOper} ,
+            </if>
+            <if test="reqresetUpdateOper != null">
+                #{reqresetUpdateOper} ,
+            </if>
+            <if test="reqresetCreatetime != null">
+                #{reqresetCreatetime} ,
+            </if>
+            <if test="reqresetUpdatetime != null">
+                #{reqresetUpdatetime} ,
+            </if>
+            <if test="reqresetTimeStart != null">
+                #{reqresetTimeStart} ,
+            </if>
+            <if test="reqresetTimeEnd != null">
+                #{reqresetTimeEnd} ,
+            </if>
+            <if test="reqresetOrganList != null">
+                #{reqresetOrganList} ,
+            </if>
+            <if test="reqresetCombList != null">
+                #{reqresetCombList} ,
+            </if>
+            <if test="reqresetProdLine != null">
+                #{reqresetProdLine} ,
+            </if>
+            <if test="reqresetName != null">
+                #{reqresetName} ,
+            </if>
+            <if test="reqresetUnit != null">
+                #{reqresetUnit}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_reqreset_list
+        (reqreset_id ,reqreset_month ,reqreset_organ ,reqreset_type ,reqreset_state ,reqreset_date_start
+        ,reqreset_date_end ,reqreset_attachment_id ,reqreset_note ,reqreset_to ,reqreset_create_oper
+        ,reqreset_update_oper ,reqreset_createtime ,reqreset_updatetime ,reqreset_time_start ,reqreset_time_end
+        ,reqreset_organ_list ,reqreset_comb_list ,reqreset_prod_line ,reqreset_name ,reqreset_unit )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.reqresetId,jdbcType=VARCHAR},#{item.reqresetMonth,jdbcType=VARCHAR},#{item.reqresetOrgan,jdbcType=VARCHAR},#{item.reqresetType,jdbcType=VARCHAR},#{item.reqresetState,jdbcType=VARCHAR},#{item.reqresetDateStart,jdbcType=VARCHAR},#{item.reqresetDateEnd,jdbcType=VARCHAR},#{item.reqresetAttachmentId,jdbcType=VARCHAR},#{item.reqresetNote,jdbcType=VARCHAR},#{item.reqresetTo,jdbcType=VARCHAR},#{item.reqresetCreateOper,jdbcType=VARCHAR},#{item.reqresetUpdateOper,jdbcType=VARCHAR},#{item.reqresetCreatetime,jdbcType=VARCHAR},#{item.reqresetUpdatetime,jdbcType=VARCHAR},#{item.reqresetTimeStart,jdbcType=VARCHAR},#{item.reqresetTimeEnd,jdbcType=VARCHAR},#{item.reqresetOrganList,jdbcType=VARCHAR},#{item.reqresetCombList,jdbcType=VARCHAR},#{item.reqresetProdLine,jdbcType=VARCHAR},#{item.reqresetName,jdbcType=VARCHAR},#{item.reqresetUnit,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_list
+        <where>
+            reqreset_id = #{reqresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_list
+        <where>
+            reqreset_id = #{reqresetId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_reqreset_list
+        WHERE reqreset_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_reqreset_list
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReqresetList">
+        UPDATE tb_reqreset_list
+        <set>
+            <if test="reqresetMonth != null">
+                reqreset_month = #{reqresetMonth},
+            </if>
+            <if test="reqresetOrgan != null">
+                reqreset_organ = #{reqresetOrgan},
+            </if>
+            <if test="reqresetType != null">
+                reqreset_type = #{reqresetType},
+            </if>
+            <if test="reqresetState != null">
+                reqreset_state = #{reqresetState},
+            </if>
+            <if test="reqresetDateStart != null">
+                reqreset_date_start = #{reqresetDateStart},
+            </if>
+            <if test="reqresetDateEnd != null">
+                reqreset_date_end = #{reqresetDateEnd},
+            </if>
+            <if test="reqresetAttachmentId != null">
+                reqreset_attachment_id = #{reqresetAttachmentId},
+            </if>
+            <if test="reqresetNote != null">
+                reqreset_note = #{reqresetNote},
+            </if>
+            <if test="reqresetTo != null">
+                reqreset_to = #{reqresetTo},
+            </if>
+            <if test="reqresetCreateOper != null">
+                reqreset_create_oper = #{reqresetCreateOper},
+            </if>
+            <if test="reqresetUpdateOper != null">
+                reqreset_update_oper = #{reqresetUpdateOper},
+            </if>
+            <if test="reqresetCreatetime != null">
+                reqreset_createtime = #{reqresetCreatetime},
+            </if>
+            <if test="reqresetUpdatetime != null">
+                reqreset_updatetime = #{reqresetUpdatetime},
+            </if>
+            <if test="reqresetTimeStart != null">
+                reqreset_time_start = #{reqresetTimeStart},
+            </if>
+            <if test="reqresetTimeEnd != null">
+                reqreset_time_end = #{reqresetTimeEnd},
+            </if>
+            <if test="reqresetOrganList != null">
+                reqreset_organ_list = #{reqresetOrganList},
+            </if>
+            <if test="reqresetCombList != null">
+                reqreset_comb_list = #{reqresetCombList},
+            </if>
+            <if test="reqresetProdLine != null">
+                reqreset_prod_line = #{reqresetProdLine},
+            </if>
+            <if test="reqresetName != null">
+                reqreset_name = #{reqresetName},
+            </if>
+            <if test="reqresetUnit != null">
+                reqreset_unit = #{reqresetUnit},
+            </if>
+        </set>
+        <where>
+            reqreset_id = #{reqresetId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_reqreset_list
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_reqreset_list
+        <set>
+            <if test="reqresetId != null">
+                reqreset_id = #{reqresetId},
+            </if>
+            <if test="reqresetMonth != null">
+                reqreset_month = #{reqresetMonth},
+            </if>
+            <if test="reqresetOrgan != null">
+                reqreset_organ = #{reqresetOrgan},
+            </if>
+            <if test="reqresetType != null">
+                reqreset_type = #{reqresetType},
+            </if>
+            <if test="reqresetState != null">
+                reqreset_state = #{reqresetState},
+            </if>
+            <if test="reqresetDateStart != null">
+                reqreset_date_start = #{reqresetDateStart},
+            </if>
+            <if test="reqresetDateEnd != null">
+                reqreset_date_end = #{reqresetDateEnd},
+            </if>
+            <if test="reqresetAttachmentId != null">
+                reqreset_attachment_id = #{reqresetAttachmentId},
+            </if>
+            <if test="reqresetNote != null">
+                reqreset_note = #{reqresetNote},
+            </if>
+            <if test="reqresetTo != null">
+                reqreset_to = #{reqresetTo},
+            </if>
+            <if test="reqresetCreateOper != null">
+                reqreset_create_oper = #{reqresetCreateOper},
+            </if>
+            <if test="reqresetUpdateOper != null">
+                reqreset_update_oper = #{reqresetUpdateOper},
+            </if>
+            <if test="reqresetCreatetime != null">
+                reqreset_createtime = #{reqresetCreatetime},
+            </if>
+            <if test="reqresetUpdatetime != null">
+                reqreset_updatetime = #{reqresetUpdatetime},
+            </if>
+            <if test="reqresetTimeStart != null">
+                reqreset_time_start = #{reqresetTimeStart},
+            </if>
+            <if test="reqresetTimeEnd != null">
+                reqreset_time_end = #{reqresetTimeEnd},
+            </if>
+            <if test="reqresetOrganList != null">
+                reqreset_organ_list = #{reqresetOrganList},
+            </if>
+            <if test="reqresetCombList != null">
+                reqreset_comb_list = #{reqresetCombList},
+            </if>
+            <if test="reqresetProdLine != null">
+                reqreset_prod_line = #{reqresetProdLine},
+            </if>
+            <if test="reqresetName != null">
+                reqreset_name = #{reqresetName},
+            </if>
+            <if test="reqresetUnit != null">
+                reqreset_unit = #{reqresetUnit},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="reqresetId != null and reqresetId != ''">
+            and reqreset_id = #{reqresetId}
+        </if>
+        <if test="reqresetMonth != null and reqresetMonth != ''">
+            and reqreset_month = #{reqresetMonth}
+        </if>
+        <if test="reqresetOrgan != null and reqresetOrgan != ''">
+            and reqreset_organ = #{reqresetOrgan}
+        </if>
+        <if test="reqresetType != null ">
+            and reqreset_type = #{reqresetType}
+        </if>
+
+        <if test="reqresetDateStart != null and reqresetDateStart != ''">
+            and reqreset_date_start = #{reqresetDateStart}
+        </if>
+        <if test="reqresetDateEnd != null and reqresetDateEnd != ''">
+            and reqreset_date_end = #{reqresetDateEnd}
+        </if>
+        <if test="reqresetAttachmentId != null and reqresetAttachmentId != ''">
+            and reqreset_attachment_id = #{reqresetAttachmentId}
+        </if>
+        <if test="reqresetNote != null and reqresetNote != ''">
+            and reqreset_note = #{reqresetNote}
+        </if>
+        <if test="reqresetTo != null ">
+            and reqreset_to = #{reqresetTo}
+        </if>
+        <if test="reqresetCreateOper != null and reqresetCreateOper != ''">
+            and reqreset_create_oper = #{reqresetCreateOper}
+        </if>
+        <if test="reqresetUpdateOper != null and reqresetUpdateOper != ''">
+            and reqreset_update_oper = #{reqresetUpdateOper}
+        </if>
+        <if test="reqresetCreatetime != null and reqresetCreatetime != ''">
+            and reqreset_createtime = #{reqresetCreatetime}
+        </if>
+        <if test="reqresetUpdatetime != null and reqresetUpdatetime != ''">
+            and reqreset_updatetime = #{reqresetUpdatetime}
+        </if>
+        <if test="reqresetTimeStart != null and reqresetTimeStart != ''">
+            and reqreset_time_start = #{reqresetTimeStart}
+        </if>
+        <if test="reqresetTimeEnd != null and reqresetTimeEnd != ''">
+            and reqreset_time_end = #{reqresetTimeEnd}
+        </if>
+        <if test="reqresetOrganList != null and reqresetOrganList != ''">
+            and reqreset_organ_list = #{reqresetOrganList}
+        </if>
+        <if test="reqresetCombList != null and reqresetCombList != ''">
+            and reqreset_comb_list = #{reqresetCombList}
+        </if>
+        <if test="reqresetProdLine != null and reqresetProdLine != ''">
+            and reqreset_prod_line = #{reqresetProdLine}
+        </if>
+        <if test="reqresetName != null and reqresetName != ''">
+            and reqreset_name = #{reqresetName}
+        </if>
+        <if test="reqresetUnit != null and reqresetUnit != ''">
+            and reqreset_unit = #{reqresetUnit}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="reqresetId != null and reqresetId != ''">
+            and reqreset_id like '%' || #{reqresetId} || '%'
+        </if>
+        <if test="reqresetMonth != null and reqresetMonth != ''">
+            and reqreset_month like '%' || #{reqresetMonth} || '%'
+        </if>
+        <if test="reqresetOrgan != null and reqresetOrgan != ''">
+            and reqreset_organ like '%' || #{reqresetOrgan} || '%'
+        </if>
+        <if test="reqresetType != null and reqresetType != ''">
+            and reqreset_type like '%' || #{reqresetType} || '%'
+        </if>
+        <if test="reqresetState != null and reqresetState != ''">
+            and reqreset_state like '%' || #{reqresetState} || '%'
+        </if>
+        <if test="reqresetDateStart != null and reqresetDateStart != ''">
+            and reqreset_date_start like '%' || #{reqresetDateStart} || '%'
+        </if>
+        <if test="reqresetDateEnd != null and reqresetDateEnd != ''">
+            and reqreset_date_end like '%' || #{reqresetDateEnd} || '%'
+        </if>
+        <if test="reqresetAttachmentId != null and reqresetAttachmentId != ''">
+            and reqreset_attachment_id like '%' || #{reqresetAttachmentId} || '%'
+        </if>
+        <if test="reqresetNote != null and reqresetNote != ''">
+            and reqreset_note like '%' || #{reqresetNote} || '%'
+        </if>
+        <if test="reqresetTo != null and reqresetTo != ''">
+            and reqreset_to like '%' || #{reqresetTo} || '%'
+        </if>
+        <if test="reqresetCreateOper != null and reqresetCreateOper != ''">
+            and reqreset_create_oper like '%' || #{reqresetCreateOper} || '%'
+        </if>
+        <if test="reqresetUpdateOper != null and reqresetUpdateOper != ''">
+            and reqreset_update_oper like '%' || #{reqresetUpdateOper} || '%'
+        </if>
+        <if test="reqresetCreatetime != null and reqresetCreatetime != ''">
+            and reqreset_createtime like '%' || #{reqresetCreatetime} || '%'
+        </if>
+        <if test="reqresetUpdatetime != null and reqresetUpdatetime != ''">
+            and reqreset_updatetime like '%' || #{reqresetUpdatetime} || '%'
+        </if>
+        <if test="reqresetTimeStart != null and reqresetTimeStart != ''">
+            and reqreset_time_start like '%' || #{reqresetTimeStart} || '%'
+        </if>
+        <if test="reqresetTimeEnd != null and reqresetTimeEnd != ''">
+            and reqreset_time_end like '%' || #{reqresetTimeEnd} || '%'
+        </if>
+        <if test="reqresetOrganList != null and reqresetOrganList != ''">
+            and reqreset_organ_list like '%' || #{reqresetOrganList} || '%'
+        </if>
+        <if test="reqresetCombList != null and reqresetCombList != ''">
+            and reqreset_comb_list like '%' || #{reqresetCombList} || '%'
+        </if>
+        <if test="reqresetProdLine != null and reqresetProdLine != ''">
+            and reqreset_prod_line like '%' || #{reqresetProdLine} || '%'
+        </if>
+        <if test="reqresetName != null and reqresetName != ''">
+            and reqreset_name like '%' || #{reqresetName} || '%'
+        </if>
+        <if test="reqresetUnit != null and reqresetUnit != ''">
+            and reqreset_unit like '%' || #{reqresetUnit} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        <where>
+            reqreset_id = #{reqresetId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReqresetList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReqresetList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="  reqresetState != null and reqresetState =='100'.toString() ">
+            and reqreset_state = 0
+        </if>
+        <if test="  reqresetState != null and reqresetState =='1'.toString() ">
+            and reqreset_state = 1
+        </if>
+        order  by  reqreset_createtime desc
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="checkApprovedList" parameterType="com.boco.SYS.entity.TbReqresetList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        where reqreset_state &lt; 16
+        <if test="reqresetType != null and reqresetType != ''">
+            and reqreset_type = #{reqresetType}
+        </if>
+        <if test="reqresetMonth != null and reqresetMonth != ''">
+            and reqreset_month = #{reqresetMonth}
+        </if>
+        <if test="reqresetOrgan != null and reqresetOrgan != ''">
+            and reqreset_organ = #{reqresetOrgan}
+        </if>
+        order by reqreset_createtime DESC
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReqresetList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_reqreset_list
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_reqreset_list
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_reqreset_list
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_reqreset_list
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入报送要求id -->
+    <select id="selectReqId" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqreset_id FROM tb_reqreset_list
+	   WHERE  cast (reqreset_id as char ) LIKE '%${reqresetId}%'
+	   and reqreset_organ =#{reqresetOrgan}
+    </select>
+    <!-- 联想输入所属周期 -->
+    <select id="selectReqMonth" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqreset_month FROM tb_reqreset_list
+	   WHERE reqreset_month LIKE '%${reqresetMonth}%'
+	   and reqreset_organ =#{reqresetOrgan}
+    </select>
+
+
+    <!-- 联想输入报送要求id -->
+    <select id="showReqId" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqreset_id FROM tb_reqreset_list
+	   WHERE cast (reqreset_id as char ) LIKE '%${reqresetId}%'
+	   and reqreset_organ =#{reqresetOrgan}
+	    and reqreset_to=#{reqresetTo}
+    </select>
+
+
+    <!-- 联想输入所属周期 -->
+    <select id="showReqMonth" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT reqreset_month FROM tb_reqreset_list
+	   WHERE reqreset_month LIKE '%${reqresetMonth}%'
+	   and reqreset_organ =#{reqresetOrgan}
+	   and reqreset_to=#{reqresetTo}
+    </select>
+
+
+    <update id="updateReqState" parameterType="com.boco.SYS.entity.TbReqresetList">
+        UPDATE tb_reqreset_list
+        <set>
+            reqreset_state = #{reqresetState}
+        </set>
+        <where>
+            reqreset_id = #{reqresetId}
+        </where>
+
+    </update>
+
+    <!-- 联想输入所属机构 -->
+    <select id="selectReqresetOrgan" parameterType="com.boco.SYS.entity.TbReqresetList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQRESET_ORGAN FROM tb_reqreset_list
+	   WHERE REQRESET_ORGAN LIKE '%${reqresetOrgan}%'
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

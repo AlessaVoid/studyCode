@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- FdBusinessDate -->
+<mapper namespace="com.boco.SYS.mapper.FdBusinessDateMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.FdBusinessDate">
+       	<id column="BUSI_TYPE_CODE" property="busiTypeCode"/>
+		<id column="SUB_BUSI_TYPE" property="subBusiType"/>
+     	<result column="CUR_DATE" property="curDate"/>
+     	<result column="LAST_DATE" property="lastDate"/>
+     	<result column="NEXT_WORK_DAY_DATE" property="nextWorkDate"/>
+     	<result column="BUSI_FLAG_STATUS" property="busiFlag"/>
+     	<result column="MONTHEND_FLAG" property="monthFlag"/>
+     	<result column="LAST_OPR_TELLER_NO" property="lastModOprTellerNo"/>
+     	<result column="LAST_MOD_BUSI_DATE" property="lastModBusiDate"/>
+     	<result column="LAST_MOD_LOCAL_DATE" property="lastModLocalDate"/>
+     	<result column="LAST_MOD_LOCAL_TIME" property="lastModLocalTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        BUSI_TYPE_CODE ,CUR_DATE ,LAST_DATE ,NEXT_WORK_DAY_DATE ,BUSI_FLAG_STATUS ,MONTHEND_FLAG ,LAST_OPR_TELLER_NO ,LAST_MOD_BUSI_DATE ,LAST_MOD_LOCAL_DATE ,LAST_MOD_LOCAL_TIME ,SUB_BUSI_TYPE 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.FdBusinessDate">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO FD_BUSINESS_DATE 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="busiTypeCode != null">
+	        	BUSI_TYPE_CODE ,
+	       	</if>
+	       	<if test="curDate != null">
+	        	CUR_DATE ,
+	       	</if>
+	       	<if test="lastDate != null">
+	        	LAST_DATE ,
+	       	</if>
+	       	<if test="nextWorkDate != null">
+	        	NEXT_WORK_DAY_DATE ,
+	       	</if>
+	       	<if test="busiFlag != null">
+	        	BUSI_FLAG_STATUS ,
+	       	</if>
+	       	<if test="monthFlag != null">
+	        	MONTHEND_FLAG ,
+	       	</if>
+	       	<if test="lastModOprTellerNo != null">
+	        	LAST_OPR_TELLER_NO ,
+	       	</if>
+	       	<if test="lastModBusiDate != null">
+	        	LAST_MOD_BUSI_DATE ,
+	       	</if>
+	       	<if test="lastModLocalDate != null">
+	        	LAST_MOD_LOCAL_DATE ,
+	       	</if>
+	       	<if test="lastModLocalTime != null">
+	        	LAST_MOD_LOCAL_TIME ,
+	       	</if>
+	       	<if test="subBusiType != null">
+	        	SUB_BUSI_TYPE ,
+	       	</if>
+	       		last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="busiTypeCode != null">
+	        	#{busiTypeCode} ,
+	       	</if>
+	       	<if test="curDate != null">
+	        	#{curDate} ,
+	       	</if>
+	       	<if test="lastDate != null">
+	        	#{lastDate} ,
+	       	</if>
+	       	<if test="nextWorkDate != null">
+	        	#{nextWorkDate} ,
+	       	</if>
+	       	<if test="busiFlag != null">
+	        	#{busiFlag} ,
+	       	</if>
+	       	<if test="monthFlag != null">
+	        	#{monthFlag} ,
+	       	</if>
+	       	<if test="lastModOprTellerNo != null">
+	        	#{lastModOprTellerNo} ,
+	       	</if>
+	       	<if test="lastModBusiDate != null">
+	        	#{lastModBusiDate} ,
+	       	</if>
+	       	<if test="lastModLocalDate != null">
+	        	#{lastModLocalDate} ,
+	       	</if>
+	       	<if test="lastModLocalTime != null">
+	        	#{lastModLocalTime} ,
+	       	</if>
+	       	<if test="subBusiType != null">
+	        	#{subBusiType} ,
+	       	</if>
+	       		to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO FD_BUSINESS_DATE 
+        (BUSI_TYPE_CODE ,CUR_DATE ,LAST_DATE ,NEXT_WORK_DAY_DATE ,BUSI_FLAG_STATUS ,MONTHEND_FLAG ,LAST_OPR_TELLER_NO ,LAST_MOD_BUSI_DATE ,LAST_MOD_LOCAL_DATE ,LAST_MOD_LOCAL_TIME ,SUB_BUSI_TYPE ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.busiTypeCode,jdbcType=VARCHAR},#{item.curDate,jdbcType=VARCHAR},#{item.lastDate,jdbcType=VARCHAR},#{item.nextWorkDate,jdbcType=VARCHAR},#{item.busiFlag,jdbcType=VARCHAR},#{item.monthFlag,jdbcType=VARCHAR},#{item.lastModOprTellerNo,jdbcType=VARCHAR},#{item.lastModBusiDate,jdbcType=VARCHAR},#{item.lastModLocalDate,jdbcType=VARCHAR},#{item.lastModLocalTime,jdbcType=VARCHAR},#{item.subBusiType,jdbcType=VARCHAR},to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM FD_BUSINESS_DATE 
+        <where>
+        	BUSI_TYPE_CODE = #{busiTypeCode} and
+        	SUB_BUSI_TYPE = #{subBusiType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM FD_BUSINESS_DATE 
+        <where>
+        	BUSI_TYPE_CODE = #{busiTypeCode} and
+        	SUB_BUSI_TYPE = #{subBusiType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录 -->
+    <delete id="deleteBatchByPKList" parameterType="java.util.List">
+      DELETE FROM FD_BUSINESS_DATE WHERE 
+     <foreach collection="list" item="item" index="index" separator="or">
+        ( 
+        	BUSI_TYPE_CODE = #{item.busiTypeCode} and
+        	SUB_BUSI_TYPE = #{item.subBusiType} 
+		)
+		</foreach>
+    
+    </delete>
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM FD_BUSINESS_DATE
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.FdBusinessDate">
+        UPDATE FD_BUSINESS_DATE 
+        <set>
+       	<if test="curDate != null">
+       		CUR_DATE = #{curDate},
+       	</if>
+       	<if test="lastDate != null">
+       		LAST_DATE = #{lastDate},
+       	</if>
+       	<if test="nextWorkDate != null">
+       		NEXT_WORK_DAY_DATE = #{nextWorkDate},
+       	</if>
+       	<if test="busiFlag != null">
+       		BUSI_FLAG_STATUS = #{busiFlag},
+       	</if>
+       	<if test="monthFlag != null">
+       		MONTHEND_FLAG = #{monthFlag},
+       	</if>
+       	<if test="lastModOprTellerNo != null">
+       		LAST_OPR_TELLER_NO = #{lastModOprTellerNo},
+       	</if>
+       	<if test="lastModBusiDate != null">
+       		LAST_MOD_BUSI_DATE = #{lastModBusiDate},
+       	</if>
+       	<if test="lastModLocalDate != null">
+       		LAST_MOD_LOCAL_DATE = #{lastModLocalDate},
+       	</if>
+       	<if test="lastModLocalTime != null">
+       		LAST_MOD_LOCAL_TIME = #{lastModLocalTime},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	BUSI_TYPE_CODE = #{busiTypeCode} and
+        	SUB_BUSI_TYPE = #{subBusiType} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE FD_BUSINESS_DATE 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE FD_BUSINESS_DATE 
+        <set>
+       	<if test="busiTypeCode != null">
+       		BUSI_TYPE_CODE = #{busiTypeCode},
+       	</if>
+       	<if test="curDate != null">
+       		CUR_DATE = #{curDate},
+       	</if>
+       	<if test="lastDate != null">
+       		LAST_DATE = #{lastDate},
+       	</if>
+       	<if test="nextWorkDate != null">
+       		NEXT_WORK_DAY_DATE = #{nextWorkDate},
+       	</if>
+       	<if test="busiFlag != null">
+       		BUSI_FLAG_STATUS = #{busiFlag},
+       	</if>
+       	<if test="monthFlag != null">
+       		MONTHEND_FLAG = #{monthFlag},
+       	</if>
+       	<if test="lastModOprTellerNo != null">
+       		LAST_OPR_TELLER_NO = #{lastModOprTellerNo},
+       	</if>
+       	<if test="lastModBusiDate != null">
+       		LAST_MOD_BUSI_DATE = #{lastModBusiDate},
+       	</if>
+       	<if test="lastModLocalDate != null">
+       		LAST_MOD_LOCAL_DATE = #{lastModLocalDate},
+       	</if>
+       	<if test="lastModLocalTime != null">
+       		LAST_MOD_LOCAL_TIME = #{lastModLocalTime},
+       	</if>
+       	<if test="subBusiType != null">
+       		SUB_BUSI_TYPE = #{subBusiType},
+       	</if>
+       		last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="busiTypeCode != null and busiTypeCode != ''">
+	 		and BUSI_TYPE_CODE = #{busiTypeCode}
+	 	</if>
+	 	<if test="curDate != null and curDate != ''">
+	 		and CUR_DATE = #{curDate}
+	 	</if>
+	 	<if test="lastDate != null and lastDate != ''">
+	 		and LAST_DATE = #{lastDate}
+	 	</if>
+	 	<if test="nextWorkDate != null and nextWorkDate != ''">
+	 		and NEXT_WORK_DAY_DATE = #{nextWorkDate}
+	 	</if>
+	 	<if test="busiFlag != null and busiFlag != ''">
+	 		and BUSI_FLAG_STATUS = #{busiFlag}
+	 	</if>
+	 	<if test="monthFlag != null and monthFlag != ''">
+	 		and MONTHEND_FLAG = #{monthFlag}
+	 	</if>
+	 	<if test="lastModOprTellerNo != null and lastModOprTellerNo != ''">
+	 		and LAST_OPR_TELLER_NO = #{lastModOprTellerNo}
+	 	</if>
+	 	<if test="lastModBusiDate != null and lastModBusiDate != ''">
+	 		and LAST_MOD_BUSI_DATE = #{lastModBusiDate}
+	 	</if>
+	 	<if test="lastModLocalDate != null and lastModLocalDate != ''">
+	 		and LAST_MOD_LOCAL_DATE = #{lastModLocalDate}
+	 	</if>
+	 	<if test="lastModLocalTime != null and lastModLocalTime != ''">
+	 		and LAST_MOD_LOCAL_TIME = #{lastModLocalTime}
+	 	</if>
+	 	<if test="subBusiType != null and subBusiType != ''">
+	 		and SUB_BUSI_TYPE = #{subBusiType}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="busiTypeCode != null and busiTypeCode != ''">
+ 			and BUSI_TYPE_CODE like '%' || #{busiTypeCode} || '%'
+ 		</if>
+ 		<if test="curDate != null and curDate != ''">
+ 			and CUR_DATE like '%' || #{curDate} || '%'
+ 		</if>
+ 		<if test="lastDate != null and lastDate != ''">
+ 			and LAST_DATE like '%' || #{lastDate} || '%'
+ 		</if>
+ 		<if test="nextWorkDate != null and nextWorkDate != ''">
+ 			and NEXT_WORK_DAY_DATE like '%' || #{nextWorkDate} || '%'
+ 		</if>
+ 		<if test="busiFlag != null and busiFlag != ''">
+ 			and BUSI_FLAG_STATUS like '%' || #{busiFlag} || '%'
+ 		</if>
+ 		<if test="monthFlag != null and monthFlag != ''">
+ 			and MONTHEND_FLAG like '%' || #{monthFlag} || '%'
+ 		</if>
+ 		<if test="lastModOprTellerNo != null and lastModOprTellerNo != ''">
+ 			and LAST_OPR_TELLER_NO like '%' || #{lastModOprTellerNo} || '%'
+ 		</if>
+ 		<if test="lastModBusiDate != null and lastModBusiDate != ''">
+ 			and LAST_MOD_BUSI_DATE like '%' || #{lastModBusiDate} || '%'
+ 		</if>
+ 		<if test="lastModLocalDate != null and lastModLocalDate != ''">
+ 			and LAST_MOD_LOCAL_DATE like '%' || #{lastModLocalDate} || '%'
+ 		</if>
+ 		<if test="lastModLocalTime != null and lastModLocalTime != ''">
+ 			and LAST_MOD_LOCAL_TIME like '%' || #{lastModLocalTime} || '%'
+ 		</if>
+ 		<if test="subBusiType != null and subBusiType != ''">
+ 			and SUB_BUSI_TYPE like '%' || #{subBusiType} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM FD_BUSINESS_DATE 
+        <where> 
+        	BUSI_TYPE_CODE = #{busiTypeCode} and
+        	SUB_BUSI_TYPE = #{subBusiType} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.FdBusinessDate" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM FD_BUSINESS_DATE
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.FdBusinessDate" resultMap="base_result_map" flushCache="true" fetchSize="1000">
+	    SELECT <include refid="base_column_list"/> FROM FD_BUSINESS_DATE 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.FdBusinessDate" resultMap="base_result_map" flushCache="true" fetchSize="1000">
+        SELECT <include refid="base_column_list"/> FROM FD_BUSINESS_DATE 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true" fetchSize="1000">
+        SELECT <include refid="base_column_list"/> FROM FD_BUSINESS_DATE 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.FdBusinessDate" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_BUSINESS_DATE 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.FdBusinessDate" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_BUSINESS_DATE 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from FD_BUSINESS_DATE 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectDetailsByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM FD_BUSINESS_DATE
+		<where>
+			BUSI_TYPE_CODE = #{busiTypeCode} and
+			SUB_BUSI_TYPE = #{subBusiType}
+		</where>
+	</select>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

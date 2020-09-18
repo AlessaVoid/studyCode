@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- FdOrgan -->
+<mapper namespace="com.boco.SYS.mapper.FdOrganMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.FdOrgan">
+        <id column="thiscode" property="thiscode"/>
+        <result column="countrycode" property="countrycode"/>
+        <result column="provincecode" property="provincecode"/>
+        <result column="areacode" property="areacode"/>
+        <result column="citycode" property="citycode"/>
+        <result column="branchcode" property="branchcode"/>
+        <result column="organlevel" property="organlevel"/>
+        <result column="checkflag" property="checkflag"/>
+        <result column="organname" property="organname"/>
+        <result column="organaddr" property="organaddr"/>
+        <result column="organstate" property="organstate"/>
+        <result column="organipaddr" property="organipaddr"/>
+        <result column="organport" property="organport"/>
+        <result column="maintainname" property="maintainname"/>
+        <result column="maintainphone" property="maintainphone"/>
+        <result column="trankey" property="trankey"/>
+        <result column="mackey" property="mackey"/>
+        <result column="tutrankey" property="tutrankey"/>
+        <result column="cashiercode" property="cashiercode"/>
+        <result column="cashorgcode" property="cashorgcode"/>
+        <result column="cashtobankserial" property="cashtobankserial"/>
+        <result column="totalquota" property="totalquota"/>
+        <result column="customerserial" property="customerserial"/>
+        <result column="totalgrant" property="totalgrant"/>
+        <result column="singlequota" property="singlequota"/>
+        <result column="deliverserial" property="deliverserial"/>
+        <result column="cashtocenterserial" property="cashtocenterserial"/>
+        <result column="applyserial" property="applyserial"/>
+        <result column="turninserial" property="turninserial"/>
+        <result column="grantserial" property="grantserial"/>
+        <result column="lostserial" property="lostserial"/>
+        <result column="recserial" property="recserial"/>
+        <result column="payserial" property="payserial"/>
+        <result column="turserial" property="turserial"/>
+        <result column="impawnserial" property="impawnserial"/>
+        <result column="modifydate" property="modifydate"/>
+        <result column="modifyorgan" property="modifyorgan"/>
+        <result column="modifyoper" property="modifyoper"/>
+        <result column="liquiorgancode" property="liquiorgancode"/>
+        <result column="liquicode" property="liquicode"/>
+        <result column="outsidechequeserial" property="outsidechequeserial"/>
+        <result column="organflag" property="organflag"/>
+        <result column="organfunctions" property="organfunctions"/>
+        <result column="areatype" property="areatype"/>
+        <result column="uporgan" property="uporgan"/>
+        <result column="last_mod_stamp" property="lastModStamp"/>
+        <result column="leveloneorder" property="leveloneorder"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        thiscode ,countrycode ,provincecode ,areacode ,citycode ,branchcode ,organlevel ,checkflag ,organname ,organaddr ,organstate ,organipaddr ,organport ,maintainname ,maintainphone ,trankey ,mackey ,tutrankey ,cashiercode ,cashorgcode ,cashtobankserial ,totalquota ,customerserial ,totalgrant ,singlequota ,deliverserial ,cashtocenterserial ,applyserial ,turninserial ,grantserial ,lostserial ,recserial ,payserial ,turserial ,impawnserial ,modifydate ,modifyorgan ,modifyoper ,liquiorgancode ,liquicode ,outsidechequeserial ,organflag ,organfunctions ,areatype ,uporgan ,last_mod_stamp ,leveloneorder
+	    ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.FdOrgan">
+        INSERT INTO FD_ORGAN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="thiscode != null">
+                THISCODE ,
+            </if>
+            <if test="countrycode != null">
+                COUNTRYCODE ,
+            </if>
+            <if test="provincecode != null">
+                PROVINCECODE ,
+            </if>
+            <if test="areacode != null">
+                AREACODE ,
+            </if>
+            <if test="citycode != null">
+                CITYCODE ,
+            </if>
+            <if test="branchcode != null">
+                BRANCHCODE ,
+            </if>
+            <if test="organlevel != null">
+                ORGANLEVEL ,
+            </if>
+            <if test="checkflag != null">
+                CHECKFLAG ,
+            </if>
+            <if test="organname != null">
+                ORGANNAME ,
+            </if>
+            <if test="organaddr != null">
+                ORGANADDR ,
+            </if>
+            <if test="organstate != null">
+                ORGANSTATE ,
+            </if>
+            <if test="organipaddr != null">
+                ORGANIPADDR ,
+            </if>
+            <if test="organport != null">
+                ORGANPORT ,
+            </if>
+            <if test="maintainname != null">
+                MAINTAINNAME ,
+            </if>
+            <if test="maintainphone != null">
+                MAINTAINPHONE ,
+            </if>
+            <if test="trankey != null">
+                TRANKEY ,
+            </if>
+            <if test="mackey != null">
+                MACKEY ,
+            </if>
+            <if test="tutrankey != null">
+                TUTRANKEY ,
+            </if>
+            <if test="cashiercode != null">
+                CASHIERCODE ,
+            </if>
+            <if test="cashorgcode != null">
+                CASHORGCODE ,
+            </if>
+            <if test="cashtobankserial != null">
+                CASHTOBANKSERIAL ,
+            </if>
+            <if test="totalquota != null">
+                TOTALQUOTA ,
+            </if>
+            <if test="customerserial != null">
+                CUSTOMERSERIAL ,
+            </if>
+            <if test="totalgrant != null">
+                TOTALGRANT ,
+            </if>
+            <if test="singlequota != null">
+                SINGLEQUOTA ,
+            </if>
+            <if test="deliverserial != null">
+                DELIVERSERIAL ,
+            </if>
+            <if test="cashtocenterserial != null">
+                CASHTOCENTERSERIAL ,
+            </if>
+            <if test="applyserial != null">
+                APPLYSERIAL ,
+            </if>
+            <if test="turninserial != null">
+                TURNINSERIAL ,
+            </if>
+            <if test="grantserial != null">
+                GRANTSERIAL ,
+            </if>
+            <if test="lostserial != null">
+                LOSTSERIAL ,
+            </if>
+            <if test="recserial != null">
+                RECSERIAL ,
+            </if>
+            <if test="payserial != null">
+                PAYSERIAL ,
+            </if>
+            <if test="turserial != null">
+                TURSERIAL ,
+            </if>
+            <if test="impawnserial != null">
+                IMPAWNSERIAL ,
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE ,
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN ,
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER ,
+            </if>
+            <if test="liquiorgancode != null">
+                LIQUIORGANCODE ,
+            </if>
+            <if test="liquicode != null">
+                LIQUICODE ,
+            </if>
+            <if test="outsidechequeserial != null">
+                OUTSIDECHEQUESERIAL ,
+            </if>
+            <if test="organflag != null">
+                ORGANFLAG ,
+            </if>
+            <if test="organfunctions != null">
+                ORGANFUNCTIONS ,
+            </if>
+            <if test="areatype != null">
+                AREATYPE ,
+            </if>
+            <if test="uporgan != null">
+                UPORGAN ,
+            </if>
+            last_mod_stamp
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="thiscode != null">
+                #{thiscode} ,
+            </if>
+            <if test="countrycode != null">
+                #{countrycode} ,
+            </if>
+            <if test="provincecode != null">
+                #{provincecode} ,
+            </if>
+            <if test="areacode != null">
+                #{areacode} ,
+            </if>
+            <if test="citycode != null">
+                #{citycode} ,
+            </if>
+            <if test="branchcode != null">
+                #{branchcode} ,
+            </if>
+            <if test="organlevel != null">
+                #{organlevel} ,
+            </if>
+            <if test="checkflag != null">
+                #{checkflag} ,
+            </if>
+            <if test="organname != null">
+                #{organname} ,
+            </if>
+            <if test="organaddr != null">
+                #{organaddr} ,
+            </if>
+            <if test="organstate != null">
+                #{organstate} ,
+            </if>
+            <if test="organipaddr != null">
+                #{organipaddr} ,
+            </if>
+            <if test="organport != null">
+                #{organport} ,
+            </if>
+            <if test="maintainname != null">
+                #{maintainname} ,
+            </if>
+            <if test="maintainphone != null">
+                #{maintainphone} ,
+            </if>
+            <if test="trankey != null">
+                #{trankey} ,
+            </if>
+            <if test="mackey != null">
+                #{mackey} ,
+            </if>
+            <if test="tutrankey != null">
+                #{tutrankey} ,
+            </if>
+            <if test="cashiercode != null">
+                #{cashiercode} ,
+            </if>
+            <if test="cashorgcode != null">
+                #{cashorgcode} ,
+            </if>
+            <if test="cashtobankserial != null">
+                #{cashtobankserial} ,
+            </if>
+            <if test="totalquota != null">
+                #{totalquota} ,
+            </if>
+            <if test="customerserial != null">
+                #{customerserial} ,
+            </if>
+            <if test="totalgrant != null">
+                #{totalgrant} ,
+            </if>
+            <if test="singlequota != null">
+                #{singlequota} ,
+            </if>
+            <if test="deliverserial != null">
+                #{deliverserial} ,
+            </if>
+            <if test="cashtocenterserial != null">
+                #{cashtocenterserial} ,
+            </if>
+            <if test="applyserial != null">
+                #{applyserial} ,
+            </if>
+            <if test="turninserial != null">
+                #{turninserial} ,
+            </if>
+            <if test="grantserial != null">
+                #{grantserial} ,
+            </if>
+            <if test="lostserial != null">
+                #{lostserial} ,
+            </if>
+            <if test="recserial != null">
+                #{recserial} ,
+            </if>
+            <if test="payserial != null">
+                #{payserial} ,
+            </if>
+            <if test="turserial != null">
+                #{turserial} ,
+            </if>
+            <if test="impawnserial != null">
+                #{impawnserial} ,
+            </if>
+            <if test="modifydate != null">
+                #{modifydate} ,
+            </if>
+            <if test="modifyorgan != null">
+                #{modifyorgan} ,
+            </if>
+            <if test="modifyoper != null">
+                #{modifyoper} ,
+            </if>
+            <if test="liquiorgancode != null">
+                #{liquiorgancode} ,
+            </if>
+            <if test="liquicode != null">
+                #{liquicode} ,
+            </if>
+            <if test="outsidechequeserial != null">
+                #{outsidechequeserial} ,
+            </if>
+            <if test="organflag != null">
+                #{organflag} ,
+            </if>
+            <if test="organfunctions != null">
+                #{organfunctions} ,
+            </if>
+            <if test="areatype != null">
+                #{areatype} ,
+            </if>
+            <if test="uporgan != null">
+                #{uporgan} ,
+            </if>
+            to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO FD_ORGAN
+        (THISCODE ,COUNTRYCODE ,PROVINCECODE ,AREACODE ,CITYCODE ,BRANCHCODE ,ORGANLEVEL ,CHECKFLAG ,ORGANNAME
+        ,ORGANADDR ,ORGANSTATE ,ORGANIPADDR ,ORGANPORT ,MAINTAINNAME ,MAINTAINPHONE ,TRANKEY ,MACKEY ,TUTRANKEY
+        ,CASHIERCODE ,CASHORGCODE ,CASHTOBANKSERIAL ,TOTALQUOTA ,CUSTOMERSERIAL ,TOTALGRANT ,SINGLEQUOTA ,DELIVERSERIAL
+        ,CASHTOCENTERSERIAL ,APPLYSERIAL ,TURNINSERIAL ,GRANTSERIAL ,LOSTSERIAL ,RECSERIAL ,PAYSERIAL ,TURSERIAL
+        ,IMPAWNSERIAL ,MODIFYDATE ,MODIFYORGAN ,MODIFYOPER ,LIQUIORGANCODE ,LIQUICODE ,OUTSIDECHEQUESERIAL ,ORGANFLAG
+        ,ORGANFUNCTIONS ,AREATYPE ,UPORGAN ,last_mod_stamp )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.thiscode} ,#{item.countrycode} ,#{item.provincecode} ,#{item.areacode} ,#{item.citycode}
+            ,#{item.branchcode} ,#{item.organlevel} ,#{item.checkflag} ,#{item.organname} ,#{item.organaddr}
+            ,#{item.organstate} ,#{item.organipaddr} ,#{item.organport} ,#{item.maintainname} ,#{item.maintainphone}
+            ,#{item.trankey} ,#{item.mackey} ,#{item.tutrankey} ,#{item.cashiercode} ,#{item.cashorgcode}
+            ,#{item.cashtobankserial} ,#{item.totalquota} ,#{item.customerserial} ,#{item.totalgrant}
+            ,#{item.singlequota} ,#{item.deliverserial} ,#{item.cashtocenterserial} ,#{item.applyserial}
+            ,#{item.turninserial} ,#{item.grantserial} ,#{item.lostserial} ,#{item.recserial} ,#{item.payserial}
+            ,#{item.turserial} ,#{item.impawnserial} ,#{item.modifydate} ,#{item.modifyorgan} ,#{item.modifyoper}
+            ,#{item.liquiorgancode} ,#{item.liquicode} ,#{item.outsidechequeserial} ,#{item.organflag}
+            ,#{item.organfunctions} ,#{item.areatype} ,#{item.uporgan} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM FD_ORGAN
+        <where>
+            THISCODE = #{thiscode}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM FD_ORGAN
+        <where>
+            THISCODE = #{thiscode}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM FD_ORGAN
+        WHERE THISCODE IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM FD_ORGAN
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.FdOrgan">
+        UPDATE FD_ORGAN
+        <set>
+            <if test="countrycode != null">
+                COUNTRYCODE = #{countrycode},
+            </if>
+            <if test="provincecode != null">
+                PROVINCECODE = #{provincecode},
+            </if>
+            <if test="areacode != null">
+                AREACODE = #{areacode},
+            </if>
+            <if test="citycode != null">
+                CITYCODE = #{citycode},
+            </if>
+            <if test="branchcode != null">
+                BRANCHCODE = #{branchcode},
+            </if>
+            <if test="organlevel != null">
+                ORGANLEVEL = #{organlevel},
+            </if>
+            <if test="checkflag != null">
+                CHECKFLAG = #{checkflag},
+            </if>
+            <if test="organname != null">
+                ORGANNAME = #{organname},
+            </if>
+            <if test="organaddr != null">
+                ORGANADDR = #{organaddr},
+            </if>
+            <if test="organstate != null">
+                ORGANSTATE = #{organstate},
+            </if>
+            <if test="organipaddr != null">
+                ORGANIPADDR = #{organipaddr},
+            </if>
+            <if test="organport != null">
+                ORGANPORT = #{organport},
+            </if>
+            <if test="maintainname != null">
+                MAINTAINNAME = #{maintainname},
+            </if>
+            <if test="maintainphone != null">
+                MAINTAINPHONE = #{maintainphone},
+            </if>
+            <if test="trankey != null">
+                TRANKEY = #{trankey},
+            </if>
+            <if test="mackey != null">
+                MACKEY = #{mackey},
+            </if>
+            <if test="tutrankey != null">
+                TUTRANKEY = #{tutrankey},
+            </if>
+            <if test="cashiercode != null">
+                CASHIERCODE = #{cashiercode},
+            </if>
+            <if test="cashorgcode != null">
+                CASHORGCODE = #{cashorgcode},
+            </if>
+            <if test="cashtobankserial != null">
+                CASHTOBANKSERIAL = #{cashtobankserial},
+            </if>
+            <if test="totalquota != null">
+                TOTALQUOTA = #{totalquota},
+            </if>
+            <if test="customerserial != null">
+                CUSTOMERSERIAL = #{customerserial},
+            </if>
+            <if test="totalgrant != null">
+                TOTALGRANT = #{totalgrant},
+            </if>
+            <if test="singlequota != null">
+                SINGLEQUOTA = #{singlequota},
+            </if>
+            <if test="deliverserial != null">
+                DELIVERSERIAL = #{deliverserial},
+            </if>
+            <if test="cashtocenterserial != null">
+                CASHTOCENTERSERIAL = #{cashtocenterserial},
+            </if>
+            <if test="applyserial != null">
+                APPLYSERIAL = #{applyserial},
+            </if>
+            <if test="turninserial != null">
+                TURNINSERIAL = #{turninserial},
+            </if>
+            <if test="grantserial != null">
+                GRANTSERIAL = #{grantserial},
+            </if>
+            <if test="lostserial != null">
+                LOSTSERIAL = #{lostserial},
+            </if>
+            <if test="recserial != null">
+                RECSERIAL = #{recserial},
+            </if>
+            <if test="payserial != null">
+                PAYSERIAL = #{payserial},
+            </if>
+            <if test="turserial != null">
+                TURSERIAL = #{turserial},
+            </if>
+            <if test="impawnserial != null">
+                IMPAWNSERIAL = #{impawnserial},
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE = #{modifydate},
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN = #{modifyorgan},
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER = #{modifyoper},
+            </if>
+            <if test="liquiorgancode != null">
+                LIQUIORGANCODE = #{liquiorgancode},
+            </if>
+            <if test="liquicode != null">
+                LIQUICODE = #{liquicode},
+            </if>
+            <if test="outsidechequeserial != null">
+                OUTSIDECHEQUESERIAL = #{outsidechequeserial},
+            </if>
+            <if test="organflag != null">
+                ORGANFLAG = #{organflag},
+            </if>
+            <if test="organfunctions != null">
+                ORGANFUNCTIONS = #{organfunctions},
+            </if>
+            <if test="areatype != null">
+                AREATYPE = #{areatype},
+            </if>
+            <if test="uporgan != null">
+                UPORGAN = #{uporgan},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            THISCODE = #{thiscode}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE FD_ORGAN
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE FD_ORGAN
+        <set>
+            <if test="thiscode != null">
+                THISCODE = #{thiscode},
+            </if>
+            <if test="countrycode != null">
+                COUNTRYCODE = #{countrycode},
+            </if>
+            <if test="provincecode != null">
+                PROVINCECODE = #{provincecode},
+            </if>
+            <if test="areacode != null">
+                AREACODE = #{areacode},
+            </if>
+            <if test="citycode != null">
+                CITYCODE = #{citycode},
+            </if>
+            <if test="branchcode != null">
+                BRANCHCODE = #{branchcode},
+            </if>
+            <if test="organlevel != null">
+                ORGANLEVEL = #{organlevel},
+            </if>
+            <if test="checkflag != null">
+                CHECKFLAG = #{checkflag},
+            </if>
+            <if test="organname != null">
+                ORGANNAME = #{organname},
+            </if>
+            <if test="organaddr != null">
+                ORGANADDR = #{organaddr},
+            </if>
+            <if test="organstate != null">
+                ORGANSTATE = #{organstate},
+            </if>
+            <if test="organipaddr != null">
+                ORGANIPADDR = #{organipaddr},
+            </if>
+            <if test="organport != null">
+                ORGANPORT = #{organport},
+            </if>
+            <if test="maintainname != null">
+                MAINTAINNAME = #{maintainname},
+            </if>
+            <if test="maintainphone != null">
+                MAINTAINPHONE = #{maintainphone},
+            </if>
+            <if test="trankey != null">
+                TRANKEY = #{trankey},
+            </if>
+            <if test="mackey != null">
+                MACKEY = #{mackey},
+            </if>
+            <if test="tutrankey != null">
+                TUTRANKEY = #{tutrankey},
+            </if>
+            <if test="cashiercode != null">
+                CASHIERCODE = #{cashiercode},
+            </if>
+            <if test="cashorgcode != null">
+                CASHORGCODE = #{cashorgcode},
+            </if>
+            <if test="cashtobankserial != null">
+                CASHTOBANKSERIAL = #{cashtobankserial},
+            </if>
+            <if test="totalquota != null">
+                TOTALQUOTA = #{totalquota},
+            </if>
+            <if test="customerserial != null">
+                CUSTOMERSERIAL = #{customerserial},
+            </if>
+            <if test="totalgrant != null">
+                TOTALGRANT = #{totalgrant},
+            </if>
+            <if test="singlequota != null">
+                SINGLEQUOTA = #{singlequota},
+            </if>
+            <if test="deliverserial != null">
+                DELIVERSERIAL = #{deliverserial},
+            </if>
+            <if test="cashtocenterserial != null">
+                CASHTOCENTERSERIAL = #{cashtocenterserial},
+            </if>
+            <if test="applyserial != null">
+                APPLYSERIAL = #{applyserial},
+            </if>
+            <if test="turninserial != null">
+                TURNINSERIAL = #{turninserial},
+            </if>
+            <if test="grantserial != null">
+                GRANTSERIAL = #{grantserial},
+            </if>
+            <if test="lostserial != null">
+                LOSTSERIAL = #{lostserial},
+            </if>
+            <if test="recserial != null">
+                RECSERIAL = #{recserial},
+            </if>
+            <if test="payserial != null">
+                PAYSERIAL = #{payserial},
+            </if>
+            <if test="turserial != null">
+                TURSERIAL = #{turserial},
+            </if>
+            <if test="impawnserial != null">
+                IMPAWNSERIAL = #{impawnserial},
+            </if>
+            <if test="modifydate != null">
+                MODIFYDATE = #{modifydate},
+            </if>
+            <if test="modifyorgan != null">
+                MODIFYORGAN = #{modifyorgan},
+            </if>
+            <if test="modifyoper != null">
+                MODIFYOPER = #{modifyoper},
+            </if>
+            <if test="liquiorgancode != null">
+                LIQUIORGANCODE = #{liquiorgancode},
+            </if>
+            <if test="liquicode != null">
+                LIQUICODE = #{liquicode},
+            </if>
+            <if test="outsidechequeserial != null">
+                OUTSIDECHEQUESERIAL = #{outsidechequeserial},
+            </if>
+            <if test="organflag != null">
+                ORGANFLAG = #{organflag},
+            </if>
+            <if test="organfunctions != null">
+                ORGANFUNCTIONS = #{organfunctions},
+            </if>
+            <if test="areatype != null">
+                AREATYPE = #{areatype},
+            </if>
+            <if test="uporgan != null">
+                UPORGAN = #{uporgan},
+            </if>
+            last_mod_stamp = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="thiscode != null and thiscode != ''">
+            and THISCODE = #{thiscode}
+        </if>
+        <if test="countrycode != null and countrycode != ''">
+            and COUNTRYCODE = #{countrycode}
+        </if>
+        <if test="provincecode != null and provincecode != ''">
+            and PROVINCECODE = #{provincecode}
+        </if>
+        <if test="areacode != null and areacode != ''">
+            and AREACODE = #{areacode}
+        </if>
+        <if test="citycode != null and citycode != ''">
+            and CITYCODE = #{citycode}
+        </if>
+        <if test="branchcode != null and branchcode != ''">
+            and BRANCHCODE = #{branchcode}
+        </if>
+        <if test="organlevel != null and organlevel != ''">
+            and ORGANLEVEL = #{organlevel}
+        </if>
+        <if test="checkflag != null and checkflag != ''">
+            and CHECKFLAG = #{checkflag}
+        </if>
+        <if test="organname != null and organname != ''">
+            and ORGANNAME = #{organname}
+        </if>
+        <if test="organaddr != null and organaddr != ''">
+            and ORGANADDR = #{organaddr}
+        </if>
+        <if test="organstate != null and organstate != ''">
+            and ORGANSTATE = #{organstate}
+        </if>
+        <if test="organipaddr != null and organipaddr != ''">
+            and ORGANIPADDR = #{organipaddr}
+        </if>
+        <if test="organport != null and organport != ''">
+            and ORGANPORT = #{organport}
+        </if>
+        <if test="maintainname != null and maintainname != ''">
+            and MAINTAINNAME = #{maintainname}
+        </if>
+        <if test="maintainphone != null and maintainphone != ''">
+            and MAINTAINPHONE = #{maintainphone}
+        </if>
+        <if test="trankey != null and trankey != ''">
+            and TRANKEY = #{trankey}
+        </if>
+        <if test="mackey != null and mackey != ''">
+            and MACKEY = #{mackey}
+        </if>
+        <if test="tutrankey != null and tutrankey != ''">
+            and TUTRANKEY = #{tutrankey}
+        </if>
+        <if test="cashiercode != null and cashiercode != ''">
+            and CASHIERCODE = #{cashiercode}
+        </if>
+        <if test="cashorgcode != null and cashorgcode != ''">
+            and CASHORGCODE = #{cashorgcode}
+        </if>
+        <if test="cashtobankserial != null and cashtobankserial != ''">
+            and CASHTOBANKSERIAL = #{cashtobankserial}
+        </if>
+        <if test="totalquota != null and totalquota != ''">
+            and TOTALQUOTA = #{totalquota}
+        </if>
+        <if test="customerserial != null and customerserial != ''">
+            and CUSTOMERSERIAL = #{customerserial}
+        </if>
+        <if test="totalgrant != null and totalgrant != ''">
+            and TOTALGRANT = #{totalgrant}
+        </if>
+        <if test="singlequota != null and singlequota != ''">
+            and SINGLEQUOTA = #{singlequota}
+        </if>
+        <if test="deliverserial != null and deliverserial != ''">
+            and DELIVERSERIAL = #{deliverserial}
+        </if>
+        <if test="cashtocenterserial != null and cashtocenterserial != ''">
+            and CASHTOCENTERSERIAL = #{cashtocenterserial}
+        </if>
+        <if test="applyserial != null and applyserial != ''">
+            and APPLYSERIAL = #{applyserial}
+        </if>
+        <if test="turninserial != null and turninserial != ''">
+            and TURNINSERIAL = #{turninserial}
+        </if>
+        <if test="grantserial != null and grantserial != ''">
+            and GRANTSERIAL = #{grantserial}
+        </if>
+        <if test="lostserial != null and lostserial != ''">
+            and LOSTSERIAL = #{lostserial}
+        </if>
+        <if test="recserial != null and recserial != ''">
+            and RECSERIAL = #{recserial}
+        </if>
+        <if test="payserial != null and payserial != ''">
+            and PAYSERIAL = #{payserial}
+        </if>
+        <if test="turserial != null and turserial != ''">
+            and TURSERIAL = #{turserial}
+        </if>
+        <if test="impawnserial != null and impawnserial != ''">
+            and IMPAWNSERIAL = #{impawnserial}
+        </if>
+        <if test="modifydate != null and modifydate != ''">
+            and MODIFYDATE = #{modifydate}
+        </if>
+        <if test="modifyorgan != null and modifyorgan != ''">
+            and MODIFYORGAN = #{modifyorgan}
+        </if>
+        <if test="modifyoper != null and modifyoper != ''">
+            and MODIFYOPER = #{modifyoper}
+        </if>
+        <if test="liquiorgancode != null and liquiorgancode != ''">
+            and LIQUIORGANCODE = #{liquiorgancode}
+        </if>
+        <if test="liquicode != null and liquicode != ''">
+            and LIQUICODE = #{liquicode}
+        </if>
+        <if test="outsidechequeserial != null and outsidechequeserial != ''">
+            and OUTSIDECHEQUESERIAL = #{outsidechequeserial}
+        </if>
+        <if test="organflag != null and organflag != ''">
+            and ORGANFLAG = #{organflag}
+        </if>
+        <if test="organfunctions != null and organfunctions != ''">
+            and ORGANFUNCTIONS = #{organfunctions}
+        </if>
+        <if test="areatype != null and areatype != ''">
+            and AREATYPE = #{areatype}
+        </if>
+        <if test="uporgan != null and uporgan != ''">
+            and UPORGAN = #{uporgan}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="thiscode != null and thiscode != ''">
+            and THISCODE like '%' || #{thiscode} || '%'
+        </if>
+        <if test="countrycode != null and countrycode != ''">
+            and COUNTRYCODE like '%' || #{countrycode} || '%'
+        </if>
+        <if test="provincecode != null and provincecode != ''">
+            and PROVINCECODE like '%' || #{provincecode} || '%'
+        </if>
+        <if test="areacode != null and areacode != ''">
+            and AREACODE like '%' || #{areacode} || '%'
+        </if>
+        <if test="citycode != null and citycode != ''">
+            and CITYCODE like '%' || #{citycode} || '%'
+        </if>
+        <if test="branchcode != null and branchcode != ''">
+            and BRANCHCODE like '%' || #{branchcode} || '%'
+        </if>
+        <if test="organlevel != null and organlevel != ''">
+            and ORGANLEVEL like '%' || #{organlevel} || '%'
+        </if>
+        <if test="checkflag != null and checkflag != ''">
+            and CHECKFLAG like '%' || #{checkflag} || '%'
+        </if>
+        <if test="organname != null and organname != ''">
+            or ORGANNAME like '%${organname}%'
+        </if>
+        <if test="organaddr != null and organaddr != ''">
+            and ORGANADDR like '%' || #{organaddr} || '%'
+        </if>
+        <if test="organstate != null and organstate != ''">
+            and ORGANSTATE like '%' || #{organstate} || '%'
+        </if>
+        <if test="organipaddr != null and organipaddr != ''">
+            and ORGANIPADDR like '%' || #{organipaddr} || '%'
+        </if>
+        <if test="organport != null and organport != ''">
+            and ORGANPORT like '%' || #{organport} || '%'
+        </if>
+        <if test="maintainname != null and maintainname != ''">
+            and MAINTAINNAME like '%' || #{maintainname} || '%'
+        </if>
+        <if test="maintainphone != null and maintainphone != ''">
+            and MAINTAINPHONE like '%' || #{maintainphone} || '%'
+        </if>
+        <if test="trankey != null and trankey != ''">
+            and TRANKEY like '%' || #{trankey} || '%'
+        </if>
+        <if test="mackey != null and mackey != ''">
+            and MACKEY like '%' || #{mackey} || '%'
+        </if>
+        <if test="tutrankey != null and tutrankey != ''">
+            and TUTRANKEY like '%' || #{tutrankey} || '%'
+        </if>
+        <if test="cashiercode != null and cashiercode != ''">
+            and CASHIERCODE like '%' || #{cashiercode} || '%'
+        </if>
+        <if test="cashorgcode != null and cashorgcode != ''">
+            and CASHORGCODE like '%' || #{cashorgcode} || '%'
+        </if>
+        <if test="cashtobankserial != null and cashtobankserial != ''">
+            and CASHTOBANKSERIAL like '%' || #{cashtobankserial} || '%'
+        </if>
+        <if test="totalquota != null and totalquota != ''">
+            and TOTALQUOTA like '%' || #{totalquota} || '%'
+        </if>
+        <if test="customerserial != null and customerserial != ''">
+            and CUSTOMERSERIAL like '%' || #{customerserial} || '%'
+        </if>
+        <if test="totalgrant != null and totalgrant != ''">
+            and TOTALGRANT like '%' || #{totalgrant} || '%'
+        </if>
+        <if test="singlequota != null and singlequota != ''">
+            and SINGLEQUOTA like '%' || #{singlequota} || '%'
+        </if>
+        <if test="deliverserial != null and deliverserial != ''">
+            and DELIVERSERIAL like '%' || #{deliverserial} || '%'
+        </if>
+        <if test="cashtocenterserial != null and cashtocenterserial != ''">
+            and CASHTOCENTERSERIAL like '%' || #{cashtocenterserial} || '%'
+        </if>
+        <if test="applyserial != null and applyserial != ''">
+            and APPLYSERIAL like '%' || #{applyserial} || '%'
+        </if>
+        <if test="turninserial != null and turninserial != ''">
+            and TURNINSERIAL like '%' || #{turninserial} || '%'
+        </if>
+        <if test="grantserial != null and grantserial != ''">
+            and GRANTSERIAL like '%' || #{grantserial} || '%'
+        </if>
+        <if test="lostserial != null and lostserial != ''">
+            and LOSTSERIAL like '%' || #{lostserial} || '%'
+        </if>
+        <if test="recserial != null and recserial != ''">
+            and RECSERIAL like '%' || #{recserial} || '%'
+        </if>
+        <if test="payserial != null and payserial != ''">
+            and PAYSERIAL like '%' || #{payserial} || '%'
+        </if>
+        <if test="turserial != null and turserial != ''">
+            and TURSERIAL like '%' || #{turserial} || '%'
+        </if>
+        <if test="impawnserial != null and impawnserial != ''">
+            and IMPAWNSERIAL like '%' || #{impawnserial} || '%'
+        </if>
+        <if test="modifydate != null and modifydate != ''">
+            and MODIFYDATE like '%' || #{modifydate} || '%'
+        </if>
+        <if test="modifyorgan != null and modifyorgan != ''">
+            and MODIFYORGAN like '%' || #{modifyorgan} || '%'
+        </if>
+        <if test="modifyoper != null and modifyoper != ''">
+            and MODIFYOPER like '%' || #{modifyoper} || '%'
+        </if>
+        <if test="liquiorgancode != null and liquiorgancode != ''">
+            and LIQUIORGANCODE like '%' || #{liquiorgancode} || '%'
+        </if>
+        <if test="liquicode != null and liquicode != ''">
+            and LIQUICODE like '%' || #{liquicode} || '%'
+        </if>
+        <if test="outsidechequeserial != null and outsidechequeserial != ''">
+            and OUTSIDECHEQUESERIAL like '%' || #{outsidechequeserial} || '%'
+        </if>
+        <if test="organflag != null and organflag != ''">
+            and ORGANFLAG like '%' || #{organflag} || '%'
+        </if>
+        <if test="organfunctions != null and organfunctions != ''">
+            and ORGANFUNCTIONS like '%' || #{organfunctions} || '%'
+        </if>
+        <if test="areatype != null and areatype != ''">
+            and AREATYPE like '%' || #{areatype} || '%'
+        </if>
+        <if test="uporgan != null and uporgan != ''">
+            and UPORGAN like '%' || #{uporgan} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            THISCODE = #{thiscode}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.FdOrgan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+        </where>
+    </select>
+
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.FdOrgan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        order by leveloneorder,thiscode
+    </select>
+
+
+    <!--根据thiscode查询Name-->
+    <select id="selectOrganNameZX" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select ORGANNAME
+        FROM FD_ORGAN
+        WHERE THISCODE =#{thiscode}
+
+    </select>
+
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.FdOrgan" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectList" parameterType="java.util.HashMap" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            <if test="organlevel == 0 ">
+                and countrycode= #{session_organcode}
+            </if>
+            <if test="organlevel == 1 ">
+                and provincecode= #{session_organcode}
+            </if>
+            <if test="organlevel == 2 ">
+                and areacode= #{session_organcode}
+            </if>
+            <if test="organlevel == 3 ">
+                and citycode= #{session_organcode}
+            </if>
+            <if test="organlevel == 4 ">
+                and branchcode= #{session_organcode}
+            </if>
+            <if test="organcode != null and organcode != ''">
+                and thiscode= #{organcode}
+            </if>
+            <if test="organname != null and organname != ''">
+                and organname like '%' || #{organname} || '%'
+            </if>
+
+            <if test="uporgan != null and uporgan != ''">
+                and uporgan in
+                <foreach collection="uporgan" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+
+            </if>
+        </where>
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            ORDER BY ORGANLEVEL, THISCODE
+        </if>
+    </select>
+
+    <!-- 根据机构等级查询记录 -->
+    <select id="selectByLevel" parameterType="java.util.HashMap" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            <if test="thisorganlevel == 0 ">
+                and countrycode= #{session_organcode}
+            </if>
+            <if test="thisorganlevel == 1 ">
+                and provincecode= #{session_organcode}
+            </if>
+            <if test="thisorganlevel == 2 ">
+                and areacode= #{session_organcode}
+            </if>
+            <if test="thisorganlevel == 3 ">
+                and citycode= #{session_organcode}
+            </if>
+            <if test="thisorganlevel == 4 ">
+                and branchcode= #{session_organcode}
+            </if>
+            <if test="organlevel != null and organlevel != '' ">
+                and organlevel= #{organlevel}
+            </if>
+            <if test="organcode != null and organcode != ''">
+                and thiscode= #{organcode}
+            </if>
+            <if test="organname != null and organname != ''">
+                and organname like '%' || #{organname} || '%'
+            </if>
+            <if test="uporgan != null and uporgan != ''">
+                and uporgan in
+                <foreach collection="thiscodeList" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+
+            </if>
+        </where>
+        <if test="sort != null and sort !=''">
+            order by ${sort}
+        </if>
+        <if test="sort == null or sort ==''">
+            ORDER BY ORGANLEVEL, THISCODE
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from FD_ORGAN
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from FD_ORGAN
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from FD_ORGAN
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- ##############################################批量生成方法########################################### -->
+    <!-- ##############################################自定义方法############################################# -->
+    <!-- 获取一分机构 -->
+    <select id="selectProvOrgan" resultMap="base_result_map" flushCache="true">
+        SELECT *
+        FROM FD_ORGAN T
+        WHERE T.ORGANLEVEL = '1'
+          AND SUBSTR(T.THISCODE, 1, 2) != '99'
+        ORDER BY LENGTH(T.ORGANNAME)
+    </select>
+    <resultMap id="FdOrganInfo" type="java.util.HashMap">
+        <result property="value" column="THISCODE"/>
+        <result property="key" column="ORGANNAME"/>
+        <result property="organlevel" column="ORGANLEVEL"/>
+    </resultMap>
+    <!-- 查询直接下属机构-->
+    <select id="findNextOrganCodeList" resultMap="FdOrganInfo" flushCache="true">
+        SELECT THISCODE,
+               ORGANNAME,
+               ORGANLEVEL
+        FROM FD_ORGAN
+        WHERE UPORGAN = #{thiscode}
+        ORDER BY ORGANLEVEL, THISCODE
+    </select>
+    <!-- 批量插入 -->
+    <select id="selectProvName" parameterType="java.lang.String" resultType="java.util.HashMap" flushCache="true">
+        SELECT ORGANNAME FROM FD_ORGAN WHERE THISCODE IN(
+        <foreach collection="array" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+
+    <select id="selectOrganName" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        SELECT ORGANNAME FROM FD_ORGAN WHERE THISCODE = #{param}
+    </select>
+    <!-- 查询产品发售区域 -->
+    <select id="selectByAreaCodes" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            THISCODE IN(
+            <foreach collection="array" item="item" index="index" separator=",">
+                #{item}
+            </foreach>
+            )
+        </where>
+    </select>
+    <select id="selectByName" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select organname
+        from fd_organ
+        where uporgan = #{uporgan}
+          and organname like '%${organname}%'
+    </select>
+
+    <select id="selectOrganNameBycode" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select organname
+        from fd_organ
+        where thiscode = #{thiscode}
+
+    </select>
+    <select id="selectByThisCode" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select thiscode
+        from fd_organ
+        where uporgan = #{uporgan}
+                  and thiscode like '%' || #{thiscode} || '%'
+    </select>
+
+    <!--模糊查询thisname-->
+    <select id="selectByLikeName" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select organname
+        from fd_organ
+        where organname like '%${organname}%'
+        <if test="provincecode != null and provincecode != ''">
+            and PROVINCECODE = #{provincecode}
+        </if>
+    </select>
+
+    <!--模糊查询thisname单一专项修改-->
+    <select id="selectByLikeNameZX" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select organname
+        from fd_organ
+        where thiscode like '%${thiscode}%'
+        <if test="provincecode != null and provincecode != ''">
+            and PROVINCECODE = #{provincecode}
+        </if>
+    </select>
+    <!--模糊查询thiscode-->
+    <select id="selectByLikeThisCode" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select thiscode
+        from fd_organ
+        where thiscode like '%${thiscode}%'
+    </select>
+
+    <!--模糊查询thiscode单一专项修改-->
+    <select id="selectByLikeThisCodeZX" parameterType="com.boco.SYS.entity.FdOrgan" resultType="java.lang.String"
+            flushCache="true">
+        select thiscode,organname
+        from fd_organ
+        where thiscode like '%${thiscode}%'
+        <if test="provincecode != null and provincecode != ''">
+            and provincecode = #{provincecode}
+        </if>
+    </select>
+    <!--根据organname模糊查询thiscode-->
+    <select id="selectthiscodeByLikeOrganname" parameterType="java.lang.String" resultType="java.lang.String"
+            flushCache="true">
+        select thiscode
+        from fd_organ
+        where organname like concat('%',#{uporgan},'%')
+    </select>
+    <!-- 根据thiscode查询uporgan -->
+    <select id="selectUporganByThisCodeList" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        uporgan
+        FROM fd_organ
+       where thiscode = #{thiscode}
+    </select>
+
+
+
+    <select id="selectByUporgan" resultType="java.util.Map" flushCache="true">
+        select
+        thiscode  as thiscode,
+        thiscode  as organcode,
+        organname as organname
+        from fd_organ
+        where uporgan = #{uporgan}
+        and thiscode not in('1199340Q','1199521Q','11005293')
+        order by leveloneorder,thiscode
+    </select>
+    <select id="selectByOrganCode" resultType="java.util.Map" flushCache="true">
+        select
+        thiscode  as thiscode,
+        thiscode  as organcode,
+        organname as organname
+        from fd_organ
+        where thiscode = #{thiscode}
+        order by leveloneorder,thiscode
+
+    </select>
+    <!-- 根据机构号，查询下级所有机构、净增量等（首页）-->
+    <select id="selectIncrementByUporgan" resultType="java.util.Map" flushCache="true">
+        select o.thiscode                                           as organcode,
+               o.organname                                          as organname,
+               coalesce(B.planamount, 0)*10000                      as planamount,
+               coalesce(A.peoccurrence, 0)-coalesce(A.peexpire, 0)  as realityamount
+        from fd_organ o
+                 left join (select o1.thiscode           as thiscode,
+                                   sum(pe.pe_occurrence) as peoccurrence,
+                                   sum(pe.pe_expire)     as peexpire
+                            from tb_plan_execute pe
+                                     join fd_organ o1 on (pe.pe_organ = o1.thiscode)
+                            where o1.uporgan = #{uporgan}
+                              and pe.pe_month = #{month}
+                            group by o1.thiscode) A on (o.thiscode = A.thiscode)
+
+                 left join (select o2.thiscode                    as thiscode,
+                                   sum(coalesce(pd.pd_amount, 0)) as planamount
+                            from tb_plan p
+                                     join tb_plan_detail pd
+                                          on (p.plan_id = pd.pd_ref_id and p.plan_month = #{month} and p.plan_type = 1)
+                                     join fd_organ o2 on (pd.pd_organ = o2.thiscode)
+                            where o2.uporgan = #{uporgan}
+                            group by o2.thiscode) B on (o.thiscode = B.thiscode)
+        where o.uporgan = #{uporgan}
+        order by o.thiscode
+    </select>
+    <!-- 模糊查询机构code -->
+    <select id="selectByLikeOrganname" parameterType="java.lang.String" resultType="java.util.Map" flushCache="true">
+        select thiscode,
+               organname
+        from fd_organ
+        where organname like '%${organname}%' and organlevel = '1'
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByAttr2" parameterType="com.boco.SYS.entity.FdOrgan" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM FD_ORGAN
+        <where>
+            <include refid="where_equal"/>
+            and thiscode not in('1199340Q','1199521Q','11005293')
+        </where>
+        order by leveloneorder,thiscode
+    </select>
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

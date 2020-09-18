@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>树的编辑</title>
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+</head>
+<body>
+
+<div id="scrollContent">
+	<br/>
+	<input type="button" value="不分组表单" onclick="openWin1()"/><br/><br/>
+	<input type="button" value="分组表单" onclick="openWin2()"/><br/><br/>
+	<input type="button" value="表单信息查看" onclick="openWin3()"/>
+</div>
+ 
+ 
+<script type="text/javascript">
+   
+   function openWin1() {
+		top.Dialog.open({URL:"../../sample_skin/normal/user-management-content.html",Title:"新增",Width:500,Height:330}); 
+	}
+	
+    function openWin2(){
+        var dialog = new top.Dialog();
+		dialog.Title = "弹窗中的表单模板";
+		dialog.URL = "../../sample_skin/normal/form-pop-content1.html";
+		dialog.Height = 510;
+		dialog.Width = 600;
+		dialog.MessageTitle = "表单标题";
+		dialog.Message = "这里写一些填表说明";
+		dialog.show();
+    }
+	
+	 function openWin3(){
+       top.Dialog.open({URL:"../../sample_skin/normal/user-management-content2.html",Title:"查看",Width:500,Height:330}); 
+    }
+</script>
+</body>
+</html>

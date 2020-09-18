@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 商业银行人民币业务统计表 -->
+<mapper namespace="com.boco.SYS.mapper.TbBankRmbBusiMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbBankRmbBusi">
+       	<id column="id" property="id"/>
+     	<result column="bankname" property="bankname"/>
+     	<result column="statistics_day" property="statisticsDay"/>
+     	<result column="loan_type" property="loanType"/>
+     	<result column="balance" property="balance"/>
+     	<result column="rank" property="rank"/>
+     	<result column="monthly_add" property="monthlyAdd"/>
+     	<result column="monthly_rank" property="monthlyRank"/>
+     	<result column="year_add" property="yearAdd"/>
+     	<result column="year_rank" property="yearRank"/>
+     	<result column="created_by" property="createdBy"/>
+     	<result column="created_time" property="createdTime"/>
+     	<result column="updated_by" property="updatedBy"/>
+     	<result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,bankname ,statistics_day ,loan_type ,balance ,rank ,monthly_add ,monthly_rank ,year_add ,year_rank ,created_by ,created_time ,updated_by ,updated_time 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbBankRmbBusi">
+<!-- 
+	    -->       
+  INSERT INTO tb_bank_rmb_busi 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="bankname != null">
+	        	bankname ,
+	       	</if>
+	       	<if test="statisticsDay != null">
+	        	statistics_day ,
+	       	</if>
+	       	<if test="loanType != null">
+	        	loan_type ,
+	       	</if>
+	       	<if test="balance != null">
+	        	balance ,
+	       	</if>
+	       	<if test="rank != null">
+	        	rank ,
+	       	</if>
+	       	<if test="monthlyAdd != null">
+	        	monthly_add ,
+	       	</if>
+	       	<if test="monthlyRank != null">
+	        	monthly_rank ,
+	       	</if>
+	       	<if test="yearAdd != null">
+	        	year_add ,
+	       	</if>
+	       	<if test="yearRank != null">
+	        	year_rank ,
+	       	</if>
+	       	<if test="createdBy != null">
+	        	created_by ,
+	       	</if>
+	       	<if test="createdTime != null">
+	        	created_time ,
+	       	</if>
+	       	<if test="updatedBy != null">
+	        	updated_by ,
+	       	</if>
+	       	<if test="updatedTime != null">
+	        	updated_time 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="bankname != null">
+	        	#{bankname} ,
+	       	</if>
+	       	<if test="statisticsDay != null">
+	        	#{statisticsDay} ,
+	       	</if>
+	       	<if test="loanType != null">
+	        	#{loanType} ,
+	       	</if>
+	       	<if test="balance != null">
+	        	#{balance} ,
+	       	</if>
+	       	<if test="rank != null">
+	        	#{rank} ,
+	       	</if>
+	       	<if test="monthlyAdd != null">
+	        	#{monthlyAdd} ,
+	       	</if>
+	       	<if test="monthlyRank != null">
+	        	#{monthlyRank} ,
+	       	</if>
+	       	<if test="yearAdd != null">
+	        	#{yearAdd} ,
+	       	</if>
+	       	<if test="yearRank != null">
+	        	#{yearRank} ,
+	       	</if>
+	       	<if test="createdBy != null">
+	        	#{createdBy} ,
+	       	</if>
+	       	<if test="createdTime != null">
+	        	#{createdTime} ,
+	       	</if>
+	       	<if test="updatedBy != null">
+	        	#{updatedBy} ,
+	       	</if>
+	       	<if test="updatedTime != null">
+	        	#{updatedTime} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_bank_rmb_busi 
+        (id ,bankname ,statistics_day ,loan_type ,balance ,rank ,monthly_add ,monthly_rank ,year_add ,year_rank ,created_by ,created_time ,updated_by ,updated_time )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.bankname,jdbcType=VARCHAR},#{item.statisticsDay,jdbcType=VARCHAR},#{item.loanType,jdbcType=VARCHAR},#{item.balance,jdbcType=DECIMAL},#{item.rank,jdbcType=DECIMAL},#{item.monthlyAdd,jdbcType=DECIMAL},#{item.monthlyRank,jdbcType=DECIMAL},#{item.yearAdd,jdbcType=DECIMAL},#{item.yearRank,jdbcType=DECIMAL},#{item.createdBy,jdbcType=VARCHAR},#{item.createdTime,jdbcType=VARCHAR},#{item.updatedBy,jdbcType=VARCHAR},#{item.updatedTime,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_bank_rmb_busi 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_bank_rmb_busi 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_bank_rmb_busi 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_bank_rmb_busi
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbBankRmbBusi">
+        UPDATE tb_bank_rmb_busi 
+        <set>
+       	<if test="bankname != null">
+       		bankname = #{bankname},
+       	</if>
+       	<if test="statisticsDay != null">
+       		statistics_day = #{statisticsDay},
+       	</if>
+       	<if test="loanType != null">
+       		loan_type = #{loanType},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="rank != null">
+       		rank = #{rank},
+       	</if>
+       	<if test="monthlyAdd != null">
+       		monthly_add = #{monthlyAdd},
+       	</if>
+       	<if test="monthlyRank != null">
+       		monthly_rank = #{monthlyRank},
+       	</if>
+       	<if test="yearAdd != null">
+       		year_add = #{yearAdd},
+       	</if>
+       	<if test="yearRank != null">
+       		year_rank = #{yearRank},
+       	</if>
+       	<if test="createdBy != null">
+       		created_by = #{createdBy},
+       	</if>
+       	<if test="createdTime != null">
+       		created_time = #{createdTime},
+       	</if>
+       	<if test="updatedBy != null">
+       		updated_by = #{updatedBy},
+       	</if>
+       	<if test="updatedTime != null">
+       		updated_time = #{updatedTime},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_bank_rmb_busi 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_bank_rmb_busi 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="bankname != null">
+       		bankname = #{bankname},
+       	</if>
+       	<if test="statisticsDay != null">
+       		statistics_day = #{statisticsDay},
+       	</if>
+       	<if test="loanType != null">
+       		loan_type = #{loanType},
+       	</if>
+       	<if test="balance != null">
+       		balance = #{balance},
+       	</if>
+       	<if test="rank != null">
+       		rank = #{rank},
+       	</if>
+       	<if test="monthlyAdd != null">
+       		monthly_add = #{monthlyAdd},
+       	</if>
+       	<if test="monthlyRank != null">
+       		monthly_rank = #{monthlyRank},
+       	</if>
+       	<if test="yearAdd != null">
+       		year_add = #{yearAdd},
+       	</if>
+       	<if test="yearRank != null">
+       		year_rank = #{yearRank},
+       	</if>
+       	<if test="createdBy != null">
+       		created_by = #{createdBy},
+       	</if>
+       	<if test="createdTime != null">
+       		created_time = #{createdTime},
+       	</if>
+       	<if test="updatedBy != null">
+       		updated_by = #{updatedBy},
+       	</if>
+       	<if test="updatedTime != null">
+       		updated_time = #{updatedTime},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="bankname != null and bankname != ''">
+	 		and bankname = #{bankname}
+	 	</if>
+	 	<if test="statisticsDay != null and statisticsDay != ''">
+	 		and statistics_day = #{statisticsDay}
+	 	</if>
+	 	<if test="loanType != null and loanType != ''">
+	 		and loan_type = #{loanType}
+	 	</if>
+	 	<if test="balance != null and balance != ''">
+	 		and balance = #{balance}
+	 	</if>
+	 	<if test="rank != null and rank != ''">
+	 		and rank = #{rank}
+	 	</if>
+	 	<if test="monthlyAdd != null and monthlyAdd != ''">
+	 		and monthly_add = #{monthlyAdd}
+	 	</if>
+	 	<if test="monthlyRank != null and monthlyRank != ''">
+	 		and monthly_rank = #{monthlyRank}
+	 	</if>
+	 	<if test="yearAdd != null and yearAdd != ''">
+	 		and year_add = #{yearAdd}
+	 	</if>
+	 	<if test="yearRank != null and yearRank != ''">
+	 		and year_rank = #{yearRank}
+	 	</if>
+	 	<if test="createdBy != null and createdBy != ''">
+	 		and created_by = #{createdBy}
+	 	</if>
+	 	<if test="createdTime != null and createdTime != ''">
+	 		and created_time = #{createdTime}
+	 	</if>
+	 	<if test="updatedBy != null and updatedBy != ''">
+	 		and updated_by = #{updatedBy}
+	 	</if>
+	 	<if test="updatedTime != null and updatedTime != ''">
+	 		and updated_time = #{updatedTime}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="bankname != null and bankname != ''">
+ 			and bankname like '%' || #{bankname} || '%'
+ 		</if>
+ 		<if test="statisticsDay != null and statisticsDay != ''">
+ 			and statistics_day like '%' || #{statisticsDay} || '%'
+ 		</if>
+ 		<if test="loanType != null and loanType != ''">
+ 			and loan_type like '%' || #{loanType} || '%'
+ 		</if>
+ 		<if test="balance != null and balance != ''">
+ 			and balance like '%' || #{balance} || '%'
+ 		</if>
+ 		<if test="rank != null and rank != ''">
+ 			and rank like '%' || #{rank} || '%'
+ 		</if>
+ 		<if test="monthlyAdd != null and monthlyAdd != ''">
+ 			and monthly_add like '%' || #{monthlyAdd} || '%'
+ 		</if>
+ 		<if test="monthlyRank != null and monthlyRank != ''">
+ 			and monthly_rank like '%' || #{monthlyRank} || '%'
+ 		</if>
+ 		<if test="yearAdd != null and yearAdd != ''">
+ 			and year_add like '%' || #{yearAdd} || '%'
+ 		</if>
+ 		<if test="yearRank != null and yearRank != ''">
+ 			and year_rank like '%' || #{yearRank} || '%'
+ 		</if>
+ 		<if test="createdBy != null and createdBy != ''">
+ 			and created_by like '%' || #{createdBy} || '%'
+ 		</if>
+ 		<if test="createdTime != null and createdTime != ''">
+ 			and created_time like '%' || #{createdTime} || '%'
+ 		</if>
+ 		<if test="updatedBy != null and updatedBy != ''">
+ 			and updated_by like '%' || #{updatedBy} || '%'
+ 		</if>
+ 		<if test="updatedTime != null and updatedTime != ''">
+ 			and updated_time like '%' || #{updatedTime} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_bank_rmb_busi 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbBankRmbBusi" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_bank_rmb_busi
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbBankRmbBusi" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_bank_rmb_busi 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbBankRmbBusi" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_bank_rmb_busi 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_bank_rmb_busi 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbBankRmbBusi" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_bank_rmb_busi 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbBankRmbBusi" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_bank_rmb_busi 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_bank_rmb_busi 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+
+	<!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<!--查询当前月份最新数据的日期-->
+	<select id="selectDataDate" resultType="java.util.Map" flushCache="true">
+		select statistics_day
+		from tb_bank_rmb_busi
+		where statistics_day like #{date} || '%'
+		group by statistics_day
+		order by statistics_day desc
+
+	</select>
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

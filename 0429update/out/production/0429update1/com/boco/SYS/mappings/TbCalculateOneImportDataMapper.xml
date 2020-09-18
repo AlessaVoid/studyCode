@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbCalculateOneImportData -->
+<mapper namespace="com.boco.SYS.mapper.TbCalculateOneImportDataMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbCalculateOneImportData">
+       	<id column="id" property="id"/>
+     	<result column="type" property="type"/>
+     	<result column="organcode" property="organcode"/>
+     	<result column="month" property="month"/>
+     	<result column="code1" property="code1"/>
+     	<result column="code2" property="code2"/>
+     	<result column="code3" property="code3"/>
+     	<result column="code4" property="code4"/>
+     	<result column="code5" property="code5"/>
+     	<result column="code6" property="code6"/>
+     	<result column="code7" property="code7"/>
+     	<result column="code8" property="code8"/>
+     	<result column="code9" property="code9"/>
+     	<result column="code10" property="code10"/>
+     	<result column="code11" property="code11"/>
+     	<result column="code12" property="code12"/>
+     	<result column="code13" property="code13"/>
+     	<result column="code14" property="code14"/>
+     	<result column="code15" property="code15"/>
+     	<result column="code16" property="code16"/>
+     	<result column="code17" property="code17"/>
+     	<result column="code18" property="code18"/>
+     	<result column="code19" property="code19"/>
+     	<result column="code20" property="code20"/>
+     	<result column="code21" property="code21"/>
+     	<result column="code22" property="code22"/>
+     	<result column="code23" property="code23"/>
+     	<result column="code24" property="code24"/>
+     	<result column="code25" property="code25"/>
+     	<result column="code26" property="code26"/>
+     	<result column="code27" property="code27"/>
+     	<result column="code28" property="code28"/>
+     	<result column="code29" property="code29"/>
+     	<result column="code30" property="code30"/>
+     	<result column="code31" property="code31"/>
+     	<result column="code32" property="code32"/>
+     	<result column="code33" property="code33"/>
+     	<result column="code34" property="code34"/>
+     	<result column="code35" property="code35"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,type ,organcode ,month ,code1 ,code2 ,code3 ,code4 ,code5 ,code6 ,code7 ,code8 ,code9 ,code10 ,code11 ,code12 ,code13 ,code14 ,code15 ,code16 ,code17 ,code18 ,code19 ,code20 ,code21 ,code22 ,code23 ,code24 ,code25 ,code26 ,code27 ,code28 ,code29 ,code30 ,code31 ,code32 ,code33 ,code34 ,code35 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbCalculateOneImportData">
+<!-- 
+	    -->       
+  INSERT INTO tb_calculate_one_import_data 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="type != null">
+	        	type ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	organcode ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="code1 != null">
+	        	code1 ,
+	       	</if>
+	       	<if test="code2 != null">
+	        	code2 ,
+	       	</if>
+	       	<if test="code3 != null">
+	        	code3 ,
+	       	</if>
+	       	<if test="code4 != null">
+	        	code4 ,
+	       	</if>
+	       	<if test="code5 != null">
+	        	code5 ,
+	       	</if>
+	       	<if test="code6 != null">
+	        	code6 ,
+	       	</if>
+	       	<if test="code7 != null">
+	        	code7 ,
+	       	</if>
+	       	<if test="code8 != null">
+	        	code8 ,
+	       	</if>
+	       	<if test="code9 != null">
+	        	code9 ,
+	       	</if>
+	       	<if test="code10 != null">
+	        	code10 ,
+	       	</if>
+	       	<if test="code11 != null">
+	        	code11 ,
+	       	</if>
+	       	<if test="code12 != null">
+	        	code12 ,
+	       	</if>
+	       	<if test="code13 != null">
+	        	code13 ,
+	       	</if>
+	       	<if test="code14 != null">
+	        	code14 ,
+	       	</if>
+	       	<if test="code15 != null">
+	        	code15 ,
+	       	</if>
+	       	<if test="code16 != null">
+	        	code16 ,
+	       	</if>
+	       	<if test="code17 != null">
+	        	code17 ,
+	       	</if>
+	       	<if test="code18 != null">
+	        	code18 ,
+	       	</if>
+	       	<if test="code19 != null">
+	        	code19 ,
+	       	</if>
+	       	<if test="code20 != null">
+	        	code20 ,
+	       	</if>
+	       	<if test="code21 != null">
+	        	code21 ,
+	       	</if>
+	       	<if test="code22 != null">
+	        	code22 ,
+	       	</if>
+	       	<if test="code23 != null">
+	        	code23 ,
+	       	</if>
+	       	<if test="code24 != null">
+	        	code24 ,
+	       	</if>
+	       	<if test="code25 != null">
+	        	code25 ,
+	       	</if>
+	       	<if test="code26 != null">
+	        	code26 ,
+	       	</if>
+	       	<if test="code27 != null">
+	        	code27 ,
+	       	</if>
+	       	<if test="code28 != null">
+	        	code28 ,
+	       	</if>
+	       	<if test="code29 != null">
+	        	code29 ,
+	       	</if>
+	       	<if test="code30 != null">
+	        	code30 ,
+	       	</if>
+	       	<if test="code31 != null">
+	        	code31 ,
+	       	</if>
+	       	<if test="code32 != null">
+	        	code32 ,
+	       	</if>
+	       	<if test="code33 != null">
+	        	code33 ,
+	       	</if>
+	       	<if test="code34 != null">
+	        	code34 ,
+	       	</if>
+	       	<if test="code35 != null">
+	        	code35 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="type != null">
+	        	#{type} ,
+	       	</if>
+	       	<if test="organcode != null">
+	        	#{organcode} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="code1 != null">
+	        	#{code1} ,
+	       	</if>
+	       	<if test="code2 != null">
+	        	#{code2} ,
+	       	</if>
+	       	<if test="code3 != null">
+	        	#{code3} ,
+	       	</if>
+	       	<if test="code4 != null">
+	        	#{code4} ,
+	       	</if>
+	       	<if test="code5 != null">
+	        	#{code5} ,
+	       	</if>
+	       	<if test="code6 != null">
+	        	#{code6} ,
+	       	</if>
+	       	<if test="code7 != null">
+	        	#{code7} ,
+	       	</if>
+	       	<if test="code8 != null">
+	        	#{code8} ,
+	       	</if>
+	       	<if test="code9 != null">
+	        	#{code9} ,
+	       	</if>
+	       	<if test="code10 != null">
+	        	#{code10} ,
+	       	</if>
+	       	<if test="code11 != null">
+	        	#{code11} ,
+	       	</if>
+	       	<if test="code12 != null">
+	        	#{code12} ,
+	       	</if>
+	       	<if test="code13 != null">
+	        	#{code13} ,
+	       	</if>
+	       	<if test="code14 != null">
+	        	#{code14} ,
+	       	</if>
+	       	<if test="code15 != null">
+	        	#{code15} ,
+	       	</if>
+	       	<if test="code16 != null">
+	        	#{code16} ,
+	       	</if>
+	       	<if test="code17 != null">
+	        	#{code17} ,
+	       	</if>
+	       	<if test="code18 != null">
+	        	#{code18} ,
+	       	</if>
+	       	<if test="code19 != null">
+	        	#{code19} ,
+	       	</if>
+	       	<if test="code20 != null">
+	        	#{code20} ,
+	       	</if>
+	       	<if test="code21 != null">
+	        	#{code21} ,
+	       	</if>
+	       	<if test="code22 != null">
+	        	#{code22} ,
+	       	</if>
+	       	<if test="code23 != null">
+	        	#{code23} ,
+	       	</if>
+	       	<if test="code24 != null">
+	        	#{code24} ,
+	       	</if>
+	       	<if test="code25 != null">
+	        	#{code25} ,
+	       	</if>
+	       	<if test="code26 != null">
+	        	#{code26} ,
+	       	</if>
+	       	<if test="code27 != null">
+	        	#{code27} ,
+	       	</if>
+	       	<if test="code28 != null">
+	        	#{code28} ,
+	       	</if>
+	       	<if test="code29 != null">
+	        	#{code29} ,
+	       	</if>
+	       	<if test="code30 != null">
+	        	#{code30} ,
+	       	</if>
+	       	<if test="code31 != null">
+	        	#{code31} ,
+	       	</if>
+	       	<if test="code32 != null">
+	        	#{code32} ,
+	       	</if>
+	       	<if test="code33 != null">
+	        	#{code33} ,
+	       	</if>
+	       	<if test="code34 != null">
+	        	#{code34} ,
+	       	</if>
+	       	<if test="code35 != null">
+	        	#{code35} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_calculate_one_import_data 
+        (id ,type ,organcode ,month ,code1 ,code2 ,code3 ,code4 ,code5 ,code6 ,code7 ,code8 ,code9 ,code10 ,code11 ,code12 ,code13 ,code14 ,code15 ,code16 ,code17 ,code18 ,code19 ,code20 ,code21 ,code22 ,code23 ,code24 ,code25 ,code26 ,code27 ,code28 ,code29 ,code30 ,code31 ,code32 ,code33 ,code34 ,code35 )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.code1,jdbcType=VARCHAR},#{item.code2,jdbcType=VARCHAR},#{item.code3,jdbcType=VARCHAR},#{item.code4,jdbcType=VARCHAR},#{item.code5,jdbcType=VARCHAR},#{item.code6,jdbcType=VARCHAR},#{item.code7,jdbcType=VARCHAR},#{item.code8,jdbcType=VARCHAR},#{item.code9,jdbcType=VARCHAR},#{item.code10,jdbcType=VARCHAR},#{item.code11,jdbcType=VARCHAR},#{item.code12,jdbcType=VARCHAR},#{item.code13,jdbcType=VARCHAR},#{item.code14,jdbcType=VARCHAR},#{item.code15,jdbcType=VARCHAR},#{item.code16,jdbcType=VARCHAR},#{item.code17,jdbcType=VARCHAR},#{item.code18,jdbcType=VARCHAR},#{item.code19,jdbcType=VARCHAR},#{item.code20,jdbcType=VARCHAR},#{item.code21,jdbcType=VARCHAR},#{item.code22,jdbcType=VARCHAR},#{item.code23,jdbcType=VARCHAR},#{item.code24,jdbcType=VARCHAR},#{item.code25,jdbcType=VARCHAR},#{item.code26,jdbcType=VARCHAR},#{item.code27,jdbcType=VARCHAR},#{item.code28,jdbcType=VARCHAR},#{item.code29,jdbcType=VARCHAR},#{item.code30,jdbcType=VARCHAR},#{item.code31,jdbcType=VARCHAR},#{item.code32,jdbcType=VARCHAR},#{item.code33,jdbcType=VARCHAR},#{item.code34,jdbcType=VARCHAR},#{item.code35,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_import_data 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_calculate_one_import_data 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_calculate_one_import_data
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbCalculateOneImportData">
+        UPDATE tb_calculate_one_import_data 
+        <set>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="code1 != null">
+       		code1 = #{code1},
+       	</if>
+       	<if test="code2 != null">
+       		code2 = #{code2},
+       	</if>
+       	<if test="code3 != null">
+       		code3 = #{code3},
+       	</if>
+       	<if test="code4 != null">
+       		code4 = #{code4},
+       	</if>
+       	<if test="code5 != null">
+       		code5 = #{code5},
+       	</if>
+       	<if test="code6 != null">
+       		code6 = #{code6},
+       	</if>
+       	<if test="code7 != null">
+       		code7 = #{code7},
+       	</if>
+       	<if test="code8 != null">
+       		code8 = #{code8},
+       	</if>
+       	<if test="code9 != null">
+       		code9 = #{code9},
+       	</if>
+       	<if test="code10 != null">
+       		code10 = #{code10},
+       	</if>
+       	<if test="code11 != null">
+       		code11 = #{code11},
+       	</if>
+       	<if test="code12 != null">
+       		code12 = #{code12},
+       	</if>
+       	<if test="code13 != null">
+       		code13 = #{code13},
+       	</if>
+       	<if test="code14 != null">
+       		code14 = #{code14},
+       	</if>
+       	<if test="code15 != null">
+       		code15 = #{code15},
+       	</if>
+       	<if test="code16 != null">
+       		code16 = #{code16},
+       	</if>
+       	<if test="code17 != null">
+       		code17 = #{code17},
+       	</if>
+       	<if test="code18 != null">
+       		code18 = #{code18},
+       	</if>
+       	<if test="code19 != null">
+       		code19 = #{code19},
+       	</if>
+       	<if test="code20 != null">
+       		code20 = #{code20},
+       	</if>
+       	<if test="code21 != null">
+       		code21 = #{code21},
+       	</if>
+       	<if test="code22 != null">
+       		code22 = #{code22},
+       	</if>
+       	<if test="code23 != null">
+       		code23 = #{code23},
+       	</if>
+       	<if test="code24 != null">
+       		code24 = #{code24},
+       	</if>
+       	<if test="code25 != null">
+       		code25 = #{code25},
+       	</if>
+       	<if test="code26 != null">
+       		code26 = #{code26},
+       	</if>
+       	<if test="code27 != null">
+       		code27 = #{code27},
+       	</if>
+       	<if test="code28 != null">
+       		code28 = #{code28},
+       	</if>
+       	<if test="code29 != null">
+       		code29 = #{code29},
+       	</if>
+       	<if test="code30 != null">
+       		code30 = #{code30},
+       	</if>
+       	<if test="code31 != null">
+       		code31 = #{code31},
+       	</if>
+       	<if test="code32 != null">
+       		code32 = #{code32},
+       	</if>
+       	<if test="code33 != null">
+       		code33 = #{code33},
+       	</if>
+       	<if test="code34 != null">
+       		code34 = #{code34},
+       	</if>
+       	<if test="code35 != null">
+       		code35 = #{code35},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_calculate_one_import_data 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_calculate_one_import_data 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="organcode != null">
+       		organcode = #{organcode},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="code1 != null">
+       		code1 = #{code1},
+       	</if>
+       	<if test="code2 != null">
+       		code2 = #{code2},
+       	</if>
+       	<if test="code3 != null">
+       		code3 = #{code3},
+       	</if>
+       	<if test="code4 != null">
+       		code4 = #{code4},
+       	</if>
+       	<if test="code5 != null">
+       		code5 = #{code5},
+       	</if>
+       	<if test="code6 != null">
+       		code6 = #{code6},
+       	</if>
+       	<if test="code7 != null">
+       		code7 = #{code7},
+       	</if>
+       	<if test="code8 != null">
+       		code8 = #{code8},
+       	</if>
+       	<if test="code9 != null">
+       		code9 = #{code9},
+       	</if>
+       	<if test="code10 != null">
+       		code10 = #{code10},
+       	</if>
+       	<if test="code11 != null">
+       		code11 = #{code11},
+       	</if>
+       	<if test="code12 != null">
+       		code12 = #{code12},
+       	</if>
+       	<if test="code13 != null">
+       		code13 = #{code13},
+       	</if>
+       	<if test="code14 != null">
+       		code14 = #{code14},
+       	</if>
+       	<if test="code15 != null">
+       		code15 = #{code15},
+       	</if>
+       	<if test="code16 != null">
+       		code16 = #{code16},
+       	</if>
+       	<if test="code17 != null">
+       		code17 = #{code17},
+       	</if>
+       	<if test="code18 != null">
+       		code18 = #{code18},
+       	</if>
+       	<if test="code19 != null">
+       		code19 = #{code19},
+       	</if>
+       	<if test="code20 != null">
+       		code20 = #{code20},
+       	</if>
+       	<if test="code21 != null">
+       		code21 = #{code21},
+       	</if>
+       	<if test="code22 != null">
+       		code22 = #{code22},
+       	</if>
+       	<if test="code23 != null">
+       		code23 = #{code23},
+       	</if>
+       	<if test="code24 != null">
+       		code24 = #{code24},
+       	</if>
+       	<if test="code25 != null">
+       		code25 = #{code25},
+       	</if>
+       	<if test="code26 != null">
+       		code26 = #{code26},
+       	</if>
+       	<if test="code27 != null">
+       		code27 = #{code27},
+       	</if>
+       	<if test="code28 != null">
+       		code28 = #{code28},
+       	</if>
+       	<if test="code29 != null">
+       		code29 = #{code29},
+       	</if>
+       	<if test="code30 != null">
+       		code30 = #{code30},
+       	</if>
+       	<if test="code31 != null">
+       		code31 = #{code31},
+       	</if>
+       	<if test="code32 != null">
+       		code32 = #{code32},
+       	</if>
+       	<if test="code33 != null">
+       		code33 = #{code33},
+       	</if>
+       	<if test="code34 != null">
+       		code34 = #{code34},
+       	</if>
+       	<if test="code35 != null">
+       		code35 = #{code35},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="type != null and type != ''">
+	 		and type = #{type}
+	 	</if>
+	 	<if test="organcode != null and organcode != ''">
+	 		and organcode = #{organcode}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="code1 != null and code1 != ''">
+	 		and code1 = #{code1}
+	 	</if>
+	 	<if test="code2 != null and code2 != ''">
+	 		and code2 = #{code2}
+	 	</if>
+	 	<if test="code3 != null and code3 != ''">
+	 		and code3 = #{code3}
+	 	</if>
+	 	<if test="code4 != null and code4 != ''">
+	 		and code4 = #{code4}
+	 	</if>
+	 	<if test="code5 != null and code5 != ''">
+	 		and code5 = #{code5}
+	 	</if>
+	 	<if test="code6 != null and code6 != ''">
+	 		and code6 = #{code6}
+	 	</if>
+	 	<if test="code7 != null and code7 != ''">
+	 		and code7 = #{code7}
+	 	</if>
+	 	<if test="code8 != null and code8 != ''">
+	 		and code8 = #{code8}
+	 	</if>
+	 	<if test="code9 != null and code9 != ''">
+	 		and code9 = #{code9}
+	 	</if>
+	 	<if test="code10 != null and code10 != ''">
+	 		and code10 = #{code10}
+	 	</if>
+	 	<if test="code11 != null and code11 != ''">
+	 		and code11 = #{code11}
+	 	</if>
+	 	<if test="code12 != null and code12 != ''">
+	 		and code12 = #{code12}
+	 	</if>
+	 	<if test="code13 != null and code13 != ''">
+	 		and code13 = #{code13}
+	 	</if>
+	 	<if test="code14 != null and code14 != ''">
+	 		and code14 = #{code14}
+	 	</if>
+	 	<if test="code15 != null and code15 != ''">
+	 		and code15 = #{code15}
+	 	</if>
+	 	<if test="code16 != null and code16 != ''">
+	 		and code16 = #{code16}
+	 	</if>
+	 	<if test="code17 != null and code17 != ''">
+	 		and code17 = #{code17}
+	 	</if>
+	 	<if test="code18 != null and code18 != ''">
+	 		and code18 = #{code18}
+	 	</if>
+	 	<if test="code19 != null and code19 != ''">
+	 		and code19 = #{code19}
+	 	</if>
+	 	<if test="code20 != null and code20 != ''">
+	 		and code20 = #{code20}
+	 	</if>
+	 	<if test="code21 != null and code21 != ''">
+	 		and code21 = #{code21}
+	 	</if>
+	 	<if test="code22 != null and code22 != ''">
+	 		and code22 = #{code22}
+	 	</if>
+	 	<if test="code23 != null and code23 != ''">
+	 		and code23 = #{code23}
+	 	</if>
+	 	<if test="code24 != null and code24 != ''">
+	 		and code24 = #{code24}
+	 	</if>
+	 	<if test="code25 != null and code25 != ''">
+	 		and code25 = #{code25}
+	 	</if>
+	 	<if test="code26 != null and code26 != ''">
+	 		and code26 = #{code26}
+	 	</if>
+	 	<if test="code27 != null and code27 != ''">
+	 		and code27 = #{code27}
+	 	</if>
+	 	<if test="code28 != null and code28 != ''">
+	 		and code28 = #{code28}
+	 	</if>
+	 	<if test="code29 != null and code29 != ''">
+	 		and code29 = #{code29}
+	 	</if>
+	 	<if test="code30 != null and code30 != ''">
+	 		and code30 = #{code30}
+	 	</if>
+	 	<if test="code31 != null and code31 != ''">
+	 		and code31 = #{code31}
+	 	</if>
+	 	<if test="code32 != null and code32 != ''">
+	 		and code32 = #{code32}
+	 	</if>
+	 	<if test="code33 != null and code33 != ''">
+	 		and code33 = #{code33}
+	 	</if>
+	 	<if test="code34 != null and code34 != ''">
+	 		and code34 = #{code34}
+	 	</if>
+	 	<if test="code35 != null and code35 != ''">
+	 		and code35 = #{code35}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="type != null and type != ''">
+ 			and type like '%' || #{type} || '%'
+ 		</if>
+ 		<if test="organcode != null and organcode != ''">
+ 			and organcode like '%' || #{organcode} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="code1 != null and code1 != ''">
+ 			and code1 like '%' || #{code1} || '%'
+ 		</if>
+ 		<if test="code2 != null and code2 != ''">
+ 			and code2 like '%' || #{code2} || '%'
+ 		</if>
+ 		<if test="code3 != null and code3 != ''">
+ 			and code3 like '%' || #{code3} || '%'
+ 		</if>
+ 		<if test="code4 != null and code4 != ''">
+ 			and code4 like '%' || #{code4} || '%'
+ 		</if>
+ 		<if test="code5 != null and code5 != ''">
+ 			and code5 like '%' || #{code5} || '%'
+ 		</if>
+ 		<if test="code6 != null and code6 != ''">
+ 			and code6 like '%' || #{code6} || '%'
+ 		</if>
+ 		<if test="code7 != null and code7 != ''">
+ 			and code7 like '%' || #{code7} || '%'
+ 		</if>
+ 		<if test="code8 != null and code8 != ''">
+ 			and code8 like '%' || #{code8} || '%'
+ 		</if>
+ 		<if test="code9 != null and code9 != ''">
+ 			and code9 like '%' || #{code9} || '%'
+ 		</if>
+ 		<if test="code10 != null and code10 != ''">
+ 			and code10 like '%' || #{code10} || '%'
+ 		</if>
+ 		<if test="code11 != null and code11 != ''">
+ 			and code11 like '%' || #{code11} || '%'
+ 		</if>
+ 		<if test="code12 != null and code12 != ''">
+ 			and code12 like '%' || #{code12} || '%'
+ 		</if>
+ 		<if test="code13 != null and code13 != ''">
+ 			and code13 like '%' || #{code13} || '%'
+ 		</if>
+ 		<if test="code14 != null and code14 != ''">
+ 			and code14 like '%' || #{code14} || '%'
+ 		</if>
+ 		<if test="code15 != null and code15 != ''">
+ 			and code15 like '%' || #{code15} || '%'
+ 		</if>
+ 		<if test="code16 != null and code16 != ''">
+ 			and code16 like '%' || #{code16} || '%'
+ 		</if>
+ 		<if test="code17 != null and code17 != ''">
+ 			and code17 like '%' || #{code17} || '%'
+ 		</if>
+ 		<if test="code18 != null and code18 != ''">
+ 			and code18 like '%' || #{code18} || '%'
+ 		</if>
+ 		<if test="code19 != null and code19 != ''">
+ 			and code19 like '%' || #{code19} || '%'
+ 		</if>
+ 		<if test="code20 != null and code20 != ''">
+ 			and code20 like '%' || #{code20} || '%'
+ 		</if>
+ 		<if test="code21 != null and code21 != ''">
+ 			and code21 like '%' || #{code21} || '%'
+ 		</if>
+ 		<if test="code22 != null and code22 != ''">
+ 			and code22 like '%' || #{code22} || '%'
+ 		</if>
+ 		<if test="code23 != null and code23 != ''">
+ 			and code23 like '%' || #{code23} || '%'
+ 		</if>
+ 		<if test="code24 != null and code24 != ''">
+ 			and code24 like '%' || #{code24} || '%'
+ 		</if>
+ 		<if test="code25 != null and code25 != ''">
+ 			and code25 like '%' || #{code25} || '%'
+ 		</if>
+ 		<if test="code26 != null and code26 != ''">
+ 			and code26 like '%' || #{code26} || '%'
+ 		</if>
+ 		<if test="code27 != null and code27 != ''">
+ 			and code27 like '%' || #{code27} || '%'
+ 		</if>
+ 		<if test="code28 != null and code28 != ''">
+ 			and code28 like '%' || #{code28} || '%'
+ 		</if>
+ 		<if test="code29 != null and code29 != ''">
+ 			and code29 like '%' || #{code29} || '%'
+ 		</if>
+ 		<if test="code30 != null and code30 != ''">
+ 			and code30 like '%' || #{code30} || '%'
+ 		</if>
+ 		<if test="code31 != null and code31 != ''">
+ 			and code31 like '%' || #{code31} || '%'
+ 		</if>
+ 		<if test="code32 != null and code32 != ''">
+ 			and code32 like '%' || #{code32} || '%'
+ 		</if>
+ 		<if test="code33 != null and code33 != ''">
+ 			and code33 like '%' || #{code33} || '%'
+ 		</if>
+ 		<if test="code34 != null and code34 != ''">
+ 			and code34 like '%' || #{code34} || '%'
+ 		</if>
+ 		<if test="code35 != null and code35 != ''">
+ 			and code35 like '%' || #{code35} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_calculate_one_import_data 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbCalculateOneImportData" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_calculate_one_import_data
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneImportData" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_calculate_one_import_data 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneImportData" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_one_import_data 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_calculate_one_import_data 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbCalculateOneImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_import_data 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbCalculateOneImportData" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_import_data 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_calculate_one_import_data 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+
+	<!--根据月份和类型删除导入记录-->
+	<delete id="deleteByMonthAndType" parameterType = "java.util.Map">
+		DELETE FROM tb_calculate_one_import_data
+		<where>
+			<if test="type != null ">
+				and type = #{type}
+			</if>
+			<if test="organcode != null and organcode != ''">
+				and organcode = #{organcode}
+			</if>
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+		</where>
+
+	</delete>
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

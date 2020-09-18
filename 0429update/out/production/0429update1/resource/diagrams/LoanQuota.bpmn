@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://sourceforge.net/bpmn/definitions/_1573548569222" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="Yaoqiang BPMN Editor" exporterVersion="5.3" expressionLanguage="http://www.w3.org/1999/XPath" id="_1573548569222" name="" targetNamespace="http://sourceforge.net/bpmn/definitions/_1573548569222" typeLanguage="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+  <process id="LoanQuota" isClosed="false" isExecutable="true" name="信贷超限额申请审批" processType="None">
+    <extensionElements>
+      <yaoqiang:description/>
+      <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
+      <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
+    </extensionElements>
+    <startEvent id="quotaStart" isInterrupting="true" name="Start Event" parallelMultiple="false">
+      <outgoing>_7</outgoing>
+      <outputSet/>
+    </startEvent>
+    <userTask completionQuantity="1" id="quotaAuditor" implementation="##unspecified" isForCompensation="false" name="超限额审批员" startQuantity="1">
+      <incoming>_8</incoming>
+      <outgoing>_10</outgoing>
+    </userTask>
+    <userTask completionQuantity="1" id="quotaRecorder" implementation="##unspecified" isForCompensation="false" name="超限额申请员" startQuantity="1">
+      <incoming>_7</incoming>
+      <incoming>_12</incoming>
+      <outgoing>_8</outgoing>
+    </userTask>
+    <sequenceFlow id="_7" sourceRef="quotaStart" targetRef="quotaRecorder"/>
+    <sequenceFlow id="_8" sourceRef="quotaRecorder" targetRef="quotaAuditor"/>
+    <exclusiveGateway gatewayDirection="Diverging" id="_9" name="Exclusive Gateway">
+      <incoming>_10</incoming>
+      <outgoing>_12</outgoing>
+      <outgoing>_13</outgoing>
+    </exclusiveGateway>
+    <sequenceFlow id="_10" sourceRef="quotaAuditor" targetRef="_9"/>
+    <sequenceFlow id="_12" name="驳回" sourceRef="_9" targetRef="quotaRecorder">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isAgree=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_13" name="同意" sourceRef="_9" targetRef="quotaEnd">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isAgree=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="quotaEnd" name="End Event">
+      <incoming>_11</incoming>
+      <incoming>_12</incoming>
+      <incoming>_13</incoming>
+      <inputSet/>
+    </endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-LoanQuota" name="Untitled Diagram" resolution="96.0">
+    <bpmndi:BPMNPlane bpmnElement="LoanQuota">
+      <bpmndi:BPMNShape bpmnElement="quotaStart" id="Yaoqiang-quotaStart">
+        <dc:Bounds height="32.0" width="32.0" x="110.21428571428567" y="403.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="17.58" width="68.0" x="92.21" y="448.24"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="quotaRecorder" id="Yaoqiang-quotaRecorder">
+        <dc:Bounds height="55.0" width="85.0" x="202.21428571428567" y="392.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="17.58" width="72.0" x="208.71" y="412.71"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="quotaAuditor" id="Yaoqiang-quotaAuditor">
+        <dc:Bounds height="55.0" width="85.0" x="347.21428571428567" y="392.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="17.58" width="72.0" x="353.71" y="412.71"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="Yaoqiang-_8">
+        <di:waypoint x="287.0" y="419.5"/>
+        <di:waypoint x="347.0" y="419.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="17.58" width="6.0" x="314.0" y="410.71"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="Yaoqiang-_7">
+        <di:waypoint x="141.99845671569452" y="419.5"/>
+        <di:waypoint x="202.0" y="419.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="17.58" width="6.0" x="169.0" y="410.71"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

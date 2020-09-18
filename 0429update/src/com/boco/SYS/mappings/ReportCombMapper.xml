@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 报表专用_贷种组合表 -->
+<mapper namespace="com.boco.SYS.mapper.ReportCombMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReportComb">
+        <id column="comb_code" property="combCode"/>
+        <result column="comb_id" property="combId"/>
+        <result column="comb_name" property="combName"/>
+        <result column="comb_level" property="combLevel"/>
+        <result column="comb_status" property="combStatus"/>
+        <result column="comb_create_oper" property="combCreateOper"/>
+        <result column="comb_create_time" property="combCreateTime"/>
+        <result column="comb_update_oper" property="combUpdateOper"/>
+        <result column="comb_update_time" property="combUpdateTime"/>
+        <result column="comb_order" property="combOrder"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+        comb_id ,comb_code ,comb_name ,comb_level ,comb_status ,comb_create_oper ,comb_create_time ,comb_update_oper ,comb_update_time ,comb_order
+	    ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReportComb">
+        <!--
+                -->
+        INSERT INTO tb_report_comb
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="combId != null">
+                comb_id ,
+            </if>
+            <if test="combCode != null">
+                comb_code ,
+            </if>
+            <if test="combName != null">
+                comb_name ,
+            </if>
+            <if test="combLevel != null">
+                comb_level ,
+            </if>
+            <if test="combStatus != null">
+                comb_status ,
+            </if>
+            <if test="combCreateOper != null">
+                comb_create_oper ,
+            </if>
+            <if test="combCreateTime != null">
+                comb_create_time ,
+            </if>
+            <if test="combUpdateOper != null">
+                comb_update_oper ,
+            </if>
+            <if test="combUpdateTime != null">
+                comb_update_time ,
+            </if>
+            <if test="combOrder != null">
+                comb_order
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="combId != null">
+                #{combId} ,
+            </if>
+            <if test="combCode != null">
+                #{combCode} ,
+            </if>
+            <if test="combName != null">
+                #{combName} ,
+            </if>
+            <if test="combLevel != null">
+                #{combLevel} ,
+            </if>
+            <if test="combStatus != null">
+                #{combStatus} ,
+            </if>
+            <if test="combCreateOper != null">
+                #{combCreateOper} ,
+            </if>
+            <if test="combCreateTime != null">
+                #{combCreateTime} ,
+            </if>
+            <if test="combUpdateOper != null">
+                #{combUpdateOper} ,
+            </if>
+            <if test="combUpdateTime != null">
+                #{combUpdateTime} ,
+            </if>
+            <if test="combOrder != null">
+                #{combOrder}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_report_comb
+        (comb_id ,comb_code ,comb_name ,comb_level ,comb_status ,comb_create_oper ,comb_create_time ,comb_update_oper ,comb_update_time ,comb_order )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT #{item.combId,jdbcType=VARCHAR},#{item.combCode,jdbcType=VARCHAR},#{item.combName,jdbcType=VARCHAR},#{item.combLevel,jdbcType=VARCHAR},#{item.combStatus,jdbcType=VARCHAR},#{item.combCreateOper,jdbcType=VARCHAR},#{item.combCreateTime,jdbcType=VARCHAR},#{item.combUpdateOper,jdbcType=VARCHAR},#{item.combUpdateTime,jdbcType=VARCHAR},#{item.combOrder,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_report_comb
+        <where>
+            comb_code = #{combCode}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_report_comb
+        <where>
+            comb_code = #{combCode}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_report_comb
+        WHERE comb_code IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_report_comb
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReportComb">
+        UPDATE tb_report_comb
+        <set>
+            <if test="combId != null">
+                comb_id = #{combId},
+            </if>
+            <if test="combName != null">
+                comb_name = #{combName},
+            </if>
+            <if test="combLevel != null">
+                comb_level = #{combLevel},
+            </if>
+            <if test="combStatus != null">
+                comb_status = #{combStatus},
+            </if>
+            <if test="combCreateOper != null">
+                comb_create_oper = #{combCreateOper},
+            </if>
+            <if test="combCreateTime != null">
+                comb_create_time = #{combCreateTime},
+            </if>
+            <if test="combUpdateOper != null">
+                comb_update_oper = #{combUpdateOper},
+            </if>
+            <if test="combUpdateTime != null">
+                comb_update_time = #{combUpdateTime},
+            </if>
+            <if test="combOrder != null">
+                comb_order = #{combOrder},
+            </if>
+        </set>
+        <where>
+            comb_code = #{combCode}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_report_comb
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_report_comb
+        <set>
+            <if test="combId != null">
+                comb_id = #{combId},
+            </if>
+            <if test="combCode != null">
+                comb_code = #{combCode},
+            </if>
+            <if test="combName != null">
+                comb_name = #{combName},
+            </if>
+            <if test="combLevel != null">
+                comb_level = #{combLevel},
+            </if>
+            <if test="combStatus != null">
+                comb_status = #{combStatus},
+            </if>
+            <if test="combCreateOper != null">
+                comb_create_oper = #{combCreateOper},
+            </if>
+            <if test="combCreateTime != null">
+                comb_create_time = #{combCreateTime},
+            </if>
+            <if test="combUpdateOper != null">
+                comb_update_oper = #{combUpdateOper},
+            </if>
+            <if test="combUpdateTime != null">
+                comb_update_time = #{combUpdateTime},
+            </if>
+            <if test="combOrder != null">
+                comb_order = #{combOrder},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="combId != null and combId != ''">
+            and comb_id = #{combId}
+        </if>
+        <if test="combCode != null and combCode != ''">
+            and comb_code = #{combCode}
+        </if>
+        <if test="combName != null and combName != ''">
+            and comb_name = #{combName}
+        </if>
+        <if test="combLevel != null and combLevel != ''">
+            and comb_level = #{combLevel}
+        </if>
+        <if test="combStatus != null and combStatus != ''">
+            and comb_status = #{combStatus}
+        </if>
+        <if test="combCreateOper != null and combCreateOper != ''">
+            and comb_create_oper = #{combCreateOper}
+        </if>
+        <if test="combCreateTime != null and combCreateTime != ''">
+            and comb_create_time = #{combCreateTime}
+        </if>
+        <if test="combUpdateOper != null and combUpdateOper != ''">
+            and comb_update_oper = #{combUpdateOper}
+        </if>
+        <if test="combUpdateTime != null and combUpdateTime != ''">
+            and comb_update_time = #{combUpdateTime}
+        </if>
+        <if test="combOrder != null and combOrder != ''">
+            and comb_order = #{combOrder}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="combId != null and combId != ''">
+            and comb_id like '%' || #{combId} || '%'
+        </if>
+        <if test="combCode != null and combCode != ''">
+            and comb_code like '%' || #{combCode} || '%'
+        </if>
+        <if test="combName != null and combName != ''">
+            and comb_name like '%' || #{combName} || '%'
+        </if>
+        <if test="combLevel != null and combLevel != ''">
+            and comb_level like '%' || #{combLevel} || '%'
+        </if>
+        <if test="combStatus != null and combStatus != ''">
+            and comb_status like '%' || #{combStatus} || '%'
+        </if>
+        <if test="combCreateOper != null and combCreateOper != ''">
+            and comb_create_oper like '%' || #{combCreateOper} || '%'
+        </if>
+        <if test="combCreateTime != null and combCreateTime != ''">
+            and comb_create_time like '%' || #{combCreateTime} || '%'
+        </if>
+        <if test="combUpdateOper != null and combUpdateOper != ''">
+            and comb_update_oper like '%' || #{combUpdateOper} || '%'
+        </if>
+        <if test="combUpdateTime != null and combUpdateTime != ''">
+            and comb_update_time like '%' || #{combUpdateTime} || '%'
+        </if>
+        <if test="combOrder != null and combOrder != ''">
+            and comb_order like '%' || #{combOrder} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/>
+        FROM tb_report_comb
+        <where>
+            comb_code = #{combCode}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReportComb" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReportComb" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReportComb" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_report_comb
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReportComb" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReportComb" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_report_comb
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!--创建贷种组合-->
+    <insert id="insertLoanCombInfo" parameterType="com.boco.SYS.entity.TbReportComb">
+        insert into tb_report_comb(comb_id, comb_code, comb_name, comb_level, comb_create_oper, comb_create_time,
+                            comb_update_oper, comb_update_time)
+        values (#{combId}, #{combCode}, #{combName}, #{combLevel}, #{combCreateOper}, #{combCreateTime}, #{combUpdateOper},
+                #{combUpdateTime})
+    </insert>
+
+    <!--更新贷种组合-->
+    <update id="updateLoanCombInfo" parameterType="com.boco.SYS.entity.TbReportComb">
+        update tb_report_comb
+        set comb_name=#{combName},
+            comb_update_oper=#{combUpdateOper},
+            comb_update_time=#{combUpdateTime}
+        where comb_code = #{combCode}
+          and comb_level = #{combLevel}
+    </update>
+
+    <!--更新组合状态-->
+    <update id="updateLoanCombStatus" parameterType="com.boco.TONY.biz.loancomb.POJO.DO.combbase.LoanCombStatusDO">
+        update tb_report_comb
+        set comb_status=#{combStatus}
+        where comb_code = #{combCode}
+    </update>
+
+    <!--删除贷种组合 更新显示状态为-1表示已删除-->
+    <delete id="deleteLoanCombByCombCode" parameterType="java.lang.String">
+        delete from tb_report_comb
+        where comb_code = #{_param}
+    </delete>
+
+    <!--查询所有贷种组合-->
+    <select id="getAllLoanCombInfoList" parameterType="com.boco.SYS.entity.TbReportComb"
+            resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_report_comb
+        <where>
+            comb_status != - 1
+            <if test="combCode != null and combCode != ''">
+                and comb_code like '%' || #{combCode} || '%'
+            </if>
+            <if test="combName != null and combName != ''">
+                and comb_name like '%' || #{combName} || '%'
+            </if>
+            <if test="combLevel != 0">
+                and comb_level=#{combLevel}
+            </if>
+
+        </where>
+        ORDER BY comb_order,comb_create_time DESC
+    </select>
+
+
+    <!--查询贷种组合的combcode-->
+    <select id="getCombCodeList" parameterType="com.boco.SYS.entity.TbReportComb"
+            resultMap="base_result_map"
+            flushCache="true">
+        select comb_code
+        from tb_report_comb
+        <where>
+            comb_status != - 1
+            <if test="combCode != null and combCode != ''">
+                and comb_code=#{combCode}
+            </if>
+            <if test="combName != null and combName != ''">
+                and comb_name like '%' || #{combName} || '%'
+            </if>
+            <if test="combLevel != 0">
+                and comb_level=#{combLevel}
+            </if>
+
+        </where>
+        ORDER BY comb_order, comb_create_time DESC
+    </select>
+
+    <!--通过级别查询贷种组合信息-->
+    <select id="getOrganLoanProductInfoByLevel" parameterType="java.lang.Integer" resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_report_comb
+        where comb_level = #{_param}
+          and comb_status = 0
+        ORDER BY comb_order, comb_create_time DESC
+    </select>
+
+    <!--通过级别查询贷种组合信息-->
+    <select id="getCombByLevel" parameterType="java.lang.Integer" resultMap="base_result_map" flushCache="true">
+        select *
+        from tb_report_comb
+        where comb_level = #{_param}
+          and comb_status &gt; -1
+        ORDER BY comb_order
+    </select>
+
+    <!--获取条线贷种组合-->
+    <select id="getLineLoanProductInfoByLevelAndOrganCode"
+            parameterType="com.boco.TONY.biz.line.POJO.DO.ProductLineCombDO"
+            resultMap="base_result_map" flushCache="true">
+        select *
+        from tb_report_comb
+        where comb_level = #{combLevel}
+          and comb_status != - 1
+          and comb_code not in (
+            select comb_code
+            from tb_prod_line_details
+            where status = 1
+              and line_id in (
+                select line_id from tb_prod_line where organ_code = #{organCode} and line_status = 0))
+        ORDER BY comb_order,comb_name DESC;
+    </select>
+
+    <!--通过组合编码查询贷种信息-->
+    <select id="getLoanCombInfoByCombCode" parameterType="java.lang.String" resultMap="base_result_map"
+            flushCache="true">
+        select *
+        from tb_report_comb
+        where comb_code = #{_param}
+    </select>
+    <!--查询产品名称-->
+    <select id="getProdInfoByProdCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select prod_name
+        from tb_prod_all
+        where prod_code = #{_param}
+        group by prod_name
+    </select>
+
+    <!--通过组合编码查询贷种name-->
+    <select id="getLoanCombNameByCombCode" parameterType="java.lang.String" resultMap="base_result_map"
+            flushCache="true">
+        select comb_name
+        from tb_report_comb
+        where comb_code = #{_param}
+    </select>
+
+    <!--选择贷种名称-->
+    <select id="selectCombName" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select comb_name
+        from tb_report_comb
+        where comb_name like '%${value}%'
+    </select>
+    <select id="selectExactlyCombName" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        select comb_name
+        from tb_report_comb
+        where comb_name = #{param}
+    </select>
+    <!--选择贷种编码-->
+    <select id="selectCombCode" parameterType="java.lang.String" resultType="java.lang.String" flushCache="true">
+        select comb_code
+        from tb_report_comb
+        where comb_code like '%${value}%'
+    </select>
+    <select id="countCombListSize" resultType="java.lang.Integer" flushCache="true">
+        select count(*)
+        from tb_report_comb
+        where comb_status != - 1
+    </select>
+
+    <select id="selectComb" resultType="java.util.Map" flushCache="true">
+        select
+        comb_id as combId,
+        comb_code as combCode,
+        comb_name as combName,
+        comb_level as combLevel
+        from tb_report_comb
+        <where>
+            <if test="combLevel != null and combLevel != ''">
+                and comb_level = #{combLevel}
+            </if>
+        </where>
+        order by comb_order,comb_code
+    </select>
+
+    <select id="selectCombOfBind" resultType="java.util.Map" flushCache="true">
+        select
+        comb.comb_id as combId,
+        comb.comb_code as combCode,
+        comb.comb_name as combName,
+        comb.comb_level as combLevel,
+        combd.comb_code as upcombCode
+        from tb_report_comb comb,tb_report_comb_detail combd
+        where comb.comb_code = combd.prod_code
+        and combd.status='1'
+        and comb.comb_status='1'
+        <if test="combLevel != null and combLevel != ''">
+            and comb.comb_level = #{combLevel}
+        </if>
+        order by comb.comb_order,comb.comb_code
+    </select>
+
+    <!--根据柜员绑定的条线查询贷种-->
+    <select id="selectCombByOpercode" resultType="java.util.Map" flushCache="true">
+        select comb_id as combId,
+        comb_code as combCode,
+        comb_name as combName,
+        comb_level as combLevel
+        from tb_report_comb
+        where comb_code in (select comb_code
+        from tb_prod_line_details
+        where line_id in (
+        select line_id
+        from tb_oper_line
+        <where>
+            <if test="opercode != null and opercode != ''">
+                and oper_code = #{opercode}
+            </if>
+        </where>
+        and status = '1'
+        )
+        and status = '1')
+        order by comb_code
+
+    </select>
+
+    <!--根据贷种号查询贷种-->
+    <select id="selectCombBycombcode" resultType="java.util.Map" flushCache="true">
+        select comb_code as combcode,comb_name as combname
+        from tb_report_comb
+        <where>
+            <if test="combcode != null and combcode != ''">
+                and comb_code = #{combcode}
+            </if>
+        </where>
+
+    </select>
+
+    <!--通过贷种级别和一级贷种 查出所属该一级贷种该级别的所有贷种-->
+    <select id="getCombAllByLevelOne" resultType="java.util.Map" flushCache="true">
+            select
+            c.comb_code as combcode,
+            coalesce(cd.comb_code,'-1') as upcombcode,
+            c.comb_level as comblevel,
+            c.comb_order as comborder,
+            c.comb_name as combname
+            from tb_report_comb c
+            left join tb_report_comb_detail cd
+            on cd.prod_code = c.comb_code
+            where c.comb_code in(
+                select c.comb_code
+                from tb_report_comb c
+                where 1=1
+                <if test="combList != null and combList.length > 0">
+                    and c.comb_code in
+                    <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                        #{comb}
+                    </foreach>
+                </if>
+                union
+                select
+                c.comb_code as combcode
+                from tb_report_comb c,tb_report_comb_detail cd
+                where cd.prod_code = c.comb_code
+                and cd.status =1
+                <if test="combList != null and combList.length > 0">
+                    and cd.comb_code in
+                    <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                        #{comb}
+                    </foreach>
+                </if>
+                union
+                select
+                c.comb_code as combcode
+                from tb_report_comb c, tb_report_comb_detail cd
+                where cd.prod_code = c.comb_code
+                and cd.status =1
+                and cd.comb_code in(
+                    select c.comb_code
+                    from tb_report_comb c, tb_report_comb_detail cd
+                    where cd.prod_code = c.comb_code
+                    <if test="combList != null and combList.length > 0">
+                        and cd.comb_code in
+                        <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                            #{comb}
+                        </foreach>
+                    </if>
+                )
+            )
+            <if test="excludeCombList != null and excludeCombList.length > 0">
+                and c.comb_code not in
+                <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                    #{comb}
+                </foreach>
+            </if>
+            order by c.comb_order
+    </select>
+
+
+    <!--查询机构计划，汇总到一级-->
+    <select id="getPlanByLevelOne" resultType="java.util.Map" flushCache="true">
+        select
+            c.comb_code as combcode,
+            sum(coalesce(pd.pd_amount,0)) as amount,
+            c.comb_level as comblevel,
+            c.comb_name as combname
+        from tb_plan p,tb_plan_detail pd
+        left join tb_report_comb_detail cd
+        on cd.prod_code = pd.pd_loan_type
+        join tb_report_comb c
+        on (c.comb_code = pd.pd_loan_type or c.comb_code = cd.comb_code)
+        where p.plan_id = pd.pd_ref_id
+            and p.plan_status =16
+            and p.plan_type =1
+            and c.comb_level = '1'
+            <if test="months != null and months.length > 0">
+                and p.plan_month in
+                <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                    #{month}
+                </foreach>
+            </if>
+
+            <if test="organ != null and organ != ''">
+                and p.plan_organ = #{organ}
+            </if>
+
+            <if test="excludeCombList != null and excludeCombList.length > 0">
+                and pd.pd_loan_type not in
+                <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                    #{comb}
+                </foreach>
+            </if>
+
+            <if test="combList != null and combList.length > 0">
+                and c.comb_code in
+                <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                    #{comb}
+                </foreach>
+            </if>
+        group by c.comb_code , c.comb_level,c.comb_name
+        order by c.comb_order
+
+    </select>
+
+    <!--查询机构计划，汇总到二级 -->
+    <select id="getPlanByLevelTwo" resultType="java.util.Map" flushCache="true">
+        select
+        c.comb_code as combcode,
+        sum(coalesce(pd.pd_amount,0)) as amount,
+        c.comb_level as comblevel,
+        c.comb_name as combname
+        from tb_plan p,tb_plan_detail pd
+        join tb_report_comb c
+        on (c.comb_code = pd.pd_loan_type)
+        where p.plan_id = pd.pd_ref_id
+        and p.plan_status =16
+        and p.plan_type =1
+        and c.comb_level = '2'
+        <if test="months != null and months.length > 0">
+            and p.plan_month in
+            <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                #{month}
+            </foreach>
+        </if>
+
+        <if test="organ != null and organ != ''">
+            and p.plan_organ = #{organ}
+        </if>
+
+        <if test="excludeCombList != null and excludeCombList.length > 0">
+            and pd.pd_loan_type not in
+            <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="combList != null and combList.length > 0">
+            and c.comb_code in
+            <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+        group by c.comb_code , c.comb_level,c.comb_name
+        order by c.comb_order
+
+    </select>
+
+
+    <!--查询三级贷种的一级贷种-->
+    <select id="getThreeToOneMap" resultType="java.util.Map" flushCache="true">
+        select
+        cd.comb_code as upcombcode,
+        A.combcode2 as combcode
+        from tb_report_comb_detail cd
+        join tb_report_comb c
+        on c.comb_code = cd.prod_code
+        join (
+            select
+            cd.comb_code as combcode,c.comb_code as combcode2
+            from tb_report_comb_detail cd
+             join tb_report_comb c
+            on c.comb_code = cd.prod_code
+            and c.comb_level = '3'
+        )A
+        on cd .prod_code = A.combcode
+    </select>
+
+    <!--查询三级贷种的二级贷种-->
+    <select id="getThreeToTwoMap" resultType="java.util.Map"  flushCache="true">
+        select
+        cd.comb_code as upcombcode,
+        c.comb_code as combcode
+        from tb_report_comb_detail cd
+         join tb_report_comb c
+        on c.comb_code = cd.prod_code
+        and c.comb_level = '3'
+    </select>
+
+    <!--机构表-查询机构计划，汇总到一级-->
+    <select id="getOrganPlanByLevelOne" resultType="java.util.Map" flushCache="true">
+        select
+        c.comb_code as combcode,
+        sum(coalesce(pd.pd_amount,0)) as amount,
+        c.comb_level as comblevel,
+        c.comb_name as combname
+        from tb_plan p,tb_plan_detail pd
+        left join tb_report_comb_detail cd
+        on cd.prod_code = pd.pd_loan_type
+        join tb_report_comb c
+        on (c.comb_code = pd.pd_loan_type or c.comb_code = cd.comb_code)
+        where p.plan_id = pd.pd_ref_id
+        and p.plan_status =16
+        and p.plan_type =1
+        and c.comb_level = '1'
+
+        <if test="months != null and months.length > 0">
+            and p.plan_month in
+            <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                #{month}
+            </foreach>
+        </if>
+
+        <if test="pdorgan != null and pdorgan != ''">
+            and pd.pd_organ = #{pdorgan}
+        </if>
+
+        <if test="excludeCombList != null and excludeCombList.length > 0">
+            and pd.pd_loan_type not in
+            <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="combList != null and combList.length > 0">
+            and c.comb_code in
+            <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+        <if test="organ != null and organ != ''">
+            and p.plan_organ= #{organ}
+        </if>
+        group by c.comb_code , c.comb_level,c.comb_name
+        order by c.comb_order
+    </select>
+
+    <!--机构表-查询机构计划，汇总到二级-->
+    <select id="getOrganPlanByLevelTwo" resultType="java.util.Map" flushCache="true">
+        select
+        c.comb_code as combcode,
+        sum(coalesce(pd.pd_amount,0)) as amount,
+        c.comb_level as comblevel,
+        c.comb_name as combname
+        from tb_plan p,tb_plan_detail pd
+        join tb_report_comb c
+        on (c.comb_code = pd.pd_loan_type)
+        where p.plan_id = pd.pd_ref_id
+        and p.plan_status =16
+        and p.plan_type =1
+        and c.comb_level = '2'
+        <if test="months != null and months.length > 0">
+            and p.plan_month in
+            <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                #{month}
+            </foreach>
+        </if>
+
+        <if test="pdorgan != null and pdorgan != ''">
+            and pd.pd_organ = #{pdorgan}
+        </if>
+
+        <if test="excludeCombList != null and excludeCombList.length > 0">
+            and pd.pd_loan_type not in
+            <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="combList != null and combList.length > 0">
+            and c.comb_code in
+            <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="organ != null and organ != ''">
+            and p.plan_organ= #{organ}
+        </if>
+        group by c.comb_code , c.comb_level,c.comb_name
+        order by c.comb_order
+    </select>
+
+    <!--根据机构分组，查询计划-->
+    <select id="getOrganPlan" resultType="java.util.Map" flushCache="true">
+        select
+        pd.pd_organ as organ,
+        sum(coalesce(pd.pd_amount,0)) as amount
+
+        from tb_plan p,tb_plan_detail pd
+        left join tb_report_comb_detail cd
+        on cd.prod_code = pd.pd_loan_type
+        join tb_report_comb c
+        on (c.comb_code = pd.pd_loan_type or c.comb_code = cd.comb_code)
+        where p.plan_id = pd.pd_ref_id
+        and p.plan_status =16
+        and p.plan_type =1
+        and c.comb_level = '1'
+
+        <if test="months != null and months.length > 0">
+            and p.plan_month in
+            <foreach collection="months" index="index" item="month" open="(" close=")" separator=",">
+                #{month}
+            </foreach>
+        </if>
+
+        <if test="excludeCombList != null and excludeCombList.length > 0">
+            and pd.pd_loan_type not in
+            <foreach collection="excludeCombList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="combList != null and combList.length > 0">
+            and c.comb_code in
+            <foreach collection="combList" index="index" item="comb" open="(" close=")" separator=",">
+                #{comb}
+            </foreach>
+        </if>
+
+        <if test="organList != null and organList.size > 0">
+            and pd.pd_organ in
+            <foreach collection="organList" index="index" item="org" open="(" close=")" separator=",">
+                #{org}
+            </foreach>
+        </if>
+
+        <if test="organ != null and organ != ''">
+            and p.plan_organ= #{organ}
+        </if>
+
+        group by pd.pd_organ
+
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

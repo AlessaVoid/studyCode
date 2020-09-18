@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--框架必需start-->
+<script type="text/javascript" src="../../libs/js/jquery.js"></script>
+<script type="text/javascript" src="../../libs/js/language/cn.js"></script>
+<script type="text/javascript" src="../../libs/js/framework.js"></script>
+<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!--数据表格start-->
+<script src="../../libs/js/table/quiGrid.js" type="text/javascript"></script>
+<!--数据表格end-->
+
+<!-- 日期选择框start -->
+<script type="text/javascript" src="../../libs/js/form/datePicker/WdatePicker.js"></script>
+<!-- 日期选择框end -->
+
+<!-- 数字步进器start -->
+<script type="text/javascript" src="../../libs/js/form/stepper.js"></script>
+<!-- 数字步进器end -->
+
+<!-- 树组件start -->
+<script type="text/javascript" src="../../libs/js/tree/ztree/ztree.js"></script>
+<link type="text/css" rel="stylesheet" href="../../libs/js/tree/ztree/ztree.css"></link>
+<!-- 树组件end -->
+
+<!-- 树形下拉框start -->
+<script type="text/javascript" src="../../libs/js/form/selectTree.js"></script>
+<!-- 树形下拉框end -->
+
+</head>
+<body>
+	<div class="padding_right5">
+		<div id="maingrid"></div>
+    </div>
+<script type="text/javascript">
+		var testData={"pager.pageNo":1,"pager.totalRows":14,"rows":[{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":11,"userDuty":"undefined","userEducation":"2","userEmployTime":null,"userId":57,"userLoginName":"guest","userName":"新增","userPassword":"123456","userSex":0},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":56,"userLoginName":"zheng","userName":"郑","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":55,"userLoginName":"li","userName":"李","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":54,"userLoginName":"zhou","userName":"周","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":53,"userLoginName":"sun","userName":"孙","userPassword":"123456","userSex":0},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":52,"userLoginName":"qian","userName":"钱","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":51,"userLoginName":"zhao","userName":"赵","userPassword":"123456","userSex":0},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":50,"userLoginName":"chen","userName":"陈","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":49,"userLoginName":"zhang","userName":"张","userPassword":"123456","userSex":1},{"organization":{"orgDescription":"","orgEstablish":null,"orgId":0,"orgManager":"","orgName":"","orgpId":0,"orgPath":"","orgPhone":""},"userAddress":"","userAge":18,"userAssistance":"undefined","userDepartment":0,"userDuty":"undefined","userEducation":"1","userEmployTime":null,"userId":48,"userLoginName":"wang","userName":"王","userPassword":"123456","userSex":1}]};
+	
+        var g;
+        var sexData={"list":[{"value":"1","key":"男"},{"value":"0","key":"女"}]};
+        var educationData={"list":[{"value":"1","key":"大专"},{"value":"2","key":"本科"},{"value":"3","key":"硕士"},{"value":"4","key":"博士"}]};
+        var jobNode = {"treeNodes":[
+			{ id:1, pId:0, name:"界面设计"},
+			{ id:2, pId:0, name:"程序开发"},
+			{ id:3, pId:0, name:"市场调研"},
+			{ id:4, pId:0, name:"质量监督"},
+			{ id:5, pId:0, name:"产品测试"}
+		]};
+        
+        var departNode={"treeNodes":[{"id":"1","name":"南京分公司","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"0"},{"id":"2","name":"市场部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"},{"id":"3","name":"市场1组","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"2"},{"id":"7","name":"杭州办事处","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"0"},{"id":"8","name":"接待处","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"7"},{"id":"9","name":"洽谈处","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"7"},{"id":"11","name":"市场2组","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"2"},{"id":"12","name":"市场3组","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"2"},{"id":"13","name":"财务部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"},{"id":"14","name":"行政部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"},{"id":"15","name":"工程部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"},{"id":"16","name":"技术部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"},{"id":"17","name":"生产部","icon":"/online/libs/icons/user_group.gif","open":"true","pId":"1"}]};
+        
+     
+		
+		var newrowid=200;
+		function initComplete(){
+			 initGrid();
+			 
+            
+            $("#sel-1").data("data",sexData)
+    		$("#sel-1").render(); 
+    		$("#sel-2").data("data",educationData)
+    		$("#sel-2").render(); 
+    		
+            $("#selectTree-3").data("data",jobNode)
+    		$("#selectTree-3").render(); 
+    		
+		}
+		
+		function initGrid(){
+			 g = $("#maingrid").quiGrid({
+                columns: [ 
+	                { display: '姓名', name: 'userName',     align: 'left', width: 120,editor: { type: 'text',maxlength:5,tip:'不超过5个字的中文' }},
+	                
+	              
+	                
+	                { display: '用户名', name: 'userLoginName',     align: 'left', width: 120,editor: { type: 'text',tip:'英文或数字' }},
+	                { display: '密码', name: 'userPassword',     align: 'left', width: 120,editor: { type: 'text',tip:'6到11位的英文或数字' }},
+	                { display: '性别', name: 'userSex',      align: 'left', width: 55,editor: { type: 'select',data:sexData,selWidth:50 },render:function (item){
+	                	  for (var i = 0; i < sexData["list"].length; i++)
+                        {
+                            if (sexData["list"][i]['value'] == item.userSex)
+                                return sexData["list"][i]['key']
+                        }
+                        return item.userSex;
+	                }},
+	                 { display: '年龄', name: 'userAge', align: 'left', width: 80,type:"int",editor: { type: 'stepper',min:18,tip:'不能小于18岁' } },
+	                 { display: '入职时间', name: 'userEmployTime', align: 'left', width: 100,editor: { type: 'date',dateFmt:'yyyy-MM-dd'}},
+	               
+	               
+	                { display: '部门', name: 'userDepartment', align: 'left', width: 150,editor: { type: 'selectTree',data:departNode,selWidth:145 },render:function (item){
+	                	  for (var i = 0; i < departNode["treeNodes"].length; i++)
+                        {
+                            if (departNode["treeNodes"][i]['id'] == item.userDepartment){
+                            	if(departNode["treeNodes"][i]['name']=="请选择"){
+                            		return "";
+                            	}
+                            	return departNode["treeNodes"][i]['name'];
+                            }
+                                
+                        }
+                        return item.userDepartment;
+	                } },
+	                
+	               
+	                 { display: '协作部门', name: 'userAssistance', align: 'left', width: 200 ,isSort:false,showTitle:true,editor: { type: 'selectTree',multiMode:true,data:departNode,selWidth:195 },render:function (item){
+	                	   if(!item.userAssistance){
+	                		   return "";
+	                	   }
+	                	   var itemArray=item.userAssistance.split(",");
+	                	   var departStr="";
+	                	   for (var i = 0; i < itemArray.length; i++){
+	                	   		for (var j = 0; j < departNode["treeNodes"].length; j++){
+	                	   			if (departNode["treeNodes"][j]['id'] == itemArray[i]){
+	                	   				departStr=departStr+departNode["treeNodes"][j]['name']+",";
+	                	   				continue;
+	                	   			}
+	                	   		}
+	                	   }
+	                	   if (departStr.length > 0 ){
+								departStr = departStr.substring(0, departStr.length-1);
+							} 
+                        	return departStr;
+	                } },
+	                
+	                { display: '学历', name: 'userEducation',      align: 'left', width: 55,editor: { type: 'select',data:educationData,selWidth:50 },render:function (item){
+	                	  for (var i = 0; i < educationData["list"].length; i++)
+                        {
+                            if (educationData["list"][i]['value'] == item.userEducation)
+                                return educationData["list"][i]['key']
+                        }
+                        return item.userEducation;
+	                }},
+	               
+	                { display: '职务', name: 'userDuty', align: 'left', width: 150 ,isSort:false,showTitle:true,editor: { type: 'selectTree',multiMode:true,noGroup:true,data:jobNode,selWidth:145 },render:function (item){
+	                	   if(!item.userDuty){
+	                		   return "";
+	                	   }
+	                	   var itemArray=item.userDuty.split(",");
+	                	   var jobStr="";
+	                	   for (var i = 0; i < itemArray.length; i++){
+	                	   		for (var j = 0; j < jobNode["treeNodes"].length; j++){
+	                	   			if (jobNode["treeNodes"][j]['id'] == itemArray[i]){
+	                	   				jobStr=jobStr+jobNode["treeNodes"][j]['name']+",";
+	                	   				continue;
+	                	   			}
+	                	   		}
+	                	   }
+	                	   if (jobStr.length > 0 ){
+								jobStr = jobStr.substring(0, jobStr.length-1);
+							} 
+                        	return jobStr;
+	                } },
+	                
+	                
+	                { display: '操作', isAllowHide: false, align: 'left', width:60,
+						 render: function (rowdata, rowindex, value, column){
+	                 	    return '<div class="padding_top4 padding_left5">'
+	                                 + '<span class="img_list hand" title="查看" onclick="onView(' + rowdata.userId + ')"></span>'
+	                                 + '<span class="img_delete hand" title="删除" onclick="onDelete(' + rowdata.userId+','+rowindex + ')"></span>'
+	                             + '</div>';
+		                 }
+		            }
+                ], 
+               data:testData, sortName: 'userId',rownumbers:true,checkbox:true,pageSize:10,dataAction:"server",usePager: true,
+                height: "100%", width:"100%",enabledEdit: true,onBeforeEdit: onBeforeEdit, onBeforeSubmitEdit: onBeforeSubmitEdit,onAfterEdit: onAfterEdit
+            });
+		}
+		
+		function addUser(){
+			var valid = $('#myFormId').validationEngine({returnIsValid: true});
+			if(valid){
+			  addUserHandler();
+			   
+			 }
+		}
+		
+
+		
+		//查看
+		function onView(rowid){
+			
+		}
+		//删除	
+		function onDelete(rowid,rowidx){
+			
+		}
+		
+	
+		
+		//编辑前事件 
+        function onBeforeEdit(e)
+        {
+         	var str="编辑前事件，可阻止某些行或列进行编辑。列名："+e.column.name+"；行号："+e.rowindex+"；编辑前的值："+e.value+"\n";
+         	//if(e.record.id=="121"){
+         	//	top.Dialog.alert("此行不可编辑",null,null,null,2);
+         	//	 return false;
+         	//}
+        }
+        //编辑提交前事件 
+        function onBeforeSubmitEdit(e){
+         	if(e.column.name=="userName"){
+         		if(e.value==""){
+         			top.Dialog.alert("姓名不能为空！",null,null,null,2);
+         			return false;
+         		}
+         		else if (!validateInput(e.value, "^[\u4e00-\u9fa5]+$")){
+         			top.Dialog.alert("姓名需要是中文！",null,null,null,2);
+         			return false;
+         		}
+         		 
+         	}
+         	if(e.column.name=="userLoginName"){
+         		if(e.value==""){
+         			top.Dialog.alert("用户名不能为空！",null,null,null,2);
+         			return false;
+         		}
+         		else if (!validateInput(e.value, "^[0-9a-zA-Z]+$")){
+         			top.Dialog.alert("用户名需要是字母或数字！",null,null,null,2);
+         			return false;
+         		}
+         		 
+         	}
+         	if(e.column.name=="userPassword"){
+         		if(e.value==""){
+         			top.Dialog.alert("密码不能为空！",null,null,null,2);
+         			return false;
+         		}
+         		else if (e.value.length<6||e.value.length>11){
+         			top.Dialog.alert("密码需要是6-11位！",null,null,null,2);
+         			return false;
+         		}
+         		else if (!validateInput(e.value, "^[0-9a-zA-Z]+$")){
+         			top.Dialog.alert("密码需要是字母或数字！",null,null,null,2);
+         			return false;
+         		}
+         		 
+         	}
+         	
+         	
+        }
+		
+		//编辑后事件 
+        function onAfterEdit(e)
+        {
+         	//var str="编辑后事件，用于ajax提交处理。列名："+e.column.name+"；行号："+e.rowindex+"；编辑后的值："+e.value+"\n";
+         	/*
+$.post("<%=path%>/userdbAction.do?method=modifyAttributes",
+		  			{"id":e.record.userId,"key":e.column.name,"value":e.value},
+		  			function(result){
+		  				
+		  			},"json");
+*/
+        }
+        
+</script>		
+</body>
+</html>

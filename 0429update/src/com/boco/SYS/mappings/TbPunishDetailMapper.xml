@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- TbPunishDetail -->
+<mapper namespace="com.boco.SYS.mapper.TbPunishDetailMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPunishDetail">
+       	<id column="id" property="id"/>
+     	<result column="day" property="day"/>
+     	<result column="month" property="month"/>
+     	<result column="organ" property="organ"/>
+     	<result column="type" property="type"/>
+     	<result column="comb" property="comb"/>
+     	<result column="plan" property="plan"/>
+     	<result column="diff" property="diff"/>
+     	<result column="departure" property="departure"/>
+     	<result column="punish_money" property="punishMoney"/>
+     	<result column="punish_day" property="punishDay"/>
+     	<result column="left_day" property="leftDay"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,day ,month ,organ ,type ,comb ,plan ,diff ,departure ,punish_money ,punish_day ,left_day 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPunishDetail">
+<!-- 
+	    -->       
+  INSERT INTO tb_punish_detail 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	id ,
+	       	</if>
+	       	<if test="day != null">
+	        	day ,
+	       	</if>
+	       	<if test="month != null">
+	        	month ,
+	       	</if>
+	       	<if test="organ != null">
+	        	organ ,
+	       	</if>
+	       	<if test="type != null">
+	        	type ,
+	       	</if>
+	       	<if test="comb != null">
+	        	comb ,
+	       	</if>
+	       	<if test="plan != null">
+	        	plan ,
+	       	</if>
+	       	<if test="diff != null">
+	        	diff ,
+	       	</if>
+	       	<if test="departure != null">
+	        	departure ,
+	       	</if>
+	       	<if test="punishMoney != null">
+	        	punish_money ,
+	       	</if>
+	       	<if test="punishDay != null">
+	        	punish_day ,
+	       	</if>
+	       	<if test="leftDay != null">
+	        	left_day 
+	       	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="id != null">
+	        	#{id} ,
+	       	</if>
+	       	<if test="day != null">
+	        	#{day} ,
+	       	</if>
+	       	<if test="month != null">
+	        	#{month} ,
+	       	</if>
+	       	<if test="organ != null">
+	        	#{organ} ,
+	       	</if>
+	       	<if test="type != null">
+	        	#{type} ,
+	       	</if>
+	       	<if test="comb != null">
+	        	#{comb} ,
+	       	</if>
+	       	<if test="plan != null">
+	        	#{plan} ,
+	       	</if>
+	       	<if test="diff != null">
+	        	#{diff} ,
+	       	</if>
+	       	<if test="departure != null">
+	        	#{departure} ,
+	       	</if>
+	       	<if test="punishMoney != null">
+	        	#{punishMoney} ,
+	       	</if>
+	       	<if test="punishDay != null">
+	        	#{punishDay} ,
+	       	</if>
+	       	<if test="leftDay != null">
+	        	#{leftDay} 
+	       	</if>
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_punish_detail 
+        (id ,day ,month ,organ ,type ,comb ,plan ,diff ,departure ,punish_money ,punish_day ,left_day )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.id,jdbcType=VARCHAR},#{item.day,jdbcType=VARCHAR},#{item.month,jdbcType=VARCHAR},#{item.organ,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR},#{item.comb,jdbcType=VARCHAR},#{item.plan,jdbcType=VARCHAR},#{item.diff,jdbcType=VARCHAR},#{item.departure,jdbcType=VARCHAR},#{item.punishMoney,jdbcType=VARCHAR},#{item.punishDay,jdbcType=VARCHAR},#{item.leftDay,jdbcType=VARCHAR} FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_punish_detail 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_punish_detail 
+        <where>
+        	id = #{id} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_punish_detail 
+        WHERE id IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_punish_detail
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPunishDetail">
+        UPDATE tb_punish_detail 
+        <set>
+       	<if test="day != null">
+       		day = #{day},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="organ != null">
+       		organ = #{organ},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="comb != null">
+       		comb = #{comb},
+       	</if>
+       	<if test="plan != null">
+       		plan = #{plan},
+       	</if>
+       	<if test="diff != null">
+       		diff = #{diff},
+       	</if>
+       	<if test="departure != null">
+       		departure = #{departure},
+       	</if>
+       	<if test="punishMoney != null">
+       		punish_money = #{punishMoney},
+       	</if>
+       	<if test="punishDay != null">
+       		punish_day = #{punishDay},
+       	</if>
+       	<if test="leftDay != null">
+       		left_day = #{leftDay},
+       	</if>
+        </set>
+        <where>
+        	id = #{id} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE tb_punish_detail 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_punish_detail 
+        <set>
+       	<if test="id != null">
+       		id = #{id},
+       	</if>
+       	<if test="day != null">
+       		day = #{day},
+       	</if>
+       	<if test="month != null">
+       		month = #{month},
+       	</if>
+       	<if test="organ != null">
+       		organ = #{organ},
+       	</if>
+       	<if test="type != null">
+       		type = #{type},
+       	</if>
+       	<if test="comb != null">
+       		comb = #{comb},
+       	</if>
+       	<if test="plan != null">
+       		plan = #{plan},
+       	</if>
+       	<if test="diff != null">
+       		diff = #{diff},
+       	</if>
+       	<if test="departure != null">
+       		departure = #{departure},
+       	</if>
+       	<if test="punishMoney != null">
+       		punish_money = #{punishMoney},
+       	</if>
+       	<if test="punishDay != null">
+       		punish_day = #{punishDay},
+       	</if>
+       	<if test="leftDay != null">
+       		left_day = #{leftDay},
+       	</if>
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="id != null and id != ''">
+	 		and id = #{id}
+	 	</if>
+	 	<if test="day != null and day != ''">
+	 		and day = #{day}
+	 	</if>
+	 	<if test="month != null and month != ''">
+	 		and month = #{month}
+	 	</if>
+	 	<if test="organ != null and organ != ''">
+	 		and organ = #{organ}
+	 	</if>
+	 	<if test="type != null and type != ''">
+	 		and type = #{type}
+	 	</if>
+	 	<if test="comb != null and comb != ''">
+	 		and comb = #{comb}
+	 	</if>
+	 	<if test="plan != null and plan != ''">
+	 		and plan = #{plan}
+	 	</if>
+	 	<if test="diff != null and diff != ''">
+	 		and diff = #{diff}
+	 	</if>
+	 	<if test="departure != null and departure != ''">
+	 		and departure = #{departure}
+	 	</if>
+	 	<if test="punishMoney != null and punishMoney != ''">
+	 		and punish_money = #{punishMoney}
+	 	</if>
+	 	<if test="punishDay != null and punishDay != ''">
+	 		and punish_day = #{punishDay}
+	 	</if>
+	 	<if test="leftDay != null">
+	 		and left_day = #{leftDay}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="id != null and id != ''">
+ 			and id like '%' || #{id} || '%'
+ 		</if>
+ 		<if test="day != null and day != ''">
+ 			and day like '%' || #{day} || '%'
+ 		</if>
+ 		<if test="month != null and month != ''">
+ 			and month like '%' || #{month} || '%'
+ 		</if>
+ 		<if test="organ != null and organ != ''">
+ 			and organ like '%' || #{organ} || '%'
+ 		</if>
+ 		<if test="type != null and type != ''">
+ 			and type like '%' || #{type} || '%'
+ 		</if>
+ 		<if test="comb != null and comb != ''">
+ 			and comb like '%' || #{comb} || '%'
+ 		</if>
+ 		<if test="plan != null and plan != ''">
+ 			and plan like '%' || #{plan} || '%'
+ 		</if>
+ 		<if test="diff != null and diff != ''">
+ 			and diff like '%' || #{diff} || '%'
+ 		</if>
+ 		<if test="departure != null and departure != ''">
+ 			and departure like '%' || #{departure} || '%'
+ 		</if>
+ 		<if test="punishMoney != null and punishMoney != ''">
+ 			and punish_money like '%' || #{punishMoney} || '%'
+ 		</if>
+ 		<if test="punishDay != null and punishDay != ''">
+ 			and punish_day like '%' || #{punishDay} || '%'
+ 		</if>
+ 		<if test="leftDay != null and leftDay != ''">
+ 			and left_day like '%' || #{leftDay} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM tb_punish_detail 
+        <where> 
+        	id = #{id} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPunishDetail" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM tb_punish_detail
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPunishDetail" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM tb_punish_detail 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishDetail" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_punish_detail 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM tb_punish_detail 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPunishDetail" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_detail 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishDetail" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_detail 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from tb_punish_detail 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

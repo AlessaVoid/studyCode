@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 信贷计划调整批次详情表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPlanadjDetailMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbPlanadjDetail">
+		<id column="planadjd_id" property="planadjdId"/>
+		<result column="planadjd_ref_id" property="planadjdRefId"/>
+		<result column="planadjd_organ" property="planadjdOrgan"/>
+		<result column="planadjd_loan_type" property="planadjdLoanType"/>
+		<result column="planadjd_init_amount" property="planadjdInitAmount"/>
+		<result column="planadjd_adj_amount" property="planadjdAdjAmount"/>
+		<result column="planadjd_adjed_amount" property="planadjdAdjedAmount"/>
+		<result column="planadjd_unit" property="planadjdUnit"/>
+		<result column="planadjd_create_time" property="planadjdCreateTime"/>
+		<result column="planadjd_update_time" property="planadjdUpdateTime"/>
+		<result column="planadjd_month" property="planadjdMonth"/>
+		<result column="planadjd_req_amount" property="planadjdReqAmount"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        planadjd_id ,planadjd_ref_id ,planadjd_organ ,planadjd_loan_type ,planadjd_init_amount ,planadjd_adj_amount ,planadjd_adjed_amount ,planadjd_unit ,planadjd_create_time ,planadjd_update_time ,planadjd_month ,planadjd_req_amount
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPlanadjDetail">
+		<!--
+                -->
+		INSERT INTO tb_planadj_detail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="planadjdId != null">
+				planadjd_id ,
+			</if>
+			<if test="planadjdRefId != null">
+				planadjd_ref_id ,
+			</if>
+			<if test="planadjdOrgan != null">
+				planadjd_organ ,
+			</if>
+			<if test="planadjdLoanType != null">
+				planadjd_loan_type ,
+			</if>
+			<if test="planadjdInitAmount != null">
+				planadjd_init_amount ,
+			</if>
+			<if test="planadjdAdjAmount != null">
+				planadjd_adj_amount ,
+			</if>
+			<if test="planadjdAdjedAmount != null">
+				planadjd_adjed_amount ,
+			</if>
+			<if test="planadjdUnit != null">
+				planadjd_unit ,
+			</if>
+			<if test="planadjdCreateTime != null">
+				planadjd_create_time ,
+			</if>
+			<if test="planadjdUpdateTime != null">
+				planadjd_update_time ,
+			</if>
+			<if test="planadjdMonth != null">
+				planadjd_month ,
+			</if>
+			<if test="planadjdReqAmount != null">
+				planadjd_req_amount
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="planadjdId != null">
+				#{planadjdId} ,
+			</if>
+			<if test="planadjdRefId != null">
+				#{planadjdRefId} ,
+			</if>
+			<if test="planadjdOrgan != null">
+				#{planadjdOrgan} ,
+			</if>
+			<if test="planadjdLoanType != null">
+				#{planadjdLoanType} ,
+			</if>
+			<if test="planadjdInitAmount != null">
+				#{planadjdInitAmount} ,
+			</if>
+			<if test="planadjdAdjAmount != null">
+				#{planadjdAdjAmount} ,
+			</if>
+			<if test="planadjdAdjedAmount != null">
+				#{planadjdAdjedAmount} ,
+			</if>
+			<if test="planadjdUnit != null">
+				#{planadjdUnit} ,
+			</if>
+			<if test="planadjdCreateTime != null">
+				#{planadjdCreateTime} ,
+			</if>
+			<if test="planadjdUpdateTime != null">
+				#{planadjdUpdateTime} ,
+			</if>
+			<if test="planadjdMonth != null">
+				#{planadjdMonth} ,
+			</if>
+			<if test="planadjdReqAmount != null">
+				#{planadjdReqAmount}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_planadj_detail
+		(planadjd_id ,planadjd_ref_id ,planadjd_organ ,planadjd_loan_type ,planadjd_init_amount ,planadjd_adj_amount ,planadjd_adjed_amount ,planadjd_unit ,planadjd_create_time ,planadjd_update_time ,planadjd_month ,planadjd_req_amount )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.planadjdId,jdbcType=VARCHAR},#{item.planadjdRefId,jdbcType=VARCHAR},#{item.planadjdOrgan,jdbcType=VARCHAR},#{item.planadjdLoanType,jdbcType=VARCHAR},#{item.planadjdInitAmount,jdbcType=VARCHAR},#{item.planadjdAdjAmount,jdbcType=VARCHAR},#{item.planadjdAdjedAmount,jdbcType=VARCHAR},#{item.planadjdUnit,jdbcType=VARCHAR},#{item.planadjdCreateTime,jdbcType=VARCHAR},#{item.planadjdUpdateTime,jdbcType=VARCHAR},#{item.planadjdMonth,jdbcType=VARCHAR},#{item.planadjdReqAmount,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_planadj_detail
+		<where>
+			planadjd_id = #{planadjdId}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_planadj_detail
+		<where>
+			planadjd_id = #{planadjdId}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_planadj_detail
+		WHERE planadjd_id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_planadj_detail
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbPlanadjDetail">
+		UPDATE tb_planadj_detail
+		<set>
+			<if test="planadjdRefId != null">
+				planadjd_ref_id = #{planadjdRefId},
+			</if>
+			<if test="planadjdOrgan != null">
+				planadjd_organ = #{planadjdOrgan},
+			</if>
+			<if test="planadjdLoanType != null">
+				planadjd_loan_type = #{planadjdLoanType},
+			</if>
+			<if test="planadjdInitAmount != null">
+				planadjd_init_amount = #{planadjdInitAmount},
+			</if>
+			<if test="planadjdAdjAmount != null">
+				planadjd_adj_amount = #{planadjdAdjAmount},
+			</if>
+			<if test="planadjdAdjedAmount != null">
+				planadjd_adjed_amount = #{planadjdAdjedAmount},
+			</if>
+			<if test="planadjdUnit != null">
+				planadjd_unit = #{planadjdUnit},
+			</if>
+			<if test="planadjdCreateTime != null">
+				planadjd_create_time = #{planadjdCreateTime},
+			</if>
+			<if test="planadjdUpdateTime != null">
+				planadjd_update_time = #{planadjdUpdateTime},
+			</if>
+			<if test="planadjdMonth != null">
+				planadjd_month = #{planadjdMonth},
+			</if>
+			<if test="planadjdReqAmount != null">
+				planadjd_req_amount = #{planadjdReqAmount},
+			</if>
+		</set>
+		<where>
+			planadjd_id = #{planadjdId}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_planadj_detail
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_planadj_detail
+		<set>
+			<if test="planadjdId != null">
+				planadjd_id = #{planadjdId},
+			</if>
+			<if test="planadjdRefId != null">
+				planadjd_ref_id = #{planadjdRefId},
+			</if>
+			<if test="planadjdOrgan != null">
+				planadjd_organ = #{planadjdOrgan},
+			</if>
+			<if test="planadjdLoanType != null">
+				planadjd_loan_type = #{planadjdLoanType},
+			</if>
+			<if test="planadjdInitAmount != null">
+				planadjd_init_amount = #{planadjdInitAmount},
+			</if>
+			<if test="planadjdAdjAmount != null">
+				planadjd_adj_amount = #{planadjdAdjAmount},
+			</if>
+			<if test="planadjdAdjedAmount != null">
+				planadjd_adjed_amount = #{planadjdAdjedAmount},
+			</if>
+			<if test="planadjdUnit != null">
+				planadjd_unit = #{planadjdUnit},
+			</if>
+			<if test="planadjdCreateTime != null">
+				planadjd_create_time = #{planadjdCreateTime},
+			</if>
+			<if test="planadjdUpdateTime != null">
+				planadjd_update_time = #{planadjdUpdateTime},
+			</if>
+			<if test="planadjdMonth != null">
+				planadjd_month = #{planadjdMonth},
+			</if>
+			<if test="planadjdReqAmount != null">
+				planadjd_req_amount = #{planadjdReqAmount},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="planadjdId != null and planadjdId != ''">
+			and planadjd_id = #{planadjdId}
+		</if>
+		<if test="planadjdRefId != null and planadjdRefId != ''">
+			and planadjd_ref_id = #{planadjdRefId}
+		</if>
+		<if test="planadjdOrgan != null and planadjdOrgan != ''">
+			and planadjd_organ = #{planadjdOrgan}
+		</if>
+		<if test="planadjdLoanType != null and planadjdLoanType != ''">
+			and planadjd_loan_type = #{planadjdLoanType}
+		</if>
+		<if test="planadjdInitAmount != null and planadjdInitAmount != ''">
+			and planadjd_init_amount = #{planadjdInitAmount}
+		</if>
+		<if test="planadjdAdjAmount != null and planadjdAdjAmount != ''">
+			and planadjd_adj_amount = #{planadjdAdjAmount}
+		</if>
+		<if test="planadjdAdjedAmount != null and planadjdAdjedAmount != ''">
+			and planadjd_adjed_amount = #{planadjdAdjedAmount}
+		</if>
+		<if test="planadjdUnit != null and planadjdUnit != ''">
+			and planadjd_unit = #{planadjdUnit}
+		</if>
+		<if test="planadjdCreateTime != null and planadjdCreateTime != ''">
+			and planadjd_create_time = #{planadjdCreateTime}
+		</if>
+		<if test="planadjdUpdateTime != null and planadjdUpdateTime != ''">
+			and planadjd_update_time = #{planadjdUpdateTime}
+		</if>
+		<if test="planadjdMonth != null and planadjdMonth != ''">
+			and planadjd_month = #{planadjdMonth}
+		</if>
+		<if test="planadjdReqAmount != null and planadjdReqAmount != ''">
+			and planadjd_req_amount = #{planadjdReqAmount}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="planadjdId != null and planadjdId != ''">
+			and planadjd_id like '%' || #{planadjdId} || '%'
+		</if>
+		<if test="planadjdRefId != null and planadjdRefId != ''">
+			and planadjd_ref_id like '%' || #{planadjdRefId} || '%'
+		</if>
+		<if test="planadjdOrgan != null and planadjdOrgan != ''">
+			and planadjd_organ like '%' || #{planadjdOrgan} || '%'
+		</if>
+		<if test="planadjdLoanType != null and planadjdLoanType != ''">
+			and planadjd_loan_type like '%' || #{planadjdLoanType} || '%'
+		</if>
+		<if test="planadjdInitAmount != null and planadjdInitAmount != ''">
+			and planadjd_init_amount like '%' || #{planadjdInitAmount} || '%'
+		</if>
+		<if test="planadjdAdjAmount != null and planadjdAdjAmount != ''">
+			and planadjd_adj_amount like '%' || #{planadjdAdjAmount} || '%'
+		</if>
+		<if test="planadjdAdjedAmount != null and planadjdAdjedAmount != ''">
+			and planadjd_adjed_amount like '%' || #{planadjdAdjedAmount} || '%'
+		</if>
+		<if test="planadjdUnit != null and planadjdUnit != ''">
+			and planadjd_unit like '%' || #{planadjdUnit} || '%'
+		</if>
+		<if test="planadjdCreateTime != null and planadjdCreateTime != ''">
+			and planadjd_create_time like '%' || #{planadjdCreateTime} || '%'
+		</if>
+		<if test="planadjdUpdateTime != null and planadjdUpdateTime != ''">
+			and planadjd_update_time like '%' || #{planadjdUpdateTime} || '%'
+		</if>
+		<if test="planadjdMonth != null and planadjdMonth != ''">
+			and planadjd_month like '%' || #{planadjdMonth} || '%'
+		</if>
+		<if test="planadjdReqAmount != null and planadjdReqAmount != ''">
+			and planadjd_req_amount like '%' || #{planadjdReqAmount} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_planadj_detail
+		<where>
+			planadjd_id = #{planadjdId}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPlanadjDetail" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj_detail
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPlanadjDetail" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj_detail
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanadjDetail" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj_detail
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_planadj_detail
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbPlanadjDetail" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj_detail
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPlanadjDetail" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj_detail
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_planadj_detail
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+
+
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

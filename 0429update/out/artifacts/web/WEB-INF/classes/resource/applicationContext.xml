@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 查找最新的schemaLocation 访问 http://www.springframework.org/schema/ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+
+
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 统一异常处理-->
+    <bean id="exceptionHandler" class="com.boco.SYS.exception.MyExceptionHandler"/>
+    <!--加密处理-->
+    <!-- <bean id="propertiesConfig" class="com.boco.SYS.util.EncryptPropertyPlaceholderConfigurer"
+        p:location="classpath:resource/jdbc.properties"></bean> -->
+    <!-- 引入同文件夹下的dbcp分库属性配置文件 -->
+    <import resource="spring-dbcp.xml"/>
+    <!-- 只扫描Service，也可以添加Repostory，但是要把Controller排除在外，Controller由spring-mvc.xml去加载
+<context:component-scan base-package="com.boco.*.service.impl" scope-resolver="com.boco.SYS.base.ScopeResolver"/> -->
+    <context:component-scan base-package="com.boco">
+        <!-- 这里只扫描Controller，不可重复加载Service -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--信贷计划文件上传配置-->
+    <context:property-placeholder location="classpath:resource/uploadConfig.properties" ignore-unresolvable="true" file-encoding="UTF-8"/>
+    <!--monitor配置-->
+    <context:property-placeholder location="classpath:resource/monitor.properties" ignore-unresolvable="true" file-encoding="UTF-8"/>
+    <!--定时任务配置-->
+    <context:property-placeholder location="classpath:resource/timerConfig.properties" ignore-unresolvable="true" file-encoding="UTF-8"/>
+
+
+    <!-- sessionFactory 将spring和mybatis整合 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="parentDataSource"/>
+        <property name="mapperLocations" value="classpath:com/boco/SYS/mappings/*Mapper.xml"/>
+        <property name="typeAliasesPackage" value="classpath:com.boco.SYS.entity"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=postgresql
+                            reasonable=true
+                            count=true
+                            pageSizeZero=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+        <property name="configLocation">
+            <value>classpath:resource/mybatis-config.xml</value>
+        </property>
+    </bean>
+
+    <!-- ========================================针对myBatis的配置项============================== -->
+    <!-- 配置扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描com.sys.dao这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.boco.SYS.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- ========================================事务配置========================================= -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!-- 配置Spring的事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="parentDataSource"/>
+    </bean>
+
+    <!-- 拦截器方式配置事物 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--事务切面-->
+    <aop:config>
+        <aop:pointcut id="transactionPointcut"
+                      expression="(execution(* com.boco.*.service.impl.*.*(..)))  or (execution(* com.boco.TONY.biz.*.service.impl.*.*(..)))"/>
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+    </aop:config>
+    <bean id="sessionMap" class="java.util.HashMap">
+    </bean>
+</beans>

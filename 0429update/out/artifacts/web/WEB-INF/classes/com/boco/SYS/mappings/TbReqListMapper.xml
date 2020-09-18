@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 下发信贷需求报送要求表 -->
+<mapper namespace="com.boco.SYS.mapper.TbReqListMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbReqList">
+        <id column="req_id" property="reqId"/>
+        <result column="req_month" property="reqMonth"/>
+        <result column="req_organ" property="reqOrgan"/>
+        <result column="req_type" property="reqType"/>
+        <result column="req_state" property="reqState"/>
+        <result column="req_date_start" property="reqDateStart"/>
+        <result column="req_date_end" property="reqDateEnd"/>
+        <result column="req_note" property="reqNote"/>
+        <result column="req_to" property="reqTo"/>
+        <result column="req_create_oper" property="reqCreateOper"/>
+        <result column="req_update_oper" property="reqUpdateOper"/>
+        <result column="req_createtime" property="reqCreatetime"/>
+        <result column="req_updatetime" property="reqUpdatetime"/>
+        <result column="req_organ_list" property="reqOrganList"/>
+        <result column="req_comb_list" property="reqCombList"/>
+        <result column="req_prod_line" property="reqProdLine"/>
+        <result column="req_time_start" property="reqTimeStart"/>
+        <result column="req_time_end" property="reqTimeEnd"/>
+        <result column="req_name" property="reqName"/>
+        <result column="req_unit" property="reqUnit"/>
+        <result column="exp_time_start" property="expTimeStart"/>
+        <result column="exp_time_end" property="expTimeEnd"/>
+        <result column="rate_time_start" property="rateTimeStart"/>
+        <result column="rate_time_end" property="rateTimeEnd"/>
+        <result column="balance_time_start" property="balanceTimeStart"/>
+        <result column="balance_time_end" property="balanceTimeEnd"/>
+        <result column="num_type" property="numType"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+                        req_id ,req_month ,req_organ ,req_type ,req_state ,req_date_start ,req_date_end ,req_note ,req_to ,req_create_oper ,req_update_oper ,req_createtime ,req_updatetime ,req_organ_list ,req_comb_list ,req_prod_line ,req_time_start ,req_time_end ,req_name ,req_unit ,exp_time_start ,exp_time_end ,rate_time_start ,rate_time_end ,balance_time_start ,balance_time_end ,num_type
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbReqList">
+        <!--
+                -->
+        INSERT INTO tb_req_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reqId != null">
+                req_id ,
+            </if>
+            <if test="reqMonth != null">
+                req_month ,
+            </if>
+            <if test="reqOrgan != null">
+                req_organ ,
+            </if>
+            <if test="reqType != null">
+                req_type ,
+            </if>
+            <if test="reqState != null">
+                req_state ,
+            </if>
+            <if test="reqDateStart != null">
+                req_date_start ,
+            </if>
+            <if test="reqDateEnd != null">
+                req_date_end ,
+            </if>
+            <if test="reqNote != null">
+                req_note ,
+            </if>
+            <if test="reqTo != null">
+                req_to ,
+            </if>
+            <if test="reqCreateOper != null">
+                req_create_oper ,
+            </if>
+            <if test="reqUpdateOper != null">
+                req_update_oper ,
+            </if>
+            <if test="reqCreatetime != null">
+                req_createtime ,
+            </if>
+            <if test="reqUpdatetime != null">
+                req_updatetime ,
+            </if>
+            <if test="reqOrganList != null">
+                req_organ_list ,
+            </if>
+            <if test="reqCombList != null">
+                req_comb_list ,
+            </if>
+            <if test="reqProdLine != null">
+                req_prod_line ,
+            </if>
+            <if test="reqTimeStart != null">
+                req_time_start ,
+            </if>
+            <if test="reqTimeEnd != null">
+                req_time_end ,
+            </if>
+            <if test="reqName != null">
+                req_name ,
+            </if>
+            <if test="reqUnit != null">
+                req_unit ,
+            </if>
+            <if test="expTimeStart != null">
+                exp_time_start ,
+            </if>
+            <if test="expTimeEnd != null">
+                exp_time_end ,
+            </if>
+            <if test="rateTimeStart != null">
+                rate_time_start ,
+            </if>
+            <if test="rateTimeEnd != null">
+                rate_time_end ,
+            </if>
+            <if test="balanceTimeStart != null">
+                balance_time_start ,
+            </if>
+            <if test="balanceTimeEnd != null">
+                balance_time_end ,
+            </if>
+            <if test="numType != null">
+                num_type
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reqId != null">
+                #{reqId} ,
+            </if>
+            <if test="reqMonth != null">
+                #{reqMonth} ,
+            </if>
+            <if test="reqOrgan != null">
+                #{reqOrgan} ,
+            </if>
+            <if test="reqType != null">
+                #{reqType} ,
+            </if>
+            <if test="reqState != null">
+                #{reqState} ,
+            </if>
+            <if test="reqDateStart != null">
+                #{reqDateStart} ,
+            </if>
+            <if test="reqDateEnd != null">
+                #{reqDateEnd} ,
+            </if>
+            <if test="reqNote != null">
+                #{reqNote} ,
+            </if>
+            <if test="reqTo != null">
+                #{reqTo} ,
+            </if>
+            <if test="reqCreateOper != null">
+                #{reqCreateOper} ,
+            </if>
+            <if test="reqUpdateOper != null">
+                #{reqUpdateOper} ,
+            </if>
+            <if test="reqCreatetime != null">
+                #{reqCreatetime} ,
+            </if>
+            <if test="reqUpdatetime != null">
+                #{reqUpdatetime} ,
+            </if>
+            <if test="reqOrganList != null">
+                #{reqOrganList} ,
+            </if>
+            <if test="reqCombList != null">
+                #{reqCombList} ,
+            </if>
+            <if test="reqProdLine != null">
+                #{reqProdLine} ,
+            </if>
+            <if test="reqTimeStart != null">
+                #{reqTimeStart} ,
+            </if>
+            <if test="reqTimeEnd != null">
+                #{reqTimeEnd} ,
+            </if>
+            <if test="reqName != null">
+                #{reqName} ,
+            </if>
+            <if test="reqUnit != null">
+                #{reqUnit} ,
+            </if>
+            <if test="expTimeStart != null">
+                #{expTimeStart} ,
+            </if>
+            <if test="expTimeEnd != null">
+                #{expTimeEnd} ,
+            </if>
+            <if test="rateTimeStart != null">
+                #{rateTimeStart} ,
+            </if>
+            <if test="rateTimeEnd != null">
+                #{rateTimeEnd} ,
+            </if>
+            <if test="balanceTimeStart != null">
+                #{balanceTimeStart} ,
+            </if>
+            <if test="balanceTimeEnd != null">
+                #{balanceTimeEnd} ,
+            </if>
+            <if test="numType != null">
+                #{numType}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_req_list
+        (req_id ,req_month ,req_organ ,req_type ,req_state ,req_date_start ,req_date_end ,req_note ,req_to
+        ,req_create_oper ,req_update_oper ,req_createtime ,req_updatetime ,req_organ_list ,req_comb_list ,req_prod_line
+        ,req_time_start ,req_time_end ,req_name ,req_unit ,exp_time_start ,exp_time_end ,rate_time_start ,rate_time_end
+        ,balance_time_start ,balance_time_end ,num_type )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.reqId,jdbcType=VARCHAR},#{item.reqMonth,jdbcType=VARCHAR},#{item.reqOrgan,jdbcType=VARCHAR},#{item.reqType,jdbcType=VARCHAR},#{item.reqState,jdbcType=VARCHAR},#{item.reqDateStart,jdbcType=VARCHAR},#{item.reqDateEnd,jdbcType=VARCHAR},#{item.reqNote,jdbcType=VARCHAR},#{item.reqTo,jdbcType=VARCHAR},#{item.reqCreateOper,jdbcType=VARCHAR},#{item.reqUpdateOper,jdbcType=VARCHAR},#{item.reqCreatetime,jdbcType=VARCHAR},#{item.reqUpdatetime,jdbcType=VARCHAR},#{item.reqOrganList,jdbcType=VARCHAR},#{item.reqCombList,jdbcType=VARCHAR},#{item.reqProdLine,jdbcType=VARCHAR},#{item.reqTimeStart,jdbcType=VARCHAR},#{item.reqTimeEnd,jdbcType=VARCHAR},#{item.reqName,jdbcType=VARCHAR},#{item.reqUnit,jdbcType=VARCHAR},#{item.expTimeStart,jdbcType=VARCHAR},#{item.expTimeEnd,jdbcType=VARCHAR},#{item.rateTimeStart,jdbcType=VARCHAR},#{item.rateTimeEnd,jdbcType=VARCHAR},#{item.balanceTimeStart,jdbcType=VARCHAR},#{item.balanceTimeEnd,jdbcType=VARCHAR},#{item.numType,jdbcType=VARCHAR}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_req_list
+        <where>
+            req_id = #{reqId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_req_list
+        <where>
+            req_id = #{reqId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_req_list
+        WHERE req_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_req_list
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbReqList">
+        UPDATE tb_req_list
+        <set>
+            <if test="reqMonth != null">
+                req_month = #{reqMonth},
+            </if>
+            <if test="reqOrgan != null">
+                req_organ = #{reqOrgan},
+            </if>
+            <if test="reqType != null">
+                req_type = #{reqType},
+            </if>
+            <if test="reqState != null">
+                req_state = #{reqState},
+            </if>
+            <if test="reqDateStart != null">
+                req_date_start = #{reqDateStart},
+            </if>
+            <if test="reqDateEnd != null">
+                req_date_end = #{reqDateEnd},
+            </if>
+            <if test="reqNote != null">
+                req_note = #{reqNote},
+            </if>
+            <if test="reqTo != null">
+                req_to = #{reqTo},
+            </if>
+            <if test="reqCreateOper != null">
+                req_create_oper = #{reqCreateOper},
+            </if>
+            <if test="reqUpdateOper != null">
+                req_update_oper = #{reqUpdateOper},
+            </if>
+            <if test="reqCreatetime != null">
+                req_createtime = #{reqCreatetime},
+            </if>
+            <if test="reqUpdatetime != null">
+                req_updatetime = #{reqUpdatetime},
+            </if>
+            <if test="reqOrganList != null">
+                req_organ_list = #{reqOrganList},
+            </if>
+            <if test="reqCombList != null">
+                req_comb_list = #{reqCombList},
+            </if>
+            <if test="reqProdLine != null">
+                req_prod_line = #{reqProdLine},
+            </if>
+            <if test="reqTimeStart != null">
+                req_time_start = #{reqTimeStart},
+            </if>
+            <if test="reqTimeEnd != null">
+                req_time_end = #{reqTimeEnd},
+            </if>
+            <if test="reqName != null">
+                req_name = #{reqName},
+            </if>
+            <if test="reqUnit != null">
+                req_unit = #{reqUnit},
+            </if>
+            <if test="expTimeStart != null">
+                exp_time_start = #{expTimeStart},
+            </if>
+            <if test="expTimeEnd != null">
+                exp_time_end = #{expTimeEnd},
+            </if>
+            <if test="rateTimeStart != null">
+                rate_time_start = #{rateTimeStart},
+            </if>
+            <if test="rateTimeEnd != null">
+                rate_time_end = #{rateTimeEnd},
+            </if>
+            <if test="balanceTimeStart != null">
+                balance_time_start = #{balanceTimeStart},
+            </if>
+            <if test="balanceTimeEnd != null">
+                balance_time_end = #{balanceTimeEnd},
+            </if>
+            <if test="numType != null">
+                num_type = #{numType},
+            </if>
+        </set>
+        <where>
+            req_id = #{reqId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_req_list
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_req_list
+        <set>
+            <if test="reqId != null">
+                req_id = #{reqId},
+            </if>
+            <if test="reqMonth != null">
+                req_month = #{reqMonth},
+            </if>
+            <if test="reqOrgan != null">
+                req_organ = #{reqOrgan},
+            </if>
+            <if test="reqType != null">
+                req_type = #{reqType},
+            </if>
+            <if test="reqState != null">
+                req_state = #{reqState},
+            </if>
+            <if test="reqDateStart != null">
+                req_date_start = #{reqDateStart},
+            </if>
+            <if test="reqDateEnd != null">
+                req_date_end = #{reqDateEnd},
+            </if>
+            <if test="reqNote != null">
+                req_note = #{reqNote},
+            </if>
+            <if test="reqTo != null">
+                req_to = #{reqTo},
+            </if>
+            <if test="reqCreateOper != null">
+                req_create_oper = #{reqCreateOper},
+            </if>
+            <if test="reqUpdateOper != null">
+                req_update_oper = #{reqUpdateOper},
+            </if>
+            <if test="reqCreatetime != null">
+                req_createtime = #{reqCreatetime},
+            </if>
+            <if test="reqUpdatetime != null">
+                req_updatetime = #{reqUpdatetime},
+            </if>
+            <if test="reqOrganList != null">
+                req_organ_list = #{reqOrganList},
+            </if>
+            <if test="reqCombList != null">
+                req_comb_list = #{reqCombList},
+            </if>
+            <if test="reqProdLine != null">
+                req_prod_line = #{reqProdLine},
+            </if>
+            <if test="reqTimeStart != null">
+                req_time_start = #{reqTimeStart},
+            </if>
+            <if test="reqTimeEnd != null">
+                req_time_end = #{reqTimeEnd},
+            </if>
+            <if test="reqName != null">
+                req_name = #{reqName},
+            </if>
+            <if test="reqUnit != null">
+                req_unit = #{reqUnit},
+            </if>
+            <if test="expTimeStart != null">
+                exp_time_start = #{expTimeStart},
+            </if>
+            <if test="expTimeEnd != null">
+                exp_time_end = #{expTimeEnd},
+            </if>
+            <if test="rateTimeStart != null">
+                rate_time_start = #{rateTimeStart},
+            </if>
+            <if test="rateTimeEnd != null">
+                rate_time_end = #{rateTimeEnd},
+            </if>
+            <if test="balanceTimeStart != null">
+                balance_time_start = #{balanceTimeStart},
+            </if>
+            <if test="balanceTimeEnd != null">
+                balance_time_end = #{balanceTimeEnd},
+            </if>
+            <if test="numType != null">
+                num_type = #{numType},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="reqId != null and reqId != ''">
+            and req_id = #{reqId}
+        </if>
+        <if test="reqMonth != null and reqMonth != ''">
+            and req_month = #{reqMonth}
+        </if>
+        <if test="reqOrgan != null and reqOrgan != ''">
+            and req_organ = #{reqOrgan}
+        </if>
+        <if test="reqType != null ">
+            and req_type = #{reqType}
+        </if>
+        <if test="reqState != null and reqState != ''">
+            and req_state = #{reqState}
+        </if>
+        <if test="reqDateStart != null and reqDateStart != ''">
+            and req_date_start = #{reqDateStart}
+        </if>
+        <if test="reqDateEnd != null and reqDateEnd != ''">
+            and req_date_end = #{reqDateEnd}
+        </if>
+        <if test="reqNote != null and reqNote != ''">
+            and req_note = #{reqNote}
+        </if>
+        <if test="reqTo != null and reqTo != ''">
+            and req_to = #{reqTo}
+        </if>
+        <if test="reqCreateOper != null and reqCreateOper != ''">
+            and req_create_oper = #{reqCreateOper}
+        </if>
+        <if test="reqUpdateOper != null and reqUpdateOper != ''">
+            and req_update_oper = #{reqUpdateOper}
+        </if>
+        <if test="reqCreatetime != null and reqCreatetime != ''">
+            and req_createtime = #{reqCreatetime}
+        </if>
+        <if test="reqUpdatetime != null and reqUpdatetime != ''">
+            and req_updatetime = #{reqUpdatetime}
+        </if>
+        <if test="reqOrganList != null and reqOrganList != ''">
+            and req_organ_list = #{reqOrganList}
+        </if>
+        <if test="reqCombList != null and reqCombList != ''">
+            and req_comb_list = #{reqCombList}
+        </if>
+        <if test="reqProdLine != null and reqProdLine != ''">
+            and req_prod_line = #{reqProdLine}
+        </if>
+        <if test="reqTimeStart != null and reqTimeStart != ''">
+            and req_time_start = #{reqTimeStart}
+        </if>
+        <if test="reqTimeEnd != null and reqTimeEnd != ''">
+            and req_time_end = #{reqTimeEnd}
+        </if>
+        <if test="reqName != null and reqName != ''">
+            and req_name = #{reqName}
+        </if>
+        <if test="reqUnit != null and reqUnit != ''">
+            and req_unit = #{reqUnit}
+        </if>
+        <if test="expTimeStart != null and expTimeStart != ''">
+            and exp_time_start = #{expTimeStart}
+        </if>
+        <if test="expTimeEnd != null and expTimeEnd != ''">
+            and exp_time_end = #{expTimeEnd}
+        </if>
+        <if test="rateTimeStart != null and rateTimeStart != ''">
+            and rate_time_start = #{rateTimeStart}
+        </if>
+        <if test="rateTimeEnd != null and rateTimeEnd != ''">
+            and rate_time_end = #{rateTimeEnd}
+        </if>
+        <if test="balanceTimeStart != null and balanceTimeStart != ''">
+            and balance_time_start = #{balanceTimeStart}
+        </if>
+        <if test="balanceTimeEnd != null and balanceTimeEnd != ''">
+            and balance_time_end = #{balanceTimeEnd}
+        </if>
+        <if test="numType != null and numType != ''">
+            and num_type = #{numType}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="reqId != null and reqId != ''">
+            and req_id like '%' || #{reqId} || '%'
+        </if>
+        <if test="reqMonth != null and reqMonth != ''">
+            and req_month like '%' || #{reqMonth} || '%'
+        </if>
+        <if test="reqOrgan != null and reqOrgan != ''">
+            and req_organ like '%' || #{reqOrgan} || '%'
+        </if>
+        <if test="reqType != null and reqType != ''">
+            and req_type like '%' || #{reqType} || '%'
+        </if>
+        <if test="reqState != null and reqState != ''">
+            and req_state like '%' || #{reqState} || '%'
+        </if>
+        <if test="reqDateStart != null and reqDateStart != ''">
+            and req_date_start like '%' || #{reqDateStart} || '%'
+        </if>
+        <if test="reqDateEnd != null and reqDateEnd != ''">
+            and req_date_end like '%' || #{reqDateEnd} || '%'
+        </if>
+        <if test="reqNote != null and reqNote != ''">
+            and req_note like '%' || #{reqNote} || '%'
+        </if>
+        <if test="reqTo != null and reqTo != ''">
+            and req_to like '%' || #{reqTo} || '%'
+        </if>
+        <if test="reqCreateOper != null and reqCreateOper != ''">
+            and req_create_oper like '%' || #{reqCreateOper} || '%'
+        </if>
+        <if test="reqUpdateOper != null and reqUpdateOper != ''">
+            and req_update_oper like '%' || #{reqUpdateOper} || '%'
+        </if>
+        <if test="reqCreatetime != null and reqCreatetime != ''">
+            and req_createtime like '%' || #{reqCreatetime} || '%'
+        </if>
+        <if test="reqUpdatetime != null and reqUpdatetime != ''">
+            and req_updatetime like '%' || #{reqUpdatetime} || '%'
+        </if>
+        <if test="reqOrganList != null and reqOrganList != ''">
+            and req_organ_list like '%' || #{reqOrganList} || '%'
+        </if>
+        <if test="reqCombList != null and reqCombList != ''">
+            and req_comb_list like '%' || #{reqCombList} || '%'
+        </if>
+        <if test="reqProdLine != null and reqProdLine != ''">
+            and req_prod_line like '%' || #{reqProdLine} || '%'
+        </if>
+        <if test="reqTimeStart != null and reqTimeStart != ''">
+            and req_time_start like '%' || #{reqTimeStart} || '%'
+        </if>
+        <if test="reqTimeEnd != null and reqTimeEnd != ''">
+            and req_time_end like '%' || #{reqTimeEnd} || '%'
+        </if>
+        <if test="reqName != null and reqName != ''">
+            and req_name like '%' || #{reqName} || '%'
+        </if>
+        <if test="reqUnit != null and reqUnit != ''">
+            and req_unit like '%' || #{reqUnit} || '%'
+        </if>
+        <if test="expTimeStart != null and expTimeStart != ''">
+            and exp_time_start like '%' || #{expTimeStart} || '%'
+        </if>
+        <if test="expTimeEnd != null and expTimeEnd != ''">
+            and exp_time_end like '%' || #{expTimeEnd} || '%'
+        </if>
+        <if test="rateTimeStart != null and rateTimeStart != ''">
+            and rate_time_start like '%' || #{rateTimeStart} || '%'
+        </if>
+        <if test="rateTimeEnd != null and rateTimeEnd != ''">
+            and rate_time_end like '%' || #{rateTimeEnd} || '%'
+        </if>
+        <if test="balanceTimeStart != null and balanceTimeStart != ''">
+            and balance_time_start like '%' || #{balanceTimeStart} || '%'
+        </if>
+        <if test="balanceTimeEnd != null and balanceTimeEnd != ''">
+            and balance_time_end like '%' || #{balanceTimeEnd} || '%'
+        </if>
+        <if test="numType != null and numType != ''">
+            and num_type like '%' || #{numType} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        <where>
+            req_id = #{reqId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbReqList" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        <where>
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbReqList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbReqList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_req_list
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_req_list
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_req_list
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+
+    <!-- 联想输入报送要求id -->
+    <select id="selectReqId" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQ_ID FROM TB_REQ_LIST
+	   WHERE  cast(REQ_ID as char) LIKE '%${reqId}%'
+    </select>
+    <!-- 联想输入所属周期 -->
+    <select id="selectReqMonth" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQ_MONTH FROM TB_REQ_LIST
+	   WHERE REQ_MONTH LIKE '%${reqMonth}%'
+    </select>
+    <!-- 联想输入所属机构 -->
+    <select id="selectReqOrgan" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQ_ORGAN FROM TB_REQ_LIST
+	   WHERE REQ_ORGAN LIKE '%${reqOrgan}%'
+    </select>
+
+
+    <!-- 联想输入报送要求id -->
+    <select id="showReqId" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQ_ID FROM TB_REQ_LIST
+	   WHERE  cast(REQ_ID as char) LIKE '%${reqId}%'
+	    and req_to=#{reqTo}
+    </select>
+
+
+    <!-- 联想输入所属周期 -->
+    <select id="showReqMonth" parameterType="com.boco.SYS.entity.TbReqList" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT REQ_MONTH FROM TB_REQ_LIST
+	   WHERE REQ_MONTH LIKE '%${reqMonth}%'
+	   and req_to=#{reqTo}
+    </select>
+
+
+    <update id="updateReqState" parameterType="com.boco.SYS.entity.TbReqList">
+        UPDATE tb_req_list
+        <set>
+            req_state = #{reqState}
+        </set>
+        <where>
+            req_id = #{reqId}
+        </where>
+
+    </update>
+
+
+    <!-- 根据条件查询记录 -->
+    <select id="getMonth" parameterType="com.boco.SYS.entity.TbReqList" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_req_list
+        where req_state >0
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>

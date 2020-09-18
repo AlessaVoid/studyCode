@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- WebReviewSublist -->
+<mapper namespace="com.boco.SYS.mapper.WebReviewSublistMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebReviewSublist">
+       	<id column="APP_NO" property="appNo"/>
+       	<id column="ORDER_NO" property="orderNo"/>
+     	<result column="APP_DATA" property="appData"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        APP_NO ,ORDER_NO ,APP_DATA 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebReviewSublist">
+        INSERT INTO WEB_REVIEW_SUBLIST 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="appNo != null">
+	        	APP_NO ,
+	       	</if>
+	       	<if test="orderNo != null">
+	        	ORDER_NO ,
+	       	</if>
+	       	<if test="appData != null">
+	        	APP_DATA ,
+	       	</if>
+			LAST_MOD_STAMP
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="appNo != null">
+	        	#{appNo} ,
+	       	</if>
+	       	<if test="orderNo != null">
+	        	#{orderNo} ,
+	       	</if>
+	       	<if test="appData != null">
+	        	#{appData} ,
+	       	</if>
+			to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_REVIEW_SUBLIST 
+        (APP_NO ,ORDER_NO ,APP_DATA ,LAST_MOD_STAMP)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.appNo} ,#{item.orderNo} ,#{item.appData} ,to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM WEB_REVIEW_SUBLIST 
+        <where>
+        	APP_NO = #{appNo} and
+        	ORDER_NO = #{orderNo} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM WEB_REVIEW_SUBLIST 
+        <where>
+        	APP_NO = #{appNo} and
+        	ORDER_NO = #{orderNo} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_REVIEW_SUBLIST 
+        WHERE APP_NOORDER_NO IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_REVIEW_SUBLIST
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebReviewSublist">
+        UPDATE WEB_REVIEW_SUBLIST 
+        <set>
+       	<if test="appData != null">
+       		APP_DATA = #{appData},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	APP_NO = #{appNo} and
+        	ORDER_NO = #{orderNo} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_REVIEW_SUBLIST 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_REVIEW_SUBLIST 
+        <set>
+       	<if test="appNo != null">
+       		APP_NO = #{appNo},
+       	</if>
+       	<if test="orderNo != null">
+       		ORDER_NO = #{orderNo},
+       	</if>
+       	<if test="appData != null">
+       		APP_DATA = #{appData},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="appNo != null and appNo != ''">
+	 		and APP_NO = #{appNo}
+	 	</if>
+	 	<if test="orderNo != null and orderNo != ''">
+	 		and ORDER_NO = #{orderNo}
+	 	</if>
+	 	<if test="appData != null and appData != ''">
+	 		and APP_DATA = #{appData}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="appNo != null and appNo != ''">
+ 			and APP_NO like '%' || #{appNo} || '%'
+ 		</if>
+ 		<if test="orderNo != null and orderNo != ''">
+ 			and ORDER_NO like '%' || #{orderNo} || '%'
+ 		</if>
+ 		<if test="appData != null and appData != ''">
+ 			and APP_DATA like '%' || #{appData} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_REVIEW_SUBLIST 
+        <where> 
+        	APP_NO = #{appNo} and
+        	ORDER_NO = #{orderNo} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebReviewSublist" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_SUBLIST
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebReviewSublist" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_SUBLIST 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebReviewSublist" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_SUBLIST 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_SUBLIST 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebReviewSublist" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_SUBLIST 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebReviewSublist" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_SUBLIST 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_REVIEW_SUBLIST 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+     <!-- 根据复核编号删除记录 -->
+    <delete id="deleteByAppNo">
+        DELETE FROM WEB_REVIEW_SUBLIST WHERE
+        	APP_NO = #{appNo}
+    </delete>
+	  <select id="selectAppNo" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_REVIEW_SUBLIST 
+        <where>
+        	app_no=#{appNo}
+        </where>
+        order by to_number(order_no,'999999999999999999')
+    </select>
+	
+	
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

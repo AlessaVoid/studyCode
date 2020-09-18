@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 人民币贷款日报表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPsbcRmbLoanDayMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+	<resultMap id="base_result_map" type="com.boco.SYS.entity.TbPsbcRmbLoanDay">
+		<id column="id" property="id"/>
+		<result column="statistics_day" property="statisticsDay"/>
+		<result column="loan_type" property="loanType"/>
+		<result column="organcode" property="organcode"/>
+		<result column="grepcode" property="grepcode"/>
+		<result column="balance" property="balance"/>
+		<result column="day_add" property="dayAdd"/>
+		<result column="monthly_add" property="monthlyAdd"/>
+		<result column="quarter_add" property="quarterAdd"/>
+		<result column="year_add" property="yearAdd"/>
+		<result column="year_rank" property="yearRank"/>
+		<result column="created_by" property="createdBy"/>
+		<result column="created_time" property="createdTime"/>
+		<result column="updated_by" property="updatedBy"/>
+		<result column="updated_time" property="updatedTime"/>
+	</resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        id ,statistics_day ,loan_type ,organcode ,grepcode ,balance ,day_add ,monthly_add ,quarter_add ,year_add ,year_rank ,created_by ,created_time ,updated_by ,updated_time 
+	    ]]>
+	</sql>
+
+	<!-- 新增一条实体 -->
+	<insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay">
+		<!--
+                -->
+		INSERT INTO tb_psbc_rmb_loan_day
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="statisticsDay != null">
+				statistics_day ,
+			</if>
+			<if test="loanType != null">
+				loan_type ,
+			</if>
+			<if test="organcode != null">
+				organcode ,
+			</if>
+			<if test="grepcode != null">
+				grepcode ,
+			</if>
+			<if test="balance != null">
+				balance ,
+			</if>
+			<if test="dayAdd != null">
+				day_add ,
+			</if>
+			<if test="monthlyAdd != null">
+				monthly_add ,
+			</if>
+			<if test="quarterAdd != null">
+				quarter_add ,
+			</if>
+			<if test="yearAdd != null">
+				year_add ,
+			</if>
+			<if test="yearRank != null">
+				year_rank ,
+			</if>
+			<if test="createdBy != null">
+				created_by ,
+			</if>
+			<if test="createdTime != null">
+				created_time ,
+			</if>
+			<if test="updatedBy != null">
+				updated_by ,
+			</if>
+			<if test="updatedTime != null">
+				updated_time
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="statisticsDay != null">
+				#{statisticsDay} ,
+			</if>
+			<if test="loanType != null">
+				#{loanType} ,
+			</if>
+			<if test="organcode != null">
+				#{organcode} ,
+			</if>
+			<if test="grepcode != null">
+				#{grepcode} ,
+			</if>
+			<if test="balance != null">
+				#{balance} ,
+			</if>
+			<if test="dayAdd != null">
+				#{dayAdd} ,
+			</if>
+			<if test="monthlyAdd != null">
+				#{monthlyAdd} ,
+			</if>
+			<if test="quarterAdd != null">
+				#{quarterAdd} ,
+			</if>
+			<if test="yearAdd != null">
+				#{yearAdd} ,
+			</if>
+			<if test="yearRank != null">
+				#{yearRank} ,
+			</if>
+			<if test="createdBy != null">
+				#{createdBy} ,
+			</if>
+			<if test="createdTime != null">
+				#{createdTime} ,
+			</if>
+			<if test="updatedBy != null">
+				#{updatedBy} ,
+			</if>
+			<if test="updatedTime != null">
+				#{updatedTime}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO tb_psbc_rmb_loan_day
+		(id ,statistics_day ,loan_type ,organcode ,grepcode ,balance ,day_add ,monthly_add ,quarter_add ,year_add ,year_rank ,created_by ,created_time ,updated_by ,updated_time )
+		<foreach collection="list" item="item" index="index" separator="UNION ALL">
+			(SELECT #{item.id,jdbcType=VARCHAR},#{item.statisticsDay,jdbcType=VARCHAR},#{item.loanType,jdbcType=VARCHAR},#{item.organcode,jdbcType=VARCHAR},#{item.grepcode,jdbcType=VARCHAR},#{item.balance,jdbcType=DECIMAL},#{item.dayAdd,jdbcType=DECIMAL},#{item.monthlyAdd,jdbcType=DECIMAL},#{item.quarterAdd,jdbcType=DECIMAL},#{item.yearAdd,jdbcType=DECIMAL},#{item.yearRank,jdbcType=DECIMAL},#{item.createdBy,jdbcType=VARCHAR},#{item.createdTime,jdbcType=VARCHAR},#{item.updatedBy,jdbcType=VARCHAR},#{item.updatedTime,jdbcType=VARCHAR} FROM DUAL)
+		</foreach>
+	</insert>
+
+	<!-- 根据主键删除一条记录 -->
+	<delete id="deleteByPK" parameterType="java.lang.String">
+		DELETE FROM tb_psbc_rmb_loan_day
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+	<delete id="deleteByPKNoException" parameterType="java.lang.String">
+		DELETE FROM tb_psbc_rmb_loan_day
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+
+	<!-- 根据主键批量删除记录(只适用单主键的表) -->
+	<delete id="deleteBatchByPK" parameterType="java.util.List">
+		DELETE FROM tb_psbc_rmb_loan_day
+		WHERE id IN
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<delete id="deleteByWhere" parameterType="java.lang.String">
+		DELETE FROM tb_psbc_rmb_loan_day
+		<where>
+			${whereStr}
+		</where>
+	</delete>
+
+	<!-- 根据主键修改一条记录 -->
+	<update id="updateByPK" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay">
+		UPDATE tb_psbc_rmb_loan_day
+		<set>
+			<if test="statisticsDay != null">
+				statistics_day = #{statisticsDay},
+			</if>
+			<if test="loanType != null">
+				loan_type = #{loanType},
+			</if>
+			<if test="organcode != null">
+				organcode = #{organcode},
+			</if>
+			<if test="grepcode != null">
+				grepcode = #{grepcode},
+			</if>
+			<if test="balance != null">
+				balance = #{balance},
+			</if>
+			<if test="dayAdd != null">
+				day_add = #{dayAdd},
+			</if>
+			<if test="monthlyAdd != null">
+				monthly_add = #{monthlyAdd},
+			</if>
+			<if test="quarterAdd != null">
+				quarter_add = #{quarterAdd},
+			</if>
+			<if test="yearAdd != null">
+				year_add = #{yearAdd},
+			</if>
+			<if test="yearRank != null">
+				year_rank = #{yearRank},
+			</if>
+			<if test="createdBy != null">
+				created_by = #{createdBy},
+			</if>
+			<if test="createdTime != null">
+				created_time = #{createdTime},
+			</if>
+			<if test="updatedBy != null">
+				updated_by = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				updated_time = #{updatedTime},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+	<update id="updateBatch" parameterType="java.util.HashMap">
+		UPDATE tb_psbc_rmb_loan_day
+		<set>
+		</set>
+		WHERE id IN
+		<foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+	<update id="updateByWhere" parameterType="java.lang.String">
+		UPDATE tb_psbc_rmb_loan_day
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="statisticsDay != null">
+				statistics_day = #{statisticsDay},
+			</if>
+			<if test="loanType != null">
+				loan_type = #{loanType},
+			</if>
+			<if test="organcode != null">
+				organcode = #{organcode},
+			</if>
+			<if test="grepcode != null">
+				grepcode = #{grepcode},
+			</if>
+			<if test="balance != null">
+				balance = #{balance},
+			</if>
+			<if test="dayAdd != null">
+				day_add = #{dayAdd},
+			</if>
+			<if test="monthlyAdd != null">
+				monthly_add = #{monthlyAdd},
+			</if>
+			<if test="quarterAdd != null">
+				quarter_add = #{quarterAdd},
+			</if>
+			<if test="yearAdd != null">
+				year_add = #{yearAdd},
+			</if>
+			<if test="yearRank != null">
+				year_rank = #{yearRank},
+			</if>
+			<if test="createdBy != null">
+				created_by = #{createdBy},
+			</if>
+			<if test="createdTime != null">
+				created_time = #{createdTime},
+			</if>
+			<if test="updatedBy != null">
+				updated_by = #{updatedBy},
+			</if>
+			<if test="updatedTime != null">
+				updated_time = #{updatedTime},
+			</if>
+		</set>
+		<where>
+			${whereStr}
+		</where>
+	</update>
+
+	<!-- 动态where -->
+	<sql id="where_equal">
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="statisticsDay != null and statisticsDay != ''">
+			and statistics_day = #{statisticsDay}
+		</if>
+		<if test="loanType != null and loanType != ''">
+			and loan_type = #{loanType}
+		</if>
+		<if test="organcode != null and organcode != ''">
+			and organcode = #{organcode}
+		</if>
+		<if test="grepcode != null and grepcode != ''">
+			and grepcode = #{grepcode}
+		</if>
+		<if test="balance != null and balance != ''">
+			and balance = #{balance}
+		</if>
+		<if test="dayAdd != null and dayAdd != ''">
+			and day_add = #{dayAdd}
+		</if>
+		<if test="monthlyAdd != null and monthlyAdd != ''">
+			and monthly_add = #{monthlyAdd}
+		</if>
+		<if test="quarterAdd != null and quarterAdd != ''">
+			and quarter_add = #{quarterAdd}
+		</if>
+		<if test="yearAdd != null and yearAdd != ''">
+			and year_add = #{yearAdd}
+		</if>
+		<if test="yearRank != null and yearRank != ''">
+			and year_rank = #{yearRank}
+		</if>
+		<if test="createdBy != null and createdBy != ''">
+			and created_by = #{createdBy}
+		</if>
+		<if test="createdTime != null and createdTime != ''">
+			and created_time = #{createdTime}
+		</if>
+		<if test="updatedBy != null and updatedBy != ''">
+			and updated_by = #{updatedBy}
+		</if>
+		<if test="updatedTime != null and updatedTime != ''">
+			and updated_time = #{updatedTime}
+		</if>
+	</sql>
+
+	<!-- 模糊查询动态where -->
+	<sql id="where_like">
+		<if test="id != null and id != ''">
+			and id like '%' || #{id} || '%'
+		</if>
+		<if test="statisticsDay != null and statisticsDay != ''">
+			and statistics_day like '%' || #{statisticsDay} || '%'
+		</if>
+		<if test="loanType != null and loanType != ''">
+			and loan_type like '%' || #{loanType} || '%'
+		</if>
+		<if test="organcode != null and organcode != ''">
+			and organcode like '%' || #{organcode} || '%'
+		</if>
+		<if test="grepcode != null and grepcode != ''">
+			and grepcode like '%' || #{grepcode} || '%'
+		</if>
+		<if test="balance != null and balance != ''">
+			and balance like '%' || #{balance} || '%'
+		</if>
+		<if test="dayAdd != null and dayAdd != ''">
+			and day_add like '%' || #{dayAdd} || '%'
+		</if>
+		<if test="monthlyAdd != null and monthlyAdd != ''">
+			and monthly_add like '%' || #{monthlyAdd} || '%'
+		</if>
+		<if test="quarterAdd != null and quarterAdd != ''">
+			and quarter_add like '%' || #{quarterAdd} || '%'
+		</if>
+		<if test="yearAdd != null and yearAdd != ''">
+			and year_add like '%' || #{yearAdd} || '%'
+		</if>
+		<if test="yearRank != null and yearRank != ''">
+			and year_rank like '%' || #{yearRank} || '%'
+		</if>
+		<if test="createdBy != null and createdBy != ''">
+			and created_by like '%' || #{createdBy} || '%'
+		</if>
+		<if test="createdTime != null and createdTime != ''">
+			and created_time like '%' || #{createdTime} || '%'
+		</if>
+		<if test="updatedBy != null and updatedBy != ''">
+			and updated_by like '%' || #{updatedBy} || '%'
+		</if>
+		<if test="updatedTime != null and updatedTime != ''">
+			and updated_time like '%' || #{updatedTime} || '%'
+		</if>
+	</sql>
+
+	<!-- 根据主键查询一条记录 -->
+	<select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/>
+		FROM tb_psbc_rmb_loan_day
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+	<select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_psbc_rmb_loan_day
+		<where>
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录 -->
+	<select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_psbc_rmb_loan_day
+		<where>
+			<include refid="where_equal"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			order by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 根据模糊条件查询记录 -->
+	<select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_psbc_rmb_loan_day
+		<where>
+			<include refid="where_like"/>
+		</where>
+		<if test="sortColumn != null and sortColumn != ''">
+			group by ${sortColumn}
+		</if>
+	</select>
+
+	<!-- 通过where语句查询 -->
+	<select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+		SELECT <include refid="base_column_list"/> FROM tb_psbc_rmb_loan_day
+		<where>
+			${whereStr}
+		</where>
+	</select>
+
+	<!-- 根据条件查询记录数 -->
+	<select id="countByAttr" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_psbc_rmb_loan_day
+		<where>
+			<include refid="where_equal"/>
+		</where>
+	</select>
+
+	<!-- 根据模糊条件查询记录数 -->
+	<select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPsbcRmbLoanDay" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_psbc_rmb_loan_day
+		<where>
+			<include refid="where_like"/>
+		</where>
+	</select>
+
+	<!-- 根据自定义条件查询记录数 -->
+	<select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+		select count(*) from tb_psbc_rmb_loan_day
+		<where>
+			${whereStr}
+		</where>
+	</select>
+	<!-- ##############################################批量生成方法########################################### -->
+
+	<!-- ##############################################自定义方法############################################# -->
+	<!-- 分页查询 -->
+	<select id="selectListByPage" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select rld.id             as "id",
+		rld.organcode      as "organCode",
+		rld.statistics_day as "statisticsDay",
+		rld.loan_type      as "loanType",
+		rld.grepcode       as "grepCode",
+		rld.balance        as "balance",
+		rld.day_add        as "dayAdd",
+		rld.monthly_add    as "monthlyAdd",
+		rld.quarter_add    as "quarterAdd",
+		rld.year_add       as "yearAdd",
+		rld.year_rank      as "yearRank",
+		rld.created_time   as "createdTime",
+		rld.updated_time   as "updatedTime",
+		o.organname        as "organName"
+		from tb_psbc_rmb_loan_day rld
+		left join fd_organ o on (rld.organcode = o.thiscode)
+		<where>
+			<if test="statisticsDate != null and statisticsDate != ''">
+				and rld.statistics_day = #{statisticsDate}
+			</if>
+			<if test="loanType != null and loanType != ''">
+				and rld.loan_type = #{loanType}
+			</if>
+		</where>
+		order by rld.statistics_day desc, rld.loan_type asc, rld.organcode asc
+	</select>
+
+	<select id="selectForCheckOnly" parameterType="java.util.Map" resultType="java.util.Map" flushCache="true">
+		select *
+		from tb_psbc_rmb_loan_day d
+		join tb_his_import_type t on (d.loan_type = t.code and t.type = #{type})
+		where d.statistics_day = #{statisticsDay}
+	</select>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

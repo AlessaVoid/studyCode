@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 任务节点角色对应信息表||任务节点角色对应信息表 -->
+<mapper namespace="com.boco.SYS.mapper.WebTaskRoleInfoMapper">
+	<!-- ##############################################批量生成方法########################################### -->
+	<cache readOnly="true"/>
+	<!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.WebTaskRoleInfo">
+       	<id column="TASK_ID" property="taskId"/>
+       	<id column="PROC_DEF_ID" property="procDefId"/>
+       	<id column="ROLE_CODE" property="roleCode"/>
+       	<id column="ORGAN_LEVEL" property="organLevel"/>
+       	<id column="CUST_TYPE" property="custType"/>
+     	<result column="LATEST_MODIFY_DATE" property="latestModifyDate"/>
+     	<result column="LATEST_MODIFY_TIME" property="latestModifyTime"/>
+     	<result column="LATEST_OPER_CODE" property="latestOperCode"/>
+     	<result column="APP_STATUS" property="appStatus"/>
+    </resultMap>
+
+	<!-- 列集合 -->
+	<sql id="base_column_list">
+	    <![CDATA[
+        TASK_ID ,PROC_DEF_ID ,ROLE_CODE ,ORGAN_LEVEL ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,CUST_TYPE ,APP_STATUS 
+	    ]]>
+	</sql>
+	
+	<!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.WebTaskRoleInfo">
+<!-- 
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">  
+	       SELECT SQ_WEB_PUB.Nextval as ID from DUAL
+	    </selectKey>
+	    -->       
+  INSERT INTO WEB_TASK_ROLE_INFO 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	       	<if test="taskId != null">
+	        	TASK_ID ,
+	       	</if>
+	       	<if test="procDefId != null">
+	        	PROC_DEF_ID ,
+	       	</if>
+	       	<if test="roleCode != null">
+	        	ROLE_CODE ,
+	       	</if>
+	       	<if test="organLevel != null">
+	        	ORGAN_LEVEL ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	LATEST_MODIFY_DATE ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	LATEST_MODIFY_TIME ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	LATEST_OPER_CODE ,
+	       	</if>
+	       	<if test="custType != null">
+	        	CUST_TYPE ,
+	       	</if>
+	       	<if test="appStatus != null">
+	        	APP_STATUS ,
+	       	</if>
+				LAST_MOD_STAMP
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	       	<if test="taskId != null">
+	        	#{taskId} ,
+	       	</if>
+	       	<if test="procDefId != null">
+	        	#{procDefId} ,
+	       	</if>
+	       	<if test="roleCode != null">
+	        	#{roleCode} ,
+	       	</if>
+	       	<if test="organLevel != null">
+	        	#{organLevel} ,
+	       	</if>
+	       	<if test="latestModifyDate != null">
+	        	#{latestModifyDate} ,
+	       	</if>
+	       	<if test="latestModifyTime != null">
+	        	#{latestModifyTime} ,
+	       	</if>
+	       	<if test="latestOperCode != null">
+	        	#{latestOperCode} ,
+	       	</if>
+	       	<if test="custType != null">
+	        	#{custType} ,
+	       	</if>
+	       	<if test="appStatus != null">
+	        	#{appStatus} ,
+	       	</if>
+			to_char(current_timestamp,'yyyyMMddHH24MISSMS')
+        </trim>
+    </insert>
+    
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO WEB_TASK_ROLE_INFO 
+        (TASK_ID ,PROC_DEF_ID ,ROLE_CODE ,ORGAN_LEVEL ,LATEST_MODIFY_DATE ,LATEST_MODIFY_TIME ,LATEST_OPER_CODE ,CUST_TYPE ,APP_STATUS ,LAST_MOD_STAMP)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+        	(SELECT #{item.taskId,jdbcType=VARCHAR},#{item.procDefId,jdbcType=VARCHAR},#{item.roleCode,jdbcType=VARCHAR},#{item.organLevel,jdbcType=VARCHAR},#{item.latestModifyDate,jdbcType=VARCHAR},#{item.latestModifyTime,jdbcType=VARCHAR},#{item.latestOperCode,jdbcType=VARCHAR},#{item.custType,jdbcType=VARCHAR},#{item.appStatus,jdbcType=VARCHAR},to_char(current_timestamp,'yyyyMMddHH24MISSMS') FROM DUAL)
+        </foreach>
+    </insert>
+    
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.util.HashMap">
+        DELETE FROM WEB_TASK_ROLE_INFO 
+        <where>
+        	TASK_ID = #{taskId} and
+        	PROC_DEF_ID = #{procDefId} and
+        	ROLE_CODE = #{roleCode} and
+        	ORGAN_LEVEL = #{organLevel} and
+        	CUST_TYPE = #{custType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.util.HashMap">
+        DELETE FROM WEB_TASK_ROLE_INFO 
+        <where>
+        	TASK_ID = #{taskId} and
+        	PROC_DEF_ID = #{procDefId} and
+        	ROLE_CODE = #{roleCode} and
+        	ORGAN_LEVEL = #{organLevel} and
+        	CUST_TYPE = #{custType} 
+		</where>
+    </delete>
+    
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM WEB_TASK_ROLE_INFO 
+        WHERE TASK_IDPROC_DEF_IDROLE_CODEORGAN_LEVELCUST_TYPE IN 
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+    </delete>
+	
+	<!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->    
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM WEB_TASK_ROLE_INFO
+        <where>
+        	${whereStr}
+        </where>
+    </delete>
+
+	<!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.WebTaskRoleInfo">
+        UPDATE WEB_TASK_ROLE_INFO 
+        <set>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       	<if test="appStatus != null">
+       		APP_STATUS = #{appStatus},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+        	TASK_ID = #{taskId} and
+        	PROC_DEF_ID = #{procDefId} and
+        	ROLE_CODE = #{roleCode} and
+        	ORGAN_LEVEL = #{organLevel} and
+        	CUST_TYPE = #{custType} 
+        </where>
+    </update>
+    
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+	    UPDATE WEB_TASK_ROLE_INFO 
+		<set>
+        </set>
+        WHERE id IN 
+	    <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+		</foreach>
+	</update>
+     
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE WEB_TASK_ROLE_INFO 
+        <set>
+       	<if test="taskId != null">
+       		TASK_ID = #{taskId},
+       	</if>
+       	<if test="procDefId != null">
+       		PROC_DEF_ID = #{procDefId},
+       	</if>
+       	<if test="roleCode != null">
+       		ROLE_CODE = #{roleCode},
+       	</if>
+       	<if test="organLevel != null">
+       		ORGAN_LEVEL = #{organLevel},
+       	</if>
+       	<if test="latestModifyDate != null">
+       		LATEST_MODIFY_DATE = #{latestModifyDate},
+       	</if>
+       	<if test="latestModifyTime != null">
+       		LATEST_MODIFY_TIME = #{latestModifyTime},
+       	</if>
+       	<if test="latestOperCode != null">
+       		LATEST_OPER_CODE = #{latestOperCode},
+       	</if>
+       	<if test="custType != null">
+       		CUST_TYPE = #{custType},
+       	</if>
+       	<if test="appStatus != null">
+       		APP_STATUS = #{appStatus},
+       	</if>
+			LAST_MOD_STAMP = to_char(current_timestamp,'yyyyMMddHH24MISSMS'),
+        </set>
+        <where>
+       		${whereStr}
+       	</where>
+    </update>
+    
+    <!-- 动态where -->
+    <sql id="where_equal">
+	 	<if test="taskId != null and taskId != ''">
+	 		and TASK_ID = #{taskId}
+	 	</if>
+	 	<if test="procDefId != null and procDefId != ''">
+	 		and PROC_DEF_ID = #{procDefId}
+	 	</if>
+	 	<if test="roleCode != null and roleCode != ''">
+	 		and ROLE_CODE = #{roleCode}
+	 	</if>
+	 	<if test="organLevel != null and organLevel != ''">
+	 		and ORGAN_LEVEL = #{organLevel}
+	 	</if>
+	 	<if test="latestModifyDate != null and latestModifyDate != ''">
+	 		and LATEST_MODIFY_DATE = #{latestModifyDate}
+	 	</if>
+	 	<if test="latestModifyTime != null and latestModifyTime != ''">
+	 		and LATEST_MODIFY_TIME = #{latestModifyTime}
+	 	</if>
+	 	<if test="latestOperCode != null and latestOperCode != ''">
+	 		and LATEST_OPER_CODE = #{latestOperCode}
+	 	</if>
+	 	<if test="custType != null and custType != ''">
+	 		and CUST_TYPE = #{custType}
+	 	</if>
+	 	<if test="appStatus != null and appStatus != ''">
+	 		and APP_STATUS = #{appStatus}
+	 	</if>
+    </sql>
+    
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+ 		<if test="taskId != null and taskId != ''">
+ 			and TASK_ID like '%' || #{taskId} || '%'
+ 		</if>
+ 		<if test="procDefId != null and procDefId != ''">
+ 			and PROC_DEF_ID like '%' || #{procDefId} || '%'
+ 		</if>
+ 		<if test="roleCode != null and roleCode != ''">
+ 			and ROLE_CODE like '%' || #{roleCode} || '%'
+ 		</if>
+ 		<if test="organLevel != null and organLevel != ''">
+ 			and ORGAN_LEVEL like '%' || #{organLevel} || '%'
+ 		</if>
+ 		<if test="latestModifyDate != null and latestModifyDate != ''">
+ 			and LATEST_MODIFY_DATE like '%' || #{latestModifyDate} || '%'
+ 		</if>
+ 		<if test="latestModifyTime != null and latestModifyTime != ''">
+ 			and LATEST_MODIFY_TIME like '%' || #{latestModifyTime} || '%'
+ 		</if>
+ 		<if test="latestOperCode != null and latestOperCode != ''">
+ 			and LATEST_OPER_CODE like '%' || #{latestOperCode} || '%'
+ 		</if>
+ 		<if test="custType != null and custType != ''">
+ 			and CUST_TYPE like '%' || #{custType} || '%'
+ 		</if>
+ 		<if test="appStatus != null and appStatus != ''">
+ 			and APP_STATUS like '%' || #{appStatus} || '%'
+ 		</if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.util.HashMap" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/>
+        FROM WEB_TASK_ROLE_INFO 
+        <where> 
+        	TASK_ID = #{taskId} and
+        	PROC_DEF_ID = #{procDefId} and
+        	ROLE_CODE = #{roleCode} and
+        	ORGAN_LEVEL = #{organLevel} and
+        	CUST_TYPE = #{custType} 
+        </where>
+    </select>
+    
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.WebTaskRoleInfo" resultMap="base_result_map" flushCache="true">
+    	SELECT <include refid="base_column_list"/> FROM WEB_TASK_ROLE_INFO
+		<where>
+		</where>
+	</select>
+    
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.WebTaskRoleInfo" resultMap="base_result_map" flushCache="true">
+	    SELECT <include refid="base_column_list"/> FROM WEB_TASK_ROLE_INFO 
+	    <where>
+	   		<include refid="where_equal"/>
+	    </where>
+	    <if test="sortColumn != null and sortColumn != ''">
+    		order by ${sortColumn}
+    	</if>
+    </select>
+
+	<!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.WebTaskRoleInfo" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_TASK_ROLE_INFO 
+        <where>
+        	<include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+    		group by ${sortColumn}
+    	</if>
+    </select>
+    
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT <include refid="base_column_list"/> FROM WEB_TASK_ROLE_INFO 
+        <where>
+        	${whereStr}
+        </where>
+    </select>
+    
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.WebTaskRoleInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_TASK_ROLE_INFO 
+    	<where>
+    		<include refid="where_equal"/>
+    	</where>
+    </select>
+    
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.WebTaskRoleInfo" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_TASK_ROLE_INFO 
+    	<where>
+    		<include refid="where_like"/>
+    	</where>
+    </select>
+    
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+    	select count(*) from WEB_TASK_ROLE_INFO 
+    	<where>
+       		${whereStr}
+       	</where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+    
+    <!-- ##############################################自定义方法############################################# -->
+	<delete id="deleteByProcDefId" parameterType="java.lang.String">
+        DELETE FROM WEB_TASK_ROLE_INFO 
+        <where>
+        	PROC_DEF_ID = #{procDefId}
+		</where>
+    </delete>
+	<!-- ##############################################自定义方法############################################# -->
+</mapper>

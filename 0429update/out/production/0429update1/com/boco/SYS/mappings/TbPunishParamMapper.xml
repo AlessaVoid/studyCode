@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 罚息参数表 -->
+<mapper namespace="com.boco.SYS.mapper.TbPunishParamMapper">
+    <!-- ##############################################批量生成方法########################################### -->
+    <cache readOnly="true"/>
+    <!-- 返回列表 -->
+    <resultMap id="base_result_map" type="com.boco.SYS.entity.TbPunishParam">
+        <id column="pp_id" property="ppId"/>
+        <result column="pp_name" property="ppName"/>
+        <result column="pp_organ" property="ppOrgan"/>
+        <result column="type" property="type"/>
+        <result column="minnum" property="minnum"/>
+        <result column="maxnum" property="maxnum"/>
+        <result column="interest" property="interest"/>
+        <result column="state" property="state"/>
+        <result column="createtime" property="createtime"/>
+        <result column="updatetime" property="updatetime"/>
+        <result column="createuserid" property="createuserid"/>
+        <result column="updateuserid" property="updateuserid"/>
+        <result column="collecttype" property="collecttype"/>
+        <result column="pp_type" property="ppType"/>
+    </resultMap>
+
+    <!-- 列集合 -->
+    <sql id="base_column_list">
+	    <![CDATA[
+
+
+                        pp_id ,pp_name ,pp_organ ,type ,minnum ,maxnum ,interest ,state ,createtime ,updatetime ,createuserid ,updateuserid ,collecttype ,pp_type
+
+
+        ]]>
+	</sql>
+
+    <!-- 新增一条实体 -->
+    <insert id="insertEntity" parameterType="com.boco.SYS.entity.TbPunishParam">
+        <!--
+                -->
+        INSERT INTO tb_punish_param
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ppId != null">
+                pp_id ,
+            </if>
+            <if test="ppName != null">
+                pp_name ,
+            </if>
+            <if test="ppOrgan != null">
+                pp_organ ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="minnum != null">
+                minnum ,
+            </if>
+            <if test="maxnum != null">
+                maxnum ,
+            </if>
+            <if test="interest != null">
+                interest ,
+            </if>
+            <if test="state != null">
+                state ,
+            </if>
+            <if test="createtime != null">
+                createtime ,
+            </if>
+            <if test="updatetime != null">
+                updatetime ,
+            </if>
+            <if test="createuserid != null">
+                createuserid ,
+            </if>
+            <if test="updateuserid != null">
+                updateuserid ,
+            </if>
+            <if test="collecttype != null">
+                collecttype ,
+            </if>
+            <if test="ppType != null">
+                pp_type
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ppId != null">
+                #{ppId} ,
+            </if>
+            <if test="ppName != null">
+                #{ppName} ,
+            </if>
+            <if test="ppOrgan != null">
+                #{ppOrgan} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="minnum != null">
+                #{minnum} ,
+            </if>
+            <if test="maxnum != null">
+                #{maxnum} ,
+            </if>
+            <if test="interest != null">
+                #{interest} ,
+            </if>
+            <if test="state != null">
+                #{state} ,
+            </if>
+            <if test="createtime != null">
+                #{createtime} ,
+            </if>
+            <if test="updatetime != null">
+                #{updatetime} ,
+            </if>
+            <if test="createuserid != null">
+                #{createuserid} ,
+            </if>
+            <if test="updateuserid != null">
+                #{updateuserid} ,
+            </if>
+            <if test="collecttype != null">
+                #{collecttype} ,
+            </if>
+            <if test="ppType != null">
+                #{ppType}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO tb_punish_param
+        (pp_name ,pp_organ ,type ,minnum ,maxnum ,interest ,state ,createtime ,updatetime ,createuserid
+        ,updateuserid ,collecttype ,pp_type )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (SELECT
+            #{item.ppName,jdbcType=VARCHAR},#{item.ppOrgan,jdbcType=VARCHAR},#{item.type,jdbcType=INTEGER},#{item.minnum,jdbcType=BIGINT},#{item.maxnum,jdbcType=BIGINT},#{item.interest,jdbcType=BIGINT},#{item.state,jdbcType=INTEGER},#{item.createtime,jdbcType=VARCHAR},#{item.updatetime,jdbcType=VARCHAR},#{item.createuserid,jdbcType=VARCHAR},#{item.updateuserid,jdbcType=VARCHAR},#{item.collecttype,jdbcType=INTEGER},#{item.ppType,jdbcType=INTEGER}
+            FROM DUAL)
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除一条记录 -->
+    <delete id="deleteByPK" parameterType="java.lang.String">
+        DELETE FROM tb_punish_param
+        <where>
+            pp_id = #{ppId}
+        </where>
+    </delete>
+
+    <!-- 根据主键删除一条记录(不抛异常,适用先删除后新增的功能,删除时如果没数据不抛异常) -->
+    <delete id="deleteByPKNoException" parameterType="java.lang.String">
+        DELETE FROM tb_punish_param
+        <where>
+            pp_id = #{ppId}
+        </where>
+    </delete>
+
+    <!-- 根据主键批量删除记录(只适用单主键的表) -->
+    <delete id="deleteBatchByPK" parameterType="java.util.List">
+        DELETE FROM tb_punish_param
+        WHERE pp_id IN
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义where条件删除，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <delete id="deleteByWhere" parameterType="java.lang.String">
+        DELETE FROM tb_punish_param
+        <where>
+            ${whereStr}
+        </where>
+    </delete>
+
+    <!-- 根据主键修改一条记录 -->
+    <update id="updateByPK" parameterType="com.boco.SYS.entity.TbPunishParam">
+        UPDATE tb_punish_param
+        <set>
+            <if test="ppName != null">
+                pp_name = #{ppName},
+            </if>
+            <if test="ppOrgan != null">
+                pp_organ = #{ppOrgan},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="minnum != null">
+                minnum = #{minnum},
+            </if>
+            <if test="maxnum != null">
+                maxnum = #{maxnum},
+            </if>
+            <if test="interest != null">
+                interest = #{interest},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid},
+            </if>
+            <if test="updateuserid != null">
+                updateuserid = #{updateuserid},
+            </if>
+            <if test="collecttype != null">
+                collecttype = #{collecttype},
+            </if>
+            <if test="ppType != null">
+                pp_type = #{ppType},
+            </if>
+        </set>
+        <where>
+            pp_id = #{ppId}
+        </where>
+    </update>
+
+    <!-- 批量修改，参数：map(column="XXX"，keyList="XXX")-->
+    <update id="updateBatch" parameterType="java.util.HashMap">
+        UPDATE tb_punish_param
+        <set>
+        </set>
+        WHERE id IN
+        <foreach collection="keyList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 自定义where条件修改，参数为where后的条件字符串，如"id='1' and name='a'" -->
+    <update id="updateByWhere" parameterType="java.lang.String">
+        UPDATE tb_punish_param
+        <set>
+            <if test="ppId != null">
+                pp_id = #{ppId},
+            </if>
+            <if test="ppName != null">
+                pp_name = #{ppName},
+            </if>
+            <if test="ppOrgan != null">
+                pp_organ = #{ppOrgan},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="minnum != null">
+                minnum = #{minnum},
+            </if>
+            <if test="maxnum != null">
+                maxnum = #{maxnum},
+            </if>
+            <if test="interest != null">
+                interest = #{interest},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid},
+            </if>
+            <if test="updateuserid != null">
+                updateuserid = #{updateuserid},
+            </if>
+            <if test="collecttype != null">
+                collecttype = #{collecttype},
+            </if>
+            <if test="ppType != null">
+                pp_type = #{ppType},
+            </if>
+        </set>
+        <where>
+            ${whereStr}
+        </where>
+    </update>
+
+    <!-- 动态where -->
+    <sql id="where_equal">
+        <if test="ppId != null and ppId != ''">
+            and pp_id = #{ppId}
+        </if>
+        <if test="ppName != null and ppName != ''">
+            and pp_name = #{ppName}
+        </if>
+        <if test="ppOrgan != null and ppOrgan != ''">
+            and pp_organ = #{ppOrgan}
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="minnum != null and minnum != ''">
+            and minnum = #{minnum}
+        </if>
+        <if test="maxnum != null and maxnum != ''">
+            and maxnum = #{maxnum}
+        </if>
+        <if test="interest != null and interest != ''">
+            and interest = #{interest}
+        </if>
+        <if test="state != null and state != ''">
+            and state = #{state}
+        </if>
+        <if test="createtime != null and createtime != ''">
+            and createtime = #{createtime}
+        </if>
+        <if test="updatetime != null and updatetime != ''">
+            and updatetime = #{updatetime}
+        </if>
+        <if test="createuserid != null and createuserid != ''">
+            and createuserid = #{createuserid}
+        </if>
+        <if test="updateuserid != null and updateuserid != ''">
+            and updateuserid = #{updateuserid}
+        </if>
+        <if test="collecttype != null and collecttype != ''">
+            and collecttype = #{collecttype}
+        </if>
+        <if test="ppType != null and ppType != ''">
+            and pp_type = #{ppType}
+        </if>
+    </sql>
+
+    <!-- 模糊查询动态where -->
+    <sql id="where_like">
+        <if test="ppId != null and ppId != ''">
+            and pp_id like '%' || #{ppId} || '%'
+        </if>
+        <if test="ppName != null and ppName != ''">
+            and pp_name like '%' || #{ppName} || '%'
+        </if>
+        <if test="ppOrgan != null and ppOrgan != ''">
+            and pp_organ like '%' || #{ppOrgan} || '%'
+        </if>
+        <if test="type != null and type != ''">
+            and type like '%' || #{type} || '%'
+        </if>
+        <if test="minnum != null and minnum != ''">
+            and minnum like '%' || #{minnum} || '%'
+        </if>
+        <if test="maxnum != null and maxnum != ''">
+            and maxnum like '%' || #{maxnum} || '%'
+        </if>
+        <if test="interest != null and interest != ''">
+            and interest like '%' || #{interest} || '%'
+        </if>
+        <if test="state != null and state != ''">
+            and state like '%' || #{state} || '%'
+        </if>
+        <if test="createtime != null and createtime != ''">
+            and createtime like '%' || #{createtime} || '%'
+        </if>
+        <if test="updatetime != null and updatetime != ''">
+            and updatetime like '%' || #{updatetime} || '%'
+        </if>
+        <if test="createuserid != null and createuserid != ''">
+            and createuserid like '%' || #{createuserid} || '%'
+        </if>
+        <if test="updateuserid != null and updateuserid != ''">
+            and updateuserid like '%' || #{updateuserid} || '%'
+        </if>
+        <if test="collecttype != null and collecttype != ''">
+            and collecttype like '%' || #{collecttype} || '%'
+        </if>
+        <if test="ppType != null and ppType != ''">
+            and pp_type like '%' || #{ppType} || '%'
+        </if>
+    </sql>
+
+    <!-- 根据主键查询一条记录 -->
+    <select id="selectByPK" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param
+        <where>
+            pp_id = #{ppId}
+        </where>
+    </select>
+
+    <!-- 根据非主键唯一约束查询记录,没有唯一约束时查询所有记录 -->
+    <select id="selectByUQ" parameterType="com.boco.SYS.entity.TbPunishParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param
+        <where>
+        </where>
+    </select>
+
+    <select id="selectByType" parameterType="com.boco.SYS.entity.TbPunishParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param where type = #{type} and pp_type = #{ppType} order by interest asc
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="selectByAttr" parameterType="com.boco.SYS.entity.TbPunishParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            order by ${sortColumn},updatetime
+        </if>
+    </select>
+
+    <!-- 根据模糊条件查询记录 -->
+    <select id="selectByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishParam" resultMap="base_result_map"
+            flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+        <if test="sortColumn != null and sortColumn != ''">
+            group by ${sortColumn}
+        </if>
+    </select>
+
+    <!-- 通过where语句查询 -->
+    <select id="selectByWhere" parameterType="java.lang.String" resultMap="base_result_map" flushCache="true">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM tb_punish_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+
+    <!-- 根据条件查询记录数 -->
+    <select id="countByAttr" parameterType="com.boco.SYS.entity.TbPunishParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_punish_param
+        <where>
+            <include refid="where_equal"/>
+        </where>
+    </select>
+
+    <!-- 根据模糊条件查询记录数 -->
+    <select id="countByLikeAttr" parameterType="com.boco.SYS.entity.TbPunishParam" resultType="java.lang.Integer"
+            flushCache="true">
+        select count(*) from tb_punish_param
+        <where>
+            <include refid="where_like"/>
+        </where>
+    </select>
+
+    <!-- 根据自定义条件查询记录数 -->
+    <select id="countByWhere" parameterType="java.lang.String" resultType="java.lang.Integer" flushCache="true">
+        select count(*) from tb_punish_param
+        <where>
+            ${whereStr}
+        </where>
+    </select>
+    <!-- ##############################################批量生成方法########################################### -->
+
+    <!-- ##############################################自定义方法############################################# -->
+
+    <!-- 联想输入参数代码 -->
+    <select id="selectPpId" parameterType="com.boco.SYS.entity.TbPunishParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PP_ID FROM TB_PUNISH_PARAM
+	   WHERE  cast (PP_ID as char) LIKE '%${ppId}%'
+    </select>
+    <!-- 联想输入参数名称 -->
+    <select id="selectPpName" parameterType="com.boco.SYS.entity.TbPunishParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PP_NAME FROM TB_PUNISH_PARAM
+	   WHERE PP_NAME LIKE '%${ppName}%'
+    </select>
+
+    <!-- 联想输入机构代码 -->
+    <select id="selectPpOrgan" parameterType="com.boco.SYS.entity.TbPunishParam" resultType="java.util.HashMap"
+            flushCache="true">
+	    SELECT PP_ORGAN FROM TB_PUNISH_PARAM
+	   WHERE PP_ORGAN LIKE '%${ppOrgan}%'
+    </select>
+
+
+    <!-- ##############################################自定义方法############################################# -->
+</mapper>
